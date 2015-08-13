@@ -21,7 +21,8 @@
 
 VINCDIR=					\
 	-I../rtl/counter			\
-	-I../rtl/datadegister			
+	-I../rtl/datadegister			\
+	-I../rtl/shift			
 SYN_SRC=
 
 SIM_SRC=					\
@@ -30,6 +31,7 @@ SIM_SRC=					\
 SRC=						\
 	../system.v				\
 	../rtl/counter/counter.v		\
+	../rtl/shift/shift.v			\
 	../rtl/dataregister/dataregister.v	
 
 #############################################################################

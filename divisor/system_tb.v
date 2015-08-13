@@ -35,6 +35,10 @@ parameter clk_freq = 1000000000 / tck; // Frequenzy in HZ
 //----------------------------------------------------------------------------
 reg        clk_tb;
 reg        rst_tb;
+reg			cont_tb;
+reg			equal_tb;
+reg			[7:0]dividiendo_tb;
+reg			[7:0]n_valor_tb;
 wire       led_tb;
 //----------------------------------------------------------------------------
 // UART STUFF (testbench uart, simulating a comm. partner)
@@ -45,18 +49,21 @@ wire         uart_txd_tb;
 //----------------------------------------------------------------------------
 // Device Under Test 
 //----------------------------------------------------------------------------
-system #(
-	.clk_freq	(	clk_freq	),
-	.uart_baud_rate	(	uart_baud_rate	)
-) dut  (
+shift #(
+	.N	(	8	)
+	) dut  (
 	.clk(	clk_tb	),
 	// Debug
 	.rst(	rst_tb	),
-	.led(	led_tb	)
-	// Uart
-);
+	.cont( cont_tb),
+	.equal( equal_tb ),
+	.n_valor( n_valor_tb ),
+	.dividiendo( dividiendo_tb)
 
-/* Clocking device */
+	// Uart
+	);
+
+	/* Clocking device */
 // Remember this is only for simulation. It never will be syntetizable //
 initial         clk_tb <= 0;
 always #(tck/2) clk_tb <= ~clk_tb;
@@ -69,8 +76,22 @@ initial begin
 	//export all signals in the simulation viewer
 	$dumpvars(-1, dut);
 	//$dumpvars(-1,clk_tb,rst_tb);
-	#0  rst_tb <= 0;
-	#80 rst_tb <= 1;
-	#(tck*10000000) $finish;
-end
-endmodule
+	#0 dividiendo_tb <= 8'b11001011;
+	#0 n_valor_tb <= 8'd5;
+	#0 equal_tb <= 0;
+	#0  rst_tb <= 1;
+	#0 cont_tb <= 0;
+	#80 rst_tb <= 0;
+	#100 cont_tb <= 1;
+	#20 cont_tb <= 0;
+	#100 cont_tb <= 1;
+	#20 cont_tb <= 0;
+	#100 cont_tb <= 1;
+	#20 cont_tb <= 0;
+	#100 cont_tb <= 1;
+	#20 cont_tb <= 0;
+	#50 equal_tb <= 1;
+	#50 equal_tb <= 0;
+	#(tck*100000) $finish;
+	end
+	endmodule
