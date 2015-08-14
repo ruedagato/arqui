@@ -30,7 +30,7 @@ module shift
     parameter N=8 // number of bits in counter
    )
    (
-    input wire clk, rst,cont,equal,
+    input wire rst,cont,equal,
     input wire [N-1:0] dividiendo,n_valor,
     output wire [N-1:0] q
    );

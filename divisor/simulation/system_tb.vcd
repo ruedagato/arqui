@@ -1,0 +1,98 @@
+$date
+	Thu Aug 13 19:11:49 2015
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module system_tb $end
+$scope module dut $end
+$var wire 1 ! cont $end
+$var wire 8 " dividiendo [7:0] $end
+$var wire 1 # equal $end
+$var wire 8 $ n_valor [7:0] $end
+$var wire 8 % q [7:0] $end
+$var wire 1 & rst $end
+$var wire 8 ' w_salida [7:0] $end
+$var wire 8 ( w_select_bit [7:0] $end
+$var reg 8 ) r_dividiendo [7:0] $end
+$var reg 8 * salida [7:0] $end
+$var reg 8 + select_bit [7:0] $end
+$upscope $end
+$upscope $end
+$scope module system_tb $end
+$scope module comp $end
+$var wire 8 , i_a [7:0] $end
+$var wire 8 - i_b [7:0] $end
+$var wire 8 . o_resta [7:0] $end
+$var wire 1 / o_signal $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0/
+b11111010 .
+b1010 -
+b100 ,
+b111 +
+b0 *
+b11001011 )
+b1 (
+b1 '
+1&
+b0 %
+b101 $
+0#
+b11001011 "
+0!
+$end
+#800
+0&
+#1800
+b11 '
+1/
+b110 +
+b1 *
+b1 %
+b10 -
+b10 .
+1!
+#2000
+0!
+#3000
+b101 +
+b110 '
+b0 (
+b11 *
+b11 %
+1!
+#3200
+0!
+#4200
+b1100 '
+b100 +
+b110 *
+b110 %
+1!
+#4400
+0!
+#5400
+b11 +
+b11001 '
+b1 (
+b1100 *
+b1100 %
+1!
+#5600
+0!
+#6100
+b1011 '
+b101 *
+b101 %
+1#
+#6600
+0#
+#20006600

@@ -19,19 +19,21 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #/
 
-VINCDIR=					\
-	-I../rtl/counter			\
-	-I../rtl/datadegister			\
+VINCDIR=								\
+	-I../rtl/counter					\
+	-I../rtl/datadegister				\
+	-I../rtl/comparador					\
 	-I../rtl/shift			
 SYN_SRC=
 
-SIM_SRC=					\
+SIM_SRC=								\
 	system_tb.v				
 
-SRC=						\
-	../system.v				\
-	../rtl/counter/counter.v		\
-	../rtl/shift/shift.v			\
+SRC=									\
+	../system.v							\
+	../rtl/counter/counter.v			\
+	../rtl/shift/shift.v				\
+	../rtl/comparador/comparador.v		\
 	../rtl/dataregister/dataregister.v	
 
 #############################################################################
