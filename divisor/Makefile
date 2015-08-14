@@ -23,7 +23,8 @@ VINCDIR=								\
 	-I../rtl/counter					\
 	-I../rtl/datadegister				\
 	-I../rtl/comparador					\
-	-I../rtl/shift			
+	-I../rtl/shift						\
+	-I../rtl/salida
 SYN_SRC=
 
 SIM_SRC=								\
@@ -34,7 +35,8 @@ SRC=									\
 	../rtl/counter/counter.v			\
 	../rtl/shift/shift.v				\
 	../rtl/comparador/comparador.v		\
-	../rtl/dataregister/dataregister.v	
+	../rtl/dataregister/dataregister.v	\
+	../rtl/salida/salida.v
 
 #############################################################################
 # Synthesis constants
