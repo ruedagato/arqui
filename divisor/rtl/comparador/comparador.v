@@ -15,7 +15,7 @@ module comparador
 
 
 	//cuerpo del modulo
-	assign o_signal = ((i_a>i_b))?1'b1:1'b0;
+	assign o_signal = ((i_a>=i_b))?1'b1:1'b0;
 	assign o_resta = i_a-i_b;
 
 

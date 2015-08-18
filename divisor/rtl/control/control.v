@@ -34,19 +34,19 @@ module control(
 	always @(posedge clk) begin
 		case(rState)
 		reset: begin
-			sState = (rst)?bit_bajar:reset;
+			sState = (rst)?reset:bit_bajar;
 		end
 		bit_bajar:begin
-			sState = (termino)?fin:comprar; 
+			sState = comprar; 
 		end
 		comprar: begin
 			sState = (mayor)?add_one:add_cero;
 		end
 		add_one: begin
-			sState = bit_bajar;
+			sState = (termino)?fin:bit_bajar;
 		end
 		add_cero: begin
-			sState = bit_bajar;
+			sState = (termino)?fin:bit_bajar;
 		end
 		endcase
 	end

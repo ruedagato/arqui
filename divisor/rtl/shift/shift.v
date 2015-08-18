@@ -32,7 +32,8 @@ module shift
    (
     input wire rst,cont,equal,
     input wire [N-1:0] dividiendo,n_valor,
-    output wire [N-1:0] q
+    output wire [N-1:0] q,
+    output wire o_n
    );
 
    //signal declaration
@@ -47,7 +48,7 @@ module shift
    always @(posedge cont, posedge rst) begin
      if (rst) begin
        // reset
-       select_bit = N-1;
+       select_bit = N;
        salida = 8'b0;
        r_dividiendo = dividiendo;
      end
@@ -62,8 +63,9 @@ module shift
    end
 
    // assign
-   assign w_salida = (salida << 1) + r_dividiendo[select_bit];
+   assign w_salida = (salida << 1) + r_dividiendo[select_bit-1];
    assign q = salida;
    assign w_select_bit = r_dividiendo[select_bit];
+   assign o_n = (select_bit<1)?1'b1:1'b0;
 
 endmodule

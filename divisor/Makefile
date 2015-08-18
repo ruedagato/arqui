@@ -24,6 +24,7 @@ VINCDIR=								\
 	-I../rtl/datadegister				\
 	-I../rtl/comparador					\
 	-I../rtl/shift						\
+	-I../rtl/control					\
 	-I../rtl/salida
 SYN_SRC=
 
@@ -36,6 +37,7 @@ SRC=									\
 	../rtl/shift/shift.v				\
 	../rtl/comparador/comparador.v		\
 	../rtl/dataregister/dataregister.v	\
+	../rtl/control/control.v			\
 	../rtl/salida/salida.v
 
 #############################################################################

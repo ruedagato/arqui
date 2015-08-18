@@ -43,7 +43,7 @@ module salida
    //signal declaration
 
    reg [N-1:0] numero_salida;
-   wire [N-1:0] w_o;
+   wire [N-1:0] w_0;
    wire [N-1:0] w_1;
 
 
@@ -56,7 +56,7 @@ always @(posedge reset) begin
   
 end
 
-always @(*) begin
+always @(i_a) begin
   case(i_a)
     P_N: begin
       

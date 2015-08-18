@@ -35,10 +35,6 @@ parameter clk_freq = 1000000000 / tck; // Frequenzy in HZ
 //----------------------------------------------------------------------------
 reg        clk_tb;
 reg        rst_tb;
-reg			cont_tb;
-reg			equal_tb;
-reg			[7:0]dividiendo_tb,i_a_tb,i_b_tb;
-reg			[7:0]n_valor_tb;
 wire       led_tb;
 //----------------------------------------------------------------------------
 // UART STUFF (testbench uart, simulating a comm. partner)
@@ -46,33 +42,26 @@ wire       led_tb;
 wire         uart_rxd_tb;
 wire         uart_txd_tb;
 
+reg	[7:0] entrada_a,entrada_b;
+
 //----------------------------------------------------------------------------
 // Device Under Test 
 //----------------------------------------------------------------------------
-comparador #(
-	.N ( 8 )
-	) comp(
-	.i_a ( i_a_tb),
-	.i_b (i_b_tb)
-	);
-
-
-shift #(
-	.N	(	8	)
-	) dut  (
-	//.clk(	clk_tb	),
+system #(
+	.clk_freq	(	clk_freq	),
+	.uart_baud_rate	(	uart_baud_rate	),
+	.p_N(8)
+) dut  (
+	.clk(	clk_tb	),
 	// Debug
 	.rst(	rst_tb	),
-	.cont( cont_tb),
-	.equal( equal_tb ),
-	.n_valor( n_valor_tb ),
-	.dividiendo( dividiendo_tb)
-
+	.led(	led_tb	),
+	.i_a(entrada_a),
+	.i_b(entrada_b)
 	// Uart
-	);
+);
 
-
-	/* Clocking device */
+/* Clocking device */
 // Remember this is only for simulation. It never will be syntetizable //
 initial         clk_tb <= 0;
 always #(tck/2) clk_tb <= ~clk_tb;
@@ -84,31 +73,11 @@ initial begin
 	//$monitor("%b,%b,%b",clk_tb,rst_tb,led_tb);
 	//export all signals in the simulation viewer
 	$dumpvars(-1, dut);
-	$dumpvars(-1, comp);
 	//$dumpvars(-1,clk_tb,rst_tb);
-	#0 i_a_tb <= 8'b00000100;
-	#0 i_b_tb <= 8'b00001010;
-	
-	#0 dividiendo_tb <= 8'b11001011;
-	#0 n_valor_tb <= 8'd5;
-	#0 equal_tb <= 0;
 	#0  rst_tb <= 1;
-	#0 cont_tb <= 0;
+	#0	entrada_a <= 8'd14;
+	#0	entrada_b <= 8'd7;
 	#80 rst_tb <= 0;
-	#100 cont_tb <= 1;
-
-	#0 i_a_tb <= 8'b00000100;
-	#0 i_b_tb <= 8'b00000010;
-
-	#20 cont_tb <= 0;
-	#100 cont_tb <= 1;
-	#20 cont_tb <= 0;
-	#100 cont_tb <= 1;
-	#20 cont_tb <= 0;
-	#100 cont_tb <= 1;
-	#20 cont_tb <= 0;
-	#50 equal_tb <= 1;
-	#50 equal_tb <= 0;
 	#(tck*100000) $finish;
-	end
-	endmodule
+end
+endmodule
