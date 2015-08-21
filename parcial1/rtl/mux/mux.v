@@ -21,19 +21,19 @@ module  mux
 	reg [N-1:0] salida;
 
 	//cuerpo del modulo
-	always @(selecM ) begin
+	always @(*) begin
 		case(selecM) begin
 			P_N: begin
-			
+				salida= R_0;
 			end
 			P_0:begin
-			
+				salida = R_1;
 			end
 			P_1:begin
-				
+				salida = R_2;
 			end
 			P_2:begin
-				
+				salida = R_3;
 			end
 			default:begin
 				
@@ -46,8 +46,6 @@ module  mux
 	end
 
 	//asiganaciones
-	assign o_signal = ((i_a>=i_b))?1'b1:1'b0;
-	assign o_resta = i_a-i_b;
-
+	assign q=salida;
 
 endmodule 
