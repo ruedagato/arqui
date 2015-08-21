@@ -42,33 +42,29 @@ module salida
 
    //signal declaration
 
-   reg [N-1:0] numero_salida;
+   reg [N-1:0] numero_salida,apoyo;
    wire [N-1:0] w_0;
    wire [N-1:0] w_1;
 
 
-always @(posedge reset) begin
+always @(posedge reset, posedge i_a[0],posedge i_a[1]) begin
   if (reset) begin
   numero_salida=8'd0;
     // reset
-    
   end
-  
-end
-
-always @(i_a) begin
   case(i_a)
     P_N: begin
       
     end
     P_0: begin
-      numero_salida=w_0;
+      numero_salida=w_1;
 
     end
     P_1: begin
-      numero_salida=w_1;
+      numero_salida=w_0;
     end
-  endcase 
+  endcase
+  
 end
 
    // assign

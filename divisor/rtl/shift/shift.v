@@ -40,32 +40,30 @@ module shift
    reg [N-1:0] select_bit;
    reg [N-1:0] salida;
    reg [N-1:0] r_dividiendo;
-   wire [N-1:0] w_select_bit;
    wire [N-1:0] w_salida;
 
    // body
    // register
-   always @(posedge cont, posedge rst) begin
+   always @(posedge cont, posedge rst, posedge equal) begin
      if (rst) begin
        // reset
        select_bit = N;
        salida = 8'b0;
-       r_dividiendo = dividiendo;
+       //r_dividiendo = dividiendo;
      end
      else if (cont) begin
        salida = w_salida;
        select_bit = select_bit -1;
      end
+     else if (equal) begin
+       salida = n_valor;
+     end
    end
 
-   always @(posedge equal) begin
-     salida = n_valor;
-   end
 
    // assign
-   assign w_salida = (salida << 1) + r_dividiendo[select_bit-1];
+   assign w_salida = (salida << 1) + dividiendo[select_bit-1];
    assign q = salida;
-   assign w_select_bit = r_dividiendo[select_bit];
    assign o_n = (select_bit<1)?1'b1:1'b0;
 
 endmodule

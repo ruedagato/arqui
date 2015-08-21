@@ -6,7 +6,7 @@ module registros
 	//entradas y salidas
 	(
 		// entradas
-		input wire w,rst,
+		input wire w,rst,clk,
 		input wire [1:0] select_register,
 		input wire [N-1:0] s,
 		// salidas
@@ -20,7 +20,7 @@ module registros
 	reg [N-1:0]register[0:3]; 
 
 	//cuerpo del modulo
-	always @(posedge w or posedge rst) begin
+	always @(posedge clk, posedge rst) begin
 		if (rst) begin
 			// reset
 			register[2'b00] = 16'D2;

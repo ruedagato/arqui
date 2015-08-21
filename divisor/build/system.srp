@@ -1,0 +1,155 @@
+Release 12.4 - xst M.81d (lin64)
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+--> 
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "system.prj"
+Input Format                       : MIXED
+
+---- Target Parameters
+Output File Name                   : "system.ngc"
+Target Device                      : xc3S100e-VQ100-4
+
+---- Source Options
+Top Module Name                    : system
+Automatic Register Balancing       : yes
+
+---- General Options
+Optimization Goal                  : AREA
+Optimization Effort                : 2
+RTL Output                         : yes
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "../system.v" in library work
+Compiling verilog file "../rtl/counter/counter.v" in library work
+Module <system> compiled
+Compiling verilog file "../rtl/shift/shift.v" in library work
+Module <counter> compiled
+Compiling verilog file "../rtl/comparador/comparador.v" in library work
+Module <shift> compiled
+Compiling verilog file "../rtl/dataregister/dataregister.v" in library work
+Module <comparador> compiled
+Compiling verilog file "../rtl/control/control.v" in library work
+Module <datadegister> compiled
+Compiling verilog file "../rtl/salida/salida.v" in library work
+Module <control> compiled
+Module <salida> compiled
+No errors in compilation
+Analysis of file <"system.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <system> in library <work> with parameters.
+	clk_freq = "00000010111110101111000010000000"
+	p_N = "00000000000000000000000000001000"
+	uart_baud_rate = "00000000000000001110000100000000"
+
+Analyzing hierarchy for module <counter> in library <work> with parameters.
+	M = "00000000010011000100101101000000"
+	N = "00000000000000000000000000100000"
+
+Analyzing hierarchy for module <datadegister> in library <work> with parameters.
+	DATAWIDTH = "00000000000000000000000000000001"
+
+Analyzing hierarchy for module <shift> in library <work> with parameters.
+	N = "00000000000000000000000000001000"
+
+Analyzing hierarchy for module <comparador> in library <work> with parameters.
+	N = "00000000000000000000000000001000"
+
+Analyzing hierarchy for module <control> in library <work> with parameters.
+	add_cero = "011"
+	add_one = "100"
+	bit_bajar = "001"
+	comprar = "010"
+	fin = "101"
+	reset = "000"
+
+Analyzing hierarchy for module <salida> in library <work> with parameters.
+	N = "00000000000000000000000000001000"
+	P_0 = "10"
+	P_1 = "01"
+	P_N = "00"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <system>.
+	clk_freq = 32'sb00000010111110101111000010000000
+	p_N = 32'sb00000000000000000000000000001000
+	uart_baud_rate = 32'sb00000000000000001110000100000000
+Module <system> is correct for synthesis.
+ 
+Analyzing module <counter> in library <work>.
+	M = 32'sb00000000010011000100101101000000
+	N = 32'sb00000000000000000000000000100000
+Module <counter> is correct for synthesis.
+ 
+Analyzing module <datadegister> in library <work>.
+	DATAWIDTH = 32'sb00000000000000000000000000000001
+Module <datadegister> is correct for synthesis.
+ 
+Analyzing module <shift> in library <work>.
+	N = 32'sb00000000000000000000000000001000
+WARNING:Xst:1467 - "../rtl/shift/shift.v" line 50: Reset or set value is not constant in <select_bit>. It could involve simulation mismatches
+WARNING:Xst:1467 - "../rtl/shift/shift.v" line 51: Reset or set value is not constant in <salida>. It could involve simulation mismatches
+Module <shift> is correct for synthesis.
+ 
+Analyzing module <comparador> in library <work>.
+	N = 32'sb00000000000000000000000000001000
+Module <comparador> is correct for synthesis.
+ 
+Analyzing module <control> in library <work>.
+	add_cero = 3'b011
+	add_one = 3'b100
+	bit_bajar = 3'b001
+	comprar = 3'b010
+	fin = 3'b101
+	reset = 3'b000
+Module <control> is correct for synthesis.
+ 
+Analyzing module <salida> in library <work>.
+	N = 32'sb00000000000000000000000000001000
+	P_0 = 2'b10
+	P_1 = 2'b01
+	P_N = 2'b00
+ERROR:Xst:899 - "../rtl/salida/salida.v" line 55: The logic for <numero_salida> does not match a known FF or Latch template. The description style you are using to describe a register or latch is not supported in the current software release.
+ 
+Found 1 error(s). Aborting synthesis.
+--> 
+
+
+Total memory usage is 324804 kilobytes
+
+Number of errors   :    1 (   0 filtered)
+Number of warnings :    2 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
