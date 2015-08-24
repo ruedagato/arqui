@@ -21,6 +21,8 @@
 
 VINCDIR=								\
 	-I../rtl/control					\
+	-I../rtl/mux						\
+	-I../rtl/alu						\
 	-I../rtl/registros
 SYN_SRC=
 
@@ -30,6 +32,8 @@ SIM_SRC=								\
 SRC=									\
 	../system.v							\
 	../rtl/control/control.v			\
+	../rtl/mux/mux.v					\
+	../rtl/alu/alu.v					\
 	../rtl/registros/registros.v
 
 #############################################################################

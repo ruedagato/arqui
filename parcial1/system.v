@@ -25,11 +25,10 @@ module system
 #(
 	parameter	clk_freq	= 50000000,
 	parameter	uart_baud_rate	= 57600,
-	parameter	p_N = 8
+	parameter	p_N = 16
 ) (
 	input		clk,
 	input		rst,
-	input wire [p_N-1:0] i_a,i_b,
 
 	// UART
 	//input             uart_rxd, 
@@ -46,89 +45,91 @@ wire n_rst=~rst;
 
 
 // cables del sitema del divisor
-wire w_cont,w_equals,w_o_n,w_signal_comp;
-wire [p_N-1:0]w_n_valor,w_salida_shift,w_salida_final;
-wire [1:0] w_salida_cont;
+wire w_registro,mayor;
+wire [p_N-1:0]in_register,r1,r2,r3,r4,i_a,i_b;
+wire [1:0] cnt_alu,slc_mux_a,slc_mux_b,slc_reg;
 
 
 
-counter	#(    .N(32), // number of bits in counter
-              .M(5000000) // mod-M
-   		)
-	counter_unit0 
-   (
-    .clk(clk), .reset(n_rst),
-    .max_tick(counter_unit0_ovf),
-    .q()
-   );
-datadegister	#(.DATAWIDTH(1)
-		)
-	datadegister_unit0 
+registros
+	//Parametros
+	#(
+		.N(16)
+	)
+	registro
+	//entradas y salidas
 	(
-		.clk(clk),.rst(n_rst),.tg_tick(counter_unit0_ovf),
-		.d(counter_unit0_ovf),
-		.q(led_out) 
+		// entradas
+		.w(w_registro),
+		.rst(rst),
+		.clk(clk),
+		.select_register(slc_reg),
+		.s(in_register),
+		// salidas
+		.r1(r1),
+		.r2(r2),
+		.r3(r3),
+		.r4(r4)
 	);
-
-
-// corredor 
-shift#(
-    .N(p_N) // number of bits in counter
-   )
-	corredor
-   (
-   	// entradas
-    .rst(rst),
-    .cont(w_cont),
-    .equal(w_equals),
-    .dividiendo(i_a),
-    .n_valor(w_n_valor),
-    // salidas
-    .q(w_salida_shift),
-    .o_n(w_o_n)
-   );
-
-comparador
+mux
 	//Parametros
 	#(
 		.N(p_N)
 	)
-	comparador_1
+	muxa
 	//entradas y salidas
 	(
-		// entradas
-		.i_a(w_salida_shift),
+		.selecm(slc_mux_a),
+		.R_0(r1),
+		.R_1(r2),
+		.R_2(r3),
+		.R_3(r4),
+		.q(i_a)
+	);
+
+mux
+	//Parametros
+	#(
+		.N(p_N)
+	)
+	muxb
+	//entradas y salidas
+	(
+		.selecm(slc_mux_b),
+		.R_0(r1),
+		.R_1(r2),
+		.R_2(r3),
+		.R_3(r4),
+		.q(i_b)
+	);
+alu
+	//Parametros
+	#(
+		.N(p_N)
+	)
+	alu
+	//entradas y salidas
+	(
+		.i_a(i_a),
 		.i_b(i_b),
-		// salidas
-		.o_signal(w_signal_comp),
-		.o_resta(w_n_valor)
+		.i_control(cnt_alu),
+		.mayor(mayor),
+		.q(in_register)
 	);
 
 control
-	control_1
-	(
-		// entradas
-		.termino(w_o_n), 
-		.mayor(w_signal_comp), 
-		.clk(clk), 
-		.rst(rst),
-		// salidas
-		.salida(w_salida_cont),
-		.bajar(w_cont), 
-		.igualar(w_equals)
-	);
-
-salida
-   #(
-   		.N(p_N) // number of bits in counter
-   )
-   salida_1
+	cont
    (
-   		//entradas
-   		.i_a(w_salida_cont), // entrada proveniente del modulo control
-   		.reset(rst),
-   		.q(w_salida_final)
-
+   	//input
+    .clk(clk), 
+    .rst(rst),
+    .mayor(mayor),
+    //output
+    .cnt_alu(cnt_alu),
+    .slc_mux_a(slc_mux_a),
+    .slc_mux_b(slc_mux_b),
+    .slc_reg(slc_reg),
+    .w(w_registro)
    );
 //----------------------------------------------------------------------------
 // Wires Assigments

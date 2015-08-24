@@ -44,37 +44,52 @@ wire         uart_txd_tb;
 
 reg	[7:0] entrada_a,entrada_b;
 
+reg alu_mayor;
+
 //----------------------------------------------------------------------------
 // Device Under Test 
 //----------------------------------------------------------------------------
 
-// system #(
-// 	.p_N(8)
-// ) dut  (
-// 	.clk(	clk_tb	),
-// 	// Debug
-// 	.rst(	rst_tb	),
-// 	.led(	led_tb	),
-// 	.i_a(entrada_a),
-// 	.i_b(entrada_b)
-// 	// Uart
-// );
+system #(
+	.p_N(16)
+) dut  (
+	.clk(	clk_tb	),
+	// Debug
+	.rst(	rst_tb	),
+	.led(	led_tb	)
+	// Uart
+);
 
-registros
-	//Parametros
-	#(
-		.N(8)
-	)dut
-	//entradas y salidas
-	(
-		// entradas
-		.w(),
-		.rst(rst_tb),
-		.select_register(),
-		.s()
-		// salidas
-		//output wire [N-1:0][1:0] register
-	);
+// registros
+// 	//Parametros
+// 	#(
+// 		.N(8)
+// 	)dut
+// 	//entradas y salidas
+// 	(
+// 		// entradas
+// 		.w(),
+// 		.rst(rst_tb),
+// 		.select_register(),
+// 		.s()
+// 		// salidas
+// 		//output wire [N-1:0][1:0] register
+// 	);
+
+// control
+// 	cont
+//    (
+//    	//input
+//     .clk(clk_tb), 
+//     .rst(rst_tb),
+//     .mayor(alu_mayor),
+//     //output
+//     .cnt_alu(),
+//     .slc_mux_a(),
+//     .slc_mux_b(),
+//     .slc_reg(),
+//     .w()
+//    );
 
 /* Clocking device */
 // Remember this is only for simulation. It never will be syntetizable //
@@ -91,6 +106,6 @@ initial begin
 	//$dumpvars(-1,clk_tb,rst_tb);
 	#0  rst_tb <= 1;
 	#80 rst_tb <= 0;
-	#(tck*100000) $finish;
+	#(tck*1000) $finish;
 end
 endmodule
