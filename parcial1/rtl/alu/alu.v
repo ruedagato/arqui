@@ -30,12 +30,15 @@ module  alu
 				end
 				resta: begin
 					salida = i_a - i_b;
+					es_mayor = 1'b0;
 				end
 				shift_i: begin
 					salida= i_a<<1;
+					es_mayor = 1'b0;
 				end
 				shift_d:begin
 					salida=i_a>>1;
+					es_mayor = 1'b0;
 				end
 			endcase
 	end

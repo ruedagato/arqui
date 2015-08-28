@@ -149,7 +149,9 @@ Module <control> is correct for synthesis.
 =========================================================================
 
 Performing bidirectional port resolution...
-INFO:Xst:2679 - Register <cnt_alu> in unit <control> has a constant value of 00 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <o_signal<8>> in unit <control> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <o_signal<7>> in unit <control> has a constant value of 0 during circuit operation. The register is replaced by logic.
+INFO:Xst:2679 - Register <o_signal<6>> in unit <control> has a constant value of 0 during circuit operation. The register is replaced by logic.
 
 Synthesizing Unit <registros>.
     Related source file is "../rtl/registros/registros.v".
@@ -169,39 +171,53 @@ Unit <mux> synthesized.
 
 Synthesizing Unit <alu>.
     Related source file is "../rtl/alu/alu.v".
-WARNING:Xst:737 - Found 1-bit latch for signal <es_mayor>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found 1-bit 4-to-1 multiplexer for signal <es_mayor>.
     Found 16-bit comparator greater for signal <es_mayor$cmp_gt0000> created at line 28.
     Found 16-bit 4-to-1 multiplexer for signal <salida>.
     Found 16-bit addsub for signal <salida$addsub0000>.
     Summary:
 	inferred   1 Adder/Subtractor(s).
 	inferred   1 Comparator(s).
-	inferred  16 Multiplexer(s).
+	inferred  17 Multiplexer(s).
 Unit <alu> synthesized.
 
 
 Synthesizing Unit <control>.
     Related source file is "../rtl/control/control.v".
-    Using one-hot encoding for signal <rState>.
-WARNING:Xst:737 - Found 10-bit latch for signal <sState>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+    Found finite state machine <FSM_0> for signal <rState>.
+    -----------------------------------------------------------------------
+    | States             | 10                                             |
+    | Transitions        | 12                                             |
+    | Inputs             | 2                                              |
+    | Outputs            | 8                                              |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | rst                       (positive)           |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | 0000                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+WARNING:Xst:737 - Found 1-bit latch for signal <o_signal_0>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <o_signal_1>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <o_signal_2>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <o_signal_3>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <o_signal_4>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 1-bit latch for signal <o_signal_5>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
 WARNING:Xst:737 - Found 1-bit latch for signal <next>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
 INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 2-bit latch for signal <slc_mux_a>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 2-bit latch for signal <slc_mux_b>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 1-bit latch for signal <w>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-WARNING:Xst:737 - Found 2-bit latch for signal <slc_reg>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
-INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
-    Found 10-bit register for signal <rState>.
+    Summary:
+	inferred   1 Finite State Machine(s).
 Unit <control> synthesized.
 
 
 Synthesizing Unit <system>.
     Related source file is "../system.v".
-WARNING:Xst:646 - Signal <n_rst> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:653 - Signal <led_out> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:1780 - Signal <counter_unit0_ovf> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 Unit <system> synthesized.
@@ -213,16 +229,14 @@ HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  16-bit addsub                                         : 1
-# Registers                                            : 5
- 10-bit register                                       : 1
+# Registers                                            : 4
  16-bit register                                       : 4
 # Latches                                              : 7
- 1-bit latch                                           : 3
- 10-bit latch                                          : 1
- 2-bit latch                                           : 3
+ 1-bit latch                                           : 7
 # Comparators                                          : 1
  16-bit comparator greater                             : 1
-# Multiplexers                                         : 3
+# Multiplexers                                         : 4
+ 1-bit 4-to-1 multiplexer                              : 1
  16-bit 4-to-1 multiplexer                             : 3
 
 =========================================================================
@@ -231,32 +245,38 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-WARNING:Xst:1290 - Hierarchical block <registro> is unconnected in block <system>.
-   It will be removed from the design.
-WARNING:Xst:1290 - Hierarchical block <muxa> is unconnected in block <system>.
-   It will be removed from the design.
-WARNING:Xst:1290 - Hierarchical block <muxb> is unconnected in block <system>.
-   It will be removed from the design.
-WARNING:Xst:1290 - Hierarchical block <alu> is unconnected in block <system>.
-   It will be removed from the design.
-WARNING:Xst:1290 - Hierarchical block <cont> is unconnected in block <system>.
-   It will be removed from the design.
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <cont/rState/FSM> on signal <rState[1:10]> with one-hot encoding.
+---------------------
+ State | Encoding
+---------------------
+ 0000  | 0000000001
+ 0001  | 0000000010
+ 0010  | 0000000100
+ 0011  | 0000001000
+ 0100  | 0000100000
+ 0101  | 0000010000
+ 0110  | 0010000000
+ 0111  | 0001000000
+ 1000  | 0100000000
+ 1001  | 1000000000
+---------------------
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
+# FSMs                                                 : 1
 # Adders/Subtractors                                   : 1
  16-bit addsub                                         : 1
-# Registers                                            : 74
- Flip-Flops                                            : 74
+# Registers                                            : 64
+ Flip-Flops                                            : 64
 # Latches                                              : 7
- 1-bit latch                                           : 3
- 10-bit latch                                          : 1
- 2-bit latch                                           : 3
+ 1-bit latch                                           : 7
 # Comparators                                          : 1
  16-bit comparator greater                             : 1
-# Multiplexers                                         : 3
+# Multiplexers                                         : 4
+ 1-bit 4-to-1 multiplexer                              : 1
  16-bit 4-to-1 multiplexer                             : 3
 
 =========================================================================
@@ -264,115 +284,47 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
-WARNING:Xst:1710 - FF/Latch <slc_mux_a_1> (without init value) has a constant value of 0 in block <control>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:2677 - Node <sState_9> of sequential type is unconnected in block <control>.
-WARNING:Xst:2677 - Node <rState_9> of sequential type is unconnected in block <control>.
 
 Optimizing unit <system> ...
 
-Optimizing unit <registros> ...
-
 Optimizing unit <control> ...
-WARNING:Xst:2677 - Node <alu/es_mayor> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_0> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_1> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_2> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_3> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_4> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_5> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_6> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_7> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_8> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_9> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_10> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_11> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_12> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_13> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_14> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_0_15> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_0> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_1> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_2> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_3> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_4> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_5> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_6> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_7> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_8> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_9> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_10> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_11> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_12> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_13> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_14> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_1_15> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_15> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_14> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_13> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_12> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_11> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_10> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_9> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_8> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_7> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_6> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_5> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_4> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_3> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_2> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_1> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_3_0> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_15> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_14> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_13> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_12> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_11> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_10> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_9> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_8> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_7> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_6> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_5> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_4> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_3> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_2> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_1> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <registro/register_2_0> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/rState_2> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/rState_0> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/rState_1> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/rState_3> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/rState_4> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/rState_7> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/rState_5> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/rState_6> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/rState_8> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/sState_8> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/sState_7> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/sState_6> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/sState_5> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/sState_4> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/sState_3> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/sState_2> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/sState_1> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/sState_0> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/slc_mux_a_0> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/slc_mux_b_1> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/slc_mux_b_0> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/slc_reg_1> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/slc_reg_0> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/next> of sequential type is unconnected in block <system>.
-WARNING:Xst:2677 - Node <cont/w> of sequential type is unconnected in block <system>.
+
+Optimizing unit <registros> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
+
+Pipelining and Register Balancing Report ...
+
+Processing Unit <system> :
+	Register(s) cont/rState_FSM_FFd9 has(ve) been backward balanced into : cont/rState_FSM_FFd9_BRB0 cont/rState_FSM_FFd9_BRB1 cont/rState_FSM_FFd9_BRB2.
+Unit <system> processed.
+FlipFlop registro/register_2_15 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_14 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_13 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_12 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_11 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_10 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_9 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_8 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_7 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_6 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_5 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_4 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_3 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_2 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_1 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/register_2_0 has been replicated 1 time(s) to handle iob=true attribute.
 
 Final Macro Processing ...
 
 =========================================================================
 Final Register Report
 
-Found no macro
+Macro Statistics
+# Registers                                            : 91
+ Flip-Flops                                            : 91
+
 =========================================================================
 
 =========================================================================
@@ -397,13 +349,31 @@ Optimization Goal                  : AREA
 Keep Hierarchy                     : no
 
 Design Statistics
-# IOs                              : 3
+# IOs                              : 19
 
 Cell Usage :
-# BELS                             : 1
+# BELS                             : 162
 #      GND                         : 1
-# IO Buffers                       : 1
-#      OBUF                        : 1
+#      INV                         : 1
+#      LUT2                        : 12
+#      LUT3                        : 60
+#      LUT4                        : 23
+#      MUXCY                       : 31
+#      MUXF5                       : 17
+#      VCC                         : 1
+#      XORCY                       : 16
+# FlipFlops/Latches                : 98
+#      FD                          : 1
+#      FDC                         : 9
+#      FDCE                        : 78
+#      FDP                         : 1
+#      FDPE                        : 2
+#      LD                          : 7
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 18
+#      IBUF                        : 1
+#      OBUF                        : 17
 =========================================================================
 
 Device utilization summary:
@@ -411,9 +381,13 @@ Device utilization summary:
 
 Selected Device : 3s100evq100-4 
 
- Number of Slices:                        0  out of    960     0%  
- Number of IOs:                           3
- Number of bonded IOBs:                   1  out of     66     1%  
+ Number of Slices:                       72  out of    960     7%  
+ Number of Slice Flip Flops:             82  out of   1920     4%  
+ Number of 4 input LUTs:                 96  out of   1920     5%  
+ Number of IOs:                          19
+ Number of bonded IOBs:                  19  out of     66    28%  
+    IOB Flip Flops:                      16
+ Number of GCLKs:                         1  out of     24     4%  
 
 ---------------------------
 Partition Resource Summary:
@@ -433,19 +407,35 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
-No clock signals found in this design
+-----------------------------------------------------+-------------------------+-------+
+Clock Signal                                         | Clock buffer(FF name)   | Load  |
+-----------------------------------------------------+-------------------------+-------+
+clk                                                  | BUFGP                   | 91    |
+cont/o_signal_0_not0001(cont/o_signal_0_not0001:O)   | NONE(*)(cont/o_signal_0)| 1     |
+cont/o_signal_1_not0001(cont/o_signal_1_not0001_f5:O)| NONE(*)(cont/o_signal_1)| 2     |
+cont/o_signal_3_not0001(cont/o_signal_3_not0001:O)   | NONE(*)(cont/o_signal_3)| 3     |
+cont/next_or0000(cont/next_or00001:O)                | NONE(*)(cont/next)      | 1     |
+-----------------------------------------------------+-------------------------+-------+
+(*) These 4 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
 ----------------------------------------
-No asynchronous control signals found in this design
+-----------------------------------+------------------------+-------+
+Control Signal                     | Buffer(FF name)        | Load  |
+-----------------------------------+------------------------+-------+
+rst                                | IBUF                   | 90    |
+-----------------------------------+------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: No path found
+   Minimum period: 5.780ns (Maximum Frequency: 173.010MHz)
    Minimum input arrival time before clock: No path found
-   Maximum output required time after clock: No path found
+   Maximum output required time after clock: 4.283ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -453,19 +443,99 @@ Timing Detail:
 All values displayed in nanoseconds (ns)
 
 =========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 5.780ns (frequency: 173.010MHz)
+  Total number of paths / destination ports: 5452 / 90
+-------------------------------------------------------------------------
+Delay:               5.780ns (Levels of Logic = 18)
+  Source:            registro/register_0_1 (FF)
+  Destination:       registro/register_0_15 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: registro/register_0_1 to registro/register_0_15
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDPE:C->Q             4   0.591   0.666  registro/register_0_1 (registro/register_0_1)
+     LUT3:I1->O            1   0.704   0.000  muxb/Mmux_salida_2_f5_6_F (N31)
+     MUXF5:I0->O           2   0.321   0.451  muxb/Mmux_salida_2_f5_6 (i_b<1>)
+     LUT4:I3->O            1   0.704   0.000  alu/Maddsub_salida_addsub0000_lut<1> (alu/Maddsub_salida_addsub0000_lut<1>)
+     MUXCY:S->O            1   0.464   0.000  alu/Maddsub_salida_addsub0000_cy<1> (alu/Maddsub_salida_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<2> (alu/Maddsub_salida_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<3> (alu/Maddsub_salida_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<4> (alu/Maddsub_salida_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<5> (alu/Maddsub_salida_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<6> (alu/Maddsub_salida_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<7> (alu/Maddsub_salida_addsub0000_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<8> (alu/Maddsub_salida_addsub0000_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<9> (alu/Maddsub_salida_addsub0000_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<10> (alu/Maddsub_salida_addsub0000_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<11> (alu/Maddsub_salida_addsub0000_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<12> (alu/Maddsub_salida_addsub0000_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<13> (alu/Maddsub_salida_addsub0000_cy<13>)
+     MUXCY:CI->O           0   0.059   0.000  alu/Maddsub_salida_addsub0000_cy<14> (alu/Maddsub_salida_addsub0000_cy<14>)
+     XORCY:CI->O           5   0.804   0.000  alu/Maddsub_salida_addsub0000_xor<15> (in_register<15>)
+     FDCE:D                    0.308          registro/register_2_15
+    ----------------------------------------
+    Total                      5.780ns (4.663ns logic, 1.117ns route)
+                                       (80.7% logic, 19.3% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'cont/next_or0000'
+  Clock period: 2.394ns (frequency: 417.711MHz)
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Delay:               2.394ns (Levels of Logic = 1)
+  Source:            cont/next (LATCH)
+  Destination:       cont/next (LATCH)
+  Source Clock:      cont/next_or0000 falling
+  Destination Clock: cont/next_or0000 falling
+
+  Data Path: cont/next to cont/next
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     LD:G->Q               3   0.676   0.706  cont/next (cont/next)
+     LUT2:I0->O            1   0.704   0.000  cont/next_mux00001 (cont/next_mux0000)
+     LD:D                      0.308          cont/next
+    ----------------------------------------
+    Total                      2.394ns (1.688ns logic, 0.706ns route)
+                                       (70.5% logic, 29.5% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 16 / 16
+-------------------------------------------------------------------------
+Offset:              4.283ns (Levels of Logic = 1)
+  Source:            registro/register_2_15_1 (FF)
+  Destination:       salidas_final<15> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: registro/register_2_15_1 to salidas_final<15>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             1   0.591   0.420  registro/register_2_15_1 (registro/register_2_15_1)
+     OBUF:I->O                 3.272          salidas_final_15_OBUF (salidas_final<15>)
+    ----------------------------------------
+    Total                      4.283ns (3.863ns logic, 0.420ns route)
+                                       (90.2% logic, 9.8% route)
+
+=========================================================================
 
 
-Total REAL time to Xst completion: 2.00 secs
-Total CPU time to Xst completion: 2.47 secs
+Total REAL time to Xst completion: 3.00 secs
+Total CPU time to Xst completion: 2.57 secs
  
 --> 
 
 
-Total memory usage is 332620 kilobytes
+Total memory usage is 333444 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  108 (   0 filtered)
-Number of infos    :    7 (   0 filtered)
+Number of warnings :    9 (   0 filtered)
+Number of infos    :   11 (   0 filtered)
 
 cd build && ngdbuild -uc ../system.ucf system.ngc
 Release 12.4 - ngdbuild M.81d (lin64)
@@ -514,24 +584,40 @@ Running delay-based LUT packing...
 Running related packing...
 Updating timing models...
 Writing design file "system.ncd"...
-WARNING:PhysDesignRules:367 - The signal <clk_IBUF> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <rst_IBUF> is incomplete. The signal
-   does not drive any load pins in the design.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net cont/o_signal_1_not0001 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net cont/o_signal_0_not0001 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net cont/o_signal_3_not0001 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net cont/next_or0000 is sourced
+   by a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
 
 Design Summary:
 Number of errors:      0
-Number of warnings:    2
+Number of warnings:    4
 Logic Utilization:
+  Total Number Slice Registers:          82 out of   1,920    4%
+    Number used as Flip Flops:           75
+    Number used as Latches:               7
+  Number of 4 input LUTs:                97 out of   1,920    5%
 Logic Distribution:
-    Number of Slices containing only related logic:       0 out of       0   0%
-    Number of Slices containing unrelated logic:          0 out of       0   0%
+  Number of occupied Slices:             82 out of     960    8%
+    Number of Slices containing only related logic:      82 out of      82 100%
+    Number of Slices containing unrelated logic:          0 out of      82   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Number of bonded IOBs:                  3 out of      66    4%
+  Total Number of 4 input LUTs:          97 out of   1,920    5%
+  Number of bonded IOBs:                 19 out of      66   28%
+    IOB Flip Flops:                      16
+  Number of BUFGMUXs:                     1 out of      24    4%
 
-Average Fanout of Non-Clock Nets:                0.00
+Average Fanout of Non-Clock Nets:                3.65
 
-Peak Memory Usage:  361 MB
+Peak Memory Usage:  363 MB
 Total REAL time to MAP completion:  0 secs 
 Total CPU time to MAP completion:   0 secs 
 
@@ -574,7 +660,7 @@ Device speed data version:  "PRODUCTION 1.27 2010-11-18".
 
 Design Summary Report:
 
- Number of External IOBs                           3 out of 66      4%
+ Number of External IOBs                          19 out of 66     28%
 
    Number of External Input IOBs                  2
 
@@ -582,14 +668,18 @@ Design Summary Report:
         Number of LOCed External Input IBUFs      2 out of 2     100%
 
 
-   Number of External Output IOBs                 1
+   Number of External Output IOBs                17
 
-      Number of External Output IOBs              1
-        Number of LOCed External Output IOBs      1 out of 1     100%
+      Number of External Output IOBs             17
+        Number of LOCed External Output IOBs     17 out of 17    100%
 
 
    Number of External Bidir IOBs                  0
 
+
+   Number of BUFGMUXs                        1 out of 24      4%
+   Number of Slices                         82 out of 960     8%
+      Number of SLICEMs                      0 out of 480     0%
 
 
 
@@ -601,45 +691,46 @@ Router effort level (-rl):    High
 Starting initial Timing Analysis.  REAL time: 0 secs 
 Finished initial Timing Analysis.  REAL time: 0 secs 
 
-WARNING:Par:288 - The signal clk_IBUF has no load.  PAR will not attempt to route this signal.
-WARNING:Par:288 - The signal rst_IBUF has no load.  PAR will not attempt to route this signal.
 
 Starting Placer
 Total REAL time at the beginning of Placer: 0 secs 
 Total CPU  time at the beginning of Placer: 0 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:394d30) REAL time: 1 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:8913106) REAL time: 1 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:394d30) REAL time: 1 secs 
+Phase 2.7  Design Feasibility Check (Checksum:8913106) REAL time: 1 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:394d30) REAL time: 1 secs 
+Phase 3.31  Local Placement Optimization (Checksum:8913106) REAL time: 1 secs 
 
 Phase 4.2  Initial Clock and IO Placement
-Phase 4.2  Initial Clock and IO Placement (Checksum:394d30) REAL time: 1 secs 
+
+Phase 4.2  Initial Clock and IO Placement (Checksum:a2d2772) REAL time: 1 secs 
 
 Phase 5.30  Global Clock Region Assignment
-Phase 5.30  Global Clock Region Assignment (Checksum:394d30) REAL time: 1 secs 
+Phase 5.30  Global Clock Region Assignment (Checksum:a2d2772) REAL time: 1 secs 
 
 Phase 6.36  Local Placement Optimization
-Phase 6.36  Local Placement Optimization (Checksum:394d30) REAL time: 1 secs 
+Phase 6.36  Local Placement Optimization (Checksum:a2d2772) REAL time: 1 secs 
 
 Phase 7.8  Global Placement
-Phase 7.8  Global Placement (Checksum:394d30) REAL time: 1 secs 
+..........
+....
+Phase 7.8  Global Placement (Checksum:cdee3502) REAL time: 3 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:394d30) REAL time: 1 secs 
+Phase 8.5  Local Placement Optimization (Checksum:cdee3502) REAL time: 3 secs 
 
 Phase 9.18  Placement Optimization
-Phase 9.18  Placement Optimization (Checksum:394d30) REAL time: 1 secs 
+Phase 9.18  Placement Optimization (Checksum:d7a4e7f8) REAL time: 3 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:394d30) REAL time: 1 secs 
+Phase 10.5  Local Placement Optimization (Checksum:d7a4e7f8) REAL time: 3 secs 
 
-Total REAL time to Placer completion: 1 secs 
-Total CPU  time to Placer completion: 1 secs 
+Total REAL time to Placer completion: 3 secs 
+Total CPU  time to Placer completion: 3 secs 
 Writing design to file system-routed.ncd
 
 
@@ -647,26 +738,28 @@ Writing design to file system-routed.ncd
 Starting Router
 
 
-Phase  1  : 1 unrouted;      REAL time: 1 secs 
+Phase  1  : 569 unrouted;      REAL time: 3 secs 
 
-Phase  2  : 1 unrouted;      REAL time: 1 secs 
+Phase  2  : 511 unrouted;      REAL time: 3 secs 
 
-Phase  3  : 0 unrouted;      REAL time: 1 secs 
+Phase  3  : 160 unrouted;      REAL time: 3 secs 
 
-Phase  4  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 secs 
+Phase  4  : 160 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 3 secs 
 
-Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 secs 
+Phase  5  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
 Updating file: system-routed.ncd with current fully routed design.
 
-Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 secs 
+Phase  6  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
-Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 secs 
+Phase  7  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
 
-Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 1 secs 
+Phase  8  : 0 unrouted; (Setup:0, Hold:0, Component Switching Limit:0)     REAL time: 4 secs 
+WARNING:Route:455 - CLK Net:cont/o_signal_3_not0001 may have excessive skew because 
+      2 CLK pins and 0 NON_CLK pins failed to route using a CLK template.
 
-Total REAL time to Router completion: 1 secs 
-Total CPU time to Router completion: 1 secs 
+Total REAL time to Router completion: 4 secs 
+Total CPU time to Router completion: 4 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -677,9 +770,33 @@ Partition Implementation Status
 
 Generating "PAR" statistics.
 
-Timing Score: 0 (Setup: 0, Hold: 0, Component Switching Limit: 0)
+**************************
+Generating Clock Report
+**************************
 
-Number of Timing Constraints that were not applied: 1
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|           clk_BUFGP |  BUFGMUX_X2Y1| No   |   55 |  0.032     |  0.074      |
++---------------------+--------------+------+------+------------+-------------+
+|cont/o_signal_1_not0 |              |      |      |            |             |
+|                 001 |         Local|      |    2 |  0.011     |  1.420      |
++---------------------+--------------+------+------+------------+-------------+
+|cont/o_signal_0_not0 |              |      |      |            |             |
+|                 001 |         Local|      |    1 |  0.000     |  0.856      |
++---------------------+--------------+------+------+------------+-------------+
+|cont/o_signal_3_not0 |              |      |      |            |             |
+|                 001 |         Local|      |    2 |  0.582     |  1.140      |
++---------------------+--------------+------+------+------------+-------------+
+|    cont/next_or0000 |         Local|      |    1 |  0.000     |  1.079      |
++---------------------+--------------+------+------+------------+-------------+
+
+* Net Skew is the difference between the minimum and maximum routing
+only delays for the net. Note this is different from Clock Skew which
+is reported in TRCE timing report. Clock Skew is the difference between
+the minimum and maximum path delays which includes logic delays.
+
+Timing Score: 0 (Setup: 0, Hold: 0, Component Switching Limit: 0)
 
 Asterisk (*) preceding a constraint indicates it was not met.
    This may be due to a setup or hold violation.
@@ -688,35 +805,29 @@ Asterisk (*) preceding a constraint indicates it was not met.
   Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
                                             |             |    Slack   | Achievable | Errors |    Score   
 ----------------------------------------------------------------------------------------------------------
-  NET "clk_IBUF" PERIOD = 20 ns HIGH 50%    | N/A         |         N/A|         N/A|     N/A|         N/A
+  NET "clk_BUFGP/IBUFG" PERIOD = 20 ns HIGH | SETUP       |    11.861ns|     8.139ns|       0|           0
+   50%                                      | HOLD        |     1.009ns|            |       0|           0
 ----------------------------------------------------------------------------------------------------------
 
 
 All constraints were met.
-INFO:Timing:2761 - N/A entries in the Constraints List may indicate that the 
-   constraint is not analyzed due to the following: No paths covered by this 
-   constraint; Other constraints intersect with this constraint; or This 
-   constraint was disabled by a Path Tracing Control. Please run the Timespec 
-   Interaction Report (TSI) via command line (trce tsi) or Timing Analyzer GUI.
 
 
 Generating Pad Report.
 
 All signals are completely routed.
 
-WARNING:Par:283 - There are 2 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
+Total REAL time to PAR completion: 4 secs 
+Total CPU time to PAR completion: 4 secs 
 
-Total REAL time to PAR completion: 1 secs 
-Total CPU time to PAR completion: 1 secs 
-
-Peak Memory Usage:  341 MB
+Peak Memory Usage:  345 MB
 
 Placement: Completed - No errors found.
 Routing: Completed - No errors found.
 Timing: Completed - No errors found.
 
 Number of error messages: 0
-Number of warning messages: 4
+Number of warning messages: 1
 Number of info messages: 0
 
 Writing design to file system-routed.ncd
@@ -731,14 +842,22 @@ Loading device for application Rf_Device from file '3s100e.nph' in environment
 /opt/Xilinx/12.4/ISE_DS/ISE/.
    "system" is an NCD, version 3.2, device xc3s100e, package vq100, speed -4
 
-Sun Aug 23 23:10:02 2015
+Wed Aug 26 15:10:39 2015
 
 Running DRC.
-WARNING:PhysDesignRules:367 - The signal <clk_IBUF> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <rst_IBUF> is incomplete. The signal
-   does not drive any load pins in the design.
-DRC detected 0 errors and 2 warnings.  Please see the previously displayed
+WARNING:PhysDesignRules:372 - Gated clock. Clock net cont/o_signal_1_not0001 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net cont/o_signal_0_not0001 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net cont/o_signal_3_not0001 is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net cont/next_or0000 is sourced
+   by a combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+DRC detected 0 errors and 4 warnings.  Please see the previously displayed
 individual error or warning messages for more details.
 Creating bit map...
 Saving bit stream in "system.bit".

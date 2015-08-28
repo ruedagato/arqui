@@ -34,20 +34,26 @@ module system
 	//input             uart_rxd, 
 	//output            uart_txd,
 	// Debug 
-	output		led
+	output		led,
+	output[p_N-1:0] salidas_final
 );
 //---------------------------------------------------------------------------
 // General Purpose IO
 //---------------------------------------------------------------------------
 wire counter_unit0_ovf;
 wire led_out;
-wire n_rst=~rst;
 
+
+	// 	8	7		6	5		4	3 		2 	1 		0
+    //
+    //	[0	0		0	0		0	0		0	0		0]
+    // 	cnt_alu		slc_mux_a	slc_mux_b	slc_reg		w
 
 // cables del sitema del divisor
-wire w_registro,mayor;
+wire mayor;
+wire [8:0] signal_control;
 wire [p_N-1:0]in_register,r1,r2,r3,r4,i_a,i_b;
-wire [1:0] cnt_alu,slc_mux_a,slc_mux_b,slc_reg;
+
 
 
 
@@ -60,10 +66,10 @@ registros
 	//entradas y salidas
 	(
 		// entradas
-		.w(w_registro),
+		.w(signal_control[0]),
 		.rst(rst),
 		.clk(clk),
-		.select_register(slc_reg),
+		.select_register(signal_control[2:1]),
 		.s(in_register),
 		// salidas
 		.r1(r1),
@@ -79,7 +85,7 @@ mux
 	muxa
 	//entradas y salidas
 	(
-		.selecm(slc_mux_a),
+		.selecm(signal_control[6:5]),
 		.R_0(r1),
 		.R_1(r2),
 		.R_2(r3),
@@ -95,13 +101,14 @@ mux
 	muxb
 	//entradas y salidas
 	(
-		.selecm(slc_mux_b),
+		.selecm(signal_control[4:3]),
 		.R_0(r1),
 		.R_1(r2),
 		.R_2(r3),
 		.R_3(r4),
 		.q(i_b)
 	);
+
 alu
 	//Parametros
 	#(
@@ -112,7 +119,7 @@ alu
 	(
 		.i_a(i_a),
 		.i_b(i_b),
-		.i_control(cnt_alu),
+		.i_control(signal_control[8:7]),
 		.mayor(mayor),
 		.q(in_register)
 	);
@@ -125,15 +132,12 @@ control
     .rst(rst),
     .mayor(mayor),
     //output
-    .cnt_alu(cnt_alu),
-    .slc_mux_a(slc_mux_a),
-    .slc_mux_b(slc_mux_b),
-    .slc_reg(slc_reg),
-    .w(w_registro)
+    .o_signal(signal_control)
    );
 //----------------------------------------------------------------------------
 // Wires Assigments
 //----------------------------------------------------------------------------
 assign led = led_out;
+assign salidas_final = r3;
 
 endmodule

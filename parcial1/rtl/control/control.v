@@ -27,8 +27,13 @@
 module control
    (
     input wire clk, rst,mayor,
-    output reg [1:0] cnt_alu,slc_mux_a,slc_mux_b,slc_reg,
-    output reg w
+    output reg [8:0] o_signal
+
+    // 	8	7		6	5		4	3 		2 	1 		0
+    //
+    //	[0	0		0	0		0	0		0	0		0]
+    // 	cnt_alu		slc_mux_a	slc_mux_b	slc_reg		w
+
    );
 
    //signal declaration
@@ -65,43 +70,40 @@ module control
 	selec13: sState = comparar;
 	selec23 : sState = comparar;
 	comparar: if(mayor) sState = fin; else sState=selec12;
+	fin: sState=fin;
+	default: sState = reset;
 	endcase
 
 	// output logic
 	always @ (*)
 	case (rState)	
-	reset: next = 0;
+	reset:begin
+		next = 0;
+		o_signal = 9'b000000000;
+	end
 	selec12:begin
-		slc_mux_a = 2'b00;
-		slc_mux_b = 2'b01;
+		o_signal[6:3] = 4'b0001;
 	end
 	sumar:begin
-		cnt_alu = 2'b00;
+		o_signal[8:7] = 2'b00;
 	end
 	guardar3:begin
-		w = 1;
-		slc_reg = 2'b10;
+		o_signal[2:0] = 3'b101;
 
 	end
 	guardar2:begin
-		w = 1;
-		slc_reg = 2'b01;
+		o_signal[2:0] = 3'b011;
 	end
 	guardar1:begin
-		w = 1;
-		slc_reg = 2'b00;
+		o_signal[2:0] = 3'b001;
 	end
 	selec13:begin
-		w = 0;
-		cnt_alu = 2'b00;
-		slc_mux_a = 2'b00;
-		slc_mux_b = 2'b10;
+		o_signal[6:3] = 4'b0010;
+		o_signal[0] = 1'b0;
 	end
 	selec23 : begin
-		w = 0;
-		cnt_alu = 2'b00;
-		slc_mux_a = 2'b01;
-		slc_mux_b = 2'b10;
+		o_signal[6:3] = 4'b0110;
+		o_signal[0] = 1'b0;
 	end
 	comparar:begin
 		if (next) begin
@@ -110,6 +112,7 @@ module control
 		else begin
 			next = 1'b1;
 		end
+		o_signal = o_signal;
 		
 	end
 	endcase

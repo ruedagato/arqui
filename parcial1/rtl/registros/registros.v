@@ -29,9 +29,11 @@ module registros
 			register[2'b11] = 16'D0;
 
 		end
-		else if (w) begin
+		else 
+		if (w) begin
 			register[select_register] = s;
 		end
+
 	end
 
 	// asignaciónes
