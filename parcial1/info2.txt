@@ -1,3 +1,7 @@
+rm -rf build && mkdir build
+for i in ../system.v ../rtl/control/control.v ../rtl/mux/mux.v ../rtl/alu/alu.v ../rtl/registros/registros.v; do echo verilog work $i >> build/system.prj; done
+for i in ; do echo VHDL work $i >> build/system.prj; done
+cd build && xst -ifn ../system.xst
 Release 12.4 - xst M.81d (lin64)
 Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
 --> 
