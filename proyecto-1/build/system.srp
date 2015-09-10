@@ -1,0 +1,852 @@
+Release 12.4 - xst M.81d (lin64)
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+--> 
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "system.prj"
+Input Format                       : MIXED
+
+---- Target Parameters
+Output File Name                   : "system.ngc"
+Target Device                      : xc3S100e-VQ100-4
+
+---- Source Options
+Top Module Name                    : system
+Automatic Register Balancing       : yes
+
+---- General Options
+Optimization Goal                  : AREA
+Optimization Effort                : 2
+RTL Output                         : yes
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "../system.v" in library work
+Compiling verilog file "../rtl/counter/counter.v" in library work
+Module <system> compiled
+Compiling verilog file "../rtl/memoria/memoria.v" in library work
+Module <counter> compiled
+Compiling verilog file "../rtl/alu/alu.v" in library work
+Module <memoria> compiled
+Compiling verilog file "../rtl/control/control.v" in library work
+Module <alu> compiled
+Compiling verilog file "../rtl/mux/mux.v" in library work
+Module <control> compiled
+Compiling verilog file "../rtl/dataregister/dataregister.v" in library work
+Module <mux> compiled
+Module <datadegister> compiled
+No errors in compilation
+Analysis of file <"system.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <system> in library <work> with parameters.
+	clk_freq = "00000010111110101111000010000000"
+	p_N = "00000000000000000000000000010000"
+	uart_baud_rate = "00000000000000001110000100000000"
+
+Analyzing hierarchy for module <memoria> in library <work> with parameters.
+	N = "00000000000000000000000000010000"
+
+Analyzing hierarchy for module <mux> in library <work> with parameters.
+	N = "00000000000000000000000000010000"
+	P_0 = "0000"
+	P_1 = "0001"
+	P_10 = "1010"
+	P_11 = "1011"
+	P_12 = "1100"
+	P_13 = "1101"
+	P_14 = "1110"
+	P_15 = "1111"
+	P_2 = "0010"
+	P_3 = "0011"
+	P_4 = "0100"
+	P_5 = "0101"
+	P_6 = "0110"
+	P_7 = "0111"
+	P_8 = "1000"
+	P_9 = "1001"
+
+Analyzing hierarchy for module <alu> in library <work> with parameters.
+	N = "00000000000000000000000000010000"
+	resta = "10"
+	shift_d = "01"
+	shift_i = "11"
+	suma = "00"
+
+Analyzing hierarchy for module <control> in library <work> with parameters.
+	s0 = "0000"
+	s1 = "0001"
+	s10 = "1010"
+	s11 = "1011"
+	s12 = "1100"
+	s13 = "1101"
+	s2 = "0010"
+	s3 = "0011"
+	s4 = "0100"
+	s5 = "0101"
+	s6 = "0110"
+	s7 = "0111"
+	s8 = "1000"
+	s9 = "1001"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <system>.
+	clk_freq = 32'sb00000010111110101111000010000000
+	p_N = 32'sb00000000000000000000000000010000
+	uart_baud_rate = 32'sb00000000000000001110000100000000
+Module <system> is correct for synthesis.
+ 
+Analyzing module <memoria> in library <work>.
+	N = 32'sb00000000000000000000000000010000
+Module <memoria> is correct for synthesis.
+ 
+Analyzing module <mux> in library <work>.
+	N = 32'sb00000000000000000000000000010000
+	P_0 = 4'b0000
+	P_1 = 4'b0001
+	P_10 = 4'b1010
+	P_11 = 4'b1011
+	P_12 = 4'b1100
+	P_13 = 4'b1101
+	P_14 = 4'b1110
+	P_15 = 4'b1111
+	P_2 = 4'b0010
+	P_3 = 4'b0011
+	P_4 = 4'b0100
+	P_5 = 4'b0101
+	P_6 = 4'b0110
+	P_7 = 4'b0111
+	P_8 = 4'b1000
+	P_9 = 4'b1001
+Module <mux> is correct for synthesis.
+ 
+Analyzing module <alu> in library <work>.
+	N = 32'sb00000000000000000000000000010000
+	resta = 2'b10
+	shift_d = 2'b01
+	shift_i = 2'b11
+	suma = 2'b00
+Module <alu> is correct for synthesis.
+ 
+Analyzing module <control> in library <work>.
+	s0 = 4'b0000
+	s1 = 4'b0001
+	s10 = 4'b1010
+	s11 = 4'b1011
+	s12 = 4'b1100
+	s13 = 4'b1101
+	s2 = 4'b0010
+	s3 = 4'b0011
+	s4 = 4'b0100
+	s5 = 4'b0101
+	s6 = 4'b0110
+	s7 = 4'b0111
+	s8 = 4'b1000
+	s9 = 4'b1001
+Module <control> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <memoria>.
+    Related source file is "../rtl/memoria/memoria.v".
+    Found 16-bit register for signal <reg1>.
+    Found 16-bit register for signal <reg10>.
+    Found 16-bit register for signal <reg11>.
+    Found 16-bit register for signal <reg12>.
+    Found 16-bit register for signal <reg13>.
+    Found 16-bit register for signal <reg14>.
+    Found 16-bit register for signal <reg15>.
+    Found 16-bit register for signal <reg16>.
+    Found 16-bit register for signal <reg2>.
+    Found 16-bit register for signal <reg3>.
+    Found 16-bit register for signal <reg4>.
+    Found 16-bit register for signal <reg5>.
+    Found 16-bit register for signal <reg6>.
+    Found 16-bit register for signal <reg7>.
+    Found 16-bit register for signal <reg8>.
+    Found 16-bit register for signal <reg9>.
+    Summary:
+	inferred  80 D-type flip-flop(s).
+Unit <memoria> synthesized.
+
+
+Synthesizing Unit <mux>.
+    Related source file is "../rtl/mux/mux.v".
+    Found 16-bit 16-to-1 multiplexer for signal <salida>.
+    Summary:
+	inferred  16 Multiplexer(s).
+Unit <mux> synthesized.
+
+
+Synthesizing Unit <alu>.
+    Related source file is "../rtl/alu/alu.v".
+WARNING:Xst:646 - Signal <salida2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 1-bit 4-to-1 multiplexer for signal <es_mayor>.
+    Found 16-bit adder carry out for signal <old_salida2_1$addsub0000>.
+    Found 16-bit 4-to-1 multiplexer for signal <salida>.
+    Found 16-bit addsub for signal <salida$addsub0000>.
+    Summary:
+	inferred   2 Adder/Subtractor(s).
+	inferred  17 Multiplexer(s).
+Unit <alu> synthesized.
+
+
+Synthesizing Unit <control>.
+    Related source file is "../rtl/control/control.v".
+    Found finite state machine <FSM_0> for signal <rState>.
+    -----------------------------------------------------------------------
+    | States             | 14                                             |
+    | Transitions        | 17                                             |
+    | Inputs             | 1                                              |
+    | Outputs            | 15                                             |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | rst                       (positive)           |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | 0000                                           |
+    | Encoding           | automatic                                      |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Summary:
+	inferred   1 Finite State Machine(s).
+Unit <control> synthesized.
+
+
+Synthesizing Unit <system>.
+    Related source file is "../system.v".
+WARNING:Xst:653 - Signal <led_out> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:1780 - Signal <counter_unit0_ovf> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+Unit <system> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 2
+ 16-bit adder carry out                                : 1
+ 16-bit addsub                                         : 1
+# Registers                                            : 16
+ 16-bit register                                       : 16
+# Multiplexers                                         : 4
+ 1-bit 4-to-1 multiplexer                              : 1
+ 16-bit 16-to-1 multiplexer                            : 2
+ 16-bit 4-to-1 multiplexer                             : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <cont/rState/FSM> on signal <rState[1:14]> with one-hot encoding.
+-------------------------
+ State | Encoding
+-------------------------
+ 0000  | 00000000000001
+ 0001  | 00000000000010
+ 0010  | 00000000000100
+ 0011  | 00000000010000
+ 0100  | 00000000100000
+ 0101  | 00000001000000
+ 0110  | 00000010000000
+ 0111  | 00000100000000
+ 1000  | 00001000000000
+ 1001  | 00010000000000
+ 1010  | 00100000000000
+ 1011  | 01000000000000
+ 1100  | 10000000000000
+ 1101  | 00000000001000
+-------------------------
+WARNING:Xst:1710 - FF/Latch <15> (without init value) has a constant value of 1 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <14> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <13> (without init value) has a constant value of 1 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <12> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <11> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <10> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <9> (without init value) has a constant value of 1 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <8> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <7> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <6> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <5> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <4> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <3> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <2> (without init value) has a constant value of 1 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <1> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <reg15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <15> (without init value) has a constant value of 1 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <14> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <13> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <12> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <11> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <10> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <9> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <8> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <7> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <6> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <5> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <4> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <3> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <2> (without init value) has a constant value of 1 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <1> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <reg14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_15> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_14> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_13> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_12> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_11> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_10> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_9> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_8> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_7> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_6> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_5> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_4> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_3> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_2> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_1> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <reg9_0> (without init value) has a constant value of 0 in block <registro>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <15> (without init value) has a constant value of 1 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <14> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <13> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <12> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <11> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <10> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <9> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <8> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <7> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <6> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <5> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <4> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <3> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <2> (without init value) has a constant value of 1 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <1> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <reg16>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <15> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <14> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <13> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <12> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <11> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <10> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <9> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <8> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <7> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <6> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <5> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <4> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <3> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <2> (without init value) has a constant value of 1 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <1> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <reg11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <15> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <14> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <13> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <12> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <11> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <10> (without init value) has a constant value of 1 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <9> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <8> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <7> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <6> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <5> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <4> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <3> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <2> (without init value) has a constant value of 1 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <1> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <reg10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <15> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <14> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <13> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <12> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <11> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <10> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <9> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <8> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <7> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <6> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <5> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <4> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <3> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <2> (without init value) has a constant value of 1 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <1> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <reg13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <15> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <14> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <13> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <12> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <11> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <10> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <9> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <8> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <7> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <6> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <5> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <4> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <3> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <2> (without init value) has a constant value of 1 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <1> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1710 - FF/Latch <0> (without init value) has a constant value of 0 in block <reg12>. This FF/Latch will be trimmed during the optimization process.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# FSMs                                                 : 1
+# Adders/Subtractors                                   : 2
+ 16-bit adder carry out                                : 1
+ 16-bit addsub                                         : 1
+# Registers                                            : 256
+ Flip-Flops                                            : 256
+# Multiplexers                                         : 4
+ 1-bit 4-to-1 multiplexer                              : 1
+ 16-bit 16-to-1 multiplexer                            : 2
+ 16-bit 4-to-1 multiplexer                             : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <system> ...
+
+Optimizing unit <memoria> ...
+WARNING:Xst:1710 - FF/Latch <registro/reg15_15> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_14> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_13> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_12> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_11> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_10> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_9> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_8> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_7> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_6> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_5> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_4> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_3> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_2> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_1> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg15_0> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_15> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_14> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_13> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_12> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_11> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_10> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_9> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_8> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_7> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_6> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_5> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_4> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_3> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_2> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_1> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg14_0> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_0> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_1> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_2> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_3> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_4> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_5> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_6> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_7> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_8> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_9> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_10> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_11> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_12> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_13> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_14> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg9_15> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_15> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_14> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_13> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_12> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_11> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_10> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_9> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_8> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_7> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_6> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_5> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_4> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_3> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_2> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_1> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg16_0> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_15> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_14> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_13> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_12> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_11> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_10> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_9> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_8> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_7> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_6> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_5> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_4> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_3> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_2> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_1> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg11_0> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_15> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_14> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_13> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_12> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_11> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_10> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_9> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_8> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_7> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_6> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_5> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_4> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_3> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_2> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_1> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg10_0> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_15> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_14> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_13> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_12> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_11> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_10> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_9> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_8> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_7> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_6> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_5> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_4> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_3> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_2> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_1> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg13_0> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_15> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_14> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_13> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_12> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_11> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_10> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_9> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_8> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_7> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_6> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_5> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_4> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_3> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_2> (without init value) has a constant value of 1 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_1> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1895 - Due to other FF/Latch trimming, FF/Latch <registro/reg12_0> (without init value) has a constant value of 0 in block <system>. This FF/Latch will be trimmed during the optimization process.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_0> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_0> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_0> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_0> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_10> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_10> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_10> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_10> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_11> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_11> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_11> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_11> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_5> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_5> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_5> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_5> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_6> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_6> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_6> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_6> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_7> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_7> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_7> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_7> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_8> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_8> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_8> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_8> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_9> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_9> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_9> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_9> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_12> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_12> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_12> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_12> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_13> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_13> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_13> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_13> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_14> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_14> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_14> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_14> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_15> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_15> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_15> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_15> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_1> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_1> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_1> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_1> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_2> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_2> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_2> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_2> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_3> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_3> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_3> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_3> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg5_4> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg6_4> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg7_4> is unconnected in block <system>.
+WARNING:Xst:1898 - Due to constant pushing, FF/Latch <registro/reg8_4> is unconnected in block <system>.
+FlipFlop registro/reg3_15 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_14 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_13 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_12 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_11 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_10 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_9 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_8 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_7 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_6 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_5 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_4 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_3 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_2 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_1 has been replicated 1 time(s) to handle iob=true attribute.
+FlipFlop registro/reg3_0 has been replicated 1 time(s) to handle iob=true attribute.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 94
+ Flip-Flops                                            : 94
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : system.ngr
+Top Level Output File Name         : system.ngc
+Output Format                      : ngc
+Optimization Goal                  : AREA
+Keep Hierarchy                     : no
+
+Design Statistics
+# IOs                              : 19
+
+Cell Usage :
+# BELS                             : 196
+#      GND                         : 1
+#      LUT2                        : 21
+#      LUT3                        : 83
+#      LUT4                        : 10
+#      MUXCY                       : 31
+#      MUXF5                       : 34
+#      XORCY                       : 16
+# FlipFlops/Latches                : 94
+#      FDC                         : 13
+#      FDCE                        : 75
+#      FDP                         : 1
+#      FDPE                        : 5
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 18
+#      IBUF                        : 1
+#      OBUF                        : 17
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s100evq100-4 
+
+ Number of Slices:                       86  out of    960     8%  
+ Number of Slice Flip Flops:             78  out of   1920     4%  
+ Number of 4 input LUTs:                114  out of   1920     5%  
+ Number of IOs:                          19
+ Number of bonded IOBs:                  19  out of     66    28%  
+    IOB Flip Flops:                      16
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 94    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-----------------------------------+------------------------+-------+
+Control Signal                     | Buffer(FF name)        | Load  |
+-----------------------------------+------------------------+-------+
+rst                                | IBUF                   | 94    |
+-----------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 10.673ns (Maximum Frequency: 93.693MHz)
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: 4.283ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 10.673ns (frequency: 93.693MHz)
+  Total number of paths / destination ports: 49298 / 173
+-------------------------------------------------------------------------
+Delay:               10.673ns (Levels of Logic = 23)
+  Source:            cont/rState_FSM_FFd11 (FF)
+  Destination:       cont/rState_FSM_FFd11 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: cont/rState_FSM_FFd11 to cont/rState_FSM_FFd11
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              5   0.591   0.808  cont/rState_FSM_FFd11 (cont/rState_FSM_FFd11)
+     LUT3:I0->O            1   0.704   0.424  cont/rState_FSM_Out5_SW0 (N10)
+     LUT4:I3->O           32   0.704   1.297  cont/rState_FSM_Out5 (signal_control<9>)
+     LUT3:I2->O            1   0.704   0.000  muxa/Mmux_salida_8 (muxa/Mmux_salida_8)
+     MUXF5:I0->O           2   0.321   0.622  muxa/Mmux_salida_6_f5 (i_a<0>)
+     LUT2:I0->O            1   0.704   0.000  alu/Madd_old_salida2_1_addsub0000_lut<0> (alu/Madd_old_salida2_1_addsub0000_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  alu/Madd_old_salida2_1_addsub0000_cy<0> (alu/Madd_old_salida2_1_addsub0000_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<1> (alu/Madd_old_salida2_1_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<2> (alu/Madd_old_salida2_1_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<3> (alu/Madd_old_salida2_1_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<4> (alu/Madd_old_salida2_1_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<5> (alu/Madd_old_salida2_1_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<6> (alu/Madd_old_salida2_1_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<7> (alu/Madd_old_salida2_1_addsub0000_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<8> (alu/Madd_old_salida2_1_addsub0000_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<9> (alu/Madd_old_salida2_1_addsub0000_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<10> (alu/Madd_old_salida2_1_addsub0000_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<11> (alu/Madd_old_salida2_1_addsub0000_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<12> (alu/Madd_old_salida2_1_addsub0000_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<13> (alu/Madd_old_salida2_1_addsub0000_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  alu/Madd_old_salida2_1_addsub0000_cy<14> (alu/Madd_old_salida2_1_addsub0000_cy<14>)
+     MUXCY:CI->O           5   0.459   0.712  alu/Madd_old_salida2_1_addsub0000_cy<15> (alu/Madd_old_salida2_1_index0000)
+     LUT2:I1->O            1   0.704   0.000  cont/rState_FSM_FFd11-In1 (cont/rState_FSM_FFd11-In1)
+     MUXF5:I1->O           1   0.321   0.000  cont/rState_FSM_FFd11-In_f5 (cont/rState_FSM_FFd11-In)
+     FDC:D                     0.308          cont/rState_FSM_FFd11
+    ----------------------------------------
+    Total                     10.673ns (6.810ns logic, 3.863ns route)
+                                       (63.8% logic, 36.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 16 / 16
+-------------------------------------------------------------------------
+Offset:              4.283ns (Levels of Logic = 1)
+  Source:            registro/reg3_15_1 (FF)
+  Destination:       salidas_final<15> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: registro/reg3_15_1 to salidas_final<15>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             1   0.591   0.420  registro/reg3_15_1 (registro/reg3_15_1)
+     OBUF:I->O                 3.272          salidas_final_15_OBUF (salidas_final<15>)
+    ----------------------------------------
+    Total                      4.283ns (3.863ns logic, 0.420ns route)
+                                       (90.2% logic, 9.8% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 3.00 secs
+Total CPU time to Xst completion: 3.12 secs
+ 
+--> 
+
+
+Total memory usage is 345204 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  323 (   0 filtered)
+Number of infos    :    0 (   0 filtered)
+
