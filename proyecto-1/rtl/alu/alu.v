@@ -8,7 +8,7 @@ module  alu
 		input wire [N-1:0] i_a,
 		input wire [N-1:0] i_b,
 		input wire [1:0] i_control,
-		output wire mayor,
+		output wire mayor, paridad,
 		output wire [N-1:0] q
 	);
 	 parameter [1:0] suma=2'b00;
@@ -44,10 +44,13 @@ module  alu
 				end
 			endcase
 	end
-
+	//se define para mirar el bit de menor peso del dato en el bus C
+if (salida[0]==1) begin
+	bandera=1;
+end
 
 	//asiganaciones
 	assign q = salida;
 	assign mayor = es_mayor;
 
-endmodule 
+endmodulde 
