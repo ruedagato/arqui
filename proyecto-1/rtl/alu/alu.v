@@ -19,7 +19,7 @@ module  alu
 	//registros y señales
 	reg [N-1:0] salida;
 	reg [N:0] salida2;
-	reg es_mayor;
+	reg es_mayor,bandera;
 
 	//cuerpo del modulo
 	always @(*) begin
@@ -35,7 +35,7 @@ module  alu
 					es_mayor = 1'b0;
 				end
 				shift_i: begin
-					salida= i_a<<1;
+					salida= i_a;
 					es_mayor = 1'b0;
 				end
 				shift_d:begin
@@ -43,13 +43,17 @@ module  alu
 					es_mayor = 1'b0;
 				end
 			endcase
+			if (salida[0]==1) begin
+				bandera=1;
+			else begin
+				bandera=0;
+			end
+
 	end
 	//se define para mirar el bit de menor peso del dato en el bus C
-if (salida[0]==1) begin
-	bandera=1;
-end
 
 	//asiganaciones
+	assign paridad = bandera ;
 	assign q = salida;
 	assign mayor = es_mayor;
 
