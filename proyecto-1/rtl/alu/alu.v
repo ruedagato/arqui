@@ -7,7 +7,7 @@ module  alu
 	(
 		input wire [N-1:0] i_a,
 		input wire [N-1:0] i_b,
-		input wire [1:0] i_control,
+		input wire [2:0] i_control,
 		output wire mayor, paridad,
 		output wire [N-1:0] q
 	);
@@ -42,7 +42,11 @@ module  alu
 					salida=i_a>>1;
 					es_mayor = 1'b0;
 				end
+				defaultcase:begin
+					salida= i_a;
+				end
 			endcase
+
 			if (salida[0]==1) begin
 				bandera=1;
 			else begin
