@@ -26,7 +26,7 @@
 
 module control
    (
-    input wire clk, rst,mayor,
+    input wire clk, rst,mayor,bandera,
     output reg [14:0] o_signal
 
 	// 	14	13		12  11  10  9		8  7  6  5 		4  3  2  1 		0

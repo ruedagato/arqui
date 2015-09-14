@@ -50,7 +50,7 @@ wire led_out;
     // 	cnt_alu		slc_mux_a			slc_mux_b		slc_reg			w
 
 // cables del sitema del divisor
-wire mayor;
+wire mayor,paridad;
 wire [14:0] signal_control;
 wire [p_N-1:0]in_register,rr1,rr2,rr3,rr4,rr5,rr6,rr7,rr8,rr9,rr10,rr11,rr12,rr13,rr14,rr15,rr16,i_a,i_b;
 
@@ -157,6 +157,7 @@ alu
 		.i_b(i_b),
 		.i_control(signal_control[14:13]),
 		.mayor(mayor),
+		.paridad(paridad),
 		.q(in_register)
 	);
 
@@ -167,6 +168,7 @@ control
     .clk(clk), 
     .rst(rst),
     .mayor(mayor),
+    .bandera(paridad),
     //output
     .o_signal(signal_control)
    );
