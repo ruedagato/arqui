@@ -24,9 +24,9 @@
 // FES Example
 // 
 
-module control
+module control2
    (
-    input wire clk, rst,mayor,
+    input wire clk, rst,mayor,bandera,
     output reg [14:0] o_signal
 
 	// 	14	13		12  11  10  9		8  7  6  5 		4  3  2  1 		0
@@ -40,20 +40,14 @@ module control
 	reg [3:0] sState, rState;
 
    //states declaration
-	parameter s0 = 		4'b0000;
-	parameter s1 = 		4'b0001;
-	parameter s2 = 		4'b0010;
-	parameter s3 = 		4'b0011;
-	parameter s4 = 		4'b0100;
-	parameter s5 = 		4'b0101;
-	parameter s6 = 		4'b0110;
-	parameter s7 = 		4'b0111;
-	parameter s8 =		4'b1000;
-	parameter s9 =		4'b1001;
-	parameter s10 =		4'b1010;
-	parameter s11 =		4'b1011;
-	parameter s12 =		4'b1100;
-	parameter s13 =		4'b1101;
+	parameter s0 = 		3'b000;
+	parameter s1 = 		3'b001;
+	parameter s2 = 		3'b010;
+	parameter s3 = 		3'b011;
+	parameter s4 = 		3'b100;
+	parameter s5 = 		3'b101;
+	parameter s6 = 		3'b110;
+	parameter s7 = 		3'b111;
 
 	// state register
 	always @ (posedge clk, posedge rst)
@@ -64,38 +58,21 @@ module control
 	always @ (*)
 	case (rState)
 	s0: if(rst) sState = s0; else sState = s1;
-	s1: sState = s2;
-	s2: if(mayor) sState = s13; else sState = s3;
+	s1: if(bandera) sState = s2; else sState =s3;
+	s2: sState = s3;
 	s3: sState = s4;
-	s4: sState = s5;
-	s5: sState = s6;
-	s6: if(mayor) sState = s13; else sState = s7;
-	s7: sState = s8;
-	s8: sState = s9;
-	s9: sState = s10;
-	s10: if(mayor) sState = s13; else sState = s11;
-	s11: sState = s12;
-	s12: sState = s1;
-	default: sState = s0;
+
 	endcase
 
 	// output logic
 	always @ (*)
 	case (rState)	
 	s0:o_signal = 	15'b000000000000000;
-	s1:o_signal = 	15'b000001001000000;
-	s2:o_signal = 	15'b000001001000000;
-	s3:o_signal =	15'b000001001001001;
-	s4:o_signal = 	15'b000001001000011;
-	s5:o_signal = 	15'b000010001100000;
-	s6:o_signal = 	15'b000010001100000;
-	s7:o_signal = 	15'b000010001100101;
-	s8:o_signal = 	15'b000010001101001;
-	s9:o_signal = 	15'b000010000100000;
-	s10:o_signal = 	15'b000010000100000;
-	s11:o_signal = 	15'b000010000100111;
-	s12:o_signal = 	15'b000010000101001;
-	s13:o_signal = 	15'b000000000000000;
+	s1:o_signal = 	15'b110001000000000;
+	s2:o_signal = 	15'b000001000000001;
+	s3:o_signal = 	15'b100001000000011;
+	s4:o_signal =	15'b000001001001001;
+
 	default:o_signal = 15'b000000000000000;
 	endcase
 
