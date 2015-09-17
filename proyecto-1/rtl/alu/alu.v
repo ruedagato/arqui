@@ -7,8 +7,8 @@ module  alu
 	(
 		input wire [N-1:0] i_a,
 		input wire [N-1:0] i_b,
-		input wire [2:0] i_control,
-		output wire mayor, paridad,
+		input wire [1:0] i_control,
+		output wire mayor,
 		output wire [N-1:0] q
 	);
 	 parameter [1:0] suma=2'b00;
@@ -19,7 +19,7 @@ module  alu
 	//registros y señales
 	reg [N-1:0] salida;
 	reg [N:0] salida2;
-	reg es_mayor,bandera;
+	reg es_mayor;
 
 	//cuerpo del modulo
 	always @(*) begin
@@ -35,30 +35,19 @@ module  alu
 					es_mayor = 1'b0;
 				end
 				shift_i: begin
-					salida= i_a;
+					salida= i_a<<1;
 					es_mayor = 1'b0;
 				end
 				shift_d:begin
 					salida=i_a>>1;
 					es_mayor = 1'b0;
 				end
-				defaultcase:begin
-					salida= i_a;
-				end
 			endcase
-
-			if (salida[0]==1) begin
-				bandera=1;
-			else begin
-				bandera=0;
-			end
-
 	end
-	//se define para mirar el bit de menor peso del dato en el bus C
+
 
 	//asiganaciones
-	assign paridad = bandera ;
 	assign q = salida;
 	assign mayor = es_mayor;
 
-endmodulde 
+endmodule 
