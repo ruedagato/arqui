@@ -59,12 +59,14 @@ module  alu
 	always @(*) begin
 		if(salida==0)
 			reg_zero = 1;
-		else
+		else begin
 			reg_zero = 0;
-		if(salida[15]==1)
+		end
+		if(salida[0]==1) 
 			reg_paridad = 1;
-		else
+		else begin
 			reg_paridad = 0;
+		end
 	end
 
 

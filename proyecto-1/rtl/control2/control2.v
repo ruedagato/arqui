@@ -40,14 +40,17 @@ module control2
 	reg [3:0] sState, rState;
 
    //states declaration
-	parameter s0 = 		3'b000;
-	parameter s1 = 		3'b001;
-	parameter s2 = 		3'b010;
-	parameter s3 = 		3'b011;
-	parameter s4 = 		3'b100;
-	parameter s5 = 		3'b101;
-	parameter s6 = 		3'b110;
-	parameter s7 = 		3'b111;
+	parameter s0 = 		4'b0000;
+	parameter s1 = 		4'b0001;
+	parameter s2 = 		4'b0010;
+	parameter s3 = 		4'b0011;
+	parameter s4 = 		4'b0100;
+	parameter s5 = 		4'b0101;
+	parameter s6 = 		4'b0110;
+	parameter s7 = 		4'b0111;
+	parameter s8 = 		4'b1000;
+	parameter s9 = 		4'b1001;	
+	parameter s10 = 	4'b1010; 
 
 	// state register
 	always @ (posedge clk, posedge rst)
@@ -58,21 +61,32 @@ module control2
 	always @ (*)
 	case (rState)
 	s0: if(rst) sState = s0; else sState = s1;
-	s1: if(paridad) sState = s2; else sState =s3;
-	s2: sState = s3;
+	s1: sState = s2; 
+	s2: if(paridad) sState = s3; else sState =s5;
 	s3: sState = s4;
-	s4: if(compuor) sState = s0; else sState =s1;
-
+	s4: sState = s5;
+	s5: sState = s6;
+	s6: sState = s7;
+	s7: sState = s8;
+	s8: sState = s9;
+	s9: if(compuor) sState = s10; else sState =s1;
+	s10: sState =s10;
 	endcase
 
 	// output logic
 	always @ (*)
 	case (rState)
 	s0:o_signal = 16'b0000000000000000; //estado inicial
-	s1:o_signal = 16'b1000001000000000;//mira paridad de i_b
-	s2:o_signal = 16'b0000001000000001;//suma los datos
-	s3:o_signal = 16'b0100001000000011;//desplaza r1
-	s4:o_signal = 16'b0000001001001001;
+	s1:o_signal = 16'b1000000000000000;//mira paridad de i_b
+	s2:o_signal = 16'b1000000000000000;//
+	s3:o_signal = 16'b0000001010100000;//suma los datos
+	s4:o_signal = 16'b0000001010101011;//escribe los datos
+	s5:o_signal = 16'b0110001000000000;//shit-d i_a
+	s6:o_signal = 16'b0110001000000011; //guarda el dato
+	s7:o_signal = 16'b0010000000000000; //shit-i i_b
+	s8:o_signal = 16'b0010000000000001; //guarda el dato
+	s9:o_signal = 16'b1000000000000000; //
+	s10:o_signal = 16'b0010000000000000; //
 
 	default:o_signal = 16'b000000000000000;
 	endcase
