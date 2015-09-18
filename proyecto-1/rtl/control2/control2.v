@@ -22,17 +22,17 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #*/
 // FES Example
-// 
+//
 
 module control2
    (
     input wire clk, rst,mayor,paridad,compuor,
     output reg [15:0] o_signal
 
-	// 	14	13		12  11  10  9		8  7  6  5 		4  3  2  1 		0
+	  // 	15  14	13	 12  11  10  9		 8  7  6  5 		4  3  2  1 		0
     //
-    //	[0	0		0	0   0   0		0  0  0  0		0  0  0  0		0]
-    // 	cnt_alu		slc_mux_a			slc_mux_b		slc_reg			w
+    //	[0   0	0		 0	0   0    0		0  0   0  0		  0  0  0  0		0]
+    // 	cnt_alu		   slc_mux_a		    slc_mux_b       slc_reg       w
 
    );
 
@@ -67,9 +67,9 @@ module control2
 
 	// output logic
 	always @ (*)
-	case (rState)	
+	case (rState)
 	s0:o_signal = 16'b0000000000000000; //estado inicial
-	s1:o_signal = 16'b0110001000000000;//mira paridad de i_b
+	s1:o_signal = 16'b1000001000000000;//mira paridad de i_b
 	s2:o_signal = 16'b0000001000000001;//suma los datos
 	s3:o_signal = 16'b0100001000000011;//desplaza r1
 	s4:o_signal = 16'b0000001001001001;

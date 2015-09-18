@@ -24,12 +24,13 @@ VINCDIR=					\
 	-I../rtl/memoria			\
 	-I../rtl/alu			\
 	-I../rtl/control			\
+	-I../rtl/control2			\
 	-I../rtl/mux			\
-	-I../rtl/datadegister			
+	-I../rtl/datadegister
 SYN_SRC=
 
 SIM_SRC=					\
-	system_tb.v				
+	system_tb.v
 
 SRC=						\
 	../system.v				\
@@ -37,12 +38,13 @@ SRC=						\
 	../rtl/memoria/memoria.v		\
 	../rtl/alu/alu.v		\
 	../rtl/control/control.v		\
+	../rtl/control2/control2.v		\
 	../rtl/mux/mux.v		\
-	../rtl/dataregister/dataregister.v	
+	../rtl/dataregister/dataregister.v
 
 #############################################################################
 # Synthesis constants
-SYNCLEAN=system.bgn system.drc system.mrp system.ngd system.pcf 
+SYNCLEAN=system.bgn system.drc system.mrp system.ngd system.pcf
 SYNCLEAN+=system.bld system.lso system.ncd system.ngm system.srp
 SYNCLEAN+=system.bit system.svf system_signalbrowser.* system-routed_pad.tx
 SYNCLEAN+=system.map system_summary.xml timing.twr
@@ -50,7 +52,7 @@ SYNCLEAN+=system-routed* system_usage* system.ngc param.opt netlist.lst
 SYNCLEAN+=xst system.prj *ngr *xrpt  _xmsgs  xlnx_auto_0_xdb *html *log *xwbt
 
 USAGE_DEPTH=0
-SMARTGUIDE= 
+SMARTGUIDE=
 
 #############################################################################
 # Simulation constants
@@ -60,9 +62,9 @@ CVER=cver
 GTKWAVE=gtkwave
 IVERILOG=iverilog
 VVP=vvp
-	
+
 #############################################################################
-# 
+#
 sim: system_tb.vcd
 syn: system.bit
 view: system_tb.view
@@ -132,8 +134,6 @@ system.svf:
 	cd simulation && $(GTKWAVE) $< $<.save.sav
 
 clean:
-	rm -Rf build $(SYNCLEAN) $(SIMCLEAN) 
+	rm -Rf build $(SYNCLEAN) $(SIMCLEAN)
 
 .PHONY: clean view
-
-

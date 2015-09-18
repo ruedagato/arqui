@@ -1,37 +1,13 @@
-//---------------------------------------------------------------------------
-// SharkBoad ExampleModule
-// Josnelihurt Rodriguez - Fredy Segura Q.
-// josnelihurt@gmail.com
-// Top Level Design for the Xilinx Spartan 3-100E Device
-//---------------------------------------------------------------------------
 
-/*#
-# SharkBoad
-# Copyright (C) 2012 Bogotá, Colombia
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, version 3 of the License.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#*/
-// FES Example
-// 
 
 module control
    (
     input wire clk, rst,mayor,
-    output reg [14:0] o_signal
+    output reg [15:0] o_signal
 
-	// 	14	13		12  11  10  9		8  7  6  5 		4  3  2  1 		0
+	  // 	15  14	13		12  11  10  9		8  7  6  5 		4  3  2  1 		0
     //
-    //	[0	0		0	0   0   0		0  0  0  0		0  0  0  0		0]
+    //	[0  0 	0     0	  0   0   0		0  0  0  0		0  0  0  0		0]
     // 	cnt_alu		slc_mux_a			slc_mux_b		slc_reg			w
 
    );
@@ -82,22 +58,22 @@ module control
 
 	// output logic
 	always @ (*)
-	case (rState)	
-	s0:o_signal = 	15'b000000000000000;
-	s1:o_signal = 	15'b000001001000000;
-	s2:o_signal = 	15'b000001001000000;
-	s3:o_signal =	15'b000001001001001;
-	s4:o_signal = 	15'b000001001000011;
-	s5:o_signal = 	15'b000010001100000;
-	s6:o_signal = 	15'b000010001100000;
-	s8:o_signal = 	15'b000010001100101;
-	s7:o_signal = 	15'b000010001101001;
-	s9:o_signal = 	15'b000011000100000;
-	s10:o_signal = 	15'b000011000100000;
-	s12:o_signal = 	15'b000011000100111;
-	s11:o_signal = 	15'b000011000101001;
-	s13:o_signal = 	15'b000000000000000;
-	default:o_signal = 15'b000000000000000;
+	case (rState)
+	s0:o_signal = 	   16'b0000000000000000;
+	s1:o_signal =      16'b0000001001000000;
+	s2:o_signal = 	   16'b0000001001000000;
+	s3:o_signal =	     16'b0000001001001001;
+	s4:o_signal = 	   16'b0000001001000011;
+	s5:o_signal = 	   16'b0000010001100000;
+	s6:o_signal = 	   16'b0000010001100000;
+	s8:o_signal = 	   16'b0000010001100101;
+	s7:o_signal = 	   16'b0000010001101001;
+	s9:o_signal = 	   16'b0000011000100000;
+	s10:o_signal = 	   16'b0000011000100000;
+	s12:o_signal = 	   16'b0000011000100111;
+	s11:o_signal = 	   16'b0000011000101001;
+	s13:o_signal = 	   16'b0000000000000000;
+	default:o_signal = 16'b0000000000000000;
 	endcase
 
 

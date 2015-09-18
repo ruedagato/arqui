@@ -29,7 +29,7 @@ module memoria
 	);
 
 	//registros y señales
-	reg [15:0]reg1; 
+	reg [15:0]reg1;
 	reg [15:0]reg2;
 	reg [15:0]reg3;
 	reg [15:0]reg4;
@@ -47,12 +47,12 @@ module memoria
 	reg [15:0]reg16;
 
 	//cuerpo del modulo
-	always @(posedge rst, posedge clk) 
+	always @(posedge rst, posedge clk)
 	begin
 		if (rst) begin
 			// reset
-			reg1 = 16'b0000000000000001;
-			reg2 = 16'b0000000000000001;
+			reg1 = 16'b0000000000001001;
+			reg2 = 16'b0000000000000011;
 			reg3 = 16'b0000000000000001;
 			reg4 = 16'b0000000000000001;
 			reg5 = 16'b0000000000000000;

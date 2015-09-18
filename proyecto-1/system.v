@@ -31,9 +31,9 @@ module system
 	input		rst,
 
 	// UART
-	//input             uart_rxd, 
+	//input             uart_rxd,
 	//output            uart_txd,
-	// Debug 
+	// Debug
 	output		led,
 	output[p_N-1:0] salidas_final
 );
@@ -44,14 +44,14 @@ wire counter_unit0_ovf;
 wire led_out;
 
 
-	// 	14	13		12  11  10  9		8  7  6  5 		4  3  2  1 		0
-    //
-    //	[0	0		0	0   0   0		0  0  0  0		0  0  0  0		0]
-    // 	cnt_alu		slc_mux_a			slc_mux_b		slc_reg			w
+// 	15  14	13		12  11  10  9		8  7  6  5 		4  3  2  1 		0
+//
+//	[0  0 	0     0	  0   0   0		0  0  0  0		0  0  0  0		0]
+// 	cnt_alu				slc_mux_a			slc_mux_b		slc_reg			w
 
 // cables del sitema del divisor
-wire mayor;
-wire [14:0] signal_control;
+wire mayor,w_paridad,w_zero;
+wire [15:0] signal_control;
 wire [p_N-1:0]in_register,rr1,rr2,rr3,rr4,rr5,rr6,rr7,rr8,rr9,rr10,rr11,rr12,rr13,rr14,rr15,rr16,i_a,i_b;
 
 
@@ -63,7 +63,7 @@ memoria
 		.N(16)
 	)
 	registro
-	//entradas y salidas
+	//entradas y salidasparidad,zero
 	(
 		// entradas
 		.w(signal_control[0]),
@@ -155,21 +155,36 @@ alu
 	(
 		.i_a(i_a),
 		.i_b(i_b),
-		.i_control(signal_control[14:13]),
+		.i_control(signal_control[15:13]),
 		.mayor(mayor),
+		.paridad(w_paridad),
+		.zero(w_zero),
 		.q(in_register)
 	);
 
-control
+/*control
 	cont
    (
    	//input
-    .clk(clk), 
+    .clk(clk),
     .rst(rst),
     .mayor(mayor),
     //output
     .o_signal(signal_control)
-   );
+   );*/
+
+control2
+	cont2
+	(
+		//input
+		.clk(clk),
+		.rst(rst),
+	 	.mayor(mayor),
+		.paridad(w_paridad),
+		.compuor(w_zero),
+	 	//output
+		.o_signal(signal_control)
+	);
 //----------------------------------------------------------------------------
 // Wires Assigments
 //----------------------------------------------------------------------------
