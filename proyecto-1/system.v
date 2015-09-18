@@ -162,18 +162,19 @@ alu
 		.q(in_register)
 	);
 
-/*control
-	cont
+control
+	lucas
    (
    	//input
     .clk(clk),
     .rst(rst),
     .mayor(mayor),
+		.zero(w_zero),
     //output
     .o_signal(signal_control)
-   );*/
+   );
 
-control2
+/*control2
 	cont2
 	(
 		//input
@@ -184,7 +185,9 @@ control2
 		.compuor(w_zero),
 	 	//output
 		.o_signal(signal_control)
-	);
+	);*/
+
+
 //----------------------------------------------------------------------------
 // Wires Assigments
 //----------------------------------------------------------------------------

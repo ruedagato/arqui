@@ -1,8 +1,8 @@
 
 
-module control
+module control-o
    (
-    input wire clk, rst,mayor,zero,
+    input wire clk, rst,mayor,zero,neg,
     output reg [15:0] o_signal
 
 	  // 	15  14	13		12  11  10  9		 8  7  6  5 		4  3  2  1 		0
@@ -50,49 +50,62 @@ module control
   parameter s31 =   6'b011111;
   parameter s32 =   6'b100000;
   parameter s33 =   6'b100001;
+  parameter s34 =   6'b100010;
+  parameter s35 =   6'b100011;
 
+  reg [2:0] selector,rselector;
 	// state register
 	always @ (posedge clk, posedge rst)
-	if (rst) rState <= s0;
-	else rState <= sState;
+	if (rst) begin
+    rState <= s0;
+    rselector = 3'b000;
+  end
+	else begin
+    rState <= sState;
+    rselector <= selector;
+  end
 
 	// next state logic
 	always @ (*)
 	case (rState)
 	s0: if(rst) sState = s0; else sState = s1;
-	s1: sState = s14;
-  s14: sState= s2;
-	s2: if(zero) sState = s13; else sState = s3;
+	s1: sState = s2;
+	s2: if(neg) sState = s3; else sState = s34;
 	s3: sState = s4;
 	s4: sState = s5;
-	s5: sState = s15;
-  s15: sState = s6;
-	s6: if(zero) sState = s13; else sState = s7;
+	s5: sState = s6;
+	s6: sState = s7;
 	s7: sState = s8;
-	s8: sState = s9;
-	s9: sState = s16;
-  s16: sState = s10;
-	s10: if(zero) sState = s13; else sState = s11;
+	s8: sState = s34;
+	s9: sState = s10;
+	s10: if(neg) sState = s11; else sState = s34;
 	s11: sState = s12;
-	s12: sState = s1;
-	s13: sState = s17;
+	s12: sState = s13;
+	s13: sState = s14;
+  s14: sState = s15;
+  s15: sState = s1;
+  s16: sState = s17;
   s17: sState = s18;
   s18: sState = s19;
   s19: sState = s20;
   s20: sState = s21;
-  s21: sState = s22;
-  s22: if(zero) sState = s33; else sState = s23;
-  s23: sState = s24;
+  s21: sState = s10;
+  s22: sState = s23;
+  s23: if(neg) sState = s24; else sState = s34;
   s24: sState = s25;
   s25: sState = s26;
-  s26: if(zero) sState = s33; else sState = s27;
-  s27: sState = s28;
+  s27: sState = s16;
   s28: sState = s29;
-  s29: sState = s30;
-  s30: if(zero) sState = s33; else sState = s31;
+  s29: if(neg) sState = s30; else sState = s34;
+  s30: sState = s31;
   s31: sState = s32;
-  s32: sState = s21;
-  s33: sState = s33;
+  s32: sState = s33;
+  s33: sState = s22;
+  s34: begin
+        selector = selector + 1;
+        if (rselector == 1)
+        
+  end
 
 	default: sState = s0;
 	endcase
