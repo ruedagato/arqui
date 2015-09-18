@@ -68,7 +68,10 @@ module control_o
 	// next state logic
 	always @ (*)
 	case (rState)
-	s0: if(rst) sState = s0; else sState = s1;
+	s0: begin
+        if(rst) sState = s0; else sState = s1;
+        selector = 3'b001;
+      end
 	s1: sState = s2;
 	s2: if(neg) sState = s3; else sState = s34;
 	s3: sState = s4;
@@ -89,11 +92,12 @@ module control_o
   s18: sState = s19;
   s19: sState = s20;
   s20: sState = s21;
-  s21: sState = s10;
+  s21: sState = s9;
   s22: sState = s23;
   s23: if(neg) sState = s24; else sState = s34;
   s24: sState = s25;
   s25: sState = s26;
+  s26: sState = s27;
   s27: sState = s16;
   s28: sState = s29;
   s29: if(neg) sState = s30; else sState = s34;
@@ -136,25 +140,25 @@ module control_o
 	s12:o_signal = 	   16'b1000010000101101;
 	s13:o_signal = 	   16'b1010010011000010;
   s14:o_signal =     16'b1010010011000011;
-  s15:o_signal =     16'b1010010011000101;
+  s15:o_signal =     16'b1000010011000101;
   s16:o_signal =     16'b0100011001001100;
   s17:o_signal =     16'b1000011001001100;
-  s18:o_signal =     16'b1000011001001100;
+  s18:o_signal =     16'b1000011001001101;
   s19:o_signal =     16'b1010011011000100;
-  s20:o_signal =     16'b1000011011000101;
+  s20:o_signal =     16'b1010011011000101;
   s21:o_signal =     16'b1000011011000111;
   s22:o_signal =     16'b0100100001101100;
-  s23:o_signal =     16'b1000100001101100;
+  s23:o_signal =     16'b0100100001101100;
   s24:o_signal =     16'b1000100001101101;
   s25:o_signal =     16'b1010100011000110;
-  s26:o_signal =     16'b1000100011000111;
+  s26:o_signal =     16'b1010100011000111;
   s27:o_signal =     16'b1000100011001001;
   s28:o_signal =     16'b0100101010001100;
-  s29:o_signal =     16'b1000101010001100;
+  s29:o_signal =     16'b0100101010001100;
   s30:o_signal =     16'b1000101010001101;
   s31:o_signal =     16'b1010101011001000;
-  s32:o_signal =     16'b1000101011001001;
-  s33:o_signal =     16'b1000101011010001;
+  s32:o_signal =     16'b1010101011001001;
+  s33:o_signal =     16'b1000101011001011;
   s34:o_signal =     16'b0000000000000000;
   s35:o_signal =     16'b0000000000000000;
 	default:o_signal = 16'b0000000000000000;

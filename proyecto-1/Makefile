@@ -24,6 +24,7 @@ VINCDIR=					\
 	-I../rtl/memoria			\
 	-I../rtl/alu			\
 	-I../rtl/control			\
+	-I../rtl/control_o			\
 	-I../rtl/control2			\
 	-I../rtl/mux			\
 	-I../rtl/datadegister
@@ -38,6 +39,7 @@ SRC=						\
 	../rtl/memoria/memoria.v		\
 	../rtl/alu/alu.v		\
 	../rtl/control/control.v		\
+	../rtl/control_o/control_o.v		\
 	../rtl/control2/control2.v		\
 	../rtl/mux/mux.v		\
 	../rtl/dataregister/dataregister.v

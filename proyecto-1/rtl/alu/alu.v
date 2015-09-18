@@ -16,6 +16,7 @@ module  alu
 	 parameter [2:0] shift_d=3'b001;
 	 parameter [2:0] shift_i=3'b011;
 	 parameter [2:0] pasar_b=3'b100;
+	 parameter [2:0] pasar_a=3'b101;
 
 	//registros y señales
 	reg [N-1:0] salida;
@@ -45,6 +46,10 @@ module  alu
 				end
 				pasar_b: begin
 					salida = i_b;
+					es_mayor = 1'b0;
+				end
+				pasar_a: begin
+					salida = i_a;
 					es_mayor = 1'b0;
 				end
 				default: salida = i_a;
