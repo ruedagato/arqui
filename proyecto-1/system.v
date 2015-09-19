@@ -162,7 +162,7 @@ alu
 		.q(in_register)
 	);
 
-control
+/*control
 	lucas
    (
    	//input
@@ -172,7 +172,20 @@ control
 		.zero(w_zero),
     //output
     .o_signal(signal_control)
-   );
+   );*/
+
+control_o
+ 	control
+  (
+  	//input
+   .clk(clk),
+   .rst(rst),
+   .mayor(mayor),
+ 	 .zero(w_zero),
+	 .neg(w_paridad),
+	 //output
+	 .o_signal(signal_control)
+  );
 
 /*control2
 	cont2
