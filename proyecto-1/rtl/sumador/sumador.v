@@ -3,10 +3,10 @@ module sumador
     input wire clk, rst,
     output reg [14:0] o_signal
 
-    // 	[14 13		12  11  10  9		8  7  6  5 		4  3  2  1 		0]
+    // 	[15 14 13		12  11  10  9		8  7  6  5 		4  3  2  1 		0]
     //
-    //	[0  0		0   0   0   0		0  0  0  0		0  0  0  0		0]
-    // 	[cnt_alu	slc_mux_a		slc_mux_b		slc_reg			w]
+    //	[0  0  0		0   0   0   0		0  0  0  0		0  0  0  0		0]
+    // 	[cnt_alu		slc_mux_a		slc_mux_b		slc_reg			w]
 
    );
 
@@ -39,11 +39,11 @@ module sumador
 	// output logic
 	always @ (*)
 	case (rState)	
-	s0:o_signal = 	15'b000000000000000;//estado inicial
-	s1:o_signal = 	15'b000000000000000;//Carga dato de R0
-	s2:o_signal = 	15'b000000000100000;//Carga dato de R1
-	s3:o_signal =	15'b000000000100000;//Suma datos anteriores
-	s4:o_signal = 	15'b000000000000101;//Carga resultado de la suma en R2
-	default:o_signal = 15'b000000000000000;
+	s0:o_signal = 	16'b0000000000000000;//estado inicial
+	s1:o_signal = 	16'b0000000000000000;//Carga dato de R0
+	s2:o_signal = 	16'b0000000000100000;//Carga dato de R1
+	s3:o_signal =	16'b0000000000100000;//Suma datos anteriores
+	s4:o_signal = 	16'b0000000000000101;//Carga resultado de la suma en R2
+	default:o_signal = 16'b0000000000000000;
 	endcase
 endmodule
