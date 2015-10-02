@@ -1,0 +1,273 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:16 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module ceilf
+                              7 	.optsdcc -mds390 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _ceilf
+                             31 ;--------------------------------------------------------
+                             32 ; special function registers
+                             33 ;--------------------------------------------------------
+                             34 ;--------------------------------------------------------
+                             35 ; special function bits
+                             36 ;--------------------------------------------------------
+                             37 ;--------------------------------------------------------
+                             38 ; overlayable register banks
+                             39 ;--------------------------------------------------------
+                             40 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      41 	.ds 8
+                             42 ;--------------------------------------------------------
+                             43 ; internal ram data
+                             44 ;--------------------------------------------------------
+                             45 	.area DSEG    (DATA)
+                             46 ;--------------------------------------------------------
+                             47 ; overlayable items in internal ram 
+                             48 ;--------------------------------------------------------
+                             49 	.area OSEG    (OVR,DATA)
+                             50 ;--------------------------------------------------------
+                             51 ; indirectly addressable internal ram data
+                             52 ;--------------------------------------------------------
+                             53 	.area ISEG    (DATA)
+                             54 ;--------------------------------------------------------
+                             55 ; absolute internal ram data
+                             56 ;--------------------------------------------------------
+                             57 	.area IABS    (ABS,DATA)
+                             58 	.area IABS    (ABS,DATA)
+                             59 ;--------------------------------------------------------
+                             60 ; bit data
+                             61 ;--------------------------------------------------------
+                             62 	.area BSEG    (BIT)
+                             63 ;--------------------------------------------------------
+                             64 ; paged external ram data
+                             65 ;--------------------------------------------------------
+                             66 	.area PSEG    (PAG,XDATA)
+                             67 ;--------------------------------------------------------
+                             68 ; external ram data
+                             69 ;--------------------------------------------------------
+                             70 	.area XSEG    (XDATA)
+                             71 ;--------------------------------------------------------
+                             72 ; absolute external ram data
+                             73 ;--------------------------------------------------------
+                             74 	.area XABS    (ABS,XDATA)
+                             75 ;--------------------------------------------------------
+                             76 ; external initialized ram data
+                             77 ;--------------------------------------------------------
+                             78 	.area XISEG   (XDATA)
+                             79 ;--------------------------------------------------------
+                             80 ; global & static initialisations
+                             81 ;--------------------------------------------------------
+                             82 	.area HOME    (CODE)
+                             83 	.area GSINIT  (CODE)
+                             84 	.area GSFINAL (CODE)
+                             85 	.area GSINIT  (CODE)
+                             86 ;--------------------------------------------------------
+                             87 ; Home
+                             88 ;--------------------------------------------------------
+                             89 	.area HOME    (CODE)
+                             90 	.area HOME    (CODE)
+                             91 ;--------------------------------------------------------
+                             92 ; code
+                             93 ;--------------------------------------------------------
+                             94 	.area CSEG    (CODE)
+                             95 ;------------------------------------------------------------
+                             96 ;Allocation info for local variables in function 'ceilf'
+                             97 ;------------------------------------------------------------
+                             98 ;x                         Allocated to stack - offset 1
+                             99 ;r                         Allocated to registers r6 r7 r0 r1 
+                            100 ;------------------------------------------------------------
+                            101 ;	ceilf.c:33: float ceilf(float x) _FLOAT_FUNC_REENTRANT
+                            102 ;	-----------------------------------------
+                            103 ;	 function ceilf
+                            104 ;	-----------------------------------------
+   0000                     105 _ceilf:
+                    0002    106 	ar2 = 0x02
+                    0003    107 	ar3 = 0x03
+                    0004    108 	ar4 = 0x04
+                    0005    109 	ar5 = 0x05
+                    0006    110 	ar6 = 0x06
+                    0007    111 	ar7 = 0x07
+                    0000    112 	ar0 = 0x00
+                    0001    113 	ar1 = 0x01
+   0000 C0*00               114 	push	_bpx
+   0002 C0*01               115 	push	_bpx+1
+   0004 85 81*00            116 	mov	_bpx,sp
+   0007 85 9B*01            117 	mov	_bpx+1,esp
+   000A 53*01 03            118 	anl	_bpx+1,#3
+   000D C0 E0               119 	push	acc
+   000F C0 E0               120 	push	acc
+   0011 C0 E0               121 	push	acc
+   0013 C0 E0               122 	push	acc
+   0015 75 95 40            123 	mov	dpx1,#0x40
+   0018 85*01 85            124 	mov	dph1,_bpx+1
+   001B 85*00 84            125 	mov	dpl1,_bpx
+   001E 75 86 01            126 	mov	dps,#1
+   0021 A3                  127 	inc	dptr
+   0022 75 86 01            128 	mov	dps, #1
+   0025 E5 82               129 	mov	a,dpl
+   0027 F0                  130 	movx	@dptr,a
+   0028 A3                  131 	inc	dptr
+   0029 E5 83               132 	mov	a,dph
+   002B F0                  133 	movx	@dptr,a
+   002C A3                  134 	inc	dptr
+   002D E5 93               135 	mov	a,dpx
+   002F F0                  136 	movx	@dptr,a
+   0030 A3                  137 	inc	dptr
+   0031 E5 F0               138 	mov	a,b
+   0033 F0                  139 	movx	@dptr,a
+   0034 75 86 00            140 	mov	dps,#0
+                            141 ;	ceilf.c:36: r=x;
+   0037 75 95 40            142 	mov	dpx1,#0x40
+   003A 85*01 85            143 	mov	dph1,_bpx+1
+   003D 85*00 84            144 	mov	dpl1,_bpx
+   0040 75 86 01            145 	mov	dps,#1
+   0043 A3                  146 	inc	dptr
+   0044 75 86 01            147 	mov	dps, #1
+   0047 E0                  148 	movx	a,@dptr
+   0048 F5 82               149 	mov	dpl,a
+   004A A3                  150 	inc	dptr
+   004B E0                  151 	movx	a,@dptr
+   004C F5 83               152 	mov	dph,a
+   004E A3                  153 	inc	dptr
+   004F E0                  154 	movx	a,@dptr
+   0050 F5 93               155 	mov	dpx,a
+   0052 A3                  156 	inc	dptr
+   0053 E0                  157 	movx	a,@dptr
+   0054 F5 F0               158 	mov	b,a
+   0056 75 86 00            159 	mov	dps,#0
+   0059 12s00r00r00         160 	lcall	___fs2slong
+   005D AE 82               161 	mov	r6,dpl
+   005F AF 83               162 	mov	r7,dph
+   0061 A8 93               163 	mov	r0,dpx
+   0063 A9 F0               164 	mov	r1,b
+                            165 ;	genAssign: resultIsFar = TRUE
+                            166 ;	ceilf.c:37: if (r<0)
+   0065 E9                  167 	mov	a,r1
+   0066 30 E7 10            168 	jnb  acc.7,00102$
+   0069                     169 00110$:
+                            170 ;	ceilf.c:38: return r;
+   0069 8E 82               171 	mov	dpl,r6
+   006B 8F 83               172 	mov	dph,r7
+   006D 88 93               173 	mov	dpx,r0
+   006F 89 F0               174 	mov	b,r1
+   0071 12s00r00r00         175 	lcall	___slong2fs
+   0075 02s00r01r05         176 	ljmp	00104$
+   0079                     177 00102$:
+                            178 ;	ceilf.c:40: return (r+((r<x)?1:0));
+   0079 C0 06               179 	push	ar6
+   007B C0 07               180 	push	ar7
+   007D C0 00               181 	push	ar0
+   007F C0 01               182 	push	ar1
+   0081 8E 82               183 	mov	dpl,r6
+   0083 8F 83               184 	mov	dph,r7
+   0085 88 93               185 	mov	dpx,r0
+   0087 89 F0               186 	mov	b,r1
+   0089 12s00r00r00         187 	lcall	___slong2fs
+   008D AA 82               188 	mov	r2,dpl
+   008F AB 83               189 	mov	r3,dph
+   0091 AC 93               190 	mov	r4,dpx
+   0093 AD F0               191 	mov	r5,b
+   0095 D0 01               192 	pop	ar1
+   0097 D0 00               193 	pop	ar0
+   0099 D0 07               194 	pop	ar7
+   009B D0 06               195 	pop	ar6
+   009D 75 93 40            196 	mov	dpx,#0x40
+   00A0 85*01 83            197 	mov	dph,_bpx+1
+   00A3 85*00 82            198 	mov	dpl,_bpx
+   00A6 A3                  199 	inc	dptr
+                            200 ;	genAssign: resultIsFar = TRUE
+   00A7 75 86 21            201 	mov	dps,#0x21
+   00AA 90s00r00r00         202 	mov	dptr,#___fslt_PARM_2
+   00AE E0                  203 	movx	a,@dptr
+   00AF F0                  204 	movx	@dptr,a
+   00B0 A3                  205 	inc	dptr
+   00B1 A3                  206 	inc	dptr
+   00B2 E0                  207 	movx	a,@dptr
+   00B3 F0                  208 	movx	@dptr,a
+   00B4 A3                  209 	inc	dptr
+   00B5 A3                  210 	inc	dptr
+   00B6 E0                  211 	movx	a,@dptr
+   00B7 F0                  212 	movx	@dptr,a
+   00B8 A3                  213 	inc	dptr
+   00B9 A3                  214 	inc	dptr
+   00BA E0                  215 	movx	a,@dptr
+   00BB F0                  216 	movx	@dptr,a
+   00BC 75 86 00            217 	mov	dps,#0
+   00BF C0 06               218 	push	ar6
+   00C1 C0 07               219 	push	ar7
+   00C3 C0 00               220 	push	ar0
+   00C5 C0 01               221 	push	ar1
+   00C7 8A 82               222 	mov	dpl,r2
+   00C9 8B 83               223 	mov	dph,r3
+   00CB 8C 93               224 	mov	dpx,r4
+   00CD 8D F0               225 	mov	b,r5
+   00CF 12s00r00r00         226 	lcall	___fslt
+   00D3 D0 01               227 	pop	ar1
+   00D5 D0 00               228 	pop	ar0
+   00D7 D0 07               229 	pop	ar7
+   00D9 D0 06               230 	pop	ar6
+   00DB E5 82               231 	mov	a,dpl
+   00DD 60 04               232 	jz  00106$
+   00DF                     233 00111$:
+                            234 ;	genAssign: resultIsFar = FALSE
+   00DF 7A 01               235 	mov	r2,#0x01
+   00E1 80 02               236 	sjmp 00107$
+   00E3                     237 00106$:
+                            238 ;	genAssign: resultIsFar = FALSE
+   00E3 7A 00               239 	mov	r2,#0x00
+   00E5                     240 00107$:
+   00E5 7B 00               241 	mov	r3,#0
+   00E7 EB                  242 	mov	a,r3
+   00E8 33                  243 	rlc	a
+   00E9 95 E0               244 	subb	a,acc
+   00EB FC                  245 	mov	r4,a
+   00EC FD                  246 	mov	r5,a
+   00ED EA                  247 	mov	a,r2
+   00EE 2E                  248 	add	a,r6
+   00EF FE                  249 	mov	r6,a
+   00F0 EB                  250 	mov	a,r3
+   00F1 3F                  251 	addc	a,r7
+   00F2 FF                  252 	mov	r7,a
+   00F3 EC                  253 	mov	a,r4
+   00F4 38                  254 	addc	a,r0
+   00F5 F8                  255 	mov	r0,a
+   00F6 ED                  256 	mov	a,r5
+   00F7 39                  257 	addc	a,r1
+   00F8 F9                  258 	mov	r1,a
+   00F9 8E 82               259 	mov	dpl,r6
+   00FB 8F 83               260 	mov	dph,r7
+   00FD 88 93               261 	mov	dpx,r0
+   00FF 89 F0               262 	mov	b,r1
+   0101 12s00r00r00         263 	lcall	___slong2fs
+   0105                     264 00104$:
+   0105 85*00 81            265 	mov	sp,_bpx
+   0108 85*01 9B            266 	mov	esp,_bpx+1
+   010B D0*01               267 	pop	_bpx+1
+   010D D0*00               268 	pop	_bpx
+   010F 22                  269 	ret
+                            270 	.area CSEG    (CODE)
+                            271 	.area CONST   (CODE)
+                            272 	.area XINIT   (CODE)
+                            273 	.area CABS    (ABS,CODE)

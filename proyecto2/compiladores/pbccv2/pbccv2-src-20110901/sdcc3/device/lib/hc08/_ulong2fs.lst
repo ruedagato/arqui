@@ -1,0 +1,262 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _ulong2fs
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl ___ulong2fs_PARM_1
+                             25 	.globl ___ulong2fs
+                             26 ;--------------------------------------------------------
+                             27 ;  ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area DSEG
+                             30 ;--------------------------------------------------------
+                             31 ; overlayable items in  ram 
+                             32 ;--------------------------------------------------------
+                             33 	.area	OSEG    (OVR)
+   0000                      34 ___ulong2fs_sloc0_1_0::
+   0000                      35 	.ds 2
+   0002                      36 ___ulong2fs_sloc1_1_0::
+   0002                      37 	.ds 4
+                             38 ;--------------------------------------------------------
+                             39 ; absolute external ram data
+                             40 ;--------------------------------------------------------
+                             41 	.area XABS    (ABS)
+                             42 ;--------------------------------------------------------
+                             43 ; external initialized ram data
+                             44 ;--------------------------------------------------------
+                             45 	.area XISEG
+                             46 ;--------------------------------------------------------
+                             47 ; extended address mode data
+                             48 ;--------------------------------------------------------
+                             49 	.area XSEG
+   0000                      50 ___ulong2fs_PARM_1:
+   0000                      51 	.ds 4
+   0004                      52 ___ulong2fs_exp_1_1:
+   0004                      53 	.ds 2
+   0006                      54 ___ulong2fs_fl_1_1:
+   0006                      55 	.ds 4
+                             56 ;--------------------------------------------------------
+                             57 ; global & static initialisations
+                             58 ;--------------------------------------------------------
+                             59 	.area HOME (CODE)
+                             60 	.area GSINIT (CODE)
+                             61 	.area GSFINAL (CODE)
+                             62 	.area GSINIT (CODE)
+                             63 ;--------------------------------------------------------
+                             64 ; Home
+                             65 ;--------------------------------------------------------
+                             66 	.area HOME (CODE)
+                             67 	.area HOME (CODE)
+                             68 ;--------------------------------------------------------
+                             69 ; code
+                             70 ;--------------------------------------------------------
+                             71 	.area CSEG (CODE)
+                             72 ;------------------------------------------------------------
+                             73 ;Allocation info for local variables in function '__ulong2fs'
+                             74 ;------------------------------------------------------------
+                             75 ;a                         Allocated with name '___ulong2fs_PARM_1'
+                             76 ;exp                       Allocated with name '___ulong2fs_exp_1_1'
+                             77 ;fl                        Allocated with name '___ulong2fs_fl_1_1'
+                             78 ;sloc0                     Allocated with name '___ulong2fs_sloc0_1_0'
+                             79 ;sloc1                     Allocated with name '___ulong2fs_sloc1_1_0'
+                             80 ;------------------------------------------------------------
+                             81 ;../_ulong2fs.c:83: float __ulong2fs (unsigned long a )
+                             82 ;	-----------------------------------------
+                             83 ;	 function __ulong2fs
+                             84 ;	-----------------------------------------
+   0000                      85 ___ulong2fs:
+                             86 ;../_ulong2fs.c:88: if (!a)
+   0000 C6s00r03             87 	lda	(___ulong2fs_PARM_1 + 3)
+   0003 CAs00r02             88 	ora	(___ulong2fs_PARM_1 + 2)
+   0006 CAs00r01             89 	ora	(___ulong2fs_PARM_1 + 1)
+   0009 CAs00r00             90 	ora	___ulong2fs_PARM_1
+   000C 26 07                91 	bne	00115$
+   000E                      92 00121$:
+                             93 ;../_ulong2fs.c:90: return 0.0;
+   000E 3F*00                94 	clr	*__ret3
+   0010 3F*00                95 	clr	*__ret2
+   0012 5F                   96 	clrx
+   0013 4F                   97 	clra
+   0014 81                   98 	rts
+                             99 ;../_ulong2fs.c:93: while (a & NORM) 
+   0015                     100 00115$:
+   0015 3F*00               101 	clr	*___ulong2fs_sloc0_1_0
+   0017 6E 96*01            102 	mov	#0x96,*(___ulong2fs_sloc0_1_0 + 1)
+   001A                     103 00103$:
+   001A C6s00r00            104 	lda	___ulong2fs_PARM_1
+   001D 27 24               105 	beq	00117$
+   001F                     106 00122$:
+                            107 ;../_ulong2fs.c:96: a >>= 1;
+   001F C6s00r01            108 	lda	(___ulong2fs_PARM_1 + 1)
+   0022 CEs00r00            109 	ldx	___ulong2fs_PARM_1
+   0025 54                  110 	lsrx
+   0026 46                  111 	rora
+   0027 C7s00r01            112 	sta	(___ulong2fs_PARM_1 + 1)
+   002A CFs00r00            113 	stx	___ulong2fs_PARM_1
+   002D C6s00r03            114 	lda	(___ulong2fs_PARM_1 + 3)
+   0030 CEs00r02            115 	ldx	(___ulong2fs_PARM_1 + 2)
+   0033 56                  116 	rorx
+   0034 46                  117 	rora
+   0035 C7s00r03            118 	sta	(___ulong2fs_PARM_1 + 3)
+   0038 CFs00r02            119 	stx	(___ulong2fs_PARM_1 + 2)
+                            120 ;../_ulong2fs.c:97: exp++;
+   003B 55*00               121 	ldhx	*___ulong2fs_sloc0_1_0
+   003D AF 01               122 	aix	#1
+   003F 35*00               123 	sthx	*___ulong2fs_sloc0_1_0
+   0041 20 D7               124 	bra	00103$
+                            125 ;../_ulong2fs.c:100: while (a < HIDDEN)
+   0043                     126 00117$:
+   0043                     127 00106$:
+   0043 C6s00r01            128 	lda	(___ulong2fs_PARM_1 + 1)
+   0046 A0 80               129 	sub	#0x80
+   0048 C6s00r00            130 	lda	___ulong2fs_PARM_1
+   004B A2 00               131 	sbc	#0x00
+   004D 24 2A               132 	bcc	00120$
+   004F                     133 00123$:
+                            134 ;../_ulong2fs.c:102: a <<= 1;
+   004F C6s00r03            135 	lda	(___ulong2fs_PARM_1 + 3)
+   0052 CEs00r02            136 	ldx	(___ulong2fs_PARM_1 + 2)
+   0055 48                  137 	lsla
+   0056 59                  138 	rolx
+   0057 C7s00r03            139 	sta	(___ulong2fs_PARM_1 + 3)
+   005A CFs00r02            140 	stx	(___ulong2fs_PARM_1 + 2)
+   005D C6s00r01            141 	lda	(___ulong2fs_PARM_1 + 1)
+   0060 CEs00r00            142 	ldx	___ulong2fs_PARM_1
+   0063 49                  143 	rola
+   0064 59                  144 	rolx
+   0065 C7s00r01            145 	sta	(___ulong2fs_PARM_1 + 1)
+   0068 CFs00r00            146 	stx	___ulong2fs_PARM_1
+                            147 ;../_ulong2fs.c:103: exp--;
+   006B B6*01               148 	lda	*(___ulong2fs_sloc0_1_0 + 1)
+   006D A0 01               149 	sub	#0x01
+   006F B7*01               150 	sta	*(___ulong2fs_sloc0_1_0 + 1)
+   0071 B6*00               151 	lda	*___ulong2fs_sloc0_1_0
+   0073 A2 00               152 	sbc	#0x00
+   0075 B7*00               153 	sta	*___ulong2fs_sloc0_1_0
+   0077 20 CA               154 	bra	00106$
+   0079                     155 00120$:
+   0079 B6*00               156 	lda	*___ulong2fs_sloc0_1_0
+   007B C7s00r04            157 	sta	___ulong2fs_exp_1_1
+   007E B6*01               158 	lda	*(___ulong2fs_sloc0_1_0 + 1)
+   0080 C7s00r05            159 	sta	(___ulong2fs_exp_1_1 + 1)
+                            160 ;../_ulong2fs.c:107: if ((a&0x7fffff)==0x7fffff) {
+   0083 C6s00r03            161 	lda	(___ulong2fs_PARM_1 + 3)
+   0086 B7*05               162 	sta	*(___ulong2fs_sloc1_1_0 + 3)
+   0088 C6s00r02            163 	lda	(___ulong2fs_PARM_1 + 2)
+   008B B7*04               164 	sta	*(___ulong2fs_sloc1_1_0 + 2)
+   008D C6s00r01            165 	lda	(___ulong2fs_PARM_1 + 1)
+   0090 A4 7F               166 	and	#0x7F
+   0092 B7*03               167 	sta	*(___ulong2fs_sloc1_1_0 + 1)
+   0094 3F*02               168 	clr	*___ulong2fs_sloc1_1_0
+   0096 B6*05               169 	lda	*(___ulong2fs_sloc1_1_0 + 3)
+   0098 A1 FF               170 	cmp	#0xFF
+   009A 26 12               171 	bne	00124$
+   009C B6*04               172 	lda	*(___ulong2fs_sloc1_1_0 + 2)
+   009E A1 FF               173 	cmp	#0xFF
+   00A0 26 0C               174 	bne	00124$
+   00A2 B6*03               175 	lda	*(___ulong2fs_sloc1_1_0 + 1)
+   00A4 A1 7F               176 	cmp	#0x7F
+   00A6 26 06               177 	bne	00124$
+   00A8 B6*02               178 	lda	*___ulong2fs_sloc1_1_0
+   00AA A1 00               179 	cmp	#0x00
+   00AC 27 02               180 	beq	00125$
+   00AE                     181 00124$:
+   00AE 20 1B               182 	bra	00110$
+   00B0                     183 00125$:
+                            184 ;../_ulong2fs.c:108: a=0;
+   00B0 4F                  185 	clra
+   00B1 C7s00r00            186 	sta	___ulong2fs_PARM_1
+   00B4 C7s00r01            187 	sta	(___ulong2fs_PARM_1 + 1)
+   00B7 C7s00r02            188 	sta	(___ulong2fs_PARM_1 + 2)
+   00BA C7s00r03            189 	sta	(___ulong2fs_PARM_1 + 3)
+                            190 ;../_ulong2fs.c:109: exp++;
+   00BD B6*01               191 	lda	*(___ulong2fs_sloc0_1_0 + 1)
+   00BF AB 01               192 	add	#0x01
+   00C1 C7s00r05            193 	sta	(___ulong2fs_exp_1_1 + 1)
+   00C4 B6*00               194 	lda	*___ulong2fs_sloc0_1_0
+   00C6 A9 00               195 	adc	#0x00
+   00C8 C7s00r04            196 	sta	___ulong2fs_exp_1_1
+   00CB                     197 00110$:
+                            198 ;../_ulong2fs.c:113: a &= ~HIDDEN ;
+   00CB C6s00r01            199 	lda	(___ulong2fs_PARM_1 + 1)
+   00CE A4 7F               200 	and	#0x7F
+   00D0 C7s00r01            201 	sta	(___ulong2fs_PARM_1 + 1)
+                            202 ;../_ulong2fs.c:115: fl.l = PACK(0,(unsigned long)exp, a);
+   00D3 C6s00r05            203 	lda	(___ulong2fs_exp_1_1 + 1)
+   00D6 B7*05               204 	sta	*(___ulong2fs_sloc1_1_0 + 3)
+   00D8 C6s00r04            205 	lda	___ulong2fs_exp_1_1
+   00DB B7*04               206 	sta	*(___ulong2fs_sloc1_1_0 + 2)
+   00DD C6s00r04            207 	lda	___ulong2fs_exp_1_1
+   00E0 49                  208 	rola	
+   00E1 4F                  209 	clra	
+   00E2 A2 00               210 	sbc	#0x00
+   00E4 B7*03               211 	sta	*(___ulong2fs_sloc1_1_0 + 1)
+   00E6 B7*02               212 	sta	*___ulong2fs_sloc1_1_0
+   00E8 B6*05               213 	lda	*(___ulong2fs_sloc1_1_0 + 3)
+   00EA BE*04               214 	ldx	*(___ulong2fs_sloc1_1_0 + 2)
+   00EC 54                  215 	lsrx
+   00ED 46                  216 	rora
+   00EE 97                  217 	tax
+   00EF 4F                  218 	clra
+   00F0 46                  219 	rora
+   00F1 B7*03               220 	sta	*(___ulong2fs_sloc1_1_0 + 1)
+   00F3 BF*02               221 	stx	*___ulong2fs_sloc1_1_0
+   00F5 3F*05               222 	clr	*(___ulong2fs_sloc1_1_0 + 3)
+   00F7 3F*04               223 	clr	*(___ulong2fs_sloc1_1_0 + 2)
+   00F9 B6*05               224 	lda	*(___ulong2fs_sloc1_1_0 + 3)
+   00FB CAs00r03            225 	ora	(___ulong2fs_PARM_1 + 3)
+   00FE B7*05               226 	sta	*(___ulong2fs_sloc1_1_0 + 3)
+   0100 B6*04               227 	lda	*(___ulong2fs_sloc1_1_0 + 2)
+   0102 CAs00r02            228 	ora	(___ulong2fs_PARM_1 + 2)
+   0105 B7*04               229 	sta	*(___ulong2fs_sloc1_1_0 + 2)
+   0107 B6*03               230 	lda	*(___ulong2fs_sloc1_1_0 + 1)
+   0109 CAs00r01            231 	ora	(___ulong2fs_PARM_1 + 1)
+   010C B7*03               232 	sta	*(___ulong2fs_sloc1_1_0 + 1)
+   010E B6*02               233 	lda	*___ulong2fs_sloc1_1_0
+   0110 CAs00r00            234 	ora	___ulong2fs_PARM_1
+   0113 B7*02               235 	sta	*___ulong2fs_sloc1_1_0
+   0115 B6*02               236 	lda	*___ulong2fs_sloc1_1_0
+   0117 C7s00r06            237 	sta	___ulong2fs_fl_1_1
+   011A B6*03               238 	lda	*(___ulong2fs_sloc1_1_0 + 1)
+   011C C7s00r07            239 	sta	(___ulong2fs_fl_1_1 + 1)
+   011F B6*04               240 	lda	*(___ulong2fs_sloc1_1_0 + 2)
+   0121 C7s00r08            241 	sta	(___ulong2fs_fl_1_1 + 2)
+   0124 B6*05               242 	lda	*(___ulong2fs_sloc1_1_0 + 3)
+   0126 C7s00r09            243 	sta	(___ulong2fs_fl_1_1 + 3)
+                            244 ;../_ulong2fs.c:117: return (fl.f);
+   0129 C6s00r06            245 	lda	___ulong2fs_fl_1_1
+   012C B7*02               246 	sta	*___ulong2fs_sloc1_1_0
+   012E C6s00r07            247 	lda	(___ulong2fs_fl_1_1 + 1)
+   0131 B7*03               248 	sta	*(___ulong2fs_sloc1_1_0 + 1)
+   0133 C6s00r08            249 	lda	(___ulong2fs_fl_1_1 + 2)
+   0136 B7*04               250 	sta	*(___ulong2fs_sloc1_1_0 + 2)
+   0138 C6s00r09            251 	lda	(___ulong2fs_fl_1_1 + 3)
+   013B B7*05               252 	sta	*(___ulong2fs_sloc1_1_0 + 3)
+   013D 4E*02*00            253 	mov	*___ulong2fs_sloc1_1_0,*__ret3
+   0140 4E*03*00            254 	mov	*(___ulong2fs_sloc1_1_0 + 1),*__ret2
+   0143 BE*04               255 	ldx	*(___ulong2fs_sloc1_1_0 + 2)
+   0145 B6*05               256 	lda	*(___ulong2fs_sloc1_1_0 + 3)
+   0147                     257 00111$:
+   0147 81                  258 	rts
+                            259 	.area CSEG (CODE)
+                            260 	.area CONST   (CODE)
+                            261 	.area XINIT
+                            262 	.area CABS    (ABS,CODE)

@@ -1,0 +1,157 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _modsint
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl __modsint_PARM_2
+                             25 	.globl __modsint
+                             26 ;--------------------------------------------------------
+                             27 ;  ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area DSEG
+   0000                      30 __modsint_r_1_1:
+   0000                      31 	.ds 2
+   0002                      32 __modsint_sloc0_1_0:
+   0002                      33 	.ds 2
+   0004                      34 __modsint_sloc1_1_0:
+   0004                      35 	.ds 2
+                             36 ;--------------------------------------------------------
+                             37 ; overlayable items in  ram 
+                             38 ;--------------------------------------------------------
+                             39 	.area OSEG    (OVR)
+                             40 ;--------------------------------------------------------
+                             41 ; absolute external ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area XABS    (ABS)
+                             44 ;--------------------------------------------------------
+                             45 ; external initialized ram data
+                             46 ;--------------------------------------------------------
+                             47 	.area XISEG
+                             48 ;--------------------------------------------------------
+                             49 ; extended address mode data
+                             50 ;--------------------------------------------------------
+                             51 	.area XSEG
+   0000                      52 __modsint_PARM_2:
+   0000                      53 	.ds 2
+   0002                      54 __modsint_a_1_1:
+   0002                      55 	.ds 2
+                             56 ;--------------------------------------------------------
+                             57 ; global & static initialisations
+                             58 ;--------------------------------------------------------
+                             59 	.area HOME (CODE)
+                             60 	.area GSINIT (CODE)
+                             61 	.area GSFINAL (CODE)
+                             62 	.area GSINIT (CODE)
+                             63 ;--------------------------------------------------------
+                             64 ; Home
+                             65 ;--------------------------------------------------------
+                             66 	.area HOME (CODE)
+                             67 	.area HOME (CODE)
+                             68 ;--------------------------------------------------------
+                             69 ; code
+                             70 ;--------------------------------------------------------
+                             71 	.area CSEG (CODE)
+                             72 ;------------------------------------------------------------
+                             73 ;Allocation info for local variables in function '_modsint'
+                             74 ;------------------------------------------------------------
+                             75 ;r                         Allocated with name '__modsint_r_1_1'
+                             76 ;sloc0                     Allocated with name '__modsint_sloc0_1_0'
+                             77 ;sloc1                     Allocated with name '__modsint_sloc1_1_0'
+                             78 ;b                         Allocated with name '__modsint_PARM_2'
+                             79 ;a                         Allocated with name '__modsint_a_1_1'
+                             80 ;------------------------------------------------------------
+                             81 ;../_modsint.c:203: int _modsint (int a, int b)
+                             82 ;	-----------------------------------------
+                             83 ;	 function _modsint
+                             84 ;	-----------------------------------------
+   0000                      85 __modsint:
+   0000 C7s00r03             86 	sta	(__modsint_a_1_1 + 1)
+   0003 CFs00r02             87 	stx	__modsint_a_1_1
+                             88 ;../_modsint.c:207: r = _moduint((a < 0 ? -a : a),
+   0006 C6s00r02             89 	lda	__modsint_a_1_1
+   0009 A0 00                90 	sub	#0x00
+   000B 90 0E                91 	bge	00106$
+   000D                      92 00113$:
+   000D 4F                   93 	clra
+   000E C0s00r03             94 	sub	(__modsint_a_1_1 + 1)
+   0011 B7*03                95 	sta	*(__modsint_sloc0_1_0 + 1)
+   0013 4F                   96 	clra
+   0014 C2s00r02             97 	sbc	__modsint_a_1_1
+   0017 B7*02                98 	sta	*__modsint_sloc0_1_0
+   0019 20 0A                99 	bra	00107$
+   001B                     100 00106$:
+   001B C6s00r02            101 	lda	__modsint_a_1_1
+   001E B7*02               102 	sta	*__modsint_sloc0_1_0
+   0020 C6s00r03            103 	lda	(__modsint_a_1_1 + 1)
+   0023 B7*03               104 	sta	*(__modsint_sloc0_1_0 + 1)
+   0025                     105 00107$:
+                            106 ;../_modsint.c:208: (b < 0 ? -b : b));
+   0025 C6s00r00            107 	lda	__modsint_PARM_2
+   0028 A0 00               108 	sub	#0x00
+   002A 90 0E               109 	bge	00108$
+   002C                     110 00114$:
+   002C 4F                  111 	clra
+   002D C0s00r01            112 	sub	(__modsint_PARM_2 + 1)
+   0030 B7*05               113 	sta	*(__modsint_sloc1_1_0 + 1)
+   0032 4F                  114 	clra
+   0033 C2s00r00            115 	sbc	__modsint_PARM_2
+   0036 B7*04               116 	sta	*__modsint_sloc1_1_0
+   0038 20 0A               117 	bra	00109$
+   003A                     118 00108$:
+   003A C6s00r00            119 	lda	__modsint_PARM_2
+   003D B7*04               120 	sta	*__modsint_sloc1_1_0
+   003F C6s00r01            121 	lda	(__modsint_PARM_2 + 1)
+   0042 B7*05               122 	sta	*(__modsint_sloc1_1_0 + 1)
+   0044                     123 00109$:
+   0044 B6*04               124 	lda	*__modsint_sloc1_1_0
+   0046 C7s00r00            125 	sta	__moduint_PARM_2
+   0049 B6*05               126 	lda	*(__modsint_sloc1_1_0 + 1)
+   004B C7s00r01            127 	sta	(__moduint_PARM_2 + 1)
+   004E BE*02               128 	ldx	*__modsint_sloc0_1_0
+   0050 B6*03               129 	lda	*(__modsint_sloc0_1_0 + 1)
+   0052 CDs00r00            130 	jsr	__moduint
+   0055 B7*01               131 	sta	*(__modsint_r_1_1 + 1)
+   0057 BF*00               132 	stx	*__modsint_r_1_1
+                            133 ;../_modsint.c:210: if (a < 0)
+   0059 C6s00r02            134 	lda	__modsint_a_1_1
+   005C A0 00               135 	sub	#0x00
+   005E 90 0F               136 	bge	00102$
+   0060                     137 00115$:
+                            138 ;../_modsint.c:211: return -r;
+   0060 4F                  139 	clra
+   0061 B0*01               140 	sub	*(__modsint_r_1_1 + 1)
+   0063 B7*05               141 	sta	*(__modsint_sloc1_1_0 + 1)
+   0065 4F                  142 	clra
+   0066 B2*00               143 	sbc	*__modsint_r_1_1
+   0068 B7*04               144 	sta	*__modsint_sloc1_1_0
+   006A BE*04               145 	ldx	*__modsint_sloc1_1_0
+   006C B6*05               146 	lda	*(__modsint_sloc1_1_0 + 1)
+   006E 81                  147 	rts
+   006F                     148 00102$:
+                            149 ;../_modsint.c:213: return r;
+   006F BE*00               150 	ldx	*__modsint_r_1_1
+   0071 B6*01               151 	lda	*(__modsint_r_1_1 + 1)
+   0073                     152 00104$:
+   0073 81                  153 	rts
+                            154 	.area CSEG (CODE)
+                            155 	.area CONST   (CODE)
+                            156 	.area XINIT
+                            157 	.area CABS    (ABS,CODE)

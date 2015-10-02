@@ -1,0 +1,49 @@
+XL
+H 7 areas 4 global symbols
+M _memchr
+O -mz80
+S .__.ABS. Def0000
+A _CODE size 4C flags 0 addr 0
+S _memchr Def0000
+S _memchr_start Def0000
+S _memchr_end Def004C
+A _DATA size 0 flags 0 addr 0
+A _OVERLAY size 0 flags 0 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _CABS size 0 flags 0 addr 0
+T 00 00
+R 00 00 00 00
+T 00 00
+R 00 00 00 00
+T 00 00 DD E5 DD 21 00 00 DD 39 F5 DD 6E 04 DD 66
+R 00 00 00 00
+T 0E 00 05 4D 44 7D DD 86 08 5F 7C DD 8E 09 DD 73
+R 00 00 00 00
+T 1C 00 FE DD 77 FF EB
+R 00 00 00 00
+T 21 00
+R 00 00 00 00
+T 21 00 7B DD 96 FE 20 06 7A DD 96 FF 28 17
+R 00 00 00 00
+T 2D 00
+R 00 00 00 00
+T 2D 00 1A 26 00 DD 96 06 20 0A 7C DD 96 07 20 04
+R 00 00 00 00
+T 3B 00 69 60 18 08
+R 00 00 00 00
+T 3F 00
+R 00 00 00 00
+T 3F 00 13 4B 42 18 DD
+R 00 00 00 00
+T 44 00
+R 00 00 00 00
+T 44 00 21 00 00
+R 00 00 00 00
+T 47 00
+R 00 00 00 00
+T 47 00 DD F9 DD E1 C9
+R 00 00 00 00
+T 4C 00
+R 00 00 00 00

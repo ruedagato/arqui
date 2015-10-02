@@ -1,0 +1,820 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:18 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module lcd390
+                              7 	.optsdcc -mds390 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _LcdCharDefine
+                             31 	.globl _LcdScrollOff
+                             32 	.globl _LcdScrollOn
+                             33 	.globl _LcdCursorOff
+                             34 	.globl _LcdCursorOn
+                             35 	.globl _LcdLPutString_PARM_2
+                             36 	.globl _LcdInit
+                             37 	.globl _LcdOn
+                             38 	.globl _LcdOff
+                             39 	.globl _LcdClear
+                             40 	.globl _LcdHome
+                             41 	.globl _LcdGoto
+                             42 	.globl _LcdPutChar
+                             43 	.globl _LcdPutString
+                             44 	.globl _LcdLPutString
+                             45 	.globl _LcdPrintf
+                             46 	.globl _LcdLPrintf
+                             47 ;--------------------------------------------------------
+                             48 ; special function registers
+                             49 ;--------------------------------------------------------
+                    0080     50 _P4	=	0x0080
+                    0081     51 _SP	=	0x0081
+                    0082     52 _DPL	=	0x0082
+                    0083     53 _DPH	=	0x0083
+                    0084     54 _DPL1	=	0x0084
+                    0085     55 _DPH1	=	0x0085
+                    0086     56 _DPS	=	0x0086
+                    0087     57 _PCON	=	0x0087
+                    0088     58 _TCON	=	0x0088
+                    0089     59 _TMOD	=	0x0089
+                    008A     60 _TL0	=	0x008a
+                    008B     61 _TL1	=	0x008b
+                    008C     62 _TH0	=	0x008c
+                    008D     63 _TH1	=	0x008d
+                    008E     64 _CKCON	=	0x008e
+                    0090     65 _P1	=	0x0090
+                    0091     66 _EXIF	=	0x0091
+                    0092     67 _P4CNT	=	0x0092
+                    0093     68 _DPX	=	0x0093
+                    0095     69 _DPX1	=	0x0095
+                    0098     70 _SCON0	=	0x0098
+                    0099     71 _SBUF0	=	0x0099
+                    009B     72 _ESP	=	0x009b
+                    009C     73 _AP	=	0x009c
+                    009D     74 _ACON	=	0x009d
+                    00A0     75 _P2	=	0x00a0
+                    00A1     76 _P5	=	0x00a1
+                    00A2     77 _P5CNT	=	0x00a2
+                    00A8     78 _IE	=	0x00a8
+                    00B0     79 _P3	=	0x00b0
+                    00B8     80 _IP	=	0x00b8
+                    00C0     81 _SCON1	=	0x00c0
+                    00C1     82 _SBUF1	=	0x00c1
+                    00C4     83 _PMR	=	0x00c4
+                    00C6     84 _MCON	=	0x00c6
+                    00C7     85 _TA	=	0x00c7
+                    00C8     86 _T2CON	=	0x00c8
+                    00C9     87 _T2MOD	=	0x00c9
+                    00CA     88 _RCAP2L	=	0x00ca
+                    00CA     89 _RTL2	=	0x00ca
+                    00CB     90 _RCAP2H	=	0x00cb
+                    00CB     91 _RTH2	=	0x00cb
+                    00CC     92 _TL2	=	0x00cc
+                    00CD     93 _TH2	=	0x00cd
+                    00D0     94 _PSW	=	0x00d0
+                    00D1     95 _MCNT0	=	0x00d1
+                    00D2     96 _MCNT1	=	0x00d2
+                    00D3     97 _MA	=	0x00d3
+                    00D4     98 _MB	=	0x00d4
+                    00D5     99 _MC	=	0x00d5
+                    00D8    100 _WDCON	=	0x00d8
+                    00E0    101 _ACC	=	0x00e0
+                    00E8    102 _EIE	=	0x00e8
+                    00EA    103 _MXAX	=	0x00ea
+                    00F0    104 _B	=	0x00f0
+                    00F8    105 _EIP	=	0x00f8
+                    8C8A    106 _TMR0	=	0x8c8a
+                    8D8B    107 _TMR1	=	0x8d8b
+                    CDCC    108 _TMR2	=	0xcdcc
+                    CBCA    109 _RCAP2	=	0xcbca
+                            110 ;--------------------------------------------------------
+                            111 ; special function bits
+                            112 ;--------------------------------------------------------
+                    0088    113 _IT0	=	0x0088
+                    0089    114 _IE0	=	0x0089
+                    008A    115 _IT1	=	0x008a
+                    008B    116 _IE1	=	0x008b
+                    008C    117 _TR0	=	0x008c
+                    008D    118 _TF0	=	0x008d
+                    008E    119 _TR1	=	0x008e
+                    008F    120 _TF1	=	0x008f
+                    0090    121 _T2	=	0x0090
+                    0091    122 _T2EX	=	0x0091
+                    0092    123 _RXD1	=	0x0092
+                    0093    124 _TXD1	=	0x0093
+                    0094    125 _INT2	=	0x0094
+                    0095    126 _INT3	=	0x0095
+                    0096    127 _INT4	=	0x0096
+                    0097    128 _INT5	=	0x0097
+                    0098    129 _RI_0	=	0x0098
+                    0099    130 _TI_0	=	0x0099
+                    009A    131 _RB8_0	=	0x009a
+                    009B    132 _TB8_0	=	0x009b
+                    009C    133 _REN_0	=	0x009c
+                    009D    134 _SM2_0	=	0x009d
+                    009E    135 _SM1_0	=	0x009e
+                    009F    136 _SM0_0	=	0x009f
+                    009F    137 _FE_0	=	0x009f
+                    00A8    138 _EX0	=	0x00a8
+                    00A9    139 _ET0	=	0x00a9
+                    00AA    140 _EX1	=	0x00aa
+                    00AB    141 _ET1	=	0x00ab
+                    00AC    142 _ES0	=	0x00ac
+                    00AD    143 _ET2	=	0x00ad
+                    00AE    144 _ES1	=	0x00ae
+                    00AF    145 _EA	=	0x00af
+                    00B0    146 _RXD0	=	0x00b0
+                    00B1    147 _TXD0	=	0x00b1
+                    00B2    148 _INT0	=	0x00b2
+                    00B3    149 _INT1	=	0x00b3
+                    00B4    150 _T0	=	0x00b4
+                    00B5    151 _T1	=	0x00b5
+                    00B6    152 _WR	=	0x00b6
+                    00B7    153 _RD	=	0x00b7
+                    00B8    154 _PX0	=	0x00b8
+                    00B9    155 _PT0	=	0x00b9
+                    00BA    156 _PX1	=	0x00ba
+                    00BB    157 _PT1	=	0x00bb
+                    00BC    158 _PS0	=	0x00bc
+                    00BD    159 _PT2	=	0x00bd
+                    00BE    160 _PS1	=	0x00be
+                    00C0    161 _RI_1	=	0x00c0
+                    00C1    162 _TI_1	=	0x00c1
+                    00C2    163 _RB8_1	=	0x00c2
+                    00C3    164 _TB8_1	=	0x00c3
+                    00C4    165 _REN_1	=	0x00c4
+                    00C5    166 _SM2_1	=	0x00c5
+                    00C6    167 _SM1_1	=	0x00c6
+                    00C7    168 _SM0_1	=	0x00c7
+                    00C7    169 _FE_1	=	0x00c7
+                    00C8    170 _CP_RL	=	0x00c8
+                    00C9    171 _C_T	=	0x00c9
+                    00CA    172 _TR2	=	0x00ca
+                    00CB    173 _EXEN2	=	0x00cb
+                    00CC    174 _TCLK	=	0x00cc
+                    00CD    175 _RCLK	=	0x00cd
+                    00CE    176 _EXF2	=	0x00ce
+                    00CF    177 _TF2	=	0x00cf
+                    00D0    178 _P	=	0x00d0
+                    00D1    179 _F1	=	0x00d1
+                    00D2    180 _OV	=	0x00d2
+                    00D3    181 _RS0	=	0x00d3
+                    00D4    182 _RS1	=	0x00d4
+                    00D5    183 _F0	=	0x00d5
+                    00D6    184 _AC	=	0x00d6
+                    00D7    185 _CY	=	0x00d7
+                    00D8    186 _RWT	=	0x00d8
+                    00D9    187 _EWT	=	0x00d9
+                    00DA    188 _WDRF	=	0x00da
+                    00DB    189 _WDIF	=	0x00db
+                    00DC    190 _PFI	=	0x00dc
+                    00DD    191 _EPFI	=	0x00dd
+                    00DE    192 _POR	=	0x00de
+                    00DF    193 _SMOD_1	=	0x00df
+                    00E8    194 _EX2	=	0x00e8
+                    00E9    195 _EX3	=	0x00e9
+                    00EA    196 _EX4	=	0x00ea
+                    00EB    197 _EX5	=	0x00eb
+                    00EC    198 _EWDI	=	0x00ec
+                    00ED    199 _C1IE	=	0x00ed
+                    00EE    200 _C0IE	=	0x00ee
+                    00EF    201 _CANBIE	=	0x00ef
+                    00F8    202 _PX2	=	0x00f8
+                    00F9    203 _PX3	=	0x00f9
+                    00FA    204 _PX4	=	0x00fa
+                    00FB    205 _PX5	=	0x00fb
+                    00FC    206 _PWDI	=	0x00fc
+                    00FD    207 _C1IP	=	0x00fd
+                    00FE    208 _C0IP	=	0x00fe
+                    00FF    209 _CANBIP	=	0x00ff
+                            210 ;--------------------------------------------------------
+                            211 ; overlayable register banks
+                            212 ;--------------------------------------------------------
+                            213 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     214 	.ds 8
+                            215 ;--------------------------------------------------------
+                            216 ; internal ram data
+                            217 ;--------------------------------------------------------
+                            218 	.area DSEG    (DATA)
+                            219 ;--------------------------------------------------------
+                            220 ; overlayable items in internal ram 
+                            221 ;--------------------------------------------------------
+                            222 	.area OSEG    (OVR,DATA)
+                            223 ;--------------------------------------------------------
+                            224 ; indirectly addressable internal ram data
+                            225 ;--------------------------------------------------------
+                            226 	.area ISEG    (DATA)
+                            227 ;--------------------------------------------------------
+                            228 ; absolute internal ram data
+                            229 ;--------------------------------------------------------
+                            230 	.area IABS    (ABS,DATA)
+                            231 	.area IABS    (ABS,DATA)
+                            232 ;--------------------------------------------------------
+                            233 ; bit data
+                            234 ;--------------------------------------------------------
+                            235 	.area BSEG    (BIT)
+                            236 ;--------------------------------------------------------
+                            237 ; paged external ram data
+                            238 ;--------------------------------------------------------
+                            239 	.area PSEG    (PAG,XDATA)
+                            240 ;--------------------------------------------------------
+                            241 ; external ram data
+                            242 ;--------------------------------------------------------
+                            243 	.area XSEG    (XDATA)
+                    380002    244 _lcdIwr	=	0x380002
+                    38000A    245 _lcdDwr	=	0x38000a
+   0000                     246 _LcdLPutString_PARM_2:
+   0000                     247 	.ds 4
+   0004                     248 _lcdPrintfBuffer:
+   0004                     249 	.ds 80
+                            250 ;--------------------------------------------------------
+                            251 ; absolute external ram data
+                            252 ;--------------------------------------------------------
+                            253 	.area XABS    (ABS,XDATA)
+                            254 ;--------------------------------------------------------
+                            255 ; external initialized ram data
+                            256 ;--------------------------------------------------------
+                            257 	.area XISEG   (XDATA)
+   0000                     258 _lcdLinesStart:
+   0000                     259 	.ds 4
+                            260 ;--------------------------------------------------------
+                            261 ; global & static initialisations
+                            262 ;--------------------------------------------------------
+                            263 	.area HOME    (CODE)
+                            264 	.area GSINIT  (CODE)
+                            265 	.area GSFINAL (CODE)
+                            266 	.area GSINIT  (CODE)
+                            267 ;--------------------------------------------------------
+                            268 ; Home
+                            269 ;--------------------------------------------------------
+                            270 	.area HOME    (CODE)
+                            271 	.area HOME    (CODE)
+                            272 ;--------------------------------------------------------
+                            273 ; code
+                            274 ;--------------------------------------------------------
+                            275 	.area CSEG    (CODE)
+                            276 ;------------------------------------------------------------
+                            277 ;Allocation info for local variables in function 'LcdInit'
+                            278 ;------------------------------------------------------------
+                            279 ;------------------------------------------------------------
+                            280 ;	lcd390.c:65: void LcdInit() {
+                            281 ;	-----------------------------------------
+                            282 ;	 function LcdInit
+                            283 ;	-----------------------------------------
+   0000                     284 _LcdInit:
+                    0002    285 	ar2 = 0x02
+                    0003    286 	ar3 = 0x03
+                    0004    287 	ar4 = 0x04
+                    0005    288 	ar5 = 0x05
+                    0006    289 	ar6 = 0x06
+                    0007    290 	ar7 = 0x07
+                    0000    291 	ar0 = 0x00
+                    0001    292 	ar1 = 0x01
+                            293 ;	lcd390.c:67: ClockMilliSecondsDelay(16); // >15 ms
+   0000 90 00 00 10         294 	mov	dptr,#0x000010
+   0004 75 F0 00            295 	mov	b,#0x00
+   0007 12s00r00r00         296 	lcall	_ClockMilliSecondsDelay
+                            297 ;	lcd390.c:69: lcdIwr=0x38 ;
+                            298 ;	genAssign: resultIsFar = TRUE
+   000B 90 38 00 02         299 	mov	dptr,#_lcdIwr
+   000F 74 38               300 	mov	a,#0x38
+   0011 F0                  301 	movx	@dptr,a
+                            302 ;	lcd390.c:70: ClockMilliSecondsDelay(5); // >4.1 ms
+   0012 90 00 00 05         303 	mov	dptr,#0x000005
+   0016 75 F0 00            304 	mov	b,#0x00
+   0019 12s00r00r00         305 	lcall	_ClockMilliSecondsDelay
+                            306 ;	lcd390.c:72: lcdIwr=0x38;
+                            307 ;	genAssign: resultIsFar = TRUE
+   001D 90 38 00 02         308 	mov	dptr,#_lcdIwr
+   0021 74 38               309 	mov	a,#0x38
+   0023 F0                  310 	movx	@dptr,a
+                            311 ;	lcd390.c:73: ClockMicroSecondsDelay(101); // >100 us
+   0024 90 00 00 65         312 	mov  dptr,#0x0065
+   0028 12s00r00r00         313 	lcall	_ClockMicroSecondsDelay
+                            314 ;	lcd390.c:75: lcdIwr=0x38;
+                            315 ;	genAssign: resultIsFar = TRUE
+   002C 90 38 00 02         316 	mov	dptr,#_lcdIwr
+   0030 74 38               317 	mov	a,#0x38
+   0032 F0                  318 	movx	@dptr,a
+                            319 ;	lcd390.c:76: ClockMicroSecondsDelay(101); // >100 us
+   0033 90 00 00 65         320 	mov  dptr,#0x0065
+   0037 12s00r00r00         321 	lcall	_ClockMicroSecondsDelay
+                            322 ;	lcd390.c:78: lcdIwr=0x38; // interface 8 bit
+                            323 ;	genAssign: resultIsFar = TRUE
+   003B 90 38 00 02         324 	mov	dptr,#_lcdIwr
+   003F 74 38               325 	mov	a,#0x38
+   0041 F0                  326 	movx	@dptr,a
+                            327 ;	lcd390.c:79: ClockMicroSecondsDelay(41); // >40 us
+   0042 90 00 00 29         328 	mov  dptr,#0x0029
+   0046 12s00r00r00         329 	lcall	_ClockMicroSecondsDelay
+                            330 ;	lcd390.c:81: lcdIwr=0x0c; // display on
+                            331 ;	genAssign: resultIsFar = TRUE
+   004A 90 38 00 02         332 	mov	dptr,#_lcdIwr
+   004E 74 0C               333 	mov	a,#0x0C
+   0050 F0                  334 	movx	@dptr,a
+                            335 ;	lcd390.c:82: ClockMicroSecondsDelay(41); // >40 us
+   0051 90 00 00 29         336 	mov  dptr,#0x0029
+   0055 12s00r00r00         337 	lcall	_ClockMicroSecondsDelay
+                            338 ;	lcd390.c:84: LcdClear();
+   0059 12s00r00r83         339 	lcall	_LcdClear
+   005D                     340 00101$:
+   005D 22                  341 	ret
+                            342 ;------------------------------------------------------------
+                            343 ;Allocation info for local variables in function 'LcdOn'
+                            344 ;------------------------------------------------------------
+                            345 ;------------------------------------------------------------
+                            346 ;	lcd390.c:87: void LcdOn() {
+                            347 ;	-----------------------------------------
+                            348 ;	 function LcdOn
+                            349 ;	-----------------------------------------
+   005E                     350 _LcdOn:
+                            351 ;	lcd390.c:88: lcdIwr=0x0c; // display on
+                            352 ;	genAssign: resultIsFar = TRUE
+   005E 90 38 00 02         353 	mov	dptr,#_lcdIwr
+   0062 74 0C               354 	mov	a,#0x0C
+   0064 F0                  355 	movx	@dptr,a
+                            356 ;	lcd390.c:89: LcdWait;
+   0065 90 00 00 64         357 	mov  dptr,#0x0064
+   0069 12s00r00r00         358 	lcall	_ClockMicroSecondsDelay
+   006D                     359 00101$:
+   006D 22                  360 	ret
+                            361 ;------------------------------------------------------------
+                            362 ;Allocation info for local variables in function 'LcdOff'
+                            363 ;------------------------------------------------------------
+                            364 ;------------------------------------------------------------
+                            365 ;	lcd390.c:92: void LcdOff() {
+                            366 ;	-----------------------------------------
+                            367 ;	 function LcdOff
+                            368 ;	-----------------------------------------
+   006E                     369 _LcdOff:
+                            370 ;	lcd390.c:93: lcdIwr=0x08; // display off
+                            371 ;	genAssign: resultIsFar = TRUE
+   006E 90 38 00 02         372 	mov	dptr,#_lcdIwr
+   0072 74 08               373 	mov	a,#0x08
+   0074 F0                  374 	movx	@dptr,a
+                            375 ;	lcd390.c:94: LcdWait;
+   0075 90 00 00 64         376 	mov  dptr,#0x0064
+   0079 12s00r00r00         377 	lcall	_ClockMicroSecondsDelay
+   007D                     378 00101$:
+   007D 22                  379 	ret
+                            380 ;------------------------------------------------------------
+                            381 ;Allocation info for local variables in function 'LcdCursorOn'
+                            382 ;------------------------------------------------------------
+                            383 ;------------------------------------------------------------
+                            384 ;	lcd390.c:97: void LcdCursorOn() {
+                            385 ;	-----------------------------------------
+                            386 ;	 function LcdCursorOn
+                            387 ;	-----------------------------------------
+   007E                     388 _LcdCursorOn:
+                            389 ;	lcd390.c:99: }
+   007E                     390 00101$:
+   007E 22                  391 	ret
+                            392 ;------------------------------------------------------------
+                            393 ;Allocation info for local variables in function 'LcdCursorOff'
+                            394 ;------------------------------------------------------------
+                            395 ;------------------------------------------------------------
+                            396 ;	lcd390.c:101: void LcdCursorOff() {
+                            397 ;	-----------------------------------------
+                            398 ;	 function LcdCursorOff
+                            399 ;	-----------------------------------------
+   007F                     400 _LcdCursorOff:
+                            401 ;	lcd390.c:103: }
+   007F                     402 00101$:
+   007F 22                  403 	ret
+                            404 ;------------------------------------------------------------
+                            405 ;Allocation info for local variables in function 'LcdScrollOn'
+                            406 ;------------------------------------------------------------
+                            407 ;------------------------------------------------------------
+                            408 ;	lcd390.c:105: void LcdScrollOn() {
+                            409 ;	-----------------------------------------
+                            410 ;	 function LcdScrollOn
+                            411 ;	-----------------------------------------
+   0080                     412 _LcdScrollOn:
+                            413 ;	lcd390.c:107: }
+   0080                     414 00101$:
+   0080 22                  415 	ret
+                            416 ;------------------------------------------------------------
+                            417 ;Allocation info for local variables in function 'LcdScrollOff'
+                            418 ;------------------------------------------------------------
+                            419 ;------------------------------------------------------------
+                            420 ;	lcd390.c:109: void LcdScrollOff() {
+                            421 ;	-----------------------------------------
+                            422 ;	 function LcdScrollOff
+                            423 ;	-----------------------------------------
+   0081                     424 _LcdScrollOff:
+                            425 ;	lcd390.c:111: }
+   0081                     426 00101$:
+   0081 22                  427 	ret
+                            428 ;------------------------------------------------------------
+                            429 ;Allocation info for local variables in function 'LcdCharDefine'
+                            430 ;------------------------------------------------------------
+                            431 ;------------------------------------------------------------
+                            432 ;	lcd390.c:113: void LcdCharDefine() {
+                            433 ;	-----------------------------------------
+                            434 ;	 function LcdCharDefine
+                            435 ;	-----------------------------------------
+   0082                     436 _LcdCharDefine:
+                            437 ;	lcd390.c:115: }
+   0082                     438 00101$:
+   0082 22                  439 	ret
+                            440 ;------------------------------------------------------------
+                            441 ;Allocation info for local variables in function 'LcdClear'
+                            442 ;------------------------------------------------------------
+                            443 ;------------------------------------------------------------
+                            444 ;	lcd390.c:117: void LcdClear() {
+                            445 ;	-----------------------------------------
+                            446 ;	 function LcdClear
+                            447 ;	-----------------------------------------
+   0083                     448 _LcdClear:
+                            449 ;	lcd390.c:118: lcdIwr=0x01; // display clear
+                            450 ;	genAssign: resultIsFar = TRUE
+   0083 90 38 00 02         451 	mov	dptr,#_lcdIwr
+   0087 74 01               452 	mov	a,#0x01
+   0089 F0                  453 	movx	@dptr,a
+                            454 ;	lcd390.c:119: ClockMilliSecondsDelay(6); // > 5ms
+   008A 90 00 00 06         455 	mov	dptr,#0x000006
+   008E 75 F0 00            456 	mov	b,#0x00
+   0091 12s00r00r00         457 	lcall	_ClockMilliSecondsDelay
+   0095                     458 00101$:
+   0095 22                  459 	ret
+                            460 ;------------------------------------------------------------
+                            461 ;Allocation info for local variables in function 'LcdHome'
+                            462 ;------------------------------------------------------------
+                            463 ;------------------------------------------------------------
+                            464 ;	lcd390.c:122: void LcdHome() {
+                            465 ;	-----------------------------------------
+                            466 ;	 function LcdHome
+                            467 ;	-----------------------------------------
+   0096                     468 _LcdHome:
+                            469 ;	lcd390.c:123: lcdIwr=0x80; // set dd ram address 0
+                            470 ;	genAssign: resultIsFar = TRUE
+   0096 90 38 00 02         471 	mov	dptr,#_lcdIwr
+   009A 74 80               472 	mov	a,#0x80
+   009C F0                  473 	movx	@dptr,a
+                            474 ;	lcd390.c:124: LcdWait;
+   009D 90 00 00 64         475 	mov  dptr,#0x0064
+   00A1 12s00r00r00         476 	lcall	_ClockMicroSecondsDelay
+   00A5                     477 00101$:
+   00A5 22                  478 	ret
+                            479 ;------------------------------------------------------------
+                            480 ;Allocation info for local variables in function 'LcdGoto'
+                            481 ;------------------------------------------------------------
+                            482 ;collumnRow                Allocated to registers r2 r3 
+                            483 ;------------------------------------------------------------
+                            484 ;	lcd390.c:127: void LcdGoto(unsigned int collumnRow) { // msb=collumn, lsb=row
+                            485 ;	-----------------------------------------
+                            486 ;	 function LcdGoto
+                            487 ;	-----------------------------------------
+   00A6                     488 _LcdGoto:
+   00A6 85 82 84            489 	mov	dpl1,dpl
+   00A9 85 83 85            490 	mov	dph1,dph
+                            491 ;	lcd390.c:128: lcdIwr=0x80 + \
+   00AC AC 84               492 	mov	r4,dpl1
+   00AE 7D 00               493 	mov	r5,#0
+   00B0 EC                  494 	mov	a,r4
+   00B1 24r00               495 	add	a,#_lcdLinesStart
+   00B3 F5 82               496 	mov	dpl,a
+   00B5 ED                  497 	mov	a,r5
+   00B6 34s00               498 	addc	a,#(_lcdLinesStart >> 8)
+   00B8 F5 83               499 	mov	dph,a
+   00BA E4                  500 	clr	a
+   00BB 34s00               501 	addc	a,#(_lcdLinesStart >> 16)
+   00BD F5 93               502 	mov	dpx,a
+   00BF E0                  503 	movx	a,@dptr
+   00C0 24 80               504 	add  a,#0x80
+   00C2 FC                  505 	mov  r4,a
+   00C3 AA 85               506 	mov	r2,dph1
+   00C5 7B 00               507 	mov	r3,#0
+   00C7 90 38 00 02         508 	mov	dptr,#_lcdIwr
+   00CB EA                  509 	mov	a,r2
+   00CC 2C                  510 	add	a,r4
+   00CD F0                  511 	movx	@dptr,a
+                            512 ;	lcd390.c:130: LcdWait;
+   00CE 90 00 00 64         513 	mov  dptr,#0x0064
+   00D2 12s00r00r00         514 	lcall	_ClockMicroSecondsDelay
+   00D6                     515 00101$:
+   00D6 22                  516 	ret
+                            517 ;------------------------------------------------------------
+                            518 ;Allocation info for local variables in function 'LcdPutChar'
+                            519 ;------------------------------------------------------------
+                            520 ;c                         Allocated to registers 
+                            521 ;------------------------------------------------------------
+                            522 ;	lcd390.c:133: void LcdPutChar(char c) {
+                            523 ;	-----------------------------------------
+                            524 ;	 function LcdPutChar
+                            525 ;	-----------------------------------------
+   00D7                     526 _LcdPutChar:
+   00D7 75 86 01            527 	mov     dps, #1
+   00DA 90 38 00 0A         528 	mov     dptr, #_lcdDwr
+   00DE E5 82               529 	mov	a,dpl
+   00E0 F0                  530 	movx	@dptr,a
+   00E1 75 86 00            531 	mov	dps,#0
+                            532 ;	lcd390.c:135: LcdWait;
+   00E4 90 00 00 64         533 	mov  dptr,#0x0064
+   00E8 12s00r00r00         534 	lcall	_ClockMicroSecondsDelay
+   00EC                     535 00101$:
+   00EC 22                  536 	ret
+                            537 ;------------------------------------------------------------
+                            538 ;Allocation info for local variables in function 'LcdPutString'
+                            539 ;------------------------------------------------------------
+                            540 ;string                    Allocated to registers r2 r3 r4 r5 
+                            541 ;c                         Allocated to registers r7 
+                            542 ;------------------------------------------------------------
+                            543 ;	lcd390.c:138: void LcdPutString (char *string) {
+                            544 ;	-----------------------------------------
+                            545 ;	 function LcdPutString
+                            546 ;	-----------------------------------------
+   00ED                     547 _LcdPutString:
+   00ED AA 82               548 	mov	r2,dpl
+   00EF AB 83               549 	mov	r3,dph
+   00F1 AC 93               550 	mov	r4,dpx
+   00F3 AD F0               551 	mov	r5,b
+                            552 ;	lcd390.c:140: while (c=*string++) {
+                            553 ;	genAssign: resultIsFar = FALSE
+   00F5                     554 00101$:
+   00F5 8A 82               555 	mov	dpl,r2
+   00F7 8B 83               556 	mov	dph,r3
+   00F9 8C 93               557 	mov	dpx,r4
+   00FB 8D F0               558 	mov	b,r5
+   00FD 12s00r00r00         559 	lcall	__gptrget
+   0101 FE                  560 	mov	r6,a
+   0102 A3                  561 	inc	dptr
+   0103 AA 82               562 	mov	r2,dpl
+   0105 AB 83               563 	mov	r3,dph
+   0107 AC 93               564 	mov	r4,dpx
+   0109 AD F0               565 	mov	r5,b
+                            566 ;	genAssign: resultIsFar = TRUE
+   010B 8E 07               567 	mov	ar7,r6
+   010D EE                  568 	mov	a,r6
+   010E 60 18               569 	jz  00104$
+   0110                     570 00109$:
+                            571 ;	lcd390.c:141: LcdPutChar (c);
+   0110 C0 02               572 	push	ar2
+   0112 C0 03               573 	push	ar3
+   0114 C0 04               574 	push	ar4
+   0116 C0 05               575 	push	ar5
+   0118 8F 82               576 	mov	dpl,r7
+   011A 12s00r00rD7         577 	lcall	_LcdPutChar
+   011E D0 05               578 	pop	ar5
+   0120 D0 04               579 	pop	ar4
+   0122 D0 03               580 	pop	ar3
+   0124 D0 02               581 	pop	ar2
+   0126 80 CD               582 	sjmp 00101$
+   0128                     583 00104$:
+   0128 22                  584 	ret
+                            585 ;------------------------------------------------------------
+                            586 ;Allocation info for local variables in function 'LcdLPutString'
+                            587 ;------------------------------------------------------------
+                            588 ;string                    Allocated with name '_LcdLPutString_PARM_2'
+                            589 ;collumnRow                Allocated to registers r2 r3 
+                            590 ;------------------------------------------------------------
+                            591 ;	lcd390.c:145: void LcdLPutString (unsigned int collumnRow, char *string) {
+                            592 ;	-----------------------------------------
+                            593 ;	 function LcdLPutString
+                            594 ;	-----------------------------------------
+   0129                     595 _LcdLPutString:
+                            596 ;	lcd390.c:146: LcdGoto(collumnRow);
+   0129 12s00r00rA6         597 	lcall	_LcdGoto
+                            598 ;	lcd390.c:147: LcdPutString(string);
+   012D 05 86               599 	inc	dps
+   012F 90s00r00r00         600 	mov	dptr,#_LcdLPutString_PARM_2
+   0133 E0                  601 	movx	a,@dptr
+   0134 F5 82               602 	mov	dpl,a
+   0136 A3                  603 	inc	dptr
+   0137 E0                  604 	movx	a,@dptr
+   0138 F5 83               605 	mov	dph,a
+   013A A3                  606 	inc	dptr
+   013B E0                  607 	movx	a,@dptr
+   013C F5 93               608 	mov	dpx,a
+   013E A3                  609 	inc	dptr
+   013F E0                  610 	movx	a,@dptr
+   0140 F5 F0               611 	mov	b,a
+   0142 75 86 00            612 	mov	dps,#0
+   0145 12s00r00rED         613 	lcall	_LcdPutString
+   0149                     614 00101$:
+   0149 22                  615 	ret
+                            616 ;------------------------------------------------------------
+                            617 ;Allocation info for local variables in function 'LcdPrintf'
+                            618 ;------------------------------------------------------------
+                            619 ;format                    Allocated to stack - offset -8
+                            620 ;arg                       Allocated to registers r2 r3 r4 r5 
+                            621 ;------------------------------------------------------------
+                            622 ;	lcd390.c:154: void LcdPrintf (const char *format, ...) __reentrant {
+                            623 ;	-----------------------------------------
+                            624 ;	 function LcdPrintf
+                            625 ;	-----------------------------------------
+   014A                     626 _LcdPrintf:
+   014A C0*00               627 	push	_bpx
+   014C C0*01               628 	push	_bpx+1
+   014E 85 81*00            629 	mov	_bpx,sp
+   0151 85 9B*01            630 	mov	_bpx+1,esp
+   0154 53*01 03            631 	anl	_bpx+1,#3
+                            632 ;	lcd390.c:157: va_start (arg, format);
+   0157 E5*00               633 	mov	a,_bpx
+   0159 24 F8               634 	add	a,#0xF8
+   015B F5 F0               635 	mov	b,a
+   015D E5*01               636 	mov	a,_bpx+1
+   015F 34 FF               637 	addc	a,#0xFF
+   0161 AA F0               638 	mov	r2,b
+   0163 FB                  639 	mov	r3,a
+   0164 7C 40               640 	mov	r4,#0x40
+   0166 7D 00               641 	mov	r5,#0x00
+                            642 ;	lcd390.c:158: vsprintf (lcdPrintfBuffer, format, arg);
+   0168 E5*00               643 	mov	a,_bpx
+   016A C3                  644 	clr	c
+   016B 94 08               645 	subb	a,#0x08
+   016D F5 82               646 	mov	dpl,a
+   016F E5*01               647 	mov	a,_bpx+1
+   0171 94 00               648 	subb	a,#0x00
+   0173 F5 83               649 	mov	dph,a
+   0175 75 93 40            650 	mov	dpx,#0x40
+                            651 ;	genAssign: resultIsFar = FALSE
+   0178 E0                  652 	movx	a,@dptr
+   0179 FE                  653 	mov	r6,a
+   017A A3                  654 	inc	dptr
+   017B E0                  655 	movx	a,@dptr
+   017C FF                  656 	mov	r7,a
+   017D A3                  657 	inc	dptr
+   017E E0                  658 	movx	a,@dptr
+   017F F8                  659 	mov	r0,a
+   0180 A3                  660 	inc	dptr
+   0181 E0                  661 	movx	a,@dptr
+   0182 F9                  662 	mov	r1,a
+                            663 ;	genAssign: resultIsFar = TRUE
+   0183 90s00r00r00         664 	mov	dptr,#_vsprintf_PARM_2
+   0187 EE                  665 	mov	a,r6
+   0188 F0                  666 	movx	@dptr,a
+   0189 A3                  667 	inc	dptr
+   018A EF                  668 	mov	a,r7
+   018B F0                  669 	movx	@dptr,a
+   018C A3                  670 	inc	dptr
+   018D E8                  671 	mov	a,r0
+   018E F0                  672 	movx	@dptr,a
+   018F A3                  673 	inc	dptr
+   0190 E9                  674 	mov	a,r1
+   0191 F0                  675 	movx	@dptr,a
+                            676 ;	genAssign: resultIsFar = TRUE
+   0192 90s00r00r00         677 	mov	dptr,#_vsprintf_PARM_3
+   0196 EA                  678 	mov	a,r2
+   0197 F0                  679 	movx	@dptr,a
+   0198 A3                  680 	inc	dptr
+   0199 EB                  681 	mov	a,r3
+   019A F0                  682 	movx	@dptr,a
+   019B A3                  683 	inc	dptr
+   019C EC                  684 	mov	a,r4
+   019D F0                  685 	movx	@dptr,a
+   019E A3                  686 	inc	dptr
+   019F ED                  687 	mov	a,r5
+   01A0 F0                  688 	movx	@dptr,a
+   01A1 90s00r00r04         689 	mov dptr,#_lcdPrintfBuffer
+   01A5 75 F0 00            690 	mov	b,#0x00
+   01A8 12s00r00r00         691 	lcall	_vsprintf
+                            692 ;	lcd390.c:159: puts (lcdPrintfBuffer);
+   01AC 90s00r00r04         693 	mov dptr,#_lcdPrintfBuffer
+   01B0 75 F0 00            694 	mov	b,#0x00
+   01B3 12s00r00r00         695 	lcall	_puts
+                            696 ;	lcd390.c:160: LcdPutString(lcdPrintfBuffer);
+   01B7 90s00r00r04         697 	mov dptr,#_lcdPrintfBuffer
+   01BB 75 F0 00            698 	mov	b,#0x00
+   01BE 12s00r00rED         699 	lcall	_LcdPutString
+                            700 ;	lcd390.c:162: va_end (arg);
+   01C2                     701 00101$:
+   01C2 85*00 81            702 	mov	sp,_bpx
+   01C5 85*01 9B            703 	mov	esp,_bpx+1
+   01C8 D0*01               704 	pop	_bpx+1
+   01CA D0*00               705 	pop	_bpx
+   01CC 22                  706 	ret
+                            707 ;------------------------------------------------------------
+                            708 ;Allocation info for local variables in function 'LcdLPrintf'
+                            709 ;------------------------------------------------------------
+                            710 ;collumnRow                Allocated to stack - offset -6
+                            711 ;format                    Allocated to stack - offset -10
+                            712 ;arg                       Allocated to registers r2 r3 r4 r5 
+                            713 ;------------------------------------------------------------
+                            714 ;	lcd390.c:165: void LcdLPrintf (unsigned int collumnRow, const char *format, ...) __reentrant {
+                            715 ;	-----------------------------------------
+                            716 ;	 function LcdLPrintf
+                            717 ;	-----------------------------------------
+   01CD                     718 _LcdLPrintf:
+   01CD C0*00               719 	push	_bpx
+   01CF C0*01               720 	push	_bpx+1
+   01D1 85 81*00            721 	mov	_bpx,sp
+   01D4 85 9B*01            722 	mov	_bpx+1,esp
+   01D7 53*01 03            723 	anl	_bpx+1,#3
+                            724 ;	lcd390.c:168: LcdGoto(collumnRow);
+   01DA E5*00               725 	mov	a,_bpx
+   01DC C3                  726 	clr	c
+   01DD 94 06               727 	subb	a,#0x06
+   01DF F5 84               728 	mov	dpl1,a
+   01E1 E5*01               729 	mov	a,_bpx+1
+   01E3 94 00               730 	subb	a,#0x00
+   01E5 F5 85               731 	mov	dph1,a
+   01E7 75 95 40            732 	mov	dpx1,#0x40
+   01EA 05 86               733 	inc	dps
+   01EC E0                  734 	movx	a,@dptr
+   01ED F5 82               735 	mov	dpl,a
+   01EF A3                  736 	inc	dptr
+   01F0 E0                  737 	movx	a,@dptr
+   01F1 F5 83               738 	mov	dph,a
+   01F3 75 86 00            739 	mov	dps,#0
+   01F6 12s00r00rA6         740 	lcall	_LcdGoto
+                            741 ;	lcd390.c:172: va_start (arg, format);
+   01FA E5*00               742 	mov	a,_bpx
+   01FC 24 F6               743 	add	a,#0xF6
+   01FE F5 F0               744 	mov	b,a
+   0200 E5*01               745 	mov	a,_bpx+1
+   0202 34 FF               746 	addc	a,#0xFF
+   0204 AA F0               747 	mov	r2,b
+   0206 FB                  748 	mov	r3,a
+   0207 7C 40               749 	mov	r4,#0x40
+   0209 7D 00               750 	mov	r5,#0x00
+                            751 ;	lcd390.c:173: vsprintf (lcdPrintfBuffer, format, arg);
+   020B E5*00               752 	mov	a,_bpx
+   020D C3                  753 	clr	c
+   020E 94 0A               754 	subb	a,#0x0A
+   0210 F5 82               755 	mov	dpl,a
+   0212 E5*01               756 	mov	a,_bpx+1
+   0214 94 00               757 	subb	a,#0x00
+   0216 F5 83               758 	mov	dph,a
+   0218 75 93 40            759 	mov	dpx,#0x40
+                            760 ;	genAssign: resultIsFar = FALSE
+   021B E0                  761 	movx	a,@dptr
+   021C FE                  762 	mov	r6,a
+   021D A3                  763 	inc	dptr
+   021E E0                  764 	movx	a,@dptr
+   021F FF                  765 	mov	r7,a
+   0220 A3                  766 	inc	dptr
+   0221 E0                  767 	movx	a,@dptr
+   0222 F8                  768 	mov	r0,a
+   0223 A3                  769 	inc	dptr
+   0224 E0                  770 	movx	a,@dptr
+   0225 F9                  771 	mov	r1,a
+                            772 ;	genAssign: resultIsFar = TRUE
+   0226 90s00r00r00         773 	mov	dptr,#_vsprintf_PARM_2
+   022A EE                  774 	mov	a,r6
+   022B F0                  775 	movx	@dptr,a
+   022C A3                  776 	inc	dptr
+   022D EF                  777 	mov	a,r7
+   022E F0                  778 	movx	@dptr,a
+   022F A3                  779 	inc	dptr
+   0230 E8                  780 	mov	a,r0
+   0231 F0                  781 	movx	@dptr,a
+   0232 A3                  782 	inc	dptr
+   0233 E9                  783 	mov	a,r1
+   0234 F0                  784 	movx	@dptr,a
+                            785 ;	genAssign: resultIsFar = TRUE
+   0235 90s00r00r00         786 	mov	dptr,#_vsprintf_PARM_3
+   0239 EA                  787 	mov	a,r2
+   023A F0                  788 	movx	@dptr,a
+   023B A3                  789 	inc	dptr
+   023C EB                  790 	mov	a,r3
+   023D F0                  791 	movx	@dptr,a
+   023E A3                  792 	inc	dptr
+   023F EC                  793 	mov	a,r4
+   0240 F0                  794 	movx	@dptr,a
+   0241 A3                  795 	inc	dptr
+   0242 ED                  796 	mov	a,r5
+   0243 F0                  797 	movx	@dptr,a
+   0244 90s00r00r04         798 	mov dptr,#_lcdPrintfBuffer
+   0248 75 F0 00            799 	mov	b,#0x00
+   024B 12s00r00r00         800 	lcall	_vsprintf
+                            801 ;	lcd390.c:175: LcdPutString(lcdPrintfBuffer);
+   024F 90s00r00r04         802 	mov dptr,#_lcdPrintfBuffer
+   0253 75 F0 00            803 	mov	b,#0x00
+   0256 12s00r00rED         804 	lcall	_LcdPutString
+                            805 ;	lcd390.c:177: va_end (arg);
+   025A                     806 00101$:
+   025A 85*00 81            807 	mov	sp,_bpx
+   025D 85*01 9B            808 	mov	esp,_bpx+1
+   0260 D0*01               809 	pop	_bpx+1
+   0262 D0*00               810 	pop	_bpx
+   0264 22                  811 	ret
+                            812 	.area CSEG    (CODE)
+                            813 	.area CONST   (CODE)
+                            814 	.area XINIT   (CODE)
+   0000                     815 __xinit__lcdLinesStart:
+   0000 00                  816 	.db #0x00	; 0
+   0001 40                  817 	.db #0x40	; 64
+   0002 14                  818 	.db #0x14	; 20
+   0003 54                  819 	.db #0x54	; 84	T
+                            820 	.area CABS    (ABS,CODE)

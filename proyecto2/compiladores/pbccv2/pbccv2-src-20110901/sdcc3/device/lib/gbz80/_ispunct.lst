@@ -1,0 +1,113 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:19 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _ispunct
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _ispunct
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../_ispunct.c:31: char ispunct (unsigned char c)
+                             41 ;	---------------------------------
+                             42 ; Function ispunct
+                             43 ; ---------------------------------
+   0000                      44 _ispunct_start::
+   0000                      45 _ispunct:
+                             46 	
+                             47 ;../_ispunct.c:33: if ( isprint (c) &&
+   0000 F8 02                48 	ldhl	sp,#2
+   0002 7E                   49 	ld	a,(hl)
+   0003 F5                   50 	push	af
+   0004 33                   51 	inc	sp
+   0005 CDr00s00             52 	call	_isprint
+   0008 E8 01                53 	lda	sp,1(sp)
+   000A 4B                   54 	ld	c,e
+   000B AF                   55 	xor	a,a
+   000C B1                   56 	or	a,c
+   000D CAr54s00             57 	jp	Z,00102$
+                             58 ;../_ispunct.c:34: !islower(c) &&
+   0010 F8 02                59 	ldhl	sp,#2
+   0012 7E                   60 	ld	a,(hl)
+   0013 F5                   61 	push	af
+   0014 33                   62 	inc	sp
+   0015 CDr00s00             63 	call	_islower
+   0018 E8 01                64 	lda	sp,1(sp)
+   001A 4B                   65 	ld	c,e
+   001B AF                   66 	xor	a,a
+   001C B1                   67 	or	a,c
+   001D C2r54s00             68 	jp	NZ,00102$
+                             69 ;../_ispunct.c:35: !isupper(c) &&
+   0020 F8 02                70 	ldhl	sp,#2
+   0022 7E                   71 	ld	a,(hl)
+   0023 F5                   72 	push	af
+   0024 33                   73 	inc	sp
+   0025 CDr00s00             74 	call	_isupper
+   0028 E8 01                75 	lda	sp,1(sp)
+   002A 4B                   76 	ld	c,e
+   002B AF                   77 	xor	a,a
+   002C B1                   78 	or	a,c
+   002D C2r54s00             79 	jp	NZ,00102$
+                             80 ;../_ispunct.c:36: !isspace(c) &&
+   0030 F8 02                81 	ldhl	sp,#2
+   0032 7E                   82 	ld	a,(hl)
+   0033 F5                   83 	push	af
+   0034 33                   84 	inc	sp
+   0035 CDr00s00             85 	call	_isspace
+   0038 E8 01                86 	lda	sp,1(sp)
+   003A 4B                   87 	ld	c,e
+   003B AF                   88 	xor	a,a
+   003C B1                   89 	or	a,c
+   003D C2r54s00             90 	jp	NZ,00102$
+                             91 ;../_ispunct.c:37: !isdigit(c) )
+   0040 F8 02                92 	ldhl	sp,#2
+   0042 7E                   93 	ld	a,(hl)
+   0043 F5                   94 	push	af
+   0044 33                   95 	inc	sp
+   0045 CDr00s00             96 	call	_isdigit
+   0048 E8 01                97 	lda	sp,1(sp)
+   004A 4B                   98 	ld	c,e
+   004B AF                   99 	xor	a,a
+   004C B1                  100 	or	a,c
+   004D C2r54s00            101 	jp	NZ,00102$
+                            102 ;../_ispunct.c:38: return 1;
+   0050 1E 01               103 	ld	e,#0x01
+   0052 18 02               104 	jr	00107$
+   0054                     105 00102$:
+                            106 ;../_ispunct.c:39: return 0;
+   0054 1E 00               107 	ld	e,#0x00
+   0056                     108 00107$:
+                            109 	
+   0056 C9                  110 	ret
+   0057                     111 _ispunct_end::
+                            112 	.area _CODE
+                            113 	.area _CABS

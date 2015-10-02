@@ -1,0 +1,153 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module rand
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _rand
+                             25 	.globl _srand
+                             26 ;--------------------------------------------------------
+                             27 ;  ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area DSEG
+   0000                      30 _rand_sloc0_1_0:
+   0000                      31 	.ds 4
+                             32 ;--------------------------------------------------------
+                             33 ; overlayable items in  ram 
+                             34 ;--------------------------------------------------------
+                             35 	.area OSEG    (OVR)
+                             36 ;--------------------------------------------------------
+                             37 ; absolute external ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area XABS    (ABS)
+                             40 ;--------------------------------------------------------
+                             41 ; external initialized ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area XISEG
+   0000                      44 _next:
+   0000                      45 	.ds 4
+                             46 ;--------------------------------------------------------
+                             47 ; extended address mode data
+                             48 ;--------------------------------------------------------
+                             49 	.area XSEG
+   0000                      50 _srand_seed_1_1:
+   0000                      51 	.ds 2
+                             52 ;--------------------------------------------------------
+                             53 ; global & static initialisations
+                             54 ;--------------------------------------------------------
+                             55 	.area HOME (CODE)
+                             56 	.area GSINIT (CODE)
+                             57 	.area GSFINAL (CODE)
+                             58 	.area GSINIT (CODE)
+                             59 ;--------------------------------------------------------
+                             60 ; Home
+                             61 ;--------------------------------------------------------
+                             62 	.area HOME (CODE)
+                             63 	.area HOME (CODE)
+                             64 ;--------------------------------------------------------
+                             65 ; code
+                             66 ;--------------------------------------------------------
+                             67 	.area CSEG (CODE)
+                             68 ;------------------------------------------------------------
+                             69 ;Allocation info for local variables in function 'rand'
+                             70 ;------------------------------------------------------------
+                             71 ;sloc0                     Allocated with name '_rand_sloc0_1_0'
+                             72 ;------------------------------------------------------------
+                             73 ;../rand.c:33: int rand(void)
+                             74 ;	-----------------------------------------
+                             75 ;	 function rand
+                             76 ;	-----------------------------------------
+   0000                      77 _rand:
+                             78 ;../rand.c:35: next = next * 1103515245UL + 12345;
+   0000 A6 41                79 	lda	#0x41
+   0002 C7s00r00             80 	sta	__mullong_PARM_1
+   0005 A6 C6                81 	lda	#0xC6
+   0007 C7s00r01             82 	sta	(__mullong_PARM_1 + 1)
+   000A A6 4E                83 	lda	#0x4E
+   000C C7s00r02             84 	sta	(__mullong_PARM_1 + 2)
+   000F A6 6D                85 	lda	#0x6D
+   0011 C7s00r03             86 	sta	(__mullong_PARM_1 + 3)
+   0014 C6s00r00             87 	lda	_next
+   0017 C7s00r00             88 	sta	__mullong_PARM_2
+   001A C6s00r01             89 	lda	(_next + 1)
+   001D C7s00r01             90 	sta	(__mullong_PARM_2 + 1)
+   0020 C6s00r02             91 	lda	(_next + 2)
+   0023 C7s00r02             92 	sta	(__mullong_PARM_2 + 2)
+   0026 C6s00r03             93 	lda	(_next + 3)
+   0029 C7s00r03             94 	sta	(__mullong_PARM_2 + 3)
+   002C CDs00r00             95 	jsr	__mullong
+   002F B7*03                96 	sta	*(_rand_sloc0_1_0 + 3)
+   0031 BF*02                97 	stx	*(_rand_sloc0_1_0 + 2)
+   0033 4E*00*01             98 	mov	*__ret2,*(_rand_sloc0_1_0 + 1)
+   0036 4E*00*00             99 	mov	*__ret3,*_rand_sloc0_1_0
+   0039 B6*03               100 	lda	*(_rand_sloc0_1_0 + 3)
+   003B AB 39               101 	add	#0x39
+   003D C7s00r03            102 	sta	(_next + 3)
+   0040 B6*02               103 	lda	*(_rand_sloc0_1_0 + 2)
+   0042 A9 30               104 	adc	#0x30
+   0044 C7s00r02            105 	sta	(_next + 2)
+   0047 B6*01               106 	lda	*(_rand_sloc0_1_0 + 1)
+   0049 A9 00               107 	adc	#0x00
+   004B C7s00r01            108 	sta	(_next + 1)
+   004E B6*00               109 	lda	*_rand_sloc0_1_0
+   0050 A9 00               110 	adc	#0x00
+   0052 C7s00r00            111 	sta	_next
+                            112 ;../rand.c:36: return (unsigned int)(next/65536) % (RAND_MAX + 1U);
+   0055 C6s00r01            113 	lda	(_next + 1)
+   0058 CEs00r00            114 	ldx	_next
+   005B B7*03               115 	sta	*(_rand_sloc0_1_0 + 3)
+   005D BF*02               116 	stx	*(_rand_sloc0_1_0 + 2)
+   005F 3F*01               117 	clr	*(_rand_sloc0_1_0 + 1)
+   0061 3F*00               118 	clr	*_rand_sloc0_1_0
+   0063 4E*03*01            119 	mov	*(_rand_sloc0_1_0 + 3),*(_rand_sloc0_1_0 + 1)
+   0066 4E*02*00            120 	mov	*(_rand_sloc0_1_0 + 2),*_rand_sloc0_1_0
+   0069 1F*00               121 	bclr	#7,*_rand_sloc0_1_0
+   006B BE*00               122 	ldx	*_rand_sloc0_1_0
+   006D B6*01               123 	lda	*(_rand_sloc0_1_0 + 1)
+   006F                     124 00101$:
+   006F 81                  125 	rts
+                            126 ;------------------------------------------------------------
+                            127 ;Allocation info for local variables in function 'srand'
+                            128 ;------------------------------------------------------------
+                            129 ;seed                      Allocated with name '_srand_seed_1_1'
+                            130 ;------------------------------------------------------------
+                            131 ;../rand.c:39: void srand(unsigned int seed)
+                            132 ;	-----------------------------------------
+                            133 ;	 function srand
+                            134 ;	-----------------------------------------
+   0070                     135 _srand:
+   0070 C7s00r01            136 	sta	(_srand_seed_1_1 + 1)
+   0073 CFs00r00            137 	stx	_srand_seed_1_1
+                            138 ;../rand.c:41: next = seed;
+   0076 C6s00r01            139 	lda	(_srand_seed_1_1 + 1)
+   0079 C7s00r03            140 	sta	(_next + 3)
+   007C C6s00r00            141 	lda	_srand_seed_1_1
+   007F C7s00r02            142 	sta	(_next + 2)
+   0082 4F                  143 	clra
+   0083 C7s00r01            144 	sta	(_next + 1)
+   0086 C7s00r00            145 	sta	_next
+   0089                     146 00101$:
+   0089 81                  147 	rts
+                            148 	.area CSEG (CODE)
+                            149 	.area CONST   (CODE)
+                            150 	.area XINIT
+   0000                     151 __xinit__next:
+   0000 00 00 00 01         152 	.byte #0x00,#0x00,#0x00,#0x01	; 1
+                            153 	.area CABS    (ABS,CODE)

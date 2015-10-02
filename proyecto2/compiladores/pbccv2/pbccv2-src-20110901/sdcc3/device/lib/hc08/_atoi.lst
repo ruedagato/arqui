@@ -1,0 +1,246 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _atoi
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _atoi
+                             25 ;--------------------------------------------------------
+                             26 ;  ram data
+                             27 ;--------------------------------------------------------
+                             28 	.area DSEG
+   0000                      29 _atoi_rv_1_1:
+   0000                      30 	.ds 2
+   0002                      31 _atoi_sign_1_1:
+   0002                      32 	.ds 1
+   0003                      33 _atoi_sloc0_1_0:
+   0003                      34 	.ds 2
+   0005                      35 _atoi_sloc1_1_0:
+   0005                      36 	.ds 2
+   0007                      37 _atoi_sloc2_1_0:
+   0007                      38 	.ds 2
+                             39 ;--------------------------------------------------------
+                             40 ; overlayable items in  ram 
+                             41 ;--------------------------------------------------------
+                             42 	.area OSEG    (OVR)
+                             43 ;--------------------------------------------------------
+                             44 ; absolute external ram data
+                             45 ;--------------------------------------------------------
+                             46 	.area XABS    (ABS)
+                             47 ;--------------------------------------------------------
+                             48 ; external initialized ram data
+                             49 ;--------------------------------------------------------
+                             50 	.area XISEG
+                             51 ;--------------------------------------------------------
+                             52 ; extended address mode data
+                             53 ;--------------------------------------------------------
+                             54 	.area XSEG
+   0000                      55 _atoi_s_1_1:
+   0000                      56 	.ds 2
+                             57 ;--------------------------------------------------------
+                             58 ; global & static initialisations
+                             59 ;--------------------------------------------------------
+                             60 	.area HOME (CODE)
+                             61 	.area GSINIT (CODE)
+                             62 	.area GSFINAL (CODE)
+                             63 	.area GSINIT (CODE)
+                             64 ;--------------------------------------------------------
+                             65 ; Home
+                             66 ;--------------------------------------------------------
+                             67 	.area HOME (CODE)
+                             68 	.area HOME (CODE)
+                             69 ;--------------------------------------------------------
+                             70 ; code
+                             71 ;--------------------------------------------------------
+                             72 	.area CSEG (CODE)
+                             73 ;------------------------------------------------------------
+                             74 ;Allocation info for local variables in function 'atoi'
+                             75 ;------------------------------------------------------------
+                             76 ;rv                        Allocated with name '_atoi_rv_1_1'
+                             77 ;sign                      Allocated with name '_atoi_sign_1_1'
+                             78 ;sloc0                     Allocated with name '_atoi_sloc0_1_0'
+                             79 ;sloc1                     Allocated with name '_atoi_sloc1_1_0'
+                             80 ;sloc2                     Allocated with name '_atoi_sloc2_1_0'
+                             81 ;s                         Allocated with name '_atoi_s_1_1'
+                             82 ;------------------------------------------------------------
+                             83 ;../_atoi.c:29: int atoi(const char * s)
+                             84 ;	-----------------------------------------
+                             85 ;	 function atoi
+                             86 ;	-----------------------------------------
+   0000                      87 _atoi:
+   0000 C7s00r01             88 	sta	(_atoi_s_1_1 + 1)
+   0003 CFs00r00             89 	stx	_atoi_s_1_1
+                             90 ;../_atoi.c:31: register int rv=0; 
+   0006 3F*00                91 	clr	*_atoi_rv_1_1
+   0008 3F*01                92 	clr	*(_atoi_rv_1_1 + 1)
+                             93 ;../_atoi.c:35: while (*s) {
+   000A C6s00r00             94 	lda	_atoi_s_1_1
+   000D B7*03                95 	sta	*_atoi_sloc0_1_0
+   000F C6s00r01             96 	lda	(_atoi_s_1_1 + 1)
+   0012 B7*04                97 	sta	*(_atoi_sloc0_1_0 + 1)
+   0014                      98 00107$:
+   0014 55*03                99 	ldhx	*_atoi_sloc0_1_0
+   0016 F6                  100 	lda	,x
+   0017 27 24               101 	beq	00133$
+   0019                     102 00135$:
+                            103 ;../_atoi.c:36: if (*s <= '9' && *s >= '0')
+   0019 55*03               104 	ldhx	*_atoi_sloc0_1_0
+   001B F6                  105 	lda	,x
+   001C A1 39               106 	cmp	#0x39
+   001E 92 07               107 	bgt	00102$
+   0020                     108 00136$:
+   0020 55*03               109 	ldhx	*_atoi_sloc0_1_0
+   0022 F6                  110 	lda	,x
+   0023 A1 30               111 	cmp	#0x30
+   0025 90 16               112 	bge	00133$
+   0027                     113 00137$:
+                            114 ;../_atoi.c:37: break;
+   0027                     115 00102$:
+                            116 ;../_atoi.c:38: if (*s == '-' || *s == '+') 
+   0027 55*03               117 	ldhx	*_atoi_sloc0_1_0
+   0029 F6                  118 	lda	,x
+   002A A1 2D               119 	cmp	#0x2D
+   002C 27 0F               120 	beq	00133$
+   002E                     121 00138$:
+   002E 55*03               122 	ldhx	*_atoi_sloc0_1_0
+   0030 F6                  123 	lda	,x
+   0031 A1 2B               124 	cmp	#0x2B
+   0033 27 08               125 	beq	00133$
+   0035                     126 00139$:
+                            127 ;../_atoi.c:40: s++;
+   0035 55*03               128 	ldhx	*_atoi_sloc0_1_0
+   0037 AF 01               129 	aix	#1
+   0039 35*03               130 	sthx	*_atoi_sloc0_1_0
+   003B 20 D7               131 	bra	00107$
+   003D                     132 00133$:
+   003D B6*03               133 	lda	*_atoi_sloc0_1_0
+   003F C7s00r00            134 	sta	_atoi_s_1_1
+   0042 B6*04               135 	lda	*(_atoi_sloc0_1_0 + 1)
+   0044 C7s00r01            136 	sta	(_atoi_s_1_1 + 1)
+                            137 ;../_atoi.c:43: sign = (*s == '-');
+   0047 55*03               138 	ldhx	*_atoi_sloc0_1_0
+   0049 F6                  139 	lda	,x
+   004A A1 2D               140 	cmp	#0x2D
+   004C 27 03               141 	beq	00141$
+   004E 4F                  142 	clra
+   004F 20 02               143 	bra	00140$
+   0051                     144 00141$:
+   0051 A6 01               145 	lda	#0x01
+   0053                     146 00140$:
+   0053 B7*02               147 	sta	*_atoi_sign_1_1
+                            148 ;../_atoi.c:44: if (*s == '-' || *s == '+') s++;
+   0055 55*03               149 	ldhx	*_atoi_sloc0_1_0
+   0057 F6                  150 	lda	,x
+   0058 A1 2D               151 	cmp	#0x2D
+   005A 27 07               152 	beq	00110$
+   005C                     153 00142$:
+   005C 55*03               154 	ldhx	*_atoi_sloc0_1_0
+   005E F6                  155 	lda	,x
+   005F A1 2B               156 	cmp	#0x2B
+   0061 26 10               157 	bne	00131$
+   0063                     158 00143$:
+   0063                     159 00110$:
+   0063 C6s00r01            160 	lda	(_atoi_s_1_1 + 1)
+   0066 4C                  161 	inca
+   0067 C7s00r01            162 	sta	(_atoi_s_1_1 + 1)
+   006A 26 07               163 	bne	00144$
+   006C C6s00r00            164 	lda	_atoi_s_1_1
+   006F 4C                  165 	inca
+   0070 C7s00r00            166 	sta	_atoi_s_1_1
+   0073                     167 00144$:
+                            168 ;../_atoi.c:46: while (*s && *s >= '0' && *s <= '9') {
+   0073                     169 00131$:
+   0073 C6s00r00            170 	lda	_atoi_s_1_1
+   0076 B7*03               171 	sta	*_atoi_sloc0_1_0
+   0078 C6s00r01            172 	lda	(_atoi_s_1_1 + 1)
+   007B B7*04               173 	sta	*(_atoi_sloc0_1_0 + 1)
+   007D                     174 00115$:
+   007D 55*03               175 	ldhx	*_atoi_sloc0_1_0
+   007F F6                  176 	lda	,x
+   0080 26 02               177 	bne	00145$
+   0082 20 4C               178 	bra	00117$
+   0084                     179 00145$:
+   0084 55*03               180 	ldhx	*_atoi_sloc0_1_0
+   0086 F6                  181 	lda	,x
+   0087 A1 30               182 	cmp	#0x30
+   0089 91 45               183 	blt	00117$
+   008B                     184 00146$:
+   008B 55*03               185 	ldhx	*_atoi_sloc0_1_0
+   008D F6                  186 	lda	,x
+   008E A1 39               187 	cmp	#0x39
+   0090 92 3E               188 	bgt	00117$
+   0092                     189 00147$:
+                            190 ;../_atoi.c:47: rv = (rv * 10) + (*s - '0');
+   0092 B6*00               191 	lda	*_atoi_rv_1_1
+   0094 C7s00r00            192 	sta	__mulint_PARM_2
+   0097 B6*01               193 	lda	*(_atoi_rv_1_1 + 1)
+   0099 C7s00r01            194 	sta	(__mulint_PARM_2 + 1)
+   009C 5F                  195 	clrx
+   009D A6 0A               196 	lda	#0x0A
+   009F CDs00r00            197 	jsr	__mulint
+   00A2 B7*06               198 	sta	*(_atoi_sloc1_1_0 + 1)
+   00A4 BF*05               199 	stx	*_atoi_sloc1_1_0
+   00A6 55*03               200 	ldhx	*_atoi_sloc0_1_0
+   00A8 F6                  201 	lda	,x
+   00A9 AF 01               202 	aix	#1
+   00AB 35*03               203 	sthx	*_atoi_sloc0_1_0
+   00AD B7*08               204 	sta	*(_atoi_sloc2_1_0 + 1)
+   00AF 49                  205 	rola	
+   00B0 4F                  206 	clra	
+   00B1 A2 00               207 	sbc	#0x00
+   00B3 B7*07               208 	sta	*_atoi_sloc2_1_0
+   00B5 B6*08               209 	lda	*(_atoi_sloc2_1_0 + 1)
+   00B7 A0 30               210 	sub	#0x30
+   00B9 B7*08               211 	sta	*(_atoi_sloc2_1_0 + 1)
+   00BB B6*07               212 	lda	*_atoi_sloc2_1_0
+   00BD A2 00               213 	sbc	#0x00
+   00BF B7*07               214 	sta	*_atoi_sloc2_1_0
+   00C1 B6*06               215 	lda	*(_atoi_sloc1_1_0 + 1)
+   00C3 BB*08               216 	add	*(_atoi_sloc2_1_0 + 1)
+   00C5 B7*01               217 	sta	*(_atoi_rv_1_1 + 1)
+   00C7 B6*05               218 	lda	*_atoi_sloc1_1_0
+   00C9 B9*07               219 	adc	*_atoi_sloc2_1_0
+   00CB B7*00               220 	sta	*_atoi_rv_1_1
+                            221 ;../_atoi.c:48: s++;
+   00CD CCs00r7D            222 	jmp	00115$
+   00D0                     223 00117$:
+                            224 ;../_atoi.c:51: return (sign ? -rv : rv);
+   00D0 3D*02               225 	tst	*_atoi_sign_1_1
+   00D2 27 0C               226 	beq	00120$
+   00D4                     227 00148$:
+   00D4 4F                  228 	clra
+   00D5 B0*01               229 	sub	*(_atoi_rv_1_1 + 1)
+   00D7 B7*08               230 	sta	*(_atoi_sloc2_1_0 + 1)
+   00D9 4F                  231 	clra
+   00DA B2*00               232 	sbc	*_atoi_rv_1_1
+   00DC B7*07               233 	sta	*_atoi_sloc2_1_0
+   00DE 20 06               234 	bra	00121$
+   00E0                     235 00120$:
+   00E0 4E*00*07            236 	mov	*_atoi_rv_1_1,*_atoi_sloc2_1_0
+   00E3 4E*01*08            237 	mov	*(_atoi_rv_1_1 + 1),*(_atoi_sloc2_1_0 + 1)
+   00E6                     238 00121$:
+   00E6 BE*07               239 	ldx	*_atoi_sloc2_1_0
+   00E8 B6*08               240 	lda	*(_atoi_sloc2_1_0 + 1)
+   00EA                     241 00118$:
+   00EA 81                  242 	rts
+                            243 	.area CSEG (CODE)
+                            244 	.area CONST   (CODE)
+                            245 	.area XINIT
+                            246 	.area CABS    (ABS,CODE)

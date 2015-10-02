@@ -1,0 +1,379 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:24 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _setjmp
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _longjmp_PARM_2
+                             13 	.globl _CY
+                             14 	.globl _AC
+                             15 	.globl _F0
+                             16 	.globl _RS1
+                             17 	.globl _RS0
+                             18 	.globl _OV
+                             19 	.globl _F1
+                             20 	.globl _P
+                             21 	.globl _PS
+                             22 	.globl _PT1
+                             23 	.globl _PX1
+                             24 	.globl _PT0
+                             25 	.globl _PX0
+                             26 	.globl _RD
+                             27 	.globl _WR
+                             28 	.globl _T1
+                             29 	.globl _T0
+                             30 	.globl _INT1
+                             31 	.globl _INT0
+                             32 	.globl _TXD
+                             33 	.globl _RXD
+                             34 	.globl _P3_7
+                             35 	.globl _P3_6
+                             36 	.globl _P3_5
+                             37 	.globl _P3_4
+                             38 	.globl _P3_3
+                             39 	.globl _P3_2
+                             40 	.globl _P3_1
+                             41 	.globl _P3_0
+                             42 	.globl _EA
+                             43 	.globl _ES
+                             44 	.globl _ET1
+                             45 	.globl _EX1
+                             46 	.globl _ET0
+                             47 	.globl _EX0
+                             48 	.globl _P2_7
+                             49 	.globl _P2_6
+                             50 	.globl _P2_5
+                             51 	.globl _P2_4
+                             52 	.globl _P2_3
+                             53 	.globl _P2_2
+                             54 	.globl _P2_1
+                             55 	.globl _P2_0
+                             56 	.globl _SM0
+                             57 	.globl _SM1
+                             58 	.globl _SM2
+                             59 	.globl _REN
+                             60 	.globl _TB8
+                             61 	.globl _RB8
+                             62 	.globl _TI
+                             63 	.globl _RI
+                             64 	.globl _P1_7
+                             65 	.globl _P1_6
+                             66 	.globl _P1_5
+                             67 	.globl _P1_4
+                             68 	.globl _P1_3
+                             69 	.globl _P1_2
+                             70 	.globl _P1_1
+                             71 	.globl _P1_0
+                             72 	.globl _TF1
+                             73 	.globl _TR1
+                             74 	.globl _TF0
+                             75 	.globl _TR0
+                             76 	.globl _IE1
+                             77 	.globl _IT1
+                             78 	.globl _IE0
+                             79 	.globl _IT0
+                             80 	.globl _P0_7
+                             81 	.globl _P0_6
+                             82 	.globl _P0_5
+                             83 	.globl _P0_4
+                             84 	.globl _P0_3
+                             85 	.globl _P0_2
+                             86 	.globl _P0_1
+                             87 	.globl _P0_0
+                             88 	.globl _B
+                             89 	.globl _ACC
+                             90 	.globl _PSW
+                             91 	.globl _IP
+                             92 	.globl _P3
+                             93 	.globl _IE
+                             94 	.globl _P2
+                             95 	.globl _SBUF
+                             96 	.globl _SCON
+                             97 	.globl _P1
+                             98 	.globl _TH1
+                             99 	.globl _TH0
+                            100 	.globl _TL1
+                            101 	.globl _TL0
+                            102 	.globl _TMOD
+                            103 	.globl _TCON
+                            104 	.globl _PCON
+                            105 	.globl _DPH
+                            106 	.globl _DPL
+                            107 	.globl _SP
+                            108 	.globl _P0
+                            109 	.globl _setjmp
+                            110 	.globl _longjmp
+                            111 ;--------------------------------------------------------
+                            112 ; special function registers
+                            113 ;--------------------------------------------------------
+                            114 	.area RSEG    (ABS,DATA)
+   0000                     115 	.org 0x0000
+                    0080    116 _P0	=	0x0080
+                    0081    117 _SP	=	0x0081
+                    0082    118 _DPL	=	0x0082
+                    0083    119 _DPH	=	0x0083
+                    0087    120 _PCON	=	0x0087
+                    0088    121 _TCON	=	0x0088
+                    0089    122 _TMOD	=	0x0089
+                    008A    123 _TL0	=	0x008a
+                    008B    124 _TL1	=	0x008b
+                    008C    125 _TH0	=	0x008c
+                    008D    126 _TH1	=	0x008d
+                    0090    127 _P1	=	0x0090
+                    0098    128 _SCON	=	0x0098
+                    0099    129 _SBUF	=	0x0099
+                    00A0    130 _P2	=	0x00a0
+                    00A8    131 _IE	=	0x00a8
+                    00B0    132 _P3	=	0x00b0
+                    00B8    133 _IP	=	0x00b8
+                    00D0    134 _PSW	=	0x00d0
+                    00E0    135 _ACC	=	0x00e0
+                    00F0    136 _B	=	0x00f0
+                            137 ;--------------------------------------------------------
+                            138 ; special function bits
+                            139 ;--------------------------------------------------------
+                            140 	.area RSEG    (ABS,DATA)
+   0000                     141 	.org 0x0000
+                    0080    142 _P0_0	=	0x0080
+                    0081    143 _P0_1	=	0x0081
+                    0082    144 _P0_2	=	0x0082
+                    0083    145 _P0_3	=	0x0083
+                    0084    146 _P0_4	=	0x0084
+                    0085    147 _P0_5	=	0x0085
+                    0086    148 _P0_6	=	0x0086
+                    0087    149 _P0_7	=	0x0087
+                    0088    150 _IT0	=	0x0088
+                    0089    151 _IE0	=	0x0089
+                    008A    152 _IT1	=	0x008a
+                    008B    153 _IE1	=	0x008b
+                    008C    154 _TR0	=	0x008c
+                    008D    155 _TF0	=	0x008d
+                    008E    156 _TR1	=	0x008e
+                    008F    157 _TF1	=	0x008f
+                    0090    158 _P1_0	=	0x0090
+                    0091    159 _P1_1	=	0x0091
+                    0092    160 _P1_2	=	0x0092
+                    0093    161 _P1_3	=	0x0093
+                    0094    162 _P1_4	=	0x0094
+                    0095    163 _P1_5	=	0x0095
+                    0096    164 _P1_6	=	0x0096
+                    0097    165 _P1_7	=	0x0097
+                    0098    166 _RI	=	0x0098
+                    0099    167 _TI	=	0x0099
+                    009A    168 _RB8	=	0x009a
+                    009B    169 _TB8	=	0x009b
+                    009C    170 _REN	=	0x009c
+                    009D    171 _SM2	=	0x009d
+                    009E    172 _SM1	=	0x009e
+                    009F    173 _SM0	=	0x009f
+                    00A0    174 _P2_0	=	0x00a0
+                    00A1    175 _P2_1	=	0x00a1
+                    00A2    176 _P2_2	=	0x00a2
+                    00A3    177 _P2_3	=	0x00a3
+                    00A4    178 _P2_4	=	0x00a4
+                    00A5    179 _P2_5	=	0x00a5
+                    00A6    180 _P2_6	=	0x00a6
+                    00A7    181 _P2_7	=	0x00a7
+                    00A8    182 _EX0	=	0x00a8
+                    00A9    183 _ET0	=	0x00a9
+                    00AA    184 _EX1	=	0x00aa
+                    00AB    185 _ET1	=	0x00ab
+                    00AC    186 _ES	=	0x00ac
+                    00AF    187 _EA	=	0x00af
+                    00B0    188 _P3_0	=	0x00b0
+                    00B1    189 _P3_1	=	0x00b1
+                    00B2    190 _P3_2	=	0x00b2
+                    00B3    191 _P3_3	=	0x00b3
+                    00B4    192 _P3_4	=	0x00b4
+                    00B5    193 _P3_5	=	0x00b5
+                    00B6    194 _P3_6	=	0x00b6
+                    00B7    195 _P3_7	=	0x00b7
+                    00B0    196 _RXD	=	0x00b0
+                    00B1    197 _TXD	=	0x00b1
+                    00B2    198 _INT0	=	0x00b2
+                    00B3    199 _INT1	=	0x00b3
+                    00B4    200 _T0	=	0x00b4
+                    00B5    201 _T1	=	0x00b5
+                    00B6    202 _WR	=	0x00b6
+                    00B7    203 _RD	=	0x00b7
+                    00B8    204 _PX0	=	0x00b8
+                    00B9    205 _PT0	=	0x00b9
+                    00BA    206 _PX1	=	0x00ba
+                    00BB    207 _PT1	=	0x00bb
+                    00BC    208 _PS	=	0x00bc
+                    00D0    209 _P	=	0x00d0
+                    00D1    210 _F1	=	0x00d1
+                    00D2    211 _OV	=	0x00d2
+                    00D3    212 _RS0	=	0x00d3
+                    00D4    213 _RS1	=	0x00d4
+                    00D5    214 _F0	=	0x00d5
+                    00D6    215 _AC	=	0x00d6
+                    00D7    216 _CY	=	0x00d7
+                            217 ;--------------------------------------------------------
+                            218 ; overlayable register banks
+                            219 ;--------------------------------------------------------
+                            220 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     221 	.ds 8
+                            222 ;--------------------------------------------------------
+                            223 ; internal ram data
+                            224 ;--------------------------------------------------------
+                            225 	.area DSEG    (DATA)
+                            226 ;--------------------------------------------------------
+                            227 ; overlayable items in internal ram 
+                            228 ;--------------------------------------------------------
+                            229 	.area	OSEG    (OVR,DATA)
+                            230 	.area	OSEG    (OVR,DATA)
+   0000                     231 _longjmp_PARM_2::
+   0000                     232 	.ds 2
+                            233 ;--------------------------------------------------------
+                            234 ; indirectly addressable internal ram data
+                            235 ;--------------------------------------------------------
+                            236 	.area ISEG    (DATA)
+                            237 ;--------------------------------------------------------
+                            238 ; absolute internal ram data
+                            239 ;--------------------------------------------------------
+                            240 	.area IABS    (ABS,DATA)
+                            241 	.area IABS    (ABS,DATA)
+                            242 ;--------------------------------------------------------
+                            243 ; bit data
+                            244 ;--------------------------------------------------------
+                            245 	.area BSEG    (BIT)
+                            246 ;--------------------------------------------------------
+                            247 ; paged external ram data
+                            248 ;--------------------------------------------------------
+                            249 	.area PSEG    (PAG,XDATA)
+                            250 ;--------------------------------------------------------
+                            251 ; external ram data
+                            252 ;--------------------------------------------------------
+                            253 	.area XSEG    (XDATA)
+                            254 ;--------------------------------------------------------
+                            255 ; absolute external ram data
+                            256 ;--------------------------------------------------------
+                            257 	.area XABS    (ABS,XDATA)
+                            258 ;--------------------------------------------------------
+                            259 ; external initialized ram data
+                            260 ;--------------------------------------------------------
+                            261 	.area XISEG   (XDATA)
+                            262 	.area HOME    (CODE)
+                            263 	.area GSINIT0 (CODE)
+                            264 	.area GSINIT1 (CODE)
+                            265 	.area GSINIT2 (CODE)
+                            266 	.area GSINIT3 (CODE)
+                            267 	.area GSINIT4 (CODE)
+                            268 	.area GSINIT5 (CODE)
+                            269 	.area GSINIT  (CODE)
+                            270 	.area GSFINAL (CODE)
+                            271 	.area CSEG    (CODE)
+                            272 ;--------------------------------------------------------
+                            273 ; global & static initialisations
+                            274 ;--------------------------------------------------------
+                            275 	.area HOME    (CODE)
+                            276 	.area GSINIT  (CODE)
+                            277 	.area GSFINAL (CODE)
+                            278 	.area GSINIT  (CODE)
+                            279 ;--------------------------------------------------------
+                            280 ; Home
+                            281 ;--------------------------------------------------------
+                            282 	.area HOME    (CODE)
+                            283 	.area HOME    (CODE)
+                            284 ;--------------------------------------------------------
+                            285 ; code
+                            286 ;--------------------------------------------------------
+                            287 	.area CSEG    (CODE)
+                            288 ;------------------------------------------------------------
+                            289 ;Allocation info for local variables in function 'setjmp'
+                            290 ;------------------------------------------------------------
+                            291 ;buf                       Allocated to registers r2 r3 r4 
+                            292 ;------------------------------------------------------------
+                            293 ;	_setjmp.c:392: int setjmp (jmp_buf buf)
+                            294 ;	-----------------------------------------
+                            295 ;	 function setjmp
+                            296 ;	-----------------------------------------
+   0000                     297 _setjmp:
+                    0002    298 	ar2 = 0x02
+                    0003    299 	ar3 = 0x03
+                    0004    300 	ar4 = 0x04
+                    0005    301 	ar5 = 0x05
+                    0006    302 	ar6 = 0x06
+                    0007    303 	ar7 = 0x07
+                    0000    304 	ar0 = 0x00
+                    0001    305 	ar1 = 0x01
+                            306 ;	_setjmp.c:401: *buf++ = SP;
+   0000 AC F0               307 	mov	r4,b
+   0002 E5 81               308 	mov	a,_SP
+   0004 12s00r00            309 	lcall	__gptrput
+   0007 A3                  310 	inc	dptr
+                            311 ;	_setjmp.c:403: *buf++ = *((unsigned char __data *) SP - 0);
+   0008 A8 81               312 	mov	r0,_SP
+   000A 86 05               313 	mov	ar5,@r0
+   000C 8C F0               314 	mov	b,r4
+   000E ED                  315 	mov	a,r5
+   000F 12s00r00            316 	lcall	__gptrput
+   0012 A3                  317 	inc	dptr
+   0013 AA 82               318 	mov	r2,dpl
+   0015 AB 83               319 	mov	r3,dph
+                            320 ;	_setjmp.c:404: *buf++ = *((unsigned char __data *) SP - 1);
+   0017 E5 81               321 	mov	a,_SP
+   0019 14                  322 	dec	a
+   001A F8                  323 	mov	r0,a
+   001B 86 05               324 	mov	ar5,@r0
+   001D 8A 82               325 	mov	dpl,r2
+   001F 8B 83               326 	mov	dph,r3
+   0021 8C F0               327 	mov	b,r4
+   0023 ED                  328 	mov	a,r5
+   0024 12s00r00            329 	lcall	__gptrput
+                            330 ;	_setjmp.c:408: return 0;
+   0027 90 00 00            331 	mov	dptr,#0x0000
+   002A 22                  332 	ret
+                            333 ;------------------------------------------------------------
+                            334 ;Allocation info for local variables in function 'longjmp'
+                            335 ;------------------------------------------------------------
+                            336 ;rv                        Allocated with name '_longjmp_PARM_2'
+                            337 ;buf                       Allocated to registers r2 r3 r4 
+                            338 ;lsp                       Allocated to registers r5 
+                            339 ;------------------------------------------------------------
+                            340 ;	_setjmp.c:411: int longjmp (jmp_buf buf, int rv)
+                            341 ;	-----------------------------------------
+                            342 ;	 function longjmp
+                            343 ;	-----------------------------------------
+   002B                     344 _longjmp:
+                            345 ;	_setjmp.c:418: lsp = *buf++;
+   002B AC F0               346 	mov	r4,b
+   002D 12s00r00            347 	lcall	__gptrget
+   0030 FD                  348 	mov	r5,a
+   0031 A3                  349 	inc	dptr
+   0032 AA 82               350 	mov	r2,dpl
+   0034 AB 83               351 	mov	r3,dph
+                            352 ;	_setjmp.c:420: *((unsigned char __data *) lsp - 0) = *buf++;
+   0036 8D 00               353 	mov	ar0,r5
+   0038 8A 82               354 	mov	dpl,r2
+   003A 8B 83               355 	mov	dph,r3
+   003C 8C F0               356 	mov	b,r4
+   003E 12s00r00            357 	lcall	__gptrget
+   0041 FE                  358 	mov	r6,a
+   0042 A3                  359 	inc	dptr
+   0043 AA 82               360 	mov	r2,dpl
+   0045 AB 83               361 	mov	r3,dph
+   0047 A6 06               362 	mov	@r0,ar6
+                            363 ;	_setjmp.c:421: *((unsigned char __data *) lsp - 1) = *buf++;
+   0049 18                  364 	dec	r0
+   004A 8A 82               365 	mov	dpl,r2
+   004C 8B 83               366 	mov	dph,r3
+   004E 8C F0               367 	mov	b,r4
+   0050 12s00r00            368 	lcall	__gptrget
+   0053 F6                  369 	mov	@r0,a
+                            370 ;	_setjmp.c:425: SP = lsp;
+   0054 8D 81               371 	mov	_SP,r5
+                            372 ;	_setjmp.c:426: return rv;
+   0056 85*00 82            373 	mov	dpl,_longjmp_PARM_2
+   0059 85*01 83            374 	mov	dph,(_longjmp_PARM_2 + 1)
+   005C 22                  375 	ret
+                            376 	.area CSEG    (CODE)
+                            377 	.area CONST   (CODE)
+                            378 	.area XINIT   (CODE)
+                            379 	.area CABS    (ABS,CODE)

@@ -1,0 +1,69 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24  (Zilog Z80 / Hitachi HD64180), page 1.
+
+Symbol Table
+
+    .__.ABS.                                                    =  0000 G
+  0 _CheckTime                                                     006C R
+  0 _RtcRead                                                       0000 GR
+  0 _RtcRead_end                                                   000D GR
+  0 _RtcRead_start                                                 0000 GR
+  1 ___day                                                         0024 GR
+  1 ___month                                                       000C GR
+    __divulong_rrx_s                                               **** GX
+    __modsint_rrx_s                                                **** GX
+    __modulong_rrx_s                                               **** GX
+    __mullong_rrx_s                                                **** GX
+  0 __str_0                                                        01A6 R
+  0 __str_1                                                        073E R
+  0 __str_10                                                       0762 R
+  0 __str_11                                                       0766 R
+  0 __str_12                                                       076A R
+  0 __str_13                                                       076E R
+  0 __str_14                                                       0772 R
+  0 __str_15                                                       0776 R
+  0 __str_16                                                       077A R
+  0 __str_17                                                       077E R
+  0 __str_18                                                       0782 R
+  0 __str_19                                                       0786 R
+  0 __str_2                                                        0742 R
+  0 __str_3                                                        0746 R
+  0 __str_4                                                        074A R
+  0 __str_5                                                        074E R
+  0 __str_6                                                        0752 R
+  0 __str_7                                                        0756 R
+  0 __str_8                                                        075A R
+  0 __str_9                                                        075E R
+  1 _ascTimeBuffer                                                 0032 R
+  0 _asctime                                                       00EB GR
+  0 _asctime_end                                                   01A6 GR
+  0 _asctime_start                                                 00EB GR
+  0 _ctime                                                         01C5 GR
+  0 _ctime_end                                                     01DF GR
+  0 _ctime_start                                                   01C5 GR
+  0 _gmtime                                                        01F5 GR
+  0 _gmtime_end                                                    049B GR
+  0 _gmtime_start                                                  01F5 GR
+  1 _lastTime                                                      0052 R
+  0 _localtime                                                     01DF GR
+  0 _localtime_end                                                 01F5 GR
+  0 _localtime_start                                               01DF GR
+  0 _mktime                                                        049B GR
+  0 _mktime_end                                                    073E GR
+  0 _mktime_start                                                  049B GR
+  1 _monthDays                                                     0000 R
+    _sprintf                                                       **** GX
+  0 _time                                                          000D GR
+  0 _time_end                                                      006C GR
+  0 _time_start                                                    000D GR
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24  (Zilog Z80 / Hitachi HD64180), page 2.
+
+Area Table
+
+   0 _CODE                                      size  78A   flags 0
+   1 _DATA                                      size   5E   flags 0
+   2 _OVERLAY                                   size    0   flags 0
+   3 _HOME                                      size    0   flags 0
+   4 _GSINIT                                    size   A2   flags 0
+   5 _GSFINAL                                   size    0   flags 0
+   6 _CABS                                      size    0   flags 0

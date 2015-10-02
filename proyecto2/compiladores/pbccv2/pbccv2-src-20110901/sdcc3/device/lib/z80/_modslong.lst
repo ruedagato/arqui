@@ -1,0 +1,157 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:17 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _modslong
+                              7 	.optsdcc -mz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl __modslong
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 ;--------------------------------------------------------
+                             17 ;  ram data
+                             18 ;--------------------------------------------------------
+                             19 	.area _DATA
+                             20 ;--------------------------------------------------------
+                             21 ; overlayable items in  ram 
+                             22 ;--------------------------------------------------------
+                             23 	.area _OVERLAY
+                             24 ;--------------------------------------------------------
+                             25 ; external initialized ram data
+                             26 ;--------------------------------------------------------
+                             27 ;--------------------------------------------------------
+                             28 ; global & static initialisations
+                             29 ;--------------------------------------------------------
+                             30 	.area _HOME
+                             31 	.area _GSINIT
+                             32 	.area _GSFINAL
+                             33 	.area _GSINIT
+                             34 ;--------------------------------------------------------
+                             35 ; Home
+                             36 ;--------------------------------------------------------
+                             37 	.area _HOME
+                             38 	.area _HOME
+                             39 ;--------------------------------------------------------
+                             40 ; code
+                             41 ;--------------------------------------------------------
+                             42 	.area _CODE
+                             43 ;../_modslong.c:259: _modslong (long a, long b)
+                             44 ;	---------------------------------
+                             45 ; Function _modslong
+                             46 ; ---------------------------------
+   0000                      47 __modslong_start::
+   0000                      48 __modslong:
+   0000 DD E5                49 	push	ix
+   0002 DD 21 00 00          50 	ld	ix,#0
+   0006 DD 39                51 	add	ix,sp
+   0008 21 F7 FF             52 	ld	hl,#-9
+   000B 39                   53 	add	hl,sp
+   000C F9                   54 	ld	sp,hl
+                             55 ;../_modslong.c:264: (b < 0 ? -b : b));
+   000D DD CB 0B 7E          56 	bit	7,11 (ix)
+   0011 28 19                57 	jr	Z,00106$
+   0013 AF                   58 	xor	a,a
+   0014 DD 9E 08             59 	sbc	a,8 (ix)
+   0017 4F                   60 	ld	c,a
+   0018 3E 00                61 	ld	a,#0x00
+   001A DD 9E 09             62 	sbc	a,9 (ix)
+   001D 47                   63 	ld	b,a
+   001E 3E 00                64 	ld	a,#0x00
+   0020 DD 9E 0A             65 	sbc	a,10 (ix)
+   0023 5F                   66 	ld	e,a
+   0024 3E 00                67 	ld	a,#0x00
+   0026 DD 9E 0B             68 	sbc	a,11 (ix)
+   0029 57                   69 	ld	d,a
+   002A 18 0C                70 	jr	00107$
+   002C                      71 00106$:
+   002C DD 4E 08             72 	ld	c,8 (ix)
+   002F DD 46 09             73 	ld	b,9 (ix)
+   0032 DD 5E 0A             74 	ld	e,10 (ix)
+   0035 DD 56 0B             75 	ld	d,11 (ix)
+   0038                      76 00107$:
+                             77 ;../_modslong.c:263: r = _modulong((a < 0 ? -a : a),
+   0038 DD 7E 07             78 	ld	a,7 (ix)
+   003B 07                   79 	rlca
+   003C E6 01                80 	and	a,#0x01
+   003E DD 77 FB             81 	ld	-5 (ix),a
+   0041 AF                   82 	xor	a,a
+   0042 DD B6 FB             83 	or	a,-5 (ix)
+   0045 28 21                84 	jr	Z,00108$
+   0047 AF                   85 	xor	a,a
+   0048 DD 9E 04             86 	sbc	a,4 (ix)
+   004B DD 77 F7             87 	ld	-9 (ix),a
+   004E 3E 00                88 	ld	a,#0x00
+   0050 DD 9E 05             89 	sbc	a,5 (ix)
+   0053 DD 77 F8             90 	ld	-8 (ix),a
+   0056 3E 00                91 	ld	a,#0x00
+   0058 DD 9E 06             92 	sbc	a,6 (ix)
+   005B DD 77 F9             93 	ld	-7 (ix),a
+   005E 3E 00                94 	ld	a,#0x00
+   0060 DD 9E 07             95 	sbc	a,7 (ix)
+   0063 DD 77 FA             96 	ld	-6 (ix),a
+   0066 18 18                97 	jr	00109$
+   0068                      98 00108$:
+   0068 DD 7E 04             99 	ld	a,4 (ix)
+   006B DD 77 F7            100 	ld	-9 (ix),a
+   006E DD 7E 05            101 	ld	a,5 (ix)
+   0071 DD 77 F8            102 	ld	-8 (ix),a
+   0074 DD 7E 06            103 	ld	a,6 (ix)
+   0077 DD 77 F9            104 	ld	-7 (ix),a
+   007A DD 7E 07            105 	ld	a,7 (ix)
+   007D DD 77 FA            106 	ld	-6 (ix),a
+   0080                     107 00109$:
+   0080 D5                  108 	push	de
+   0081 C5                  109 	push	bc
+   0082 DD 6E F9            110 	ld	l,-7 (ix)
+   0085 DD 66 FA            111 	ld	h,-6 (ix)
+   0088 E5                  112 	push	hl
+   0089 DD 6E F7            113 	ld	l,-9 (ix)
+   008C DD 66 F8            114 	ld	h,-8 (ix)
+   008F E5                  115 	push	hl
+   0090 CDr00s00            116 	call	__modulong
+   0093 F1                  117 	pop	af
+   0094 F1                  118 	pop	af
+   0095 F1                  119 	pop	af
+   0096 F1                  120 	pop	af
+   0097 DD 75 FC            121 	ld	-4 (ix), l
+   009A DD 74 FD            122 	ld	-3 (ix), h
+   009D DD 73 FE            123 	ld	-2 (ix),e
+   00A0 DD 72 FF            124 	ld	-1 (ix),d
+                            125 ;../_modslong.c:265: if (a < 0)
+   00A3 AF                  126 	xor	a,a
+   00A4 DD B6 FB            127 	or	a,-5 (ix)
+   00A7 28 1B               128 	jr	Z,00102$
+                            129 ;../_modslong.c:266: return -r;
+   00A9 AF                  130 	xor	a,a
+   00AA DD 9E FC            131 	sbc	a,-4 (ix)
+   00AD 4F                  132 	ld	c,a
+   00AE 3E 00               133 	ld	a,#0x00
+   00B0 DD 9E FD            134 	sbc	a,-3 (ix)
+   00B3 47                  135 	ld	b,a
+   00B4 3E 00               136 	ld	a,#0x00
+   00B6 DD 9E FE            137 	sbc	a,-2 (ix)
+   00B9 5F                  138 	ld	e,a
+   00BA 3E 00               139 	ld	a,#0x00
+   00BC DD 9E FF            140 	sbc	a,-1 (ix)
+   00BF 57                  141 	ld	d,a
+   00C0 69                  142 	ld	l,c
+   00C1 60                  143 	ld	h,b
+   00C2 18 0C               144 	jr	00104$
+   00C4                     145 00102$:
+                            146 ;../_modslong.c:268: return r;
+   00C4 DD 6E FC            147 	ld	l,-4 (ix)
+   00C7 DD 66 FD            148 	ld	h,-3 (ix)
+   00CA DD 5E FE            149 	ld	e,-2 (ix)
+   00CD DD 56 FF            150 	ld	d,-1 (ix)
+   00D0                     151 00104$:
+   00D0 DD F9               152 	ld	sp,ix
+   00D2 DD E1               153 	pop	ix
+   00D4 C9                  154 	ret
+   00D5                     155 __modslong_end::
+                            156 	.area _CODE
+                            157 	.area _CABS

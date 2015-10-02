@@ -1,0 +1,205 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:19 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _modsint
+                              7 	.optsdcc -mds400 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl __modsint_PARM_2
+                             31 	.globl __modsint
+                             32 ;--------------------------------------------------------
+                             33 ; special function registers
+                             34 ;--------------------------------------------------------
+                             35 ;--------------------------------------------------------
+                             36 ; special function bits
+                             37 ;--------------------------------------------------------
+                             38 ;--------------------------------------------------------
+                             39 ; overlayable register banks
+                             40 ;--------------------------------------------------------
+                             41 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      42 	.ds 8
+                             43 	.area REG_BANK_3	(REL,OVR,DATA)
+   0000                      44 	.ds 8
+                             45 ;--------------------------------------------------------
+                             46 ; internal ram data
+                             47 ;--------------------------------------------------------
+                             48 	.area DSEG    (DATA)
+                             49 ;--------------------------------------------------------
+                             50 ; overlayable items in internal ram 
+                             51 ;--------------------------------------------------------
+                             52 	.area OSEG    (OVR,DATA)
+                             53 ;--------------------------------------------------------
+                             54 ; indirectly addressable internal ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area ISEG    (DATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute internal ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area IABS    (ABS,DATA)
+                             61 	.area IABS    (ABS,DATA)
+                             62 ;--------------------------------------------------------
+                             63 ; bit data
+                             64 ;--------------------------------------------------------
+                             65 	.area BSEG    (BIT)
+                             66 ;--------------------------------------------------------
+                             67 ; paged external ram data
+                             68 ;--------------------------------------------------------
+                             69 	.area PSEG    (PAG,XDATA)
+                             70 ;--------------------------------------------------------
+                             71 ; external ram data
+                             72 ;--------------------------------------------------------
+                             73 	.area XSEG    (XDATA)
+   0000                      74 __modsint_PARM_2:
+   0000                      75 	.ds 2
+                             76 ;--------------------------------------------------------
+                             77 ; absolute external ram data
+                             78 ;--------------------------------------------------------
+                             79 	.area XABS    (ABS,XDATA)
+                             80 ;--------------------------------------------------------
+                             81 ; external initialized ram data
+                             82 ;--------------------------------------------------------
+                             83 	.area XISEG   (XDATA)
+                             84 ;--------------------------------------------------------
+                             85 ; global & static initialisations
+                             86 ;--------------------------------------------------------
+                             87 	.area HOME    (CODE)
+                             88 	.area GSINIT  (CODE)
+                             89 	.area GSFINAL (CODE)
+                             90 	.area GSINIT  (CODE)
+                             91 ;--------------------------------------------------------
+                             92 ; Home
+                             93 ;--------------------------------------------------------
+                             94 	.area HOME    (CODE)
+                             95 	.area HOME    (CODE)
+                             96 ;--------------------------------------------------------
+                             97 ; code
+                             98 ;--------------------------------------------------------
+                             99 	.area CSEG    (CODE)
+                            100 ;------------------------------------------------------------
+                            101 ;Allocation info for local variables in function '_modsint'
+                            102 ;------------------------------------------------------------
+                            103 ;r                         Allocated to registers r2 r3 
+                            104 ;b                         Allocated with name '__modsint_PARM_2'
+                            105 ;a                         Allocated to registers r2 r3 
+                            106 ;------------------------------------------------------------
+                            107 ;	_modsint.c:203: int _modsint (int a, int b)
+                            108 ;	-----------------------------------------
+                            109 ;	 function _modsint
+                            110 ;	-----------------------------------------
+   0000                     111 __modsint:
+                    0002    112 	ar2 = 0x02
+                    0003    113 	ar3 = 0x03
+                    0004    114 	ar4 = 0x04
+                    0005    115 	ar5 = 0x05
+                    0006    116 	ar6 = 0x06
+                    0007    117 	ar7 = 0x07
+                    0000    118 	ar0 = 0x00
+                    0001    119 	ar1 = 0x01
+                            120 ;	_modsint.c:207: r = _moduint((a < 0 ? -a : a),
+   0000 E5 83               121 	mov	a,dph
+   0002 33                  122 	rlc	a
+   0003 E4                  123 	clr	a
+   0004 33                  124 	rlc	a
+   0005 FC                  125 	mov  r4,a
+   0006 60 0B               126 	jz  00106$
+   0008                     127 00113$:
+   0008 C3                  128 	clr	c
+   0009 E4                  129 	clr	a
+   000A 95 82               130 	subb	a,dpl
+   000C FD                  131 	mov	r5,a
+   000D E4                  132 	clr	a
+   000E 95 83               133 	subb	a,dph
+   0010 FE                  134 	mov	r6,a
+   0011 80 04               135 	sjmp 00107$
+   0013                     136 00106$:
+                            137 ;	genAssign: resultIsFar = FALSE
+   0013 AD 82               138 	mov	r5,dpl
+   0015 AE 83               139 	mov	r6,dph
+   0017                     140 00107$:
+                            141 ;	genAssign: resultIsFar = FALSE
+   0017 8D 84               142 	mov	dpl1,r5
+   0019 8E 85               143 	mov	dph1,r6
+                            144 ;	_modsint.c:208: (b < 0 ? -b : b));
+   001B 90s00r00r00         145 	mov	dptr,#__modsint_PARM_2
+   001F A3                  146 	inc	dptr
+   0020 E0                  147 	movx	a,@dptr
+   0021 30 E7 12            148 	jnb  acc.7,00108$
+   0024                     149 00114$:
+   0024 90s00r00r00         150 	mov	dptr,#__modsint_PARM_2
+   0028 E0                  151 	movx	a,@dptr
+   0029 D3                  152 	setb	c
+   002A F4                  153 	cpl	a
+   002B 34 00               154 	addc	a,#0x00
+   002D FD                  155 	mov	r5,a
+   002E A3                  156 	inc	dptr
+   002F E0                  157 	movx	a,@dptr
+   0030 F4                  158 	cpl	a
+   0031 34 00               159 	addc	a,#0x00
+   0033 FE                  160 	mov	r6,a
+   0034 80 09               161 	sjmp 00109$
+   0036                     162 00108$:
+   0036 90s00r00r00         163 	mov	dptr,#__modsint_PARM_2
+                            164 ;	genAssign: resultIsFar = FALSE
+   003A E0                  165 	movx	a,@dptr
+   003B FD                  166 	mov	r5,a
+   003C A3                  167 	inc	dptr
+   003D E0                  168 	movx	a,@dptr
+   003E FE                  169 	mov	r6,a
+   003F                     170 00109$:
+                            171 ;	genAssign: resultIsFar = TRUE
+   003F 90s00r00r00         172 	mov	dptr,#__moduint_PARM_2
+   0043 ED                  173 	mov	a,r5
+   0044 F0                  174 	movx	@dptr,a
+   0045 A3                  175 	inc	dptr
+   0046 EE                  176 	mov	a,r6
+   0047 F0                  177 	movx	@dptr,a
+   0048 C0 04               178 	push	ar4
+   004A 85 84 82            179 	mov	dpl,dpl1
+   004D 85 85 83            180 	mov	dph,dph1
+   0050 12s00r00r00         181 	lcall	__moduint
+   0054 D0 04               182 	pop	ar4
+                            183 ;	genAssign: resultIsFar = FALSE
+                            184 ;	_modsint.c:210: if (a < 0)
+   0056 EC                  185 	mov	a,r4
+   0057 60 11               186 	jz  00102$
+   0059                     187 00115$:
+                            188 ;	_modsint.c:211: return -r;
+   0059 C3                  189 	clr	c
+   005A E4                  190 	clr	a
+   005B 95 82               191 	subb	a,dpl
+   005D F5 84               192 	mov	dpl1,a
+   005F E4                  193 	clr	a
+   0060 95 83               194 	subb	a,dph
+   0062 F5 85               195 	mov	dph1,a
+   0064 85 84 82            196 	mov	dpl,dpl1
+   0067 85 85 83            197 	mov	dph,dph1
+                            198 ;	_modsint.c:213: return r;
+   006A                     199 00102$:
+   006A                     200 00104$:
+   006A 22                  201 	ret
+                            202 	.area CSEG    (CODE)
+                            203 	.area CONST   (CODE)
+                            204 	.area XINIT   (CODE)
+                            205 	.area CABS    (ABS,CODE)

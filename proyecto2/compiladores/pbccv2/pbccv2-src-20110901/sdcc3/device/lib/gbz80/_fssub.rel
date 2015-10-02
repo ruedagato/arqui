@@ -1,0 +1,40 @@
+XL
+H 7 areas 5 global symbols
+M _fssub
+O -mgbz80
+S ___fsadd Ref0000
+S .__.ABS. Def0000
+A _CODE size 0 flags 0 addr 0
+A _DATA size 0 flags 0 addr 0
+A _OVERLAY size 0 flags 0 addr 0
+A _HOME size 65 flags 0 addr 0
+S ___fssub Def0000
+S ___fssub_start Def0000
+S ___fssub_end Def0065
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _CABS size 0 flags 0 addr 0
+T 00 00
+R 00 00 03 00
+T 00 00
+R 00 00 03 00
+T 00 00 E8 F8 F8 0D 7E EE 80 F8 07 77 F8 0A 7E F8
+R 00 00 03 00
+T 0E 00 04 77 F8 0B 7E F8 05 77 F8 0C 7E F8 06 77
+R 00 00 03 00
+T 1C 00 F8 10 7E 23 66 6F E5 F8 10 7E 23 66 6F E5
+R 00 00 03 00
+T 2A 00 F8 0A 7E 23 66 6F E5 F8 0A 7E 23 66 6F E5
+R 00 00 03 00
+T 38 00 CD 00 00 E8 08 E5 F8 02 73 23 72 D1 23 73
+R 00 00 03 00 02 03 00 00
+T 46 00 23 72 F8 03 7E EE 80 77 F8 00 7E 77 23 7E
+R 00 00 03 00
+T 54 00 77 23 7E 77 2B 2B 5E 23 56 23 7E 23 66 6F
+R 00 00 03 00
+T 62 00
+R 00 00 03 00
+T 62 00 E8 08 C9
+R 00 00 03 00
+T 65 00
+R 00 00 03 00

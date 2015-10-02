@@ -1,0 +1,171 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _moduint
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl __moduint_PARM_2
+                             25 	.globl __moduint
+                             26 ;--------------------------------------------------------
+                             27 ;  ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area DSEG
+                             30 ;--------------------------------------------------------
+                             31 ; overlayable items in  ram 
+                             32 ;--------------------------------------------------------
+                             33 	.area	OSEG    (OVR)
+   0000                      34 __moduint_sloc0_1_0::
+   0000                      35 	.ds 1
+   0001                      36 __moduint_sloc1_1_0::
+   0001                      37 	.ds 1
+                             38 ;--------------------------------------------------------
+                             39 ; absolute external ram data
+                             40 ;--------------------------------------------------------
+                             41 	.area XABS    (ABS)
+                             42 ;--------------------------------------------------------
+                             43 ; external initialized ram data
+                             44 ;--------------------------------------------------------
+                             45 	.area XISEG
+                             46 ;--------------------------------------------------------
+                             47 ; extended address mode data
+                             48 ;--------------------------------------------------------
+                             49 	.area XSEG
+   0000                      50 __moduint_PARM_2:
+   0000                      51 	.ds 2
+   0002                      52 __moduint_a_1_1:
+   0002                      53 	.ds 2
+   0004                      54 __moduint_count_1_1:
+   0004                      55 	.ds 1
+                             56 ;--------------------------------------------------------
+                             57 ; global & static initialisations
+                             58 ;--------------------------------------------------------
+                             59 	.area HOME (CODE)
+                             60 	.area GSINIT (CODE)
+                             61 	.area GSFINAL (CODE)
+                             62 	.area GSINIT (CODE)
+                             63 ;--------------------------------------------------------
+                             64 ; Home
+                             65 ;--------------------------------------------------------
+                             66 	.area HOME (CODE)
+                             67 	.area HOME (CODE)
+                             68 ;--------------------------------------------------------
+                             69 ; code
+                             70 ;--------------------------------------------------------
+                             71 	.area CSEG (CODE)
+                             72 ;------------------------------------------------------------
+                             73 ;Allocation info for local variables in function '_moduint'
+                             74 ;------------------------------------------------------------
+                             75 ;b                         Allocated with name '__moduint_PARM_2'
+                             76 ;a                         Allocated with name '__moduint_a_1_1'
+                             77 ;count                     Allocated with name '__moduint_count_1_1'
+                             78 ;sloc0                     Allocated with name '__moduint_sloc0_1_0'
+                             79 ;sloc1                     Allocated with name '__moduint_sloc1_1_0'
+                             80 ;------------------------------------------------------------
+                             81 ;../_moduint.c:173: _moduint (unsigned int a, unsigned int b)
+                             82 ;	-----------------------------------------
+                             83 ;	 function _moduint
+                             84 ;	-----------------------------------------
+   0000                      85 __moduint:
+   0000 C7s00r03             86 	sta	(__moduint_a_1_1 + 1)
+   0003 CFs00r02             87 	stx	__moduint_a_1_1
+                             88 ;../_moduint.c:175: unsigned char count = 0;
+   0006 4F                   89 	clra
+   0007 C7s00r04             90 	sta	__moduint_count_1_1
+                             91 ;../_moduint.c:178: while (!MSB_SET(b))
+   000A 3F*00                92 	clr	*__moduint_sloc0_1_0
+   000C                      93 00103$:
+   000C C6s00r00             94 	lda	__moduint_PARM_2
+   000F 49                   95 	rola
+   0010 4F                   96 	clra
+   0011 49                   97 	rola
+   0012 4D                   98 	tsta
+   0013 26 35                99 	bne	00117$
+   0015                     100 00120$:
+                            101 ;../_moduint.c:180: b <<= 1;
+   0015 C6s00r01            102 	lda	(__moduint_PARM_2 + 1)
+   0018 CEs00r00            103 	ldx	__moduint_PARM_2
+   001B 48                  104 	lsla
+   001C 59                  105 	rolx
+   001D C7s00r01            106 	sta	(__moduint_PARM_2 + 1)
+   0020 CFs00r00            107 	stx	__moduint_PARM_2
+                            108 ;../_moduint.c:181: if (b > a)
+   0023 C6s00r03            109 	lda	(__moduint_a_1_1 + 1)
+   0026 C0s00r01            110 	sub	(__moduint_PARM_2 + 1)
+   0029 C6s00r02            111 	lda	__moduint_a_1_1
+   002C C2s00r00            112 	sbc	__moduint_PARM_2
+   002F 24 10               113 	bcc	00102$
+   0031                     114 00121$:
+                            115 ;../_moduint.c:183: b >>=1;
+   0031 C6s00r01            116 	lda	(__moduint_PARM_2 + 1)
+   0034 CEs00r00            117 	ldx	__moduint_PARM_2
+   0037 54                  118 	lsrx
+   0038 46                  119 	rora
+   0039 C7s00r01            120 	sta	(__moduint_PARM_2 + 1)
+   003C CFs00r00            121 	stx	__moduint_PARM_2
+                            122 ;../_moduint.c:184: break;
+   003F 20 09               123 	bra	00117$
+   0041                     124 00102$:
+                            125 ;../_moduint.c:186: count++;
+   0041 3C*00               126 	inc	*__moduint_sloc0_1_0
+   0043 B6*00               127 	lda	*__moduint_sloc0_1_0
+   0045 C7s00r04            128 	sta	__moduint_count_1_1
+   0048 20 C2               129 	bra	00103$
+                            130 ;../_moduint.c:188: do
+   004A                     131 00117$:
+   004A C6s00r04            132 	lda	__moduint_count_1_1
+   004D B7*00               133 	sta	*__moduint_sloc0_1_0
+   004F                     134 00108$:
+                            135 ;../_moduint.c:190: if (a >= b)
+   004F C6s00r03            136 	lda	(__moduint_a_1_1 + 1)
+   0052 C0s00r01            137 	sub	(__moduint_PARM_2 + 1)
+   0055 C6s00r02            138 	lda	__moduint_a_1_1
+   0058 C2s00r00            139 	sbc	__moduint_PARM_2
+   005B 25 12               140 	bcs	00107$
+   005D                     141 00122$:
+                            142 ;../_moduint.c:191: a -= b;
+   005D C6s00r03            143 	lda	(__moduint_a_1_1 + 1)
+   0060 C0s00r01            144 	sub	(__moduint_PARM_2 + 1)
+   0063 C7s00r03            145 	sta	(__moduint_a_1_1 + 1)
+   0066 C6s00r02            146 	lda	__moduint_a_1_1
+   0069 C2s00r00            147 	sbc	__moduint_PARM_2
+   006C C7s00r02            148 	sta	__moduint_a_1_1
+   006F                     149 00107$:
+                            150 ;../_moduint.c:192: b >>= 1;
+   006F C6s00r01            151 	lda	(__moduint_PARM_2 + 1)
+   0072 CEs00r00            152 	ldx	__moduint_PARM_2
+   0075 54                  153 	lsrx
+   0076 46                  154 	rora
+   0077 C7s00r01            155 	sta	(__moduint_PARM_2 + 1)
+   007A CFs00r00            156 	stx	__moduint_PARM_2
+                            157 ;../_moduint.c:194: while (count--);
+   007D 4E*00*01            158 	mov	*__moduint_sloc0_1_0,*__moduint_sloc1_1_0
+   0080 3A*00               159 	dec	*__moduint_sloc0_1_0
+   0082 3D*01               160 	tst	*__moduint_sloc1_1_0
+   0084 26 C9               161 	bne	00108$
+   0086                     162 00123$:
+                            163 ;../_moduint.c:195: return a;
+   0086 CEs00r02            164 	ldx	__moduint_a_1_1
+   0089 C6s00r03            165 	lda	(__moduint_a_1_1 + 1)
+   008C                     166 00111$:
+   008C 81                  167 	rts
+                            168 	.area CSEG (CODE)
+                            169 	.area CONST   (CODE)
+                            170 	.area XINIT
+                            171 	.area CABS    (ABS,CODE)

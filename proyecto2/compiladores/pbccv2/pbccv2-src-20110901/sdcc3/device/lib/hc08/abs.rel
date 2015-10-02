@@ -1,0 +1,54 @@
+XH
+H F areas 3 global symbols
+M abs
+O -mhc08
+S .__.ABS. Def0000
+A _CODE size 0 flags 0 addr 0
+A HOME size 0 flags 20 addr 0
+A GSINIT0 size 0 flags 20 addr 0
+A GSINIT size 0 flags 20 addr 0
+A GSFINAL size 0 flags 20 addr 0
+A CSEG size 2A flags 20 addr 0
+S _abs Def0000
+A XINIT size 0 flags 0 addr 0
+A CONST size 0 flags 20 addr 0
+A DSEG size 0 flags 0 addr 0
+A OSEG size 2 flags 4 addr 0
+S _abs_sloc0_1_0 Def0000
+A BSEG size 0 flags 0 addr 0
+A XSEG size 2 flags 0 addr 0
+A XISEG size 0 flags 0 addr 0
+A XABS size 0 flags 8 addr 0
+A CABS size 0 flags 28 addr 0
+T 00 00
+R 00 00 00 09
+T 00 00
+R 00 00 00 09
+T 00 00
+R 00 00 00 0B
+T 00 00
+R 00 00 00 0B
+T 00 00
+R 00 00 00 05
+T 00 00 C7 00 01 CF 00 00 C6 00 00 A0 00 90 0E
+R 00 00 00 05 00 03 00 0B 00 06 00 0B 00 09 00 0B
+T 00 0D
+R 00 00 00 05
+T 00 0D 4F C0 00 01 B7 00 01 4F C2 00 00 B7
+R 00 00 00 05 00 04 00 0B 29 07 00 09 00 0B 00 0B
+T 00 18 00 00 20 0A
+R 00 00 00 05 29 02 00 09
+T 00 1B
+R 00 00 00 05
+T 00 1B C6 00 00 B7 00 00 C6 00 01 B7
+R 00 00 00 05 00 03 00 0B 29 06 00 09 00 09 00 0B
+T 00 24 00 01
+R 00 00 00 05 29 02 00 09
+T 00 25
+R 00 00 00 05
+T 00 25 BE 00 00 B6 00 01
+R 00 00 00 05 29 03 00 09 29 06 00 09
+T 00 29
+R 00 00 00 05
+T 00 29 81
+R 00 00 00 05

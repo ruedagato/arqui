@@ -1,0 +1,313 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:20 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _memmove
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _memmove
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../_memmove.c:39: void * memmove (
+                             41 ;	---------------------------------
+                             42 ; Function memmove
+                             43 ; ---------------------------------
+   0000                      44 _memmove_start::
+   0000                      45 _memmove:
+   0000 E8 F4                46 	lda	sp,-12(sp)
+                             47 ;../_memmove.c:45: void * ret = dst;
+   0002 F8 0E                48 	ldhl	sp,#14
+   0004 7E                   49 	ld	a,(hl)
+   0005 23                   50 	inc	hl
+   0006 5E                   51 	ld	e,(hl)
+   0007 F8 0A                52 	ldhl	sp,#10
+   0009 77                   53 	ld	(hl),a
+   000A 23                   54 	inc	hl
+   000B 73                   55 	ld	(hl),e
+                             56 ;../_memmove.c:49: if (((int)src < (int)dst) && ((((int)src)+acount) > (int)dst)) {
+   000C F8 10                57 	ldhl	sp,#16
+   000E 4E                   58 	ld	c,(hl)
+   000F 23                   59 	inc	hl
+   0010 46                   60 	ld	b,(hl)
+   0011 F8 0E                61 	ldhl	sp,#14
+   0013 7E                   62 	ld	a,(hl)
+   0014 F8 04                63 	ldhl	sp,#4
+   0016 77                   64 	ld	(hl),a
+   0017 F8 0F                65 	ldhl	sp,#15
+   0019 7E                   66 	ld	a,(hl)
+   001A F8 05                67 	ldhl	sp,#5
+   001C 77                   68 	ld	(hl),a
+   001D 2B                   69 	dec	hl
+   001E 79                   70 	ld	a, c
+   001F 96                   71 	sub	a, (hl)
+   0020 23                   72 	inc	hl
+   0021 78                   73 	ld	a, b
+   0022 9E                   74 	sbc	a, (hl)
+   0023 3E 00                75 	ld	a, #0x00
+   0025 57                   76 	ld	d, a
+   0026 5E                   77 	ld	e, (hl)
+   0027 CB 7B                78 	bit	7, e
+   0029 CAr34s00             79 	jp	Z, 00121$
+   002C CB 7A                80 	bit	7, d
+   002E C2r3As00             81 	jp	NZ, 00122$
+   0031 BF                   82 	cp	a, a
+   0032 18 06                83 	jr	00122$
+   0034                      84 00121$:
+   0034 CB 7A                85 	bit	7, d
+   0036 CAr3As00             86 	jp	Z, 00122$
+   0039 37                   87 	scf
+   003A                      88 00122$:
+   003A D2rD8s00             89 	jp	NC,00108$
+   003D F8 12                90 	ldhl	sp,#18
+   003F 7E                   91 	ld	a,(hl)
+   0040 23                   92 	inc	hl
+   0041 66                   93 	ld	h,(hl)
+   0042 6F                   94 	ld	l,a
+   0043 09                   95 	add	hl,bc
+   0044 7D                   96 	ld	a,l
+   0045 54                   97 	ld	d,h
+   0046 F8 02                98 	ldhl	sp,#2
+   0048 77                   99 	ld	(hl),a
+   0049 23                  100 	inc	hl
+   004A 72                  101 	ld	(hl),d
+   004B 23                  102 	inc	hl
+   004C 23                  103 	inc	hl
+   004D 2B                  104 	dec	hl
+   004E 4E                  105 	ld	c,(hl)
+   004F 23                  106 	inc	hl
+   0050 46                  107 	ld	b,(hl)
+   0051 F8 02               108 	ldhl	sp,#2
+   0053 79                  109 	ld	a, c
+   0054 96                  110 	sub	a, (hl)
+   0055 23                  111 	inc	hl
+   0056 78                  112 	ld	a, b
+   0057 9E                  113 	sbc	a, (hl)
+   0058 D2rD8s00            114 	jp	NC,00108$
+                            115 ;../_memmove.c:53: d = ((char *)dst)+acount-1;
+   005B F8 0B               116 	ldhl	sp,#11
+   005D 2B                  117 	dec	hl
+   005E 5E                  118 	ld	e,(hl)
+   005F 23                  119 	inc	hl
+   0060 56                  120 	ld	d,(hl)
+   0061 F8 12               121 	ldhl	sp,#18
+   0063 7E                  122 	ld	a,(hl)
+   0064 23                  123 	inc	hl
+   0065 66                  124 	ld	h,(hl)
+   0066 6F                  125 	ld	l,a
+   0067 19                  126 	add	hl,de
+   0068 4D                  127 	ld	c,l
+   0069 44                  128 	ld	b,h
+   006A 11 01 00            129 	ld	de,#0x0001
+   006D 79                  130 	ld	a,c
+   006E 93                  131 	sub	a,e
+   006F 5F                  132 	ld	e,a
+   0070 78                  133 	ld	a,b
+   0071 9A                  134 	sbc	a,d
+   0072 F8 09               135 	ldhl	sp,#9
+   0074 77                  136 	ld	(hl),a
+   0075 2B                  137 	dec	hl
+   0076 73                  138 	ld	(hl),e
+                            139 ;../_memmove.c:54: s = ((char *)src)+acount-1;
+   0077 F8 11               140 	ldhl	sp,#17
+   0079 2B                  141 	dec	hl
+   007A 4E                  142 	ld	c,(hl)
+   007B 23                  143 	inc	hl
+   007C 46                  144 	ld	b,(hl)
+   007D 23                  145 	inc	hl
+   007E 7E                  146 	ld	a,(hl)
+   007F 23                  147 	inc	hl
+   0080 66                  148 	ld	h,(hl)
+   0081 6F                  149 	ld	l,a
+   0082 09                  150 	add	hl,bc
+   0083 4D                  151 	ld	c,l
+   0084 44                  152 	ld	b,h
+   0085 0B                  153 	dec	bc
+                            154 ;../_memmove.c:55: while (acount--) {
+   0086 F8 00               155 	ldhl	sp,#0
+   0088 71                  156 	ld	(hl),c
+   0089 23                  157 	inc	hl
+   008A 70                  158 	ld	(hl),b
+   008B F8 08               159 	ldhl	sp,#8
+   008D 7E                  160 	ld	a,(hl)
+   008E 23                  161 	inc	hl
+   008F 5E                  162 	ld	e,(hl)
+   0090 F8 02               163 	ldhl	sp,#2
+   0092 77                  164 	ld	(hl),a
+   0093 23                  165 	inc	hl
+   0094 73                  166 	ld	(hl),e
+   0095 F8 12               167 	ldhl	sp,#18
+   0097 7E                  168 	ld	a,(hl)
+   0098 23                  169 	inc	hl
+   0099 5E                  170 	ld	e,(hl)
+   009A F8 04               171 	ldhl	sp,#4
+   009C 77                  172 	ld	(hl),a
+   009D 23                  173 	inc	hl
+   009E 73                  174 	ld	(hl),e
+   009F                     175 00101$:
+   009F F8 05               176 	ldhl	sp,#5
+   00A1 2B                  177 	dec	hl
+   00A2 4E                  178 	ld	c,(hl)
+   00A3 23                  179 	inc	hl
+   00A4 46                  180 	ld	b,(hl)
+   00A5 2B                  181 	dec	hl
+   00A6 5E                  182 	ld	e,(hl)
+   00A7 23                  183 	inc	hl
+   00A8 56                  184 	ld	d,(hl)
+   00A9 1B                  185 	dec	de
+   00AA 2B                  186 	dec	hl
+   00AB 73                  187 	ld	(hl),e
+   00AC 23                  188 	inc	hl
+   00AD 72                  189 	ld	(hl),d
+   00AE 79                  190 	ld	a,c
+   00AF B0                  191 	or	a,b
+   00B0 CAr29s01            192 	jp	Z,00109$
+                            193 ;../_memmove.c:56: *d-- = *s--;
+   00B3 F8 01               194 	ldhl	sp,#1
+   00B5 2B                  195 	dec	hl
+   00B6 5E                  196 	ld	e,(hl)
+   00B7 23                  197 	inc	hl
+   00B8 56                  198 	ld	d,(hl)
+   00B9 1A                  199 	ld	a,(de)
+   00BA 4F                  200 	ld	c,a
+   00BB 2B                  201 	dec	hl
+   00BC 5E                  202 	ld	e,(hl)
+   00BD 23                  203 	inc	hl
+   00BE 56                  204 	ld	d,(hl)
+   00BF 1B                  205 	dec	de
+   00C0 2B                  206 	dec	hl
+   00C1 73                  207 	ld	(hl),e
+   00C2 23                  208 	inc	hl
+   00C3 72                  209 	ld	(hl),d
+   00C4 23                  210 	inc	hl
+   00C5 23                  211 	inc	hl
+   00C6 2B                  212 	dec	hl
+   00C7 5E                  213 	ld	e,(hl)
+   00C8 23                  214 	inc	hl
+   00C9 56                  215 	ld	d,(hl)
+   00CA 79                  216 	ld	a,c
+   00CB 12                  217 	ld	(de),a
+   00CC 2B                  218 	dec	hl
+   00CD 5E                  219 	ld	e,(hl)
+   00CE 23                  220 	inc	hl
+   00CF 56                  221 	ld	d,(hl)
+   00D0 1B                  222 	dec	de
+   00D1 2B                  223 	dec	hl
+   00D2 73                  224 	ld	(hl),e
+   00D3 23                  225 	inc	hl
+   00D4 72                  226 	ld	(hl),d
+   00D5 C3r9Fs00            227 	jp	00101$
+   00D8                     228 00108$:
+                            229 ;../_memmove.c:64: s = src;
+   00D8 F8 11               230 	ldhl	sp,#17
+   00DA 2B                  231 	dec	hl
+   00DB 4E                  232 	ld	c,(hl)
+   00DC 23                  233 	inc	hl
+   00DD 46                  234 	ld	b,(hl)
+                            235 ;../_memmove.c:65: while (acount--) {
+   00DE F8 06               236 	ldhl	sp,#6
+   00E0 71                  237 	ld	(hl),c
+   00E1 23                  238 	inc	hl
+   00E2 70                  239 	ld	(hl),b
+   00E3 F8 0A               240 	ldhl	sp,#10
+   00E5 7E                  241 	ld	a,(hl)
+   00E6 23                  242 	inc	hl
+   00E7 5E                  243 	ld	e,(hl)
+   00E8 F8 08               244 	ldhl	sp,#8
+   00EA 77                  245 	ld	(hl),a
+   00EB 23                  246 	inc	hl
+   00EC 73                  247 	ld	(hl),e
+   00ED F8 12               248 	ldhl	sp,#18
+   00EF 7E                  249 	ld	a,(hl)
+   00F0 23                  250 	inc	hl
+   00F1 5E                  251 	ld	e,(hl)
+   00F2 F8 00               252 	ldhl	sp,#0
+   00F4 77                  253 	ld	(hl),a
+   00F5 23                  254 	inc	hl
+   00F6 73                  255 	ld	(hl),e
+   00F7                     256 00104$:
+   00F7 F8 01               257 	ldhl	sp,#1
+   00F9 2B                  258 	dec	hl
+   00FA 4E                  259 	ld	c,(hl)
+   00FB 23                  260 	inc	hl
+   00FC 46                  261 	ld	b,(hl)
+   00FD 2B                  262 	dec	hl
+   00FE 5E                  263 	ld	e,(hl)
+   00FF 23                  264 	inc	hl
+   0100 56                  265 	ld	d,(hl)
+   0101 1B                  266 	dec	de
+   0102 2B                  267 	dec	hl
+   0103 73                  268 	ld	(hl),e
+   0104 23                  269 	inc	hl
+   0105 72                  270 	ld	(hl),d
+   0106 79                  271 	ld	a,c
+   0107 B0                  272 	or	a,b
+   0108 CAr29s01            273 	jp	Z,00109$
+                            274 ;../_memmove.c:66: *d++ = *s++;
+   010B F8 07               275 	ldhl	sp,#7
+   010D 2B                  276 	dec	hl
+   010E 5E                  277 	ld	e,(hl)
+   010F 23                  278 	inc	hl
+   0110 56                  279 	ld	d,(hl)
+   0111 1A                  280 	ld	a,(de)
+   0112 2B                  281 	dec	hl
+   0113 34                  282 	inc	(hl)
+   0114 C2r19s01            283 	jp	NZ,00123$
+   0117 23                  284 	inc	hl
+   0118 34                  285 	inc	(hl)
+   0119                     286 00123$:
+   0119 23                  287 	inc	hl
+   011A 23                  288 	inc	hl
+   011B 2B                  289 	dec	hl
+   011C 5E                  290 	ld	e,(hl)
+   011D 23                  291 	inc	hl
+   011E 56                  292 	ld	d,(hl)
+   011F 12                  293 	ld	(de),a
+   0120 2B                  294 	dec	hl
+   0121 34                  295 	inc	(hl)
+   0122 C2rF7s00            296 	jp	NZ,00104$
+   0125 23                  297 	inc	hl
+   0126 34                  298 	inc	(hl)
+   0127                     299 00124$:
+   0127 18 CE               300 	jr	00104$
+   0129                     301 00109$:
+                            302 ;../_memmove.c:70: return(ret);
+   0129 F8 0B               303 	ldhl	sp,#11
+   012B 2B                  304 	dec	hl
+   012C 5E                  305 	ld	e,(hl)
+   012D 23                  306 	inc	hl
+   012E 56                  307 	ld	d,(hl)
+   012F                     308 00111$:
+   012F E8 0C               309 	lda	sp,12(sp)
+   0131 C9                  310 	ret
+   0132                     311 _memmove_end::
+                            312 	.area _CODE
+                            313 	.area _CABS

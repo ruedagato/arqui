@@ -1,0 +1,316 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:19 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _modslong
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl __modslong
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 	.area _HOME
+                             36 ;--------------------------------------------------------
+                             37 ; code
+                             38 ;--------------------------------------------------------
+                             39 	.area _CODE
+                             40 ;../_modslong.c:259: _modslong (long a, long b)
+                             41 ;	---------------------------------
+                             42 ; Function _modslong
+                             43 ; ---------------------------------
+   0000                      44 __modslong_start::
+   0000                      45 __modslong:
+   0000 E8 F4                46 	lda	sp,-12(sp)
+                             47 ;../_modslong.c:264: (b < 0 ? -b : b));
+   0002 F8 12                48 	ldhl	sp,#18
+   0004 7E                   49 	ld	a, (hl)
+   0005 D6 00                50 	sub	a, #0x00
+   0007 23                   51 	inc	hl
+   0008 7E                   52 	ld	a, (hl)
+   0009 DE 00                53 	sbc	a, #0x00
+   000B 23                   54 	inc	hl
+   000C 7E                   55 	ld	a, (hl)
+   000D DE 00                56 	sbc	a, #0x00
+   000F 23                   57 	inc	hl
+   0010 7E                   58 	ld	a, (hl)
+   0011 DE 00                59 	sbc	a, #0x00
+   0013 56                   60 	ld	d, (hl)
+   0014 3E 00                61 	ld	a, #0x00
+   0016 5F                   62 	ld	e, a
+   0017 CB 7B                63 	bit	7, e
+   0019 CAr24s00             64 	jp	Z, 00113$
+   001C CB 7A                65 	bit	7, d
+   001E C2r2As00             66 	jp	NZ, 00114$
+   0021 BF                   67 	cp	a, a
+   0022 18 06                68 	jr	00114$
+   0024                      69 00113$:
+   0024 CB 7A                70 	bit	7, d
+   0026 CAr2As00             71 	jp	Z, 00114$
+   0029 37                   72 	scf
+   002A                      73 00114$:
+   002A D2r51s00             74 	jp	NC,00106$
+   002D 11 00 00             75 	ld	de,#0x0000
+   0030 7B                   76 	ld	a,e
+   0031 F8 12                77 	ldhl	sp,#18
+   0033 96                   78 	sub	a,(hl)
+   0034 5F                   79 	ld	e,a
+   0035 7A                   80 	ld	a,d
+   0036 23                   81 	inc	hl
+   0037 9E                   82 	sbc	a,(hl)
+   0038 F5                   83 	push	af
+   0039 F8 07                84 	ldhl	sp,#7
+   003B 77                   85 	ld	(hl),a
+   003C 2B                   86 	dec	hl
+   003D 73                   87 	ld	(hl),e
+   003E 11 00 00             88 	ld	de,#0x0000
+   0041 F8 16                89 	ldhl	sp,#22
+   0043 F1                   90 	pop	af
+   0044 7B                   91 	ld	a,e
+   0045 9E                   92 	sbc	a,(hl)
+   0046 5F                   93 	ld	e,a
+   0047 7A                   94 	ld	a,d
+   0048 23                   95 	inc	hl
+   0049 9E                   96 	sbc	a,(hl)
+   004A F8 07                97 	ldhl	sp,#7
+   004C 77                   98 	ld	(hl),a
+   004D 2B                   99 	dec	hl
+   004E 73                  100 	ld	(hl),e
+   004F 18 14               101 	jr	00107$
+   0051                     102 00106$:
+   0051 F8 12               103 	ldhl	sp,#18
+   0053 54                  104 	ld	d,h
+   0054 5D                  105 	ld	e,l
+   0055 F8 04               106 	ldhl	sp,#4
+   0057 1A                  107 	ld	a,(de)
+   0058 77                  108 	ld	(hl),a
+   0059 23                  109 	inc	hl
+   005A 13                  110 	inc	de
+   005B 1A                  111 	ld	a,(de)
+   005C 77                  112 	ld	(hl),a
+   005D 23                  113 	inc	hl
+   005E 13                  114 	inc	de
+   005F 1A                  115 	ld	a,(de)
+   0060 77                  116 	ld	(hl),a
+   0061 23                  117 	inc	hl
+   0062 13                  118 	inc	de
+   0063 1A                  119 	ld	a,(de)
+   0064 77                  120 	ld	(hl),a
+   0065                     121 00107$:
+                            122 ;../_modslong.c:263: r = _modulong((a < 0 ? -a : a),
+   0065 F8 0E               123 	ldhl	sp,#14
+   0067 7E                  124 	ld	a, (hl)
+   0068 D6 00               125 	sub	a, #0x00
+   006A 23                  126 	inc	hl
+   006B 7E                  127 	ld	a, (hl)
+   006C DE 00               128 	sbc	a, #0x00
+   006E 23                  129 	inc	hl
+   006F 7E                  130 	ld	a, (hl)
+   0070 DE 00               131 	sbc	a, #0x00
+   0072 23                  132 	inc	hl
+   0073 7E                  133 	ld	a, (hl)
+   0074 DE 00               134 	sbc	a, #0x00
+   0076 56                  135 	ld	d, (hl)
+   0077 3E 00               136 	ld	a, #0x00
+   0079 5F                  137 	ld	e, a
+   007A CB 7B               138 	bit	7, e
+   007C CAr87s00            139 	jp	Z, 00115$
+   007F CB 7A               140 	bit	7, d
+   0081 C2r8Ds00            141 	jp	NZ, 00116$
+   0084 BF                  142 	cp	a, a
+   0085 18 06               143 	jr	00116$
+   0087                     144 00115$:
+   0087 CB 7A               145 	bit	7, d
+   0089 CAr8Ds00            146 	jp	Z, 00116$
+   008C 37                  147 	scf
+   008D                     148 00116$:
+   008D 3E 00               149 	ld	a,#0x00
+   008F 17                  150 	rla
+   0090 4F                  151 	ld	c,a
+   0091 B7                  152 	or	a,a
+   0092 CArB9s00            153 	jp	Z,00108$
+   0095 11 00 00            154 	ld	de,#0x0000
+   0098 7B                  155 	ld	a,e
+   0099 F8 0E               156 	ldhl	sp,#14
+   009B 96                  157 	sub	a,(hl)
+   009C 5F                  158 	ld	e,a
+   009D 7A                  159 	ld	a,d
+   009E 23                  160 	inc	hl
+   009F 9E                  161 	sbc	a,(hl)
+   00A0 F5                  162 	push	af
+   00A1 F8 03               163 	ldhl	sp,#3
+   00A3 77                  164 	ld	(hl),a
+   00A4 2B                  165 	dec	hl
+   00A5 73                  166 	ld	(hl),e
+   00A6 11 00 00            167 	ld	de,#0x0000
+   00A9 F8 12               168 	ldhl	sp,#18
+   00AB F1                  169 	pop	af
+   00AC 7B                  170 	ld	a,e
+   00AD 9E                  171 	sbc	a,(hl)
+   00AE 5F                  172 	ld	e,a
+   00AF 7A                  173 	ld	a,d
+   00B0 23                  174 	inc	hl
+   00B1 9E                  175 	sbc	a,(hl)
+   00B2 F8 03               176 	ldhl	sp,#3
+   00B4 77                  177 	ld	(hl),a
+   00B5 2B                  178 	dec	hl
+   00B6 73                  179 	ld	(hl),e
+   00B7 18 14               180 	jr	00109$
+   00B9                     181 00108$:
+   00B9 F8 0E               182 	ldhl	sp,#14
+   00BB 54                  183 	ld	d,h
+   00BC 5D                  184 	ld	e,l
+   00BD F8 00               185 	ldhl	sp,#0
+   00BF 1A                  186 	ld	a,(de)
+   00C0 77                  187 	ld	(hl),a
+   00C1 23                  188 	inc	hl
+   00C2 13                  189 	inc	de
+   00C3 1A                  190 	ld	a,(de)
+   00C4 77                  191 	ld	(hl),a
+   00C5 23                  192 	inc	hl
+   00C6 13                  193 	inc	de
+   00C7 1A                  194 	ld	a,(de)
+   00C8 77                  195 	ld	(hl),a
+   00C9 23                  196 	inc	hl
+   00CA 13                  197 	inc	de
+   00CB 1A                  198 	ld	a,(de)
+   00CC 77                  199 	ld	(hl),a
+   00CD                     200 00109$:
+   00CD C5                  201 	push	bc
+   00CE F8 08               202 	ldhl	sp,#8
+   00D0 7E                  203 	ld	a,(hl)
+   00D1 23                  204 	inc	hl
+   00D2 66                  205 	ld	h,(hl)
+   00D3 6F                  206 	ld	l,a
+   00D4 E5                  207 	push	hl
+   00D5 F8 08               208 	ldhl	sp,#8
+   00D7 7E                  209 	ld	a,(hl)
+   00D8 23                  210 	inc	hl
+   00D9 66                  211 	ld	h,(hl)
+   00DA 6F                  212 	ld	l,a
+   00DB E5                  213 	push	hl
+   00DC F8 08               214 	ldhl	sp,#8
+   00DE 7E                  215 	ld	a,(hl)
+   00DF 23                  216 	inc	hl
+   00E0 66                  217 	ld	h,(hl)
+   00E1 6F                  218 	ld	l,a
+   00E2 E5                  219 	push	hl
+   00E3 F8 08               220 	ldhl	sp,#8
+   00E5 7E                  221 	ld	a,(hl)
+   00E6 23                  222 	inc	hl
+   00E7 66                  223 	ld	h,(hl)
+   00E8 6F                  224 	ld	l,a
+   00E9 E5                  225 	push	hl
+   00EA CDr00s00            226 	call	__modulong
+   00ED E8 08               227 	lda	sp,8(sp)
+   00EF E5                  228 	push	hl
+   00F0 F8 04               229 	ldhl	sp,#4
+   00F2 73                  230 	ld	(hl),e
+   00F3 23                  231 	inc	hl
+   00F4 72                  232 	ld	(hl),d
+   00F5 D1                  233 	pop	de
+   00F6 23                  234 	inc	hl
+   00F7 73                  235 	ld	(hl),e
+   00F8 23                  236 	inc	hl
+   00F9 72                  237 	ld	(hl),d
+   00FA C1                  238 	pop	bc
+   00FB F8 00               239 	ldhl	sp,#0
+   00FD 54                  240 	ld	d,h
+   00FE 5D                  241 	ld	e,l
+   00FF F8 08               242 	ldhl	sp,#8
+   0101 1A                  243 	ld	a,(de)
+   0102 77                  244 	ld	(hl),a
+   0103 23                  245 	inc	hl
+   0104 13                  246 	inc	de
+   0105 1A                  247 	ld	a,(de)
+   0106 77                  248 	ld	(hl),a
+   0107 23                  249 	inc	hl
+   0108 13                  250 	inc	de
+   0109 1A                  251 	ld	a,(de)
+   010A 77                  252 	ld	(hl),a
+   010B 23                  253 	inc	hl
+   010C 13                  254 	inc	de
+   010D 1A                  255 	ld	a,(de)
+   010E 77                  256 	ld	(hl),a
+                            257 ;../_modslong.c:265: if (a < 0)
+   010F AF                  258 	xor	a,a
+   0110 B1                  259 	or	a,c
+   0111 CAr42s01            260 	jp	Z,00102$
+                            261 ;../_modslong.c:266: return -r;
+   0114 11 00 00            262 	ld	de,#0x0000
+   0117 7B                  263 	ld	a,e
+   0118 F8 08               264 	ldhl	sp,#8
+   011A 96                  265 	sub	a,(hl)
+   011B 5F                  266 	ld	e,a
+   011C 7A                  267 	ld	a,d
+   011D 23                  268 	inc	hl
+   011E 9E                  269 	sbc	a,(hl)
+   011F F5                  270 	push	af
+   0120 F8 03               271 	ldhl	sp,#3
+   0122 77                  272 	ld	(hl),a
+   0123 2B                  273 	dec	hl
+   0124 73                  274 	ld	(hl),e
+   0125 11 00 00            275 	ld	de,#0x0000
+   0128 F8 0C               276 	ldhl	sp,#12
+   012A F1                  277 	pop	af
+   012B 7B                  278 	ld	a,e
+   012C 9E                  279 	sbc	a,(hl)
+   012D 5F                  280 	ld	e,a
+   012E 7A                  281 	ld	a,d
+   012F 23                  282 	inc	hl
+   0130 9E                  283 	sbc	a,(hl)
+   0131 F8 03               284 	ldhl	sp,#3
+   0133 77                  285 	ld	(hl),a
+   0134 2B                  286 	dec	hl
+   0135 73                  287 	ld	(hl),e
+   0136 2B                  288 	dec	hl
+   0137 2B                  289 	dec	hl
+   0138 5E                  290 	ld	e,(hl)
+   0139 23                  291 	inc	hl
+   013A 56                  292 	ld	d,(hl)
+   013B 23                  293 	inc	hl
+   013C 7E                  294 	ld	a,(hl)
+   013D 23                  295 	inc	hl
+   013E 66                  296 	ld	h,(hl)
+   013F 6F                  297 	ld	l,a
+   0140 18 0B               298 	jr	00104$
+   0142                     299 00102$:
+                            300 ;../_modslong.c:268: return r;
+   0142 F8 09               301 	ldhl	sp,#9
+   0144 2B                  302 	dec	hl
+   0145 5E                  303 	ld	e,(hl)
+   0146 23                  304 	inc	hl
+   0147 56                  305 	ld	d,(hl)
+   0148 23                  306 	inc	hl
+   0149 7E                  307 	ld	a,(hl)
+   014A 23                  308 	inc	hl
+   014B 66                  309 	ld	h,(hl)
+   014C 6F                  310 	ld	l,a
+   014D                     311 00104$:
+   014D E8 0C               312 	lda	sp,12(sp)
+   014F C9                  313 	ret
+   0150                     314 __modslong_end::
+                            315 	.area _CODE
+                            316 	.area _CABS

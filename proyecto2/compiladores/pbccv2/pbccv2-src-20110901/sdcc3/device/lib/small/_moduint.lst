@@ -1,0 +1,186 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:23 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _moduint
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 	.area RSEG    (ABS,DATA)
+   0000                      16 	.org 0x0000
+                             17 ;--------------------------------------------------------
+                             18 ; special function bits
+                             19 ;--------------------------------------------------------
+                             20 	.area RSEG    (ABS,DATA)
+   0000                      21 	.org 0x0000
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable register banks
+                             24 ;--------------------------------------------------------
+                             25 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      26 	.ds 8
+                             27 ;--------------------------------------------------------
+                             28 ; internal ram data
+                             29 ;--------------------------------------------------------
+                             30 	.area DSEG    (DATA)
+                             31 ;--------------------------------------------------------
+                             32 ; overlayable items in internal ram 
+                             33 ;--------------------------------------------------------
+                             34 	.area OSEG    (OVR,DATA)
+                             35 ;--------------------------------------------------------
+                             36 ; indirectly addressable internal ram data
+                             37 ;--------------------------------------------------------
+                             38 	.area ISEG    (DATA)
+                             39 ;--------------------------------------------------------
+                             40 ; absolute internal ram data
+                             41 ;--------------------------------------------------------
+                             42 	.area IABS    (ABS,DATA)
+                             43 	.area IABS    (ABS,DATA)
+                             44 ;--------------------------------------------------------
+                             45 ; bit data
+                             46 ;--------------------------------------------------------
+                             47 	.area BSEG    (BIT)
+                             48 ;--------------------------------------------------------
+                             49 ; paged external ram data
+                             50 ;--------------------------------------------------------
+                             51 	.area PSEG    (PAG,XDATA)
+                             52 ;--------------------------------------------------------
+                             53 ; external ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area XSEG    (XDATA)
+                             56 ;--------------------------------------------------------
+                             57 ; absolute external ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area XABS    (ABS,XDATA)
+                             60 ;--------------------------------------------------------
+                             61 ; external initialized ram data
+                             62 ;--------------------------------------------------------
+                             63 	.area XISEG   (XDATA)
+                             64 	.area HOME    (CODE)
+                             65 	.area GSINIT0 (CODE)
+                             66 	.area GSINIT1 (CODE)
+                             67 	.area GSINIT2 (CODE)
+                             68 	.area GSINIT3 (CODE)
+                             69 	.area GSINIT4 (CODE)
+                             70 	.area GSINIT5 (CODE)
+                             71 	.area GSINIT  (CODE)
+                             72 	.area GSFINAL (CODE)
+                             73 	.area CSEG    (CODE)
+                             74 ;--------------------------------------------------------
+                             75 ; global & static initialisations
+                             76 ;--------------------------------------------------------
+                             77 	.area HOME    (CODE)
+                             78 	.area GSINIT  (CODE)
+                             79 	.area GSFINAL (CODE)
+                             80 	.area GSINIT  (CODE)
+                             81 ;--------------------------------------------------------
+                             82 ; Home
+                             83 ;--------------------------------------------------------
+                             84 	.area HOME    (CODE)
+                             85 	.area HOME    (CODE)
+                             86 ;--------------------------------------------------------
+                             87 ; code
+                             88 ;--------------------------------------------------------
+                             89 	.area CSEG    (CODE)
+                             90 ;------------------------------------------------------------
+                             91 ;Allocation info for local variables in function '_moduint_dummy'
+                             92 ;------------------------------------------------------------
+                             93 ;------------------------------------------------------------
+                             94 ;	_moduint.c:50: _moduint_dummy (void) __naked
+                             95 ;	-----------------------------------------
+                             96 ;	 function _moduint_dummy
+                             97 ;	-----------------------------------------
+   0000                      98 __moduint_dummy:
+                             99 ;	naked function: no prologue.
+                            100 ;	_moduint.c:127: jc	start
+                            101 	
+                            102 	
+                            103 	 .globl __moduint
+                            104 	
+   0000                     105 	__moduint:
+                            106 ;	# 88 "_moduint.c"
+                            107 	 .area OSEG (OVR,DATA)
+                            108 	
+                            109 	
+                            110 	 .globl __moduint_PARM_2
+                            111 	 .globl __modsint_PARM_2
+                            112 	
+   0000                     113 	__moduint_PARM_2:
+   0000                     114 	__modsint_PARM_2:
+   0000                     115 	 .ds 2
+                            116 	
+                            117 	 .area CSEG (CODE)
+                            118 ;	# 108 "_moduint.c"
+   0000 E5*00               119 	 mov a,(__moduint_PARM_2) ; avoid endless loop
+   0002 45*01               120 	 orl a,(__moduint_PARM_2 + 1)
+   0004 60 46               121 	 jz div_by_0
+                            122 	
+   0006 7A 01               123 	 mov r2,#1
+                            124 	
+   0008                     125 	loop1:
+   0008 E5*00               126 	mov a,(__moduint_PARM_2) ; b <<= 1
+   000A 25 E0               127 	 add a,acc
+   000C F5*00               128 	 mov (__moduint_PARM_2),a
+   000E E5*01               129 	 mov a,(__moduint_PARM_2 + 1)
+   0010 33                  130 	 rlc a
+   0011 40 12               131 	 jc msbset
+   0013 F5*01               132 	 mov (__moduint_PARM_2 + 1),a
+                            133 	
+   0015 E5 82               134 	 mov a,dpl ; a - b
+   0017 95*00               135 	 subb a,(__moduint_PARM_2) ; here carry is always clear
+   0019 E5 83               136 	 mov a,dph
+   001B 95*01               137 	 subb a,(__moduint_PARM_2 + 1)
+                            138 	
+   001D 40 03               139 	 jc start
+                            140 	
+   001F 0A                  141 	 inc r2
+   0020 80 E6               142 	 sjmp loop1
+                            143 	
+   0022                     144 	start:
+   0022 C3                  145 	clr c
+   0023 E5*01               146 	 mov a,(__moduint_PARM_2 + 1) ; b >>= 1;
+   0025                     147 	msbset:
+   0025 13                  148 	rrc a
+   0026 F5*01               149 	 mov (__moduint_PARM_2 + 1),a
+   0028 E5*00               150 	 mov a,(__moduint_PARM_2)
+   002A 13                  151 	 rrc a
+   002B F5*00               152 	 mov (__moduint_PARM_2),a
+                            153 	
+   002D                     154 	loop2:
+   002D C3                  155 	clr c
+   002E E5 82               156 	 mov a,dpl ; a - b
+   0030 95*00               157 	 subb a,(__moduint_PARM_2)
+                            158 	
+   0032 F5 F0               159 	 mov b,a
+   0034 E5 83               160 	 mov a,dph
+   0036 95*01               161 	 subb a,(__moduint_PARM_2 + 1)
+                            162 	
+   0038 40 05               163 	 jc smaller ; a >= b?
+                            164 	
+   003A F5 83               165 	 mov dph,a ; -> yes; a = a - b;
+   003C 85 F0 82            166 	 mov dpl,b
+   003F                     167 	smaller:
+                            168 ; -> no
+   003F C3                  169 	 clr c
+   0040 E5*01               170 	 mov a,(__moduint_PARM_2 + 1) ; b >>= 1;
+   0042 13                  171 	 rrc a
+   0043 F5*01               172 	 mov (__moduint_PARM_2 + 1),a
+   0045 E5*00               173 	 mov a,(__moduint_PARM_2)
+   0047 13                  174 	 rrc a
+   0048 F5*00               175 	 mov (__moduint_PARM_2),a
+                            176 	
+   004A DA E1               177 	 djnz r2,loop2
+   004C                     178 	div_by_0:
+   004C 22                  179 	 ret
+                            180 	
+                            181 	 
+                            182 ;	naked function: no epilogue.
+                            183 	.area CSEG    (CODE)
+                            184 	.area CONST   (CODE)
+                            185 	.area XINIT   (CODE)
+                            186 	.area CABS    (ABS,CODE)

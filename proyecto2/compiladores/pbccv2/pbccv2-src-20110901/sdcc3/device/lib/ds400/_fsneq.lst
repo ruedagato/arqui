@@ -1,0 +1,261 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:18 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _fsneq
+                              7 	.optsdcc -mds400 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl ___fsneq_PARM_2
+                             31 	.globl ___fsneq
+                             32 ;--------------------------------------------------------
+                             33 ; special function registers
+                             34 ;--------------------------------------------------------
+                             35 ;--------------------------------------------------------
+                             36 ; special function bits
+                             37 ;--------------------------------------------------------
+                             38 ;--------------------------------------------------------
+                             39 ; overlayable register banks
+                             40 ;--------------------------------------------------------
+                             41 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      42 	.ds 8
+                             43 	.area REG_BANK_3	(REL,OVR,DATA)
+   0000                      44 	.ds 8
+                             45 ;--------------------------------------------------------
+                             46 ; internal ram data
+                             47 ;--------------------------------------------------------
+                             48 	.area DSEG    (DATA)
+                             49 ;--------------------------------------------------------
+                             50 ; overlayable items in internal ram 
+                             51 ;--------------------------------------------------------
+                             52 	.area OSEG    (OVR,DATA)
+                             53 ;--------------------------------------------------------
+                             54 ; indirectly addressable internal ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area ISEG    (DATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute internal ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area IABS    (ABS,DATA)
+                             61 	.area IABS    (ABS,DATA)
+                             62 ;--------------------------------------------------------
+                             63 ; bit data
+                             64 ;--------------------------------------------------------
+                             65 	.area BSEG    (BIT)
+                             66 ;--------------------------------------------------------
+                             67 ; paged external ram data
+                             68 ;--------------------------------------------------------
+                             69 	.area PSEG    (PAG,XDATA)
+                             70 ;--------------------------------------------------------
+                             71 ; external ram data
+                             72 ;--------------------------------------------------------
+                             73 	.area XSEG    (XDATA)
+   0000                      74 ___fsneq_PARM_2:
+   0000                      75 	.ds 4
+   0004                      76 ___fsneq_fl1_1_1:
+   0004                      77 	.ds 4
+   0008                      78 ___fsneq_fl2_1_1:
+   0008                      79 	.ds 4
+                             80 ;--------------------------------------------------------
+                             81 ; absolute external ram data
+                             82 ;--------------------------------------------------------
+                             83 	.area XABS    (ABS,XDATA)
+                             84 ;--------------------------------------------------------
+                             85 ; external initialized ram data
+                             86 ;--------------------------------------------------------
+                             87 	.area XISEG   (XDATA)
+                             88 ;--------------------------------------------------------
+                             89 ; global & static initialisations
+                             90 ;--------------------------------------------------------
+                             91 	.area HOME    (CODE)
+                             92 	.area GSINIT  (CODE)
+                             93 	.area GSFINAL (CODE)
+                             94 	.area GSINIT  (CODE)
+                             95 ;--------------------------------------------------------
+                             96 ; Home
+                             97 ;--------------------------------------------------------
+                             98 	.area HOME    (CODE)
+                             99 	.area HOME    (CODE)
+                            100 ;--------------------------------------------------------
+                            101 ; code
+                            102 ;--------------------------------------------------------
+                            103 	.area CSEG    (CODE)
+                            104 ;------------------------------------------------------------
+                            105 ;Allocation info for local variables in function '__fsneq'
+                            106 ;------------------------------------------------------------
+                            107 ;a2                        Allocated with name '___fsneq_PARM_2'
+                            108 ;a1                        Allocated to registers r2 r3 r4 r5 
+                            109 ;fl1                       Allocated with name '___fsneq_fl1_1_1'
+                            110 ;fl2                       Allocated with name '___fsneq_fl2_1_1'
+                            111 ;------------------------------------------------------------
+                            112 ;	_fsneq.c:80: char __fsneq (float a1, float a2)
+                            113 ;	-----------------------------------------
+                            114 ;	 function __fsneq
+                            115 ;	-----------------------------------------
+   0000                     116 ___fsneq:
+                    0002    117 	ar2 = 0x02
+                    0003    118 	ar3 = 0x03
+                    0004    119 	ar4 = 0x04
+                    0005    120 	ar5 = 0x05
+                    0006    121 	ar6 = 0x06
+                    0007    122 	ar7 = 0x07
+                    0000    123 	ar0 = 0x00
+                    0001    124 	ar1 = 0x01
+   0000 AA 82               125 	mov	r2,dpl
+   0002 AB 83               126 	mov	r3,dph
+   0004 AC 93               127 	mov	r4,dpx
+   0006 AD F0               128 	mov	r5,b
+                            129 ;	_fsneq.c:84: fl1.f = a1;
+   0008 90s00r00r04         130 	mov	dptr,#___fsneq_fl1_1_1
+   000C EA                  131 	mov	a,r2
+   000D F0                  132 	movx	@dptr,a
+   000E A3                  133 	inc	dptr
+   000F EB                  134 	mov	a,r3
+   0010 F0                  135 	movx	@dptr,a
+   0011 A3                  136 	inc	dptr
+   0012 EC                  137 	mov	a,r4
+   0013 F0                  138 	movx	@dptr,a
+   0014 A3                  139 	inc	dptr
+   0015 ED                  140 	mov	a,r5
+   0016 F0                  141 	movx	@dptr,a
+                            142 ;	_fsneq.c:85: fl2.f = a2;
+   0017 90s00r00r08         143 	mov	dptr,#___fsneq_fl2_1_1
+   001B 75 86 01            144 	mov     dps, #1
+   001E 90s00r00r00         145 	mov     dptr, #___fsneq_PARM_2
+   0022 E0                  146 	movx	a,@dptr
+   0023 15 86               147 	dec	dps
+   0025 F0                  148 	movx	@dptr,a
+   0026 A3                  149 	inc	dptr
+   0027 05 86               150 	inc	dps
+   0029 A3                  151 	inc	dptr
+   002A E0                  152 	movx	a,@dptr
+   002B 15 86               153 	dec	dps
+   002D F0                  154 	movx	@dptr,a
+   002E A3                  155 	inc	dptr
+   002F 05 86               156 	inc	dps
+   0031 A3                  157 	inc	dptr
+   0032 E0                  158 	movx	a,@dptr
+   0033 15 86               159 	dec	dps
+   0035 F0                  160 	movx	@dptr,a
+   0036 A3                  161 	inc	dptr
+   0037 05 86               162 	inc	dps
+   0039 A3                  163 	inc	dptr
+   003A E0                  164 	movx	a,@dptr
+   003B 15 86               165 	dec	dps
+   003D F0                  166 	movx	@dptr,a
+                            167 ;	_fsneq.c:87: if (fl1.l == fl2.l)
+   003E 90s00r00r04         168 	mov	dptr,#___fsneq_fl1_1_1
+   0042 E0                  169 	movx	a,@dptr
+   0043 A3                  170 	inc	dptr
+   0044 FA                  171 	mov	r2,a
+   0045 E0                  172 	movx	a,@dptr
+   0046 A3                  173 	inc	dptr
+   0047 FB                  174 	mov	r3,a
+   0048 E0                  175 	movx	a,@dptr
+   0049 A3                  176 	inc	dptr
+   004A FC                  177 	mov	r4,a
+   004B E0                  178 	movx	a,@dptr
+   004C FD                  179 	mov	r5,a
+   004D 90s00r00r08         180 	mov	dptr,#___fsneq_fl2_1_1
+   0051 E0                  181 	movx	a,@dptr
+   0052 A3                  182 	inc	dptr
+   0053 FE                  183 	mov	r6,a
+   0054 E0                  184 	movx	a,@dptr
+   0055 A3                  185 	inc	dptr
+   0056 FF                  186 	mov	r7,a
+   0057 E0                  187 	movx	a,@dptr
+   0058 A3                  188 	inc	dptr
+   0059 F8                  189 	mov	r0,a
+   005A E0                  190 	movx	a,@dptr
+   005B F9                  191 	mov	r1,a
+   005C EA                  192 	mov	a,r2
+   005D B5 06 11            193 	cjne a,ar6,00102$
+   0060 EB                  194 	mov  a,r3
+   0061 B5 07 0D            195 	cjne a,ar7,00102$
+   0064 EC                  196 	mov  a,r4
+   0065 B5 00 09            197 	cjne a,ar0,00102$
+   0068 ED                  198 	mov  a,r5
+   0069 B5 01 05            199 	cjne a,ar1,00102$
+   006C                     200 00110$:
+                            201 ;	_fsneq.c:88: return (0);
+   006C 75 82 00            202 	mov	dpl,#0x00
+   006F 80 41               203 	sjmp 00105$
+   0071                     204 00102$:
+                            205 ;	_fsneq.c:89: if (((fl1.l | fl2.l) & 0x7FFFFFFF) == 0)
+   0071 90s00r00r04         206 	mov	dptr,#___fsneq_fl1_1_1
+   0075 E0                  207 	movx	a,@dptr
+   0076 A3                  208 	inc	dptr
+   0077 FA                  209 	mov	r2,a
+   0078 E0                  210 	movx	a,@dptr
+   0079 A3                  211 	inc	dptr
+   007A FB                  212 	mov	r3,a
+   007B E0                  213 	movx	a,@dptr
+   007C A3                  214 	inc	dptr
+   007D FC                  215 	mov	r4,a
+   007E E0                  216 	movx	a,@dptr
+   007F FD                  217 	mov	r5,a
+   0080 90s00r00r08         218 	mov	dptr,#___fsneq_fl2_1_1
+   0084 E0                  219 	movx	a,@dptr
+   0085 A3                  220 	inc	dptr
+   0086 FE                  221 	mov	r6,a
+   0087 E0                  222 	movx	a,@dptr
+   0088 A3                  223 	inc	dptr
+   0089 FF                  224 	mov	r7,a
+   008A E0                  225 	movx	a,@dptr
+   008B A3                  226 	inc	dptr
+   008C F8                  227 	mov	r0,a
+   008D E0                  228 	movx	a,@dptr
+   008E F9                  229 	mov	r1,a
+   008F EE                  230 	mov	a,r6
+   0090 42 02               231 	orl	ar2,a
+   0092 EF                  232 	mov	a,r7
+   0093 42 03               233 	orl	ar3,a
+   0095 E8                  234 	mov	a,r0
+   0096 42 04               235 	orl	ar4,a
+   0098 E9                  236 	mov	a,r1
+   0099 42 05               237 	orl	ar5,a
+   009B EA                  238 	mov	a,r2
+   009C 70 0B               239 	jnz	00111$
+   009E EB                  240 	mov	a,r3
+   009F 70 08               241 	jnz	00111$
+   00A1 EC                  242 	mov	a,r4
+   00A2 70 05               243 	jnz	00111$
+   00A4 ED                  244 	mov	a,r5
+   00A5 54 7F               245 	anl	a,#0x7F
+   00A7 60 02               246 	jz   00112$
+   00A9                     247 00111$:
+   00A9 80 04               248 	sjmp 00104$
+   00AB                     249 00112$:
+                            250 ;	_fsneq.c:90: return (0);
+   00AB 75 82 00            251 	mov	dpl,#0x00
+                            252 ;	_fsneq.c:91: return (1);
+   00AE 22                  253 	ret
+   00AF                     254 00104$:
+   00AF 75 82 01            255 	mov     dpl,#0x01
+   00B2                     256 00105$:
+   00B2 22                  257 	ret
+                            258 	.area CSEG    (CODE)
+                            259 	.area CONST   (CODE)
+                            260 	.area XINIT   (CODE)
+                            261 	.area CABS    (ABS,CODE)

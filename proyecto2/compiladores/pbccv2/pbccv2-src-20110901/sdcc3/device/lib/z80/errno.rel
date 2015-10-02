@@ -1,0 +1,17 @@
+XL
+H 7 areas 2 global symbols
+M errno
+O -mz80
+S .__.ABS. Def0000
+A _CODE size 0 flags 0 addr 0
+A _DATA size 2 flags 0 addr 0
+S _errno Def0000
+A _OVERLAY size 0 flags 0 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _CABS size 0 flags 0 addr 0
+T 00 00
+R 00 00 01 00
+T 00 00
+R 00 00 01 00

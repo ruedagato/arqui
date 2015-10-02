@@ -1,0 +1,200 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module ceilf
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _ceilf
+                             25 ;--------------------------------------------------------
+                             26 ;  ram data
+                             27 ;--------------------------------------------------------
+                             28 	.area DSEG
+                             29 ;--------------------------------------------------------
+                             30 ; overlayable items in  ram 
+                             31 ;--------------------------------------------------------
+                             32 	.area OSEG    (OVR)
+                             33 ;--------------------------------------------------------
+                             34 ; absolute external ram data
+                             35 ;--------------------------------------------------------
+                             36 	.area XABS    (ABS)
+                             37 ;--------------------------------------------------------
+                             38 ; external initialized ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area XISEG
+                             41 ;--------------------------------------------------------
+                             42 ; extended address mode data
+                             43 ;--------------------------------------------------------
+                             44 	.area XSEG
+                             45 ;--------------------------------------------------------
+                             46 ; global & static initialisations
+                             47 ;--------------------------------------------------------
+                             48 	.area HOME (CODE)
+                             49 	.area GSINIT (CODE)
+                             50 	.area GSFINAL (CODE)
+                             51 	.area GSINIT (CODE)
+                             52 ;--------------------------------------------------------
+                             53 ; Home
+                             54 ;--------------------------------------------------------
+                             55 	.area HOME (CODE)
+                             56 	.area HOME (CODE)
+                             57 ;--------------------------------------------------------
+                             58 ; code
+                             59 ;--------------------------------------------------------
+                             60 	.area CSEG (CODE)
+                             61 ;------------------------------------------------------------
+                             62 ;Allocation info for local variables in function 'ceilf'
+                             63 ;------------------------------------------------------------
+                             64 ;x                         Allocated to stack - offset 2
+                             65 ;r                         Allocated to stack - offset -4
+                             66 ;sloc0                     Allocated to stack - offset -8
+                             67 ;------------------------------------------------------------
+                             68 ;../ceilf.c:33: float ceilf(float x) _FLOAT_FUNC_REENTRANT
+                             69 ;	-----------------------------------------
+                             70 ;	 function ceilf
+                             71 ;	-----------------------------------------
+   0000                      72 _ceilf:
+   0000 A7 F8                73 	ais	#-8
+                             74 ;../ceilf.c:36: r=x;
+   0002 9E E6 0B             75 	lda	11,s
+   0005 C7s00r00             76 	sta	___fs2slong_PARM_1
+   0008 9E E6 0C             77 	lda	12,s
+   000B C7s00r01             78 	sta	(___fs2slong_PARM_1 + 1)
+   000E 9E E6 0D             79 	lda	13,s
+   0011 C7s00r02             80 	sta	(___fs2slong_PARM_1 + 2)
+   0014 9E E6 0E             81 	lda	14,s
+   0017 C7s00r03             82 	sta	(___fs2slong_PARM_1 + 3)
+   001A CDs00r00             83 	jsr	___fs2slong
+   001D 9E E7 08             84 	sta	8,s
+   0020 9E EF 07             85 	stx	7,s
+   0023 B6*00                86 	lda	*__ret2
+   0025 9E E7 06             87 	sta	6,s
+   0028 B6*00                88 	lda	*__ret3
+   002A 9E E7 05             89 	sta	5,s
+                             90 ;../ceilf.c:37: if (r<0)
+   002D 9E E6 05             91 	lda	5,s
+   0030 A0 00                92 	sub	#0x00
+   0032 90 3E                93 	bge	00102$
+   0034                      94 00110$:
+                             95 ;../ceilf.c:38: return r;
+   0034 9E E6 05             96 	lda	5,s
+   0037 C7s00r00             97 	sta	___slong2fs_PARM_1
+   003A 9E E6 06             98 	lda	6,s
+   003D C7s00r01             99 	sta	(___slong2fs_PARM_1 + 1)
+   0040 9E E6 07            100 	lda	7,s
+   0043 C7s00r02            101 	sta	(___slong2fs_PARM_1 + 2)
+   0046 9E E6 08            102 	lda	8,s
+   0049 C7s00r03            103 	sta	(___slong2fs_PARM_1 + 3)
+   004C CDs00r00            104 	jsr	___slong2fs
+   004F 9E E7 04            105 	sta	4,s
+   0052 9E EF 03            106 	stx	3,s
+   0055 B6*00               107 	lda	*__ret2
+   0057 9E E7 02            108 	sta	2,s
+   005A B6*00               109 	lda	*__ret3
+   005C 9E E7 01            110 	sta	1,s
+   005F 9E E6 01            111 	lda	1,s
+   0062 B7*00               112 	sta	*__ret3
+   0064 9E E6 02            113 	lda	2,s
+   0067 B7*00               114 	sta	*__ret2
+   0069 9E EE 03            115 	ldx	3,s
+   006C 9E E6 04            116 	lda	4,s
+   006F CCs01r35            117 	jmp	00104$
+   0072                     118 00102$:
+                            119 ;../ceilf.c:40: return (r+((r<x)?1:0));
+   0072 9E E6 05            120 	lda	5,s
+   0075 C7s00r00            121 	sta	___slong2fs_PARM_1
+   0078 9E E6 06            122 	lda	6,s
+   007B C7s00r01            123 	sta	(___slong2fs_PARM_1 + 1)
+   007E 9E E6 07            124 	lda	7,s
+   0081 C7s00r02            125 	sta	(___slong2fs_PARM_1 + 2)
+   0084 9E E6 08            126 	lda	8,s
+   0087 C7s00r03            127 	sta	(___slong2fs_PARM_1 + 3)
+   008A CDs00r00            128 	jsr	___slong2fs
+   008D C7s00r03            129 	sta	(___fslt_PARM_1 + 3)
+   0090 CFs00r02            130 	stx	(___fslt_PARM_1 + 2)
+   0093 B6*00               131 	lda	*__ret2
+   0095 C7s00r01            132 	sta	(___fslt_PARM_1 + 1)
+   0098 B6*00               133 	lda	*__ret3
+   009A C7s00r00            134 	sta	___fslt_PARM_1
+   009D 9E E6 0B            135 	lda	11,s
+   00A0 C7s00r00            136 	sta	___fslt_PARM_2
+   00A3 9E E6 0C            137 	lda	12,s
+   00A6 C7s00r01            138 	sta	(___fslt_PARM_2 + 1)
+   00A9 9E E6 0D            139 	lda	13,s
+   00AC C7s00r02            140 	sta	(___fslt_PARM_2 + 2)
+   00AF 9E E6 0E            141 	lda	14,s
+   00B2 C7s00r03            142 	sta	(___fslt_PARM_2 + 3)
+   00B5 CDs00r00            143 	jsr	___fslt
+   00B8 9E E7 01            144 	sta	1,s
+   00BB 9E 6D 01            145 	tst	1,s
+   00BE 27 07               146 	beq	00106$
+   00C0                     147 00111$:
+   00C0 A6 01               148 	lda	#0x01
+   00C2 9E E7 01            149 	sta	1,s
+   00C5 20 04               150 	bra	00107$
+   00C7                     151 00106$:
+   00C7 4F                  152 	clra
+   00C8 9E E7 01            153 	sta	1,s
+   00CB                     154 00107$:
+   00CB 9E E6 01            155 	lda	1,s
+   00CE 9E E7 02            156 	sta	2,s
+   00D1 4F                  157 	clra
+   00D2 9E E7 01            158 	sta	1,s
+   00D5 9E E6 02            159 	lda	2,s
+   00D8 9E E7 04            160 	sta	4,s
+   00DB 9E E6 01            161 	lda	1,s
+   00DE 9E E7 03            162 	sta	3,s
+   00E1 9E E6 01            163 	lda	1,s
+   00E4 49                  164 	rola	
+   00E5 4F                  165 	clra	
+   00E6 A2 00               166 	sbc	#0x00
+   00E8 9E E7 02            167 	sta	2,s
+   00EB 9E E7 01            168 	sta	1,s
+   00EE 9E E6 08            169 	lda	8,s
+   00F1 9E EB 04            170 	add	4,s
+   00F4 C7s00r03            171 	sta	(___slong2fs_PARM_1 + 3)
+   00F7 9E E6 07            172 	lda	7,s
+   00FA 9E E9 03            173 	adc	3,s
+   00FD C7s00r02            174 	sta	(___slong2fs_PARM_1 + 2)
+   0100 9E E6 06            175 	lda	6,s
+   0103 9E E9 02            176 	adc	2,s
+   0106 C7s00r01            177 	sta	(___slong2fs_PARM_1 + 1)
+   0109 9E E6 05            178 	lda	5,s
+   010C 9E E9 01            179 	adc	1,s
+   010F C7s00r00            180 	sta	___slong2fs_PARM_1
+   0112 CDs00r00            181 	jsr	___slong2fs
+   0115 9E E7 04            182 	sta	4,s
+   0118 9E EF 03            183 	stx	3,s
+   011B B6*00               184 	lda	*__ret2
+   011D 9E E7 02            185 	sta	2,s
+   0120 B6*00               186 	lda	*__ret3
+   0122 9E E7 01            187 	sta	1,s
+   0125 9E E6 01            188 	lda	1,s
+   0128 B7*00               189 	sta	*__ret3
+   012A 9E E6 02            190 	lda	2,s
+   012D B7*00               191 	sta	*__ret2
+   012F 9E EE 03            192 	ldx	3,s
+   0132 9E E6 04            193 	lda	4,s
+   0135                     194 00104$:
+   0135 A7 08               195 	ais	#8
+   0137 81                  196 	rts
+                            197 	.area CSEG (CODE)
+                            198 	.area CONST   (CODE)
+                            199 	.area XINIT
+                            200 	.area CABS    (ABS,CODE)

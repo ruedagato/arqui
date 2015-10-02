@@ -1,0 +1,230 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:22 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module sprintf
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _vsprintf_PARM_3
+                             25 	.globl _vsprintf_PARM_2
+                             26 	.globl _vsprintf
+                             27 	.globl _sprintf
+                             28 ;--------------------------------------------------------
+                             29 ;  ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG
+                             32 ;--------------------------------------------------------
+                             33 ; overlayable items in  ram 
+                             34 ;--------------------------------------------------------
+                             35 	.area OSEG    (OVR)
+                             36 ;--------------------------------------------------------
+                             37 ; absolute external ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area XABS    (ABS)
+                             40 ;--------------------------------------------------------
+                             41 ; external initialized ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area XISEG
+                             44 ;--------------------------------------------------------
+                             45 ; extended address mode data
+                             46 ;--------------------------------------------------------
+                             47 	.area XSEG
+   0000                      48 _vsprintf_PARM_2:
+   0000                      49 	.ds 2
+   0002                      50 _vsprintf_PARM_3:
+   0002                      51 	.ds 2
+   0004                      52 _vsprintf_buf_1_1:
+   0004                      53 	.ds 2
+   0006                      54 _vsprintf_i_1_1:
+   0006                      55 	.ds 2
+                             56 ;--------------------------------------------------------
+                             57 ; global & static initialisations
+                             58 ;--------------------------------------------------------
+                             59 	.area HOME (CODE)
+                             60 	.area GSINIT (CODE)
+                             61 	.area GSFINAL (CODE)
+                             62 	.area GSINIT (CODE)
+                             63 ;--------------------------------------------------------
+                             64 ; Home
+                             65 ;--------------------------------------------------------
+                             66 	.area HOME (CODE)
+                             67 	.area HOME (CODE)
+                             68 ;--------------------------------------------------------
+                             69 ; code
+                             70 ;--------------------------------------------------------
+                             71 	.area CSEG (CODE)
+                             72 ;------------------------------------------------------------
+                             73 ;Allocation info for local variables in function 'put_char_to_string'
+                             74 ;------------------------------------------------------------
+                             75 ;p                         Allocated to stack - offset 2
+                             76 ;c                         Allocated to stack - offset -1
+                             77 ;buf                       Allocated to registers 
+                             78 ;sloc0                     Allocated to stack - offset -3
+                             79 ;sloc1                     Allocated to stack - offset -5
+                             80 ;------------------------------------------------------------
+                             81 ;../sprintf.c:34: put_char_to_string (char c, void* p) _REENTRANT
+                             82 ;	-----------------------------------------
+                             83 ;	 function put_char_to_string
+                             84 ;	-----------------------------------------
+   0000                      85 _put_char_to_string:
+   0000 87                   86 	psha
+   0001 A7 FC                87 	ais	#-4
+                             88 ;../sprintf.c:36: char **buf = (char **)p;
+                             89 ;../sprintf.c:37: *(*buf)++ = c;
+   0003 9E E6 08             90 	lda	8,s
+   0006 9E EE 09             91 	ldx	9,s
+   0009 87                   92 	psha
+   000A 8A                   93 	pulh
+   000B F6                   94 	lda	,x
+   000C AF 01                95 	aix	#1
+   000E 9E E7 03             96 	sta	3,s
+   0011 F6                   97 	lda	,x
+   0012 9E E7 04             98 	sta	4,s
+   0015 9E E6 04             99 	lda	4,s
+   0018 AB 01               100 	add	#0x01
+   001A 9E E7 02            101 	sta	2,s
+   001D 9E E6 03            102 	lda	3,s
+   0020 A9 00               103 	adc	#0x00
+   0022 9E E7 01            104 	sta	1,s
+   0025 9E E6 08            105 	lda	8,s
+   0028 9E EE 09            106 	ldx	9,s
+   002B 87                  107 	psha
+   002C 8A                  108 	pulh
+   002D 9E E6 01            109 	lda	1,s
+   0030 F7                  110 	sta	,x
+   0031 AF 01               111 	aix	#1
+   0033 9E E6 02            112 	lda	2,s
+   0036 F7                  113 	sta	,x
+   0037 9E E6 03            114 	lda	3,s
+   003A 9E EE 04            115 	ldx	4,s
+   003D 87                  116 	psha
+   003E 8A                  117 	pulh
+   003F 9E E6 05            118 	lda	5,s
+   0042 F7                  119 	sta	,x
+   0043                     120 00101$:
+   0043 A7 05               121 	ais	#5
+   0045 81                  122 	rts
+                            123 ;------------------------------------------------------------
+                            124 ;Allocation info for local variables in function 'vsprintf'
+                            125 ;------------------------------------------------------------
+                            126 ;format                    Allocated with name '_vsprintf_PARM_2'
+                            127 ;ap                        Allocated with name '_vsprintf_PARM_3'
+                            128 ;buf                       Allocated with name '_vsprintf_buf_1_1'
+                            129 ;i                         Allocated with name '_vsprintf_i_1_1'
+                            130 ;------------------------------------------------------------
+                            131 ;../sprintf.c:41: vsprintf (char *buf, const char *format, va_list ap)
+                            132 ;	-----------------------------------------
+                            133 ;	 function vsprintf
+                            134 ;	-----------------------------------------
+   0046                     135 _vsprintf:
+   0046 C7s00r05            136 	sta	(_vsprintf_buf_1_1 + 1)
+   0049 CFs00r04            137 	stx	_vsprintf_buf_1_1
+                            138 ;../sprintf.c:44: i = _print_format (put_char_to_string, &buf, format, ap);
+   004C A6r04               139 	lda	#_vsprintf_buf_1_1
+   004E C7s00r01            140 	sta	(__print_format_PARM_2 + 1)
+   0051 A6s00               141 	lda	#>_vsprintf_buf_1_1
+   0053 C7s00r00            142 	sta	__print_format_PARM_2
+   0056 C6s00r00            143 	lda	_vsprintf_PARM_2
+   0059 C7s00r00            144 	sta	__print_format_PARM_3
+   005C C6s00r01            145 	lda	(_vsprintf_PARM_2 + 1)
+   005F C7s00r01            146 	sta	(__print_format_PARM_3 + 1)
+   0062 C6s00r02            147 	lda	_vsprintf_PARM_3
+   0065 C7s00r00            148 	sta	__print_format_PARM_4
+   0068 C6s00r03            149 	lda	(_vsprintf_PARM_3 + 1)
+   006B C7s00r01            150 	sta	(__print_format_PARM_4 + 1)
+   006E AEs00               151 	ldx	#>_put_char_to_string
+   0070 A6r00               152 	lda	#_put_char_to_string
+   0072 CDs00r00            153 	jsr	__print_format
+   0075 C7s00r07            154 	sta	(_vsprintf_i_1_1 + 1)
+   0078 CFs00r06            155 	stx	_vsprintf_i_1_1
+                            156 ;../sprintf.c:45: *buf = 0;
+   007B CEs00r04            157 	ldx	_vsprintf_buf_1_1
+   007E C6s00r05            158 	lda	(_vsprintf_buf_1_1 + 1)
+   0081 89                  159 	pshx
+   0082 8A                  160 	pulh
+   0083 97                  161 	tax
+   0084 4F                  162 	clra
+   0085 F7                  163 	sta	,x
+                            164 ;../sprintf.c:46: return i;
+   0086 CEs00r06            165 	ldx	_vsprintf_i_1_1
+   0089 C6s00r07            166 	lda	(_vsprintf_i_1_1 + 1)
+   008C                     167 00101$:
+   008C 81                  168 	rts
+                            169 ;------------------------------------------------------------
+                            170 ;Allocation info for local variables in function 'sprintf'
+                            171 ;------------------------------------------------------------
+                            172 ;buf                       Allocated to stack - offset 2
+                            173 ;format                    Allocated to stack - offset 4
+                            174 ;arg                       Allocated to registers 
+                            175 ;i                         Allocated to stack - offset -2
+                            176 ;sloc0                     Allocated to stack - offset -4
+                            177 ;------------------------------------------------------------
+                            178 ;../sprintf.c:50: sprintf (char *buf, const char *format, ...)
+                            179 ;	-----------------------------------------
+                            180 ;	 function sprintf
+                            181 ;	-----------------------------------------
+   008D                     182 _sprintf:
+   008D A7 FC               183 	ais	#-4
+                            184 ;../sprintf.c:55: va_start (arg, format);
+   008F 95                  185 	tsx
+   0090 AF 08               186 	aix	#8
+   0092 8B                  187 	pshh
+   0093 86                  188 	pula
+   0094 9E E7 01            189 	sta	1,s
+   0097 9E EF 02            190 	stx	2,s
+   009A 9E E6 02            191 	lda	2,s
+   009D AB 02               192 	add	#0x02
+   009F C7s00r01            193 	sta	(__print_format_PARM_4 + 1)
+   00A2 9E E6 01            194 	lda	1,s
+   00A5 A9 00               195 	adc	#0x00
+   00A7 C7s00r00            196 	sta	__print_format_PARM_4
+                            197 ;../sprintf.c:56: i = _print_format (put_char_to_string, &buf, format, arg);
+   00AA 95                  198 	tsx
+   00AB AF 06               199 	aix	#6
+   00AD 8B                  200 	pshh
+   00AE 86                  201 	pula
+   00AF C7s00r00            202 	sta	__print_format_PARM_2
+   00B2 CFs00r01            203 	stx	(__print_format_PARM_2 + 1)
+   00B5 9E E6 09            204 	lda	9,s
+   00B8 C7s00r00            205 	sta	__print_format_PARM_3
+   00BB 9E E6 0A            206 	lda	10,s
+   00BE C7s00r01            207 	sta	(__print_format_PARM_3 + 1)
+   00C1 AEs00               208 	ldx	#>_put_char_to_string
+   00C3 A6r00               209 	lda	#_put_char_to_string
+   00C5 CDs00r00            210 	jsr	__print_format
+   00C8 9E E7 04            211 	sta	4,s
+   00CB 9E EF 03            212 	stx	3,s
+                            213 ;../sprintf.c:57: *buf = 0;
+   00CE 9E EE 07            214 	ldx	7,s
+   00D1 9E E6 08            215 	lda	8,s
+   00D4 89                  216 	pshx
+   00D5 8A                  217 	pulh
+   00D6 97                  218 	tax
+   00D7 4F                  219 	clra
+   00D8 F7                  220 	sta	,x
+                            221 ;../sprintf.c:60: return i;
+   00D9 9E EE 03            222 	ldx	3,s
+   00DC 9E E6 04            223 	lda	4,s
+   00DF                     224 00101$:
+   00DF A7 04               225 	ais	#4
+   00E1 81                  226 	rts
+                            227 	.area CSEG (CODE)
+                            228 	.area CONST   (CODE)
+                            229 	.area XINIT
+                            230 	.area CABS    (ABS,CODE)

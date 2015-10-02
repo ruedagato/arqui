@@ -1,0 +1,147 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:19 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _fs2schar
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl ___fs2schar
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 ;../_fs2schar.c:87: signed char __fs2schar (float f)
+                             36 ;	---------------------------------
+                             37 ; Function __fs2schar
+                             38 ; ---------------------------------
+   0000                      39 ___fs2schar_start::
+   0000                      40 ___fs2schar:
+                             41 	
+   0000 F5                   42 	push	af
+   0001 F5                   43 	push	af
+                             44 ;../_fs2schar.c:89: signed long sl=__fs2slong(f);
+   0002 F8 08                45 	ldhl	sp,#8
+   0004 7E                   46 	ld	a,(hl)
+   0005 23                   47 	inc	hl
+   0006 66                   48 	ld	h,(hl)
+   0007 6F                   49 	ld	l,a
+   0008 E5                   50 	push	hl
+   0009 F8 08                51 	ldhl	sp,#8
+   000B 7E                   52 	ld	a,(hl)
+   000C 23                   53 	inc	hl
+   000D 66                   54 	ld	h,(hl)
+   000E 6F                   55 	ld	l,a
+   000F E5                   56 	push	hl
+   0010 CDr00s00             57 	call	___fs2slong
+   0013 E8 04                58 	lda	sp,4(sp)
+   0015 E5                   59 	push	hl
+   0016 F8 02                60 	ldhl	sp,#2
+   0018 73                   61 	ld	(hl),e
+   0019 23                   62 	inc	hl
+   001A 72                   63 	ld	(hl),d
+   001B D1                   64 	pop	de
+   001C 23                   65 	inc	hl
+   001D 73                   66 	ld	(hl),e
+   001E 23                   67 	inc	hl
+   001F 72                   68 	ld	(hl),d
+                             69 ;../_fs2schar.c:90: if (sl>=SCHAR_MAX)
+   0020 F8 00                70 	ldhl	sp,#0
+   0022 7E                   71 	ld	a, (hl)
+   0023 D6 7F                72 	sub	a, #0x7F
+   0025 23                   73 	inc	hl
+   0026 7E                   74 	ld	a, (hl)
+   0027 DE 00                75 	sbc	a, #0x00
+   0029 23                   76 	inc	hl
+   002A 7E                   77 	ld	a, (hl)
+   002B DE 00                78 	sbc	a, #0x00
+   002D 23                   79 	inc	hl
+   002E 7E                   80 	ld	a, (hl)
+   002F DE 00                81 	sbc	a, #0x00
+   0031 56                   82 	ld	d, (hl)
+   0032 3E 00                83 	ld	a, #0x00
+   0034 5F                   84 	ld	e, a
+   0035 CB 7B                85 	bit	7, e
+   0037 CAr42s00             86 	jp	Z, 00109$
+   003A CB 7A                87 	bit	7, d
+   003C C2r48s00             88 	jp	NZ, 00110$
+   003F BF                   89 	cp	a, a
+   0040 18 06                90 	jr	00110$
+   0042                      91 00109$:
+   0042 CB 7A                92 	bit	7, d
+   0044 CAr48s00             93 	jp	Z, 00110$
+   0047 37                   94 	scf
+   0048                      95 00110$:
+   0048 DAr4Fs00             96 	jp	C,00102$
+                             97 ;../_fs2schar.c:91: return SCHAR_MAX;
+   004B 1E 7F                98 	ld	e,#0x7F
+   004D 18 33                99 	jr	00105$
+   004F                     100 00102$:
+                            101 ;../_fs2schar.c:92: if (sl<=SCHAR_MIN)
+   004F F8 00               102 	ldhl	sp,#0
+   0051 3E 80               103 	ld	a, #0x80
+   0053 96                  104 	sub	a, (hl)
+   0054 23                  105 	inc	hl
+   0055 3E FF               106 	ld	a, #0xFF
+   0057 9E                  107 	sbc	a, (hl)
+   0058 23                  108 	inc	hl
+   0059 3E FF               109 	ld	a, #0xFF
+   005B 9E                  110 	sbc	a, (hl)
+   005C 23                  111 	inc	hl
+   005D 3E FF               112 	ld	a, #0xFF
+   005F 9E                  113 	sbc	a, (hl)
+   0060 3E FF               114 	ld	a, #0xFF
+   0062 57                  115 	ld	d, a
+   0063 5E                  116 	ld	e, (hl)
+   0064 CB 7B               117 	bit	7, e
+   0066 CAr71s00            118 	jp	Z, 00111$
+   0069 CB 7A               119 	bit	7, d
+   006B C2r77s00            120 	jp	NZ, 00112$
+   006E BF                  121 	cp	a, a
+   006F 18 06               122 	jr	00112$
+   0071                     123 00111$:
+   0071 CB 7A               124 	bit	7, d
+   0073 CAr77s00            125 	jp	Z, 00112$
+   0076 37                  126 	scf
+   0077                     127 00112$:
+   0077 DAr7Es00            128 	jp	C,00104$
+                            129 ;../_fs2schar.c:93: return -SCHAR_MIN;
+   007A 1E 80               130 	ld	e,#0x80
+   007C 18 04               131 	jr	00105$
+   007E                     132 00104$:
+                            133 ;../_fs2schar.c:94: return sl;
+   007E F8 00               134 	ldhl	sp,#0
+   0080 4E                  135 	ld	c,(hl)
+   0081 59                  136 	ld	e,c
+   0082                     137 00105$:
+   0082 E8 04               138 	lda	sp,4(sp)
+   0084 C9                  139 	ret
+   0085                     140 ___fs2schar_end::
+                            141 	.area _HOME
+                            142 ;--------------------------------------------------------
+                            143 ; code
+                            144 ;--------------------------------------------------------
+                            145 	.area _CODE
+                            146 	.area _CODE
+                            147 	.area _CABS

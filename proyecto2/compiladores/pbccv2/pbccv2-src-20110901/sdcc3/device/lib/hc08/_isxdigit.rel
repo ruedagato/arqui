@@ -1,0 +1,67 @@
+XH
+H F areas 2 global symbols
+M _isxdigit
+O -mhc08
+S .__.ABS. Def0000
+A _CODE size 0 flags 0 addr 0
+A HOME size 0 flags 20 addr 0
+A GSINIT0 size 0 flags 20 addr 0
+A GSINIT size 0 flags 20 addr 0
+A GSFINAL size 0 flags 20 addr 0
+A CSEG size 32 flags 20 addr 0
+S _isxdigit Def0000
+A XINIT size 0 flags 0 addr 0
+A CONST size 0 flags 20 addr 0
+A DSEG size 0 flags 0 addr 0
+A OSEG size 0 flags 4 addr 0
+A BSEG size 0 flags 0 addr 0
+A XSEG size 1 flags 0 addr 0
+A XISEG size 0 flags 0 addr 0
+A XABS size 0 flags 8 addr 0
+A CABS size 0 flags 28 addr 0
+T 00 00
+R 00 00 00 0B
+T 00 00
+R 00 00 00 0B
+T 00 00
+R 00 00 00 05
+T 00 00 C7 00 00 C6 00 00 A1 30 25 07
+R 00 00 00 05 00 03 00 0B 00 06 00 0B
+T 00 0A
+R 00 00 00 05
+T 00 0A C6 00 00 A1 39 23 1C
+R 00 00 00 05 00 03 00 0B
+T 00 11
+R 00 00 00 05
+T 00 11
+R 00 00 00 05
+T 00 11 C6 00 00 A1 61 25 07
+R 00 00 00 05 00 03 00 0B
+T 00 18
+R 00 00 00 05
+T 00 18 C6 00 00 A1 66 23 0E
+R 00 00 00 05 00 03 00 0B
+T 00 1F
+R 00 00 00 05
+T 00 1F
+R 00 00 00 05
+T 00 1F C6 00 00 A1 41 25 0A
+R 00 00 00 05 00 03 00 0B
+T 00 26
+R 00 00 00 05
+T 00 26 C6 00 00 A1 46 22 03
+R 00 00 00 05 00 03 00 0B
+T 00 2D
+R 00 00 00 05
+T 00 2D
+R 00 00 00 05
+T 00 2D A6 01 81
+R 00 00 00 05
+T 00 30
+R 00 00 00 05
+T 00 30 4F
+R 00 00 00 05
+T 00 31
+R 00 00 00 05
+T 00 31 81
+R 00 00 00 05

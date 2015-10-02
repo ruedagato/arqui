@@ -1,0 +1,376 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:29 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _strtok
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _strtok_PARM_2
+                             13 	.globl _strtok
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 	.area RSEG    (ABS,DATA)
+   0000                      18 	.org 0x0000
+                             19 ;--------------------------------------------------------
+                             20 ; special function bits
+                             21 ;--------------------------------------------------------
+                             22 	.area RSEG    (ABS,DATA)
+   0000                      23 	.org 0x0000
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable register banks
+                             26 ;--------------------------------------------------------
+                             27 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      28 	.ds 8
+                             29 ;--------------------------------------------------------
+                             30 ; internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area DSEG    (DATA)
+                             33 ;--------------------------------------------------------
+                             34 ; overlayable items in internal ram 
+                             35 ;--------------------------------------------------------
+                             36 	.area OSEG    (OVR,DATA)
+                             37 ;--------------------------------------------------------
+                             38 ; indirectly addressable internal ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area ISEG    (DATA)
+                             41 ;--------------------------------------------------------
+                             42 ; absolute internal ram data
+                             43 ;--------------------------------------------------------
+                             44 	.area IABS    (ABS,DATA)
+                             45 	.area IABS    (ABS,DATA)
+                             46 ;--------------------------------------------------------
+                             47 ; bit data
+                             48 ;--------------------------------------------------------
+                             49 	.area BSEG    (BIT)
+                             50 ;--------------------------------------------------------
+                             51 ; paged external ram data
+                             52 ;--------------------------------------------------------
+                             53 	.area PSEG    (PAG,XDATA)
+                             54 ;--------------------------------------------------------
+                             55 ; external ram data
+                             56 ;--------------------------------------------------------
+                             57 	.area XSEG    (XDATA)
+   0000                      58 _strtok_PARM_2:
+   0000                      59 	.ds 3
+   0003                      60 _strtok_str_1_1:
+   0003                      61 	.ds 3
+   0006                      62 _strtok_s_1_1:
+   0006                      63 	.ds 3
+   0009                      64 _strtok_s1_1_1:
+   0009                      65 	.ds 3
+                             66 ;--------------------------------------------------------
+                             67 ; absolute external ram data
+                             68 ;--------------------------------------------------------
+                             69 	.area XABS    (ABS,XDATA)
+                             70 ;--------------------------------------------------------
+                             71 ; external initialized ram data
+                             72 ;--------------------------------------------------------
+                             73 	.area XISEG   (XDATA)
+                             74 	.area HOME    (CODE)
+                             75 	.area GSINIT0 (CODE)
+                             76 	.area GSINIT1 (CODE)
+                             77 	.area GSINIT2 (CODE)
+                             78 	.area GSINIT3 (CODE)
+                             79 	.area GSINIT4 (CODE)
+                             80 	.area GSINIT5 (CODE)
+                             81 	.area GSINIT  (CODE)
+                             82 	.area GSFINAL (CODE)
+                             83 	.area CSEG    (CODE)
+                             84 ;--------------------------------------------------------
+                             85 ; global & static initialisations
+                             86 ;--------------------------------------------------------
+                             87 	.area HOME    (CODE)
+                             88 	.area GSINIT  (CODE)
+                             89 	.area GSFINAL (CODE)
+                             90 	.area GSINIT  (CODE)
+                             91 ;--------------------------------------------------------
+                             92 ; Home
+                             93 ;--------------------------------------------------------
+                             94 	.area HOME    (CODE)
+                             95 	.area HOME    (CODE)
+                             96 ;--------------------------------------------------------
+                             97 ; code
+                             98 ;--------------------------------------------------------
+                             99 	.area CSEG    (CODE)
+                            100 ;------------------------------------------------------------
+                            101 ;Allocation info for local variables in function 'strtok'
+                            102 ;------------------------------------------------------------
+                            103 ;control                   Allocated with name '_strtok_PARM_2'
+                            104 ;str                       Allocated with name '_strtok_str_1_1'
+                            105 ;s                         Allocated with name '_strtok_s_1_1'
+                            106 ;s1                        Allocated with name '_strtok_s1_1_1'
+                            107 ;------------------------------------------------------------
+                            108 ;	_strtok.c:36: char * strtok (
+                            109 ;	-----------------------------------------
+                            110 ;	 function strtok
+                            111 ;	-----------------------------------------
+   0000                     112 _strtok:
+                    0002    113 	ar2 = 0x02
+                    0003    114 	ar3 = 0x03
+                    0004    115 	ar4 = 0x04
+                    0005    116 	ar5 = 0x05
+                    0006    117 	ar6 = 0x06
+                    0007    118 	ar7 = 0x07
+                    0000    119 	ar0 = 0x00
+                    0001    120 	ar1 = 0x01
+   0000 AA F0               121 	mov	r2,b
+   0002 AB 83               122 	mov	r3,dph
+   0004 E5 82               123 	mov	a,dpl
+   0006 90s00r03            124 	mov	dptr,#_strtok_str_1_1
+   0009 F0                  125 	movx	@dptr,a
+   000A A3                  126 	inc	dptr
+   000B EB                  127 	mov	a,r3
+   000C F0                  128 	movx	@dptr,a
+   000D A3                  129 	inc	dptr
+   000E EA                  130 	mov	a,r2
+   000F F0                  131 	movx	@dptr,a
+                            132 ;	_strtok.c:43: if ( str )
+   0010 90s00r03            133 	mov	dptr,#_strtok_str_1_1
+   0013 E0                  134 	movx	a,@dptr
+   0014 FA                  135 	mov	r2,a
+   0015 A3                  136 	inc	dptr
+   0016 E0                  137 	movx	a,@dptr
+   0017 FB                  138 	mov	r3,a
+   0018 A3                  139 	inc	dptr
+   0019 E0                  140 	movx	a,@dptr
+   001A FC                  141 	mov	r4,a
+   001B EA                  142 	mov	a,r2
+   001C 4B                  143 	orl	a,r3
+   001D 4C                  144 	orl	a,r4
+   001E 60 0B               145 	jz	00102$
+                            146 ;	_strtok.c:44: s = str ;
+   0020 90s00r06            147 	mov	dptr,#_strtok_s_1_1
+   0023 EA                  148 	mov	a,r2
+   0024 F0                  149 	movx	@dptr,a
+   0025 A3                  150 	inc	dptr
+   0026 EB                  151 	mov	a,r3
+   0027 F0                  152 	movx	@dptr,a
+   0028 A3                  153 	inc	dptr
+   0029 EC                  154 	mov	a,r4
+   002A F0                  155 	movx	@dptr,a
+   002B                     156 00102$:
+                            157 ;	_strtok.c:45: if ( !s )
+   002B 90s00r06            158 	mov	dptr,#_strtok_s_1_1
+   002E E0                  159 	movx	a,@dptr
+   002F FA                  160 	mov	r2,a
+   0030 A3                  161 	inc	dptr
+   0031 E0                  162 	movx	a,@dptr
+   0032 FB                  163 	mov	r3,a
+   0033 A3                  164 	inc	dptr
+   0034 E0                  165 	movx	a,@dptr
+   0035 FC                  166 	mov	r4,a
+   0036 EA                  167 	mov	a,r2
+   0037 4B                  168 	orl	a,r3
+   0038 4C                  169 	orl	a,r4
+                            170 ;	_strtok.c:46: return NULL;
+   0039 70 06               171 	jnz	00108$
+   003B 90 00 00            172 	mov	dptr,#0x0000
+   003E F5 F0               173 	mov	b,a
+   0040 22                  174 	ret
+                            175 ;	_strtok.c:48: while (*s) {
+   0041                     176 00108$:
+   0041 90s00r06            177 	mov	dptr,#_strtok_s_1_1
+   0044 E0                  178 	movx	a,@dptr
+   0045 FA                  179 	mov	r2,a
+   0046 A3                  180 	inc	dptr
+   0047 E0                  181 	movx	a,@dptr
+   0048 FB                  182 	mov	r3,a
+   0049 A3                  183 	inc	dptr
+   004A E0                  184 	movx	a,@dptr
+   004B FC                  185 	mov	r4,a
+   004C 8A 82               186 	mov	dpl,r2
+   004E 8B 83               187 	mov	dph,r3
+   0050 8C F0               188 	mov	b,r4
+   0052 12s00r00            189 	lcall	__gptrget
+   0055 FA                  190 	mov	r2,a
+   0056 60 32               191 	jz	00110$
+                            192 ;	_strtok.c:49: if (strchr(control,*s))
+   0058 90s00r00            193 	mov	dptr,#_strtok_PARM_2
+   005B E0                  194 	movx	a,@dptr
+   005C FB                  195 	mov	r3,a
+   005D A3                  196 	inc	dptr
+   005E E0                  197 	movx	a,@dptr
+   005F FC                  198 	mov	r4,a
+   0060 A3                  199 	inc	dptr
+   0061 E0                  200 	movx	a,@dptr
+   0062 FD                  201 	mov	r5,a
+   0063 90s00r00            202 	mov	dptr,#_strchr_PARM_2
+   0066 EA                  203 	mov	a,r2
+   0067 F0                  204 	movx	@dptr,a
+   0068 8B 82               205 	mov	dpl,r3
+   006A 8C 83               206 	mov	dph,r4
+   006C 8D F0               207 	mov	b,r5
+   006E 12s00r00            208 	lcall	_strchr
+   0071 AA 82               209 	mov	r2,dpl
+   0073 AB 83               210 	mov	r3,dph
+   0075 AC F0               211 	mov	r4,b
+   0077 EA                  212 	mov	a,r2
+   0078 4B                  213 	orl	a,r3
+   0079 4C                  214 	orl	a,r4
+   007A 60 0E               215 	jz	00110$
+                            216 ;	_strtok.c:50: s++;
+   007C 90s00r06            217 	mov	dptr,#_strtok_s_1_1
+   007F E0                  218 	movx	a,@dptr
+   0080 24 01               219 	add	a,#0x01
+   0082 F0                  220 	movx	@dptr,a
+   0083 A3                  221 	inc	dptr
+   0084 E0                  222 	movx	a,@dptr
+   0085 34 00               223 	addc	a,#0x00
+   0087 F0                  224 	movx	@dptr,a
+                            225 ;	_strtok.c:52: break;
+   0088 80 B7               226 	sjmp	00108$
+   008A                     227 00110$:
+                            228 ;	_strtok.c:55: s1 = s ;
+   008A 90s00r06            229 	mov	dptr,#_strtok_s_1_1
+   008D E0                  230 	movx	a,@dptr
+   008E FA                  231 	mov	r2,a
+   008F A3                  232 	inc	dptr
+   0090 E0                  233 	movx	a,@dptr
+   0091 FB                  234 	mov	r3,a
+   0092 A3                  235 	inc	dptr
+   0093 E0                  236 	movx	a,@dptr
+   0094 FC                  237 	mov	r4,a
+   0095 90s00r09            238 	mov	dptr,#_strtok_s1_1_1
+   0098 EA                  239 	mov	a,r2
+   0099 F0                  240 	movx	@dptr,a
+   009A A3                  241 	inc	dptr
+   009B EB                  242 	mov	a,r3
+   009C F0                  243 	movx	@dptr,a
+   009D A3                  244 	inc	dptr
+   009E EC                  245 	mov	a,r4
+   009F F0                  246 	movx	@dptr,a
+                            247 ;	_strtok.c:57: while (*s) {
+   00A0                     248 00113$:
+   00A0 90s00r06            249 	mov	dptr,#_strtok_s_1_1
+   00A3 E0                  250 	movx	a,@dptr
+   00A4 FA                  251 	mov	r2,a
+   00A5 A3                  252 	inc	dptr
+   00A6 E0                  253 	movx	a,@dptr
+   00A7 FB                  254 	mov	r3,a
+   00A8 A3                  255 	inc	dptr
+   00A9 E0                  256 	movx	a,@dptr
+   00AA FC                  257 	mov	r4,a
+   00AB 8A 82               258 	mov	dpl,r2
+   00AD 8B 83               259 	mov	dph,r3
+   00AF 8C F0               260 	mov	b,r4
+   00B1 12s00r00            261 	lcall	__gptrget
+   00B4 FA                  262 	mov	r2,a
+   00B5 60 68               263 	jz	00115$
+                            264 ;	_strtok.c:58: if (strchr(control,*s)) {
+   00B7 90s00r00            265 	mov	dptr,#_strtok_PARM_2
+   00BA E0                  266 	movx	a,@dptr
+   00BB FB                  267 	mov	r3,a
+   00BC A3                  268 	inc	dptr
+   00BD E0                  269 	movx	a,@dptr
+   00BE FC                  270 	mov	r4,a
+   00BF A3                  271 	inc	dptr
+   00C0 E0                  272 	movx	a,@dptr
+   00C1 FD                  273 	mov	r5,a
+   00C2 90s00r00            274 	mov	dptr,#_strchr_PARM_2
+   00C5 EA                  275 	mov	a,r2
+   00C6 F0                  276 	movx	@dptr,a
+   00C7 8B 82               277 	mov	dpl,r3
+   00C9 8C 83               278 	mov	dph,r4
+   00CB 8D F0               279 	mov	b,r5
+   00CD 12s00r00            280 	lcall	_strchr
+   00D0 AA 82               281 	mov	r2,dpl
+   00D2 AB 83               282 	mov	r3,dph
+   00D4 AC F0               283 	mov	r4,b
+   00D6 EA                  284 	mov	a,r2
+   00D7 4B                  285 	orl	a,r3
+   00D8 4C                  286 	orl	a,r4
+   00D9 60 35               287 	jz	00112$
+                            288 ;	_strtok.c:59: *s++ = '\0';
+   00DB 90s00r06            289 	mov	dptr,#_strtok_s_1_1
+   00DE E0                  290 	movx	a,@dptr
+   00DF FA                  291 	mov	r2,a
+   00E0 A3                  292 	inc	dptr
+   00E1 E0                  293 	movx	a,@dptr
+   00E2 FB                  294 	mov	r3,a
+   00E3 A3                  295 	inc	dptr
+   00E4 E0                  296 	movx	a,@dptr
+   00E5 FC                  297 	mov	r4,a
+   00E6 8A 82               298 	mov	dpl,r2
+   00E8 8B 83               299 	mov	dph,r3
+   00EA 8C F0               300 	mov	b,r4
+   00EC E4                  301 	clr	a
+   00ED 12s00r00            302 	lcall	__gptrput
+   00F0 90s00r06            303 	mov	dptr,#_strtok_s_1_1
+   00F3 74 01               304 	mov	a,#0x01
+   00F5 2A                  305 	add	a,r2
+   00F6 F0                  306 	movx	@dptr,a
+   00F7 E4                  307 	clr	a
+   00F8 3B                  308 	addc	a,r3
+   00F9 A3                  309 	inc	dptr
+   00FA F0                  310 	movx	@dptr,a
+   00FB A3                  311 	inc	dptr
+   00FC EC                  312 	mov	a,r4
+   00FD F0                  313 	movx	@dptr,a
+                            314 ;	_strtok.c:60: return s1 ;
+   00FE 90s00r09            315 	mov	dptr,#_strtok_s1_1_1
+   0101 E0                  316 	movx	a,@dptr
+   0102 FA                  317 	mov	r2,a
+   0103 A3                  318 	inc	dptr
+   0104 E0                  319 	movx	a,@dptr
+   0105 FB                  320 	mov	r3,a
+   0106 A3                  321 	inc	dptr
+   0107 E0                  322 	movx	a,@dptr
+   0108 FC                  323 	mov	r4,a
+   0109 8A 82               324 	mov	dpl,r2
+   010B 8B 83               325 	mov	dph,r3
+   010D 8C F0               326 	mov	b,r4
+   010F 22                  327 	ret
+   0110                     328 00112$:
+                            329 ;	_strtok.c:62: s++ ;
+   0110 90s00r06            330 	mov	dptr,#_strtok_s_1_1
+   0113 E0                  331 	movx	a,@dptr
+   0114 24 01               332 	add	a,#0x01
+   0116 F0                  333 	movx	@dptr,a
+   0117 A3                  334 	inc	dptr
+   0118 E0                  335 	movx	a,@dptr
+   0119 34 00               336 	addc	a,#0x00
+   011B F0                  337 	movx	@dptr,a
+   011C 02s00rA0            338 	ljmp	00113$
+   011F                     339 00115$:
+                            340 ;	_strtok.c:65: s = NULL;
+   011F 90s00r06            341 	mov	dptr,#_strtok_s_1_1
+   0122 E4                  342 	clr	a
+   0123 F0                  343 	movx	@dptr,a
+   0124 A3                  344 	inc	dptr
+   0125 F0                  345 	movx	@dptr,a
+   0126 A3                  346 	inc	dptr
+   0127 F0                  347 	movx	@dptr,a
+                            348 ;	_strtok.c:67: if (*s1)
+   0128 90s00r09            349 	mov	dptr,#_strtok_s1_1_1
+   012B E0                  350 	movx	a,@dptr
+   012C FA                  351 	mov	r2,a
+   012D A3                  352 	inc	dptr
+   012E E0                  353 	movx	a,@dptr
+   012F FB                  354 	mov	r3,a
+   0130 A3                  355 	inc	dptr
+   0131 E0                  356 	movx	a,@dptr
+   0132 FC                  357 	mov	r4,a
+   0133 8A 82               358 	mov	dpl,r2
+   0135 8B 83               359 	mov	dph,r3
+   0137 8C F0               360 	mov	b,r4
+   0139 12s00r00            361 	lcall	__gptrget
+   013C 60 07               362 	jz	00117$
+                            363 ;	_strtok.c:68: return s1;
+   013E 8A 82               364 	mov	dpl,r2
+   0140 8B 83               365 	mov	dph,r3
+   0142 8C F0               366 	mov	b,r4
+   0144 22                  367 	ret
+   0145                     368 00117$:
+                            369 ;	_strtok.c:70: return NULL;
+   0145 90 00 00            370 	mov	dptr,#0x0000
+   0148 75 F0 00            371 	mov	b,#0x00
+   014B 22                  372 	ret
+                            373 	.area CSEG    (CODE)
+                            374 	.area CONST   (CODE)
+                            375 	.area XINIT   (CODE)
+                            376 	.area CABS    (ABS,CODE)

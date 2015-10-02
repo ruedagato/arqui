@@ -1,0 +1,117 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module log10f
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _log10f
+                             25 ;--------------------------------------------------------
+                             26 ;  ram data
+                             27 ;--------------------------------------------------------
+                             28 	.area DSEG
+                             29 ;--------------------------------------------------------
+                             30 ; overlayable items in  ram 
+                             31 ;--------------------------------------------------------
+                             32 	.area OSEG    (OVR)
+                             33 ;--------------------------------------------------------
+                             34 ; absolute external ram data
+                             35 ;--------------------------------------------------------
+                             36 	.area XABS    (ABS)
+                             37 ;--------------------------------------------------------
+                             38 ; external initialized ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area XISEG
+                             41 ;--------------------------------------------------------
+                             42 ; extended address mode data
+                             43 ;--------------------------------------------------------
+                             44 	.area XSEG
+                             45 ;--------------------------------------------------------
+                             46 ; global & static initialisations
+                             47 ;--------------------------------------------------------
+                             48 	.area HOME (CODE)
+                             49 	.area GSINIT (CODE)
+                             50 	.area GSFINAL (CODE)
+                             51 	.area GSINIT (CODE)
+                             52 ;--------------------------------------------------------
+                             53 ; Home
+                             54 ;--------------------------------------------------------
+                             55 	.area HOME (CODE)
+                             56 	.area HOME (CODE)
+                             57 ;--------------------------------------------------------
+                             58 ; code
+                             59 ;--------------------------------------------------------
+                             60 	.area CSEG (CODE)
+                             61 ;------------------------------------------------------------
+                             62 ;Allocation info for local variables in function 'log10f'
+                             63 ;------------------------------------------------------------
+                             64 ;x                         Allocated to stack - offset 2
+                             65 ;sloc0                     Allocated to stack - offset -4
+                             66 ;------------------------------------------------------------
+                             67 ;../log10f.c:34: float log10f(const float x) _FLOAT_FUNC_REENTRANT
+                             68 ;	-----------------------------------------
+                             69 ;	 function log10f
+                             70 ;	-----------------------------------------
+   0000                      71 _log10f:
+   0000 A7 FC                72 	ais	#-4
+                             73 ;../log10f.c:36: return logf(x)*0.4342944819;
+   0002 9E E6 0A             74 	lda	10,s
+   0005 87                   75 	psha
+   0006 9E E6 0A             76 	lda	10,s
+   0009 87                   77 	psha
+   000A 9E E6 0A             78 	lda	10,s
+   000D 87                   79 	psha
+   000E 9E E6 0A             80 	lda	10,s
+   0011 87                   81 	psha
+   0012 CDs00r00             82 	jsr	_logf
+   0015 C7s00r03             83 	sta	(___fsmul_PARM_2 + 3)
+   0018 CFs00r02             84 	stx	(___fsmul_PARM_2 + 2)
+   001B B6*00                85 	lda	*__ret2
+   001D C7s00r01             86 	sta	(___fsmul_PARM_2 + 1)
+   0020 B6*00                87 	lda	*__ret3
+   0022 C7s00r00             88 	sta	___fsmul_PARM_2
+   0025 A7 04                89 	ais	#4
+   0027 A6 3E                90 	lda	#0x3E
+   0029 C7s00r00             91 	sta	___fsmul_PARM_1
+   002C A6 DE                92 	lda	#0xDE
+   002E C7s00r01             93 	sta	(___fsmul_PARM_1 + 1)
+   0031 A6 5B                94 	lda	#0x5B
+   0033 C7s00r02             95 	sta	(___fsmul_PARM_1 + 2)
+   0036 A6 D9                96 	lda	#0xD9
+   0038 C7s00r03             97 	sta	(___fsmul_PARM_1 + 3)
+   003B CDs00r00             98 	jsr	___fsmul
+   003E 9E E7 04             99 	sta	4,s
+   0041 9E EF 03            100 	stx	3,s
+   0044 B6*00               101 	lda	*__ret2
+   0046 9E E7 02            102 	sta	2,s
+   0049 B6*00               103 	lda	*__ret3
+   004B 9E E7 01            104 	sta	1,s
+   004E 9E E6 01            105 	lda	1,s
+   0051 B7*00               106 	sta	*__ret3
+   0053 9E E6 02            107 	lda	2,s
+   0056 B7*00               108 	sta	*__ret2
+   0058 9E EE 03            109 	ldx	3,s
+   005B 9E E6 04            110 	lda	4,s
+   005E                     111 00101$:
+   005E A7 04               112 	ais	#4
+   0060 81                  113 	rts
+                            114 	.area CSEG (CODE)
+                            115 	.area CONST   (CODE)
+                            116 	.area XINIT
+                            117 	.area CABS    (ABS,CODE)

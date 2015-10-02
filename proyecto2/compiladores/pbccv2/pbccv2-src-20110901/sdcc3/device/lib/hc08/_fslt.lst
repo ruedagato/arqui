@@ -1,0 +1,207 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _fslt
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl ___fslt_PARM_2
+                             25 	.globl ___fslt_PARM_1
+                             26 	.globl ___fslt
+                             27 ;--------------------------------------------------------
+                             28 ;  ram data
+                             29 ;--------------------------------------------------------
+                             30 	.area DSEG
+                             31 ;--------------------------------------------------------
+                             32 ; overlayable items in  ram 
+                             33 ;--------------------------------------------------------
+                             34 	.area	OSEG    (OVR)
+   0000                      35 ___fslt_sloc0_1_0::
+   0000                      36 	.ds 4
+   0004                      37 ___fslt_sloc1_1_0::
+   0004                      38 	.ds 4
+                             39 ;--------------------------------------------------------
+                             40 ; absolute external ram data
+                             41 ;--------------------------------------------------------
+                             42 	.area XABS    (ABS)
+                             43 ;--------------------------------------------------------
+                             44 ; external initialized ram data
+                             45 ;--------------------------------------------------------
+                             46 	.area XISEG
+                             47 ;--------------------------------------------------------
+                             48 ; extended address mode data
+                             49 ;--------------------------------------------------------
+                             50 	.area XSEG
+   0000                      51 ___fslt_PARM_1:
+   0000                      52 	.ds 4
+   0004                      53 ___fslt_PARM_2:
+   0004                      54 	.ds 4
+   0008                      55 ___fslt_fl1_1_1:
+   0008                      56 	.ds 4
+   000C                      57 ___fslt_fl2_1_1:
+   000C                      58 	.ds 4
+                             59 ;--------------------------------------------------------
+                             60 ; global & static initialisations
+                             61 ;--------------------------------------------------------
+                             62 	.area HOME (CODE)
+                             63 	.area GSINIT (CODE)
+                             64 	.area GSFINAL (CODE)
+                             65 	.area GSINIT (CODE)
+                             66 ;--------------------------------------------------------
+                             67 ; Home
+                             68 ;--------------------------------------------------------
+                             69 	.area HOME (CODE)
+                             70 	.area HOME (CODE)
+                             71 ;--------------------------------------------------------
+                             72 ; code
+                             73 ;--------------------------------------------------------
+                             74 	.area CSEG (CODE)
+                             75 ;------------------------------------------------------------
+                             76 ;Allocation info for local variables in function '__fslt'
+                             77 ;------------------------------------------------------------
+                             78 ;a1                        Allocated with name '___fslt_PARM_1'
+                             79 ;a2                        Allocated with name '___fslt_PARM_2'
+                             80 ;fl1                       Allocated with name '___fslt_fl1_1_1'
+                             81 ;fl2                       Allocated with name '___fslt_fl2_1_1'
+                             82 ;sloc0                     Allocated with name '___fslt_sloc0_1_0'
+                             83 ;sloc1                     Allocated with name '___fslt_sloc1_1_0'
+                             84 ;------------------------------------------------------------
+                             85 ;../_fslt.c:108: char __fslt (float a1, float a2)
+                             86 ;	-----------------------------------------
+                             87 ;	 function __fslt
+                             88 ;	-----------------------------------------
+   0000                      89 ___fslt:
+                             90 ;../_fslt.c:112: fl1.f = a1;
+   0000 C6s00r00             91 	lda	___fslt_PARM_1
+   0003 C7s00r08             92 	sta	___fslt_fl1_1_1
+   0006 C6s00r01             93 	lda	(___fslt_PARM_1 + 1)
+   0009 C7s00r09             94 	sta	(___fslt_fl1_1_1 + 1)
+   000C C6s00r02             95 	lda	(___fslt_PARM_1 + 2)
+   000F C7s00r0A             96 	sta	(___fslt_fl1_1_1 + 2)
+   0012 C6s00r03             97 	lda	(___fslt_PARM_1 + 3)
+   0015 C7s00r0B             98 	sta	(___fslt_fl1_1_1 + 3)
+                             99 ;../_fslt.c:113: fl2.f = a2;
+   0018 C6s00r04            100 	lda	___fslt_PARM_2
+   001B C7s00r0C            101 	sta	___fslt_fl2_1_1
+   001E C6s00r05            102 	lda	(___fslt_PARM_2 + 1)
+   0021 C7s00r0D            103 	sta	(___fslt_fl2_1_1 + 1)
+   0024 C6s00r06            104 	lda	(___fslt_PARM_2 + 2)
+   0027 C7s00r0E            105 	sta	(___fslt_fl2_1_1 + 2)
+   002A C6s00r07            106 	lda	(___fslt_PARM_2 + 3)
+   002D C7s00r0F            107 	sta	(___fslt_fl2_1_1 + 3)
+                            108 ;../_fslt.c:115: if (fl1.l<0 && fl2.l<0) {
+   0030 C6s00r08            109 	lda	___fslt_fl1_1_1
+   0033 B7*00               110 	sta	*___fslt_sloc0_1_0
+   0035 C6s00r09            111 	lda	(___fslt_fl1_1_1 + 1)
+   0038 B7*01               112 	sta	*(___fslt_sloc0_1_0 + 1)
+   003A C6s00r0A            113 	lda	(___fslt_fl1_1_1 + 2)
+   003D B7*02               114 	sta	*(___fslt_sloc0_1_0 + 2)
+   003F C6s00r0B            115 	lda	(___fslt_fl1_1_1 + 3)
+   0042 B7*03               116 	sta	*(___fslt_sloc0_1_0 + 3)
+   0044 B6*00               117 	lda	*___fslt_sloc0_1_0
+   0046 A0 00               118 	sub	#0x00
+   0048 91 02               119 	blt	00114$
+   004A 20 59               120 	bra	00104$
+   004C                     121 00114$:
+   004C C6s00r0C            122 	lda	___fslt_fl2_1_1
+   004F B7*00               123 	sta	*___fslt_sloc0_1_0
+   0051 C6s00r0D            124 	lda	(___fslt_fl2_1_1 + 1)
+   0054 B7*01               125 	sta	*(___fslt_sloc0_1_0 + 1)
+   0056 C6s00r0E            126 	lda	(___fslt_fl2_1_1 + 2)
+   0059 B7*02               127 	sta	*(___fslt_sloc0_1_0 + 2)
+   005B C6s00r0F            128 	lda	(___fslt_fl2_1_1 + 3)
+   005E B7*03               129 	sta	*(___fslt_sloc0_1_0 + 3)
+   0060 B6*00               130 	lda	*___fslt_sloc0_1_0
+   0062 A0 00               131 	sub	#0x00
+   0064 90 3F               132 	bge	00104$
+   0066                     133 00115$:
+                            134 ;../_fslt.c:116: if (fl2.l < fl1.l)
+   0066 C6s00r0C            135 	lda	___fslt_fl2_1_1
+   0069 B7*00               136 	sta	*___fslt_sloc0_1_0
+   006B C6s00r0D            137 	lda	(___fslt_fl2_1_1 + 1)
+   006E B7*01               138 	sta	*(___fslt_sloc0_1_0 + 1)
+   0070 C6s00r0E            139 	lda	(___fslt_fl2_1_1 + 2)
+   0073 B7*02               140 	sta	*(___fslt_sloc0_1_0 + 2)
+   0075 C6s00r0F            141 	lda	(___fslt_fl2_1_1 + 3)
+   0078 B7*03               142 	sta	*(___fslt_sloc0_1_0 + 3)
+   007A C6s00r08            143 	lda	___fslt_fl1_1_1
+   007D B7*04               144 	sta	*___fslt_sloc1_1_0
+   007F C6s00r09            145 	lda	(___fslt_fl1_1_1 + 1)
+   0082 B7*05               146 	sta	*(___fslt_sloc1_1_0 + 1)
+   0084 C6s00r0A            147 	lda	(___fslt_fl1_1_1 + 2)
+   0087 B7*06               148 	sta	*(___fslt_sloc1_1_0 + 2)
+   0089 C6s00r0B            149 	lda	(___fslt_fl1_1_1 + 3)
+   008C B7*07               150 	sta	*(___fslt_sloc1_1_0 + 3)
+   008E B6*03               151 	lda	*(___fslt_sloc0_1_0 + 3)
+   0090 B0*07               152 	sub	*(___fslt_sloc1_1_0 + 3)
+   0092 B6*02               153 	lda	*(___fslt_sloc0_1_0 + 2)
+   0094 B2*06               154 	sbc	*(___fslt_sloc1_1_0 + 2)
+   0096 B6*01               155 	lda	*(___fslt_sloc0_1_0 + 1)
+   0098 B2*05               156 	sbc	*(___fslt_sloc1_1_0 + 1)
+   009A B6*00               157 	lda	*___fslt_sloc0_1_0
+   009C B2*04               158 	sbc	*___fslt_sloc1_1_0
+   009E 90 03               159 	bge	00102$
+   00A0                     160 00116$:
+                            161 ;../_fslt.c:117: return (1);
+   00A0 A6 01               162 	lda	#0x01
+   00A2 81                  163 	rts
+   00A3                     164 00102$:
+                            165 ;../_fslt.c:118: return (0);
+   00A3 4F                  166 	clra
+   00A4 81                  167 	rts
+   00A5                     168 00104$:
+                            169 ;../_fslt.c:121: if (fl1.l < fl2.l)
+   00A5 C6s00r08            170 	lda	___fslt_fl1_1_1
+   00A8 B7*04               171 	sta	*___fslt_sloc1_1_0
+   00AA C6s00r09            172 	lda	(___fslt_fl1_1_1 + 1)
+   00AD B7*05               173 	sta	*(___fslt_sloc1_1_0 + 1)
+   00AF C6s00r0A            174 	lda	(___fslt_fl1_1_1 + 2)
+   00B2 B7*06               175 	sta	*(___fslt_sloc1_1_0 + 2)
+   00B4 C6s00r0B            176 	lda	(___fslt_fl1_1_1 + 3)
+   00B7 B7*07               177 	sta	*(___fslt_sloc1_1_0 + 3)
+   00B9 C6s00r0C            178 	lda	___fslt_fl2_1_1
+   00BC B7*00               179 	sta	*___fslt_sloc0_1_0
+   00BE C6s00r0D            180 	lda	(___fslt_fl2_1_1 + 1)
+   00C1 B7*01               181 	sta	*(___fslt_sloc0_1_0 + 1)
+   00C3 C6s00r0E            182 	lda	(___fslt_fl2_1_1 + 2)
+   00C6 B7*02               183 	sta	*(___fslt_sloc0_1_0 + 2)
+   00C8 C6s00r0F            184 	lda	(___fslt_fl2_1_1 + 3)
+   00CB B7*03               185 	sta	*(___fslt_sloc0_1_0 + 3)
+   00CD B6*07               186 	lda	*(___fslt_sloc1_1_0 + 3)
+   00CF B0*03               187 	sub	*(___fslt_sloc0_1_0 + 3)
+   00D1 B6*06               188 	lda	*(___fslt_sloc1_1_0 + 2)
+   00D3 B2*02               189 	sbc	*(___fslt_sloc0_1_0 + 2)
+   00D5 B6*05               190 	lda	*(___fslt_sloc1_1_0 + 1)
+   00D7 B2*01               191 	sbc	*(___fslt_sloc0_1_0 + 1)
+   00D9 B6*04               192 	lda	*___fslt_sloc1_1_0
+   00DB B2*00               193 	sbc	*___fslt_sloc0_1_0
+   00DD 90 03               194 	bge	00107$
+   00DF                     195 00117$:
+                            196 ;../_fslt.c:122: return (1);
+   00DF A6 01               197 	lda	#0x01
+   00E1 81                  198 	rts
+   00E2                     199 00107$:
+                            200 ;../_fslt.c:123: return (0);
+   00E2 4F                  201 	clra
+   00E3                     202 00108$:
+   00E3 81                  203 	rts
+                            204 	.area CSEG (CODE)
+                            205 	.area CONST   (CODE)
+                            206 	.area XINIT
+                            207 	.area CABS    (ABS,CODE)

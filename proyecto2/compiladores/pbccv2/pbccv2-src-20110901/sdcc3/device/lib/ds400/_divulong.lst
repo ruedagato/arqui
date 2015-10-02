@@ -1,0 +1,356 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:19 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _divulong
+                              7 	.optsdcc -mds400 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl __divulong_PARM_2
+                             31 	.globl __divulong
+                             32 ;--------------------------------------------------------
+                             33 ; special function registers
+                             34 ;--------------------------------------------------------
+                             35 ;--------------------------------------------------------
+                             36 ; special function bits
+                             37 ;--------------------------------------------------------
+                             38 ;--------------------------------------------------------
+                             39 ; overlayable register banks
+                             40 ;--------------------------------------------------------
+                             41 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      42 	.ds 8
+                             43 	.area REG_BANK_3	(REL,OVR,DATA)
+   0000                      44 	.ds 8
+                             45 ;--------------------------------------------------------
+                             46 ; internal ram data
+                             47 ;--------------------------------------------------------
+                             48 	.area DSEG    (DATA)
+                             49 ;--------------------------------------------------------
+                             50 ; overlayable items in internal ram 
+                             51 ;--------------------------------------------------------
+                             52 	.area OSEG    (OVR,DATA)
+                             53 ;--------------------------------------------------------
+                             54 ; indirectly addressable internal ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area ISEG    (DATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute internal ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area IABS    (ABS,DATA)
+                             61 	.area IABS    (ABS,DATA)
+                             62 ;--------------------------------------------------------
+                             63 ; bit data
+                             64 ;--------------------------------------------------------
+                             65 	.area BSEG    (BIT)
+   0000                      66 __divulong_c_1_1:
+   0000                      67 	.ds 1
+                             68 ;--------------------------------------------------------
+                             69 ; paged external ram data
+                             70 ;--------------------------------------------------------
+                             71 	.area PSEG    (PAG,XDATA)
+                             72 ;--------------------------------------------------------
+                             73 ; external ram data
+                             74 ;--------------------------------------------------------
+                             75 	.area XSEG    (XDATA)
+   0000                      76 __divulong_PARM_2:
+   0000                      77 	.ds 4
+   0004                      78 __divulong_reste_1_1:
+   0004                      79 	.ds 4
+                             80 ;--------------------------------------------------------
+                             81 ; absolute external ram data
+                             82 ;--------------------------------------------------------
+                             83 	.area XABS    (ABS,XDATA)
+                             84 ;--------------------------------------------------------
+                             85 ; external initialized ram data
+                             86 ;--------------------------------------------------------
+                             87 	.area XISEG   (XDATA)
+                             88 ;--------------------------------------------------------
+                             89 ; global & static initialisations
+                             90 ;--------------------------------------------------------
+                             91 	.area HOME    (CODE)
+                             92 	.area GSINIT  (CODE)
+                             93 	.area GSFINAL (CODE)
+                             94 	.area GSINIT  (CODE)
+                             95 ;--------------------------------------------------------
+                             96 ; Home
+                             97 ;--------------------------------------------------------
+                             98 	.area HOME    (CODE)
+                             99 	.area HOME    (CODE)
+                            100 ;--------------------------------------------------------
+                            101 ; code
+                            102 ;--------------------------------------------------------
+                            103 	.area CSEG    (CODE)
+                            104 ;------------------------------------------------------------
+                            105 ;Allocation info for local variables in function '_divulong'
+                            106 ;------------------------------------------------------------
+                            107 ;y                         Allocated with name '__divulong_PARM_2'
+                            108 ;x                         Allocated to registers r2 r3 r4 r5 
+                            109 ;reste                     Allocated with name '__divulong_reste_1_1'
+                            110 ;count                     Allocated to registers 
+                            111 ;------------------------------------------------------------
+                            112 ;	_divulong.c:331: _divulong (unsigned long x, unsigned long y)
+                            113 ;	-----------------------------------------
+                            114 ;	 function _divulong
+                            115 ;	-----------------------------------------
+   0000                     116 __divulong:
+                    0002    117 	ar2 = 0x02
+                    0003    118 	ar3 = 0x03
+                    0004    119 	ar4 = 0x04
+                    0005    120 	ar5 = 0x05
+                    0006    121 	ar6 = 0x06
+                    0007    122 	ar7 = 0x07
+                    0000    123 	ar0 = 0x00
+                    0001    124 	ar1 = 0x01
+   0000 AA 82               125 	mov	r2,dpl
+   0002 AB 83               126 	mov	r3,dph
+   0004 AC 93               127 	mov	r4,dpx
+   0006 AD F0               128 	mov	r5,b
+                            129 ;	_divulong.c:333: unsigned long reste = 0L;
+                            130 ;	genAssign: resultIsFar = TRUE
+   0008 90s00r00r04         131 	mov	dptr,#__divulong_reste_1_1
+   000C E4                  132 	clr	a
+   000D F0                  133 	movx	@dptr,a
+   000E A3                  134 	inc	dptr
+   000F F0                  135 	movx	@dptr,a
+   0010 A3                  136 	inc	dptr
+   0011 F0                  137 	movx	@dptr,a
+   0012 A3                  138 	inc	dptr
+   0013 F0                  139 	movx	@dptr,a
+                            140 ;	_divulong.c:337: do
+                            141 ;	genAssign: resultIsFar = FALSE
+   0014 7E 20               142 	mov	r6,#0x20
+   0016                     143 00105$:
+                            144 ;	_divulong.c:340: c = MSB_SET(x);
+   0016 C0 06               145 	push	ar6
+   0018 ED                  146 	mov	a,r5
+   0019 33                  147 	rlc	a
+   001A 92*00               148 	mov	__divulong_c_1_1,c
+                            149 ;	_divulong.c:341: x <<= 1;
+   001C 75 F0 02            150 	mov	b,#0x02
+   001F AF 02               151 	mov	r7,ar2
+   0021 A8 03               152 	mov	r0,ar3
+   0023 A9 04               153 	mov	r1,ar4
+   0025 AE 05               154 	mov	r6,ar5
+   0027 80 0D               155 	sjmp	00116$
+   0029                     156 00115$:
+   0029 EF                  157 	mov	a,r7
+   002A 25 E0               158 	add	a,acc
+   002C FF                  159 	mov	r7,a
+   002D E8                  160 	mov	a,r0
+   002E 33                  161 	rlc	a
+   002F F8                  162 	mov	r0,a
+   0030 E9                  163 	mov	a,r1
+   0031 33                  164 	rlc	a
+   0032 F9                  165 	mov	r1,a
+   0033 EE                  166 	mov	a,r6
+   0034 33                  167 	rlc	a
+   0035 FE                  168 	mov	r6,a
+   0036                     169 00116$:
+   0036 D5 F0 F0            170 	djnz	b,00115$
+                            171 ;	genAssign: resultIsFar = TRUE
+   0039 8F 02               172 	mov	ar2,r7
+   003B 88 03               173 	mov	ar3,r0
+   003D 89 04               174 	mov	ar4,r1
+   003F 8E 05               175 	mov	ar5,r6
+                            176 ;	_divulong.c:342: reste <<= 1;
+   0041 75 F0 02            177 	mov	b,#0x02
+   0044 90s00r00r04         178 	mov	dptr,#__divulong_reste_1_1
+   0048 E0                  179 	movx	a,@dptr
+   0049 FE                  180 	mov     r6,a
+   004A A3                  181 	inc	dptr
+   004B E0                  182 	movx	a,@dptr
+   004C FF                  183 	mov     r7,a
+   004D A3                  184 	inc	dptr
+   004E E0                  185 	movx	a,@dptr
+   004F F8                  186 	mov     r0,a
+   0050 A3                  187 	inc	dptr
+   0051 E0                  188 	movx	a,@dptr
+   0052 F9                  189 	mov     r1,a
+   0053 80 0D               190 	sjmp	00118$
+   0055                     191 00117$:
+   0055 EE                  192 	mov	a,r6
+   0056 25 E0               193 	add	a,acc
+   0058 FE                  194 	mov	r6,a
+   0059 EF                  195 	mov	a,r7
+   005A 33                  196 	rlc	a
+   005B FF                  197 	mov	r7,a
+   005C E8                  198 	mov	a,r0
+   005D 33                  199 	rlc	a
+   005E F8                  200 	mov	r0,a
+   005F E9                  201 	mov	a,r1
+   0060 33                  202 	rlc	a
+   0061 F9                  203 	mov	r1,a
+   0062                     204 00118$:
+   0062 D5 F0 F0            205 	djnz	b,00117$
+                            206 ;	genAssign: resultIsFar = TRUE
+   0065 90s00r00r04         207 	mov	dptr,#__divulong_reste_1_1
+   0069 EE                  208 	mov	a,r6
+   006A F0                  209 	movx	@dptr,a
+   006B A3                  210 	inc	dptr
+   006C EF                  211 	mov	a,r7
+   006D F0                  212 	movx	@dptr,a
+   006E A3                  213 	inc	dptr
+   006F E8                  214 	mov	a,r0
+   0070 F0                  215 	movx	@dptr,a
+   0071 A3                  216 	inc	dptr
+   0072 E9                  217 	mov	a,r1
+   0073 F0                  218 	movx	@dptr,a
+                            219 ;	_divulong.c:343: if (c)
+   0074 D0 06               220 	pop	ar6
+   0076 30*00 11            221 	jnb  __divulong_c_1_1,00102$
+   0079                     222 00119$:
+                            223 ;	_divulong.c:344: reste |= 1L;
+   0079 90s00r00r04         224 	mov	dptr,#__divulong_reste_1_1
+   007D E0                  225 	movx	a,@dptr
+   007E 44 01               226 	orl	a,#0x01
+   0080 F0                  227 	movx	@dptr,a
+   0081 A3                  228 	inc	dptr
+   0082 E0                  229 	movx	a,@dptr
+   0083 F0                  230 	movx	@dptr,a
+   0084 A3                  231 	inc	dptr
+   0085 E0                  232 	movx	a,@dptr
+   0086 F0                  233 	movx	@dptr,a
+   0087 A3                  234 	inc	dptr
+   0088 E0                  235 	movx	a,@dptr
+   0089 F0                  236 	movx	@dptr,a
+   008A                     237 00102$:
+                            238 ;	_divulong.c:346: if (reste >= y)
+   008A 90s00r00r00         239 	mov	dptr,#__divulong_PARM_2
+   008E 75 86 01            240 	mov	dps, #1
+   0091 90s00r00r04         241 	mov	dptr, #__divulong_reste_1_1
+   0095 15 86               242 	dec	dps
+   0097 C3                  243 	clr	c
+   0098 75 86 01            244 	mov	dps,#1
+   009B E0                  245 	movx	a,@dptr
+   009C 75 86 00            246 	mov	dps,#0
+   009F C5 F0               247 	xch	a, b
+   00A1 E0                  248 	movx	a,@dptr
+   00A2 C5 F0               249 	xch	a, b
+   00A4 95 F0               250 	subb	a,b
+   00A6 75 86 01            251 	mov	dps,#1
+   00A9 A3                  252 	inc	dptr
+   00AA E0                  253 	movx	a,@dptr
+   00AB 75 86 00            254 	mov	dps,#0
+   00AE C5 F0               255 	xch	a, b
+   00B0 A3                  256 	inc	dptr
+   00B1 E0                  257 	movx	a,@dptr
+   00B2 C5 F0               258 	xch	a, b
+   00B4 95 F0               259 	subb	a,b
+   00B6 75 86 01            260 	mov	dps,#1
+   00B9 A3                  261 	inc	dptr
+   00BA E0                  262 	movx	a,@dptr
+   00BB 75 86 00            263 	mov	dps,#0
+   00BE C5 F0               264 	xch	a, b
+   00C0 A3                  265 	inc	dptr
+   00C1 E0                  266 	movx	a,@dptr
+   00C2 C5 F0               267 	xch	a, b
+   00C4 95 F0               268 	subb	a,b
+   00C6 75 86 01            269 	mov	dps,#1
+   00C9 A3                  270 	inc	dptr
+   00CA E0                  271 	movx	a,@dptr
+   00CB 75 86 00            272 	mov	dps,#0
+   00CE C5 F0               273 	xch	a, b
+   00D0 A3                  274 	inc	dptr
+   00D1 E0                  275 	movx	a,@dptr
+   00D2 C5 F0               276 	xch	a, b
+   00D4 95 F0               277 	subb	a,b
+   00D6 40 57               278 	jc   00106$
+   00D8                     279 00120$:
+                            280 ;	_divulong.c:348: reste -= y;
+   00D8 C0 06               281 	push	ar6
+   00DA 90s00r00r00         282 	mov	dptr,#__divulong_PARM_2
+   00DE 75 86 01            283 	mov	dps, #1
+   00E1 90s00r00r04         284 	mov	dptr, #__divulong_reste_1_1
+   00E5 15 86               285 	dec	dps
+   00E7 C3                  286 	clr	c
+   00E8 E0                  287 	movx	a,@dptr
+   00E9 F5 F0               288 	mov	b,a
+   00EB 05 86               289 	inc	dps
+   00ED E0                  290 	movx	a,@dptr
+   00EE 95 F0               291 	subb	a,b
+   00F0 FF                  292 	mov	r7,a
+   00F1 15 86               293 	dec	dps
+   00F3 A3                  294 	inc	dptr
+   00F4 E0                  295 	movx	a,@dptr
+   00F5 F5 F0               296 	mov	b,a
+   00F7 05 86               297 	inc	dps
+   00F9 A3                  298 	inc	dptr
+   00FA E0                  299 	movx	a,@dptr
+   00FB 95 F0               300 	subb	a,b
+   00FD F8                  301 	mov	r0,a
+   00FE 15 86               302 	dec	dps
+   0100 A3                  303 	inc	dptr
+   0101 E0                  304 	movx	a,@dptr
+   0102 F5 F0               305 	mov	b,a
+   0104 05 86               306 	inc	dps
+   0106 A3                  307 	inc	dptr
+   0107 E0                  308 	movx	a,@dptr
+   0108 95 F0               309 	subb	a,b
+   010A F9                  310 	mov	r1,a
+   010B 15 86               311 	dec	dps
+   010D A3                  312 	inc	dptr
+   010E E0                  313 	movx	a,@dptr
+   010F F5 F0               314 	mov	b,a
+   0111 05 86               315 	inc	dps
+   0113 A3                  316 	inc	dptr
+   0114 E0                  317 	movx	a,@dptr
+   0115 95 F0               318 	subb	a,b
+   0117 FE                  319 	mov	r6,a
+   0118 75 86 00            320 	mov	dps,#0
+                            321 ;	genAssign: resultIsFar = TRUE
+   011B 90s00r00r04         322 	mov	dptr,#__divulong_reste_1_1
+   011F EF                  323 	mov	a,r7
+   0120 F0                  324 	movx	@dptr,a
+   0121 A3                  325 	inc	dptr
+   0122 E8                  326 	mov	a,r0
+   0123 F0                  327 	movx	@dptr,a
+   0124 A3                  328 	inc	dptr
+   0125 E9                  329 	mov	a,r1
+   0126 F0                  330 	movx	@dptr,a
+   0127 A3                  331 	inc	dptr
+   0128 EE                  332 	mov	a,r6
+   0129 F0                  333 	movx	@dptr,a
+                            334 ;	_divulong.c:350: x |= 1L;
+   012A 43 02 01            335 	orl	ar2,#0x01
+                            336 ;	_divulong.c:354: return x;
+   012D D0 06               337 	pop	ar6
+                            338 ;	_divulong.c:350: x |= 1L;
+   012F                     339 00106$:
+                            340 ;	_divulong.c:353: while (--count);
+   012F DE 02               341 	djnz  r6,00121$
+   0131 80 04               342 	sjmp	00122$
+   0133                     343 00121$:
+   0133 02s00r00r16         344 	ljmp	00105$
+   0137                     345 00122$:
+                            346 ;	_divulong.c:354: return x;
+   0137 8A 82               347 	mov	dpl,r2
+   0139 8B 83               348 	mov	dph,r3
+   013B 8C 93               349 	mov	dpx,r4
+   013D 8D F0               350 	mov	b,r5
+   013F                     351 00108$:
+   013F 22                  352 	ret
+                            353 	.area CSEG    (CODE)
+                            354 	.area CONST   (CODE)
+                            355 	.area XINIT   (CODE)
+                            356 	.area CABS    (ABS,CODE)

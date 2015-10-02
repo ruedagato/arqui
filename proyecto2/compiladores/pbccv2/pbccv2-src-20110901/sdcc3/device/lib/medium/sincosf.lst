@@ -1,0 +1,914 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:25 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module sincosf
+                              7 	.optsdcc -mmcs51 --model-medium
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _sincosf
+                             13 	.globl _sincosf_PARM_2
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 	.area RSEG    (ABS,DATA)
+   0000                      18 	.org 0x0000
+                             19 ;--------------------------------------------------------
+                             20 ; special function bits
+                             21 ;--------------------------------------------------------
+                             22 	.area RSEG    (ABS,DATA)
+   0000                      23 	.org 0x0000
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable register banks
+                             26 ;--------------------------------------------------------
+                             27 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      28 	.ds 8
+                             29 ;--------------------------------------------------------
+                             30 ; internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area DSEG    (DATA)
+   0000                      33 _sincosf_sloc0_1_0:
+   0000                      34 	.ds 4
+                             35 ;--------------------------------------------------------
+                             36 ; overlayable items in internal ram 
+                             37 ;--------------------------------------------------------
+                             38 	.area OSEG    (OVR,DATA)
+                             39 ;--------------------------------------------------------
+                             40 ; indirectly addressable internal ram data
+                             41 ;--------------------------------------------------------
+                             42 	.area ISEG    (DATA)
+                             43 ;--------------------------------------------------------
+                             44 ; absolute internal ram data
+                             45 ;--------------------------------------------------------
+                             46 	.area IABS    (ABS,DATA)
+                             47 	.area IABS    (ABS,DATA)
+                             48 ;--------------------------------------------------------
+                             49 ; bit data
+                             50 ;--------------------------------------------------------
+                             51 	.area BSEG    (BIT)
+   0000                      52 _sincosf_PARM_2:
+   0000                      53 	.ds 1
+   0001                      54 _sincosf_sign_1_1:
+   0001                      55 	.ds 1
+                             56 ;--------------------------------------------------------
+                             57 ; paged external ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area PSEG    (PAG,XDATA)
+   0000                      60 _sincosf_x_1_1:
+   0000                      61 	.ds 4
+   0004                      62 _sincosf_f_1_1:
+   0004                      63 	.ds 4
+   0008                      64 _sincosf_r_1_1:
+   0008                      65 	.ds 4
+   000C                      66 _sincosf_g_1_1:
+   000C                      67 	.ds 4
+   0010                      68 _sincosf_XN_1_1:
+   0010                      69 	.ds 4
+                             70 ;--------------------------------------------------------
+                             71 ; external ram data
+                             72 ;--------------------------------------------------------
+                             73 	.area XSEG    (XDATA)
+                             74 ;--------------------------------------------------------
+                             75 ; absolute external ram data
+                             76 ;--------------------------------------------------------
+                             77 	.area XABS    (ABS,XDATA)
+                             78 ;--------------------------------------------------------
+                             79 ; external initialized ram data
+                             80 ;--------------------------------------------------------
+                             81 	.area XISEG   (XDATA)
+                             82 	.area HOME    (CODE)
+                             83 	.area GSINIT0 (CODE)
+                             84 	.area GSINIT1 (CODE)
+                             85 	.area GSINIT2 (CODE)
+                             86 	.area GSINIT3 (CODE)
+                             87 	.area GSINIT4 (CODE)
+                             88 	.area GSINIT5 (CODE)
+                             89 	.area GSINIT  (CODE)
+                             90 	.area GSFINAL (CODE)
+                             91 	.area CSEG    (CODE)
+                             92 ;--------------------------------------------------------
+                             93 ; global & static initialisations
+                             94 ;--------------------------------------------------------
+                             95 	.area HOME    (CODE)
+                             96 	.area GSINIT  (CODE)
+                             97 	.area GSFINAL (CODE)
+                             98 	.area GSINIT  (CODE)
+                             99 ;--------------------------------------------------------
+                            100 ; Home
+                            101 ;--------------------------------------------------------
+                            102 	.area HOME    (CODE)
+                            103 	.area HOME    (CODE)
+                            104 ;--------------------------------------------------------
+                            105 ; code
+                            106 ;--------------------------------------------------------
+                            107 	.area CSEG    (CODE)
+                            108 ;------------------------------------------------------------
+                            109 ;Allocation info for local variables in function 'sincosf'
+                            110 ;------------------------------------------------------------
+                            111 ;sloc0                     Allocated with name '_sincosf_sloc0_1_0'
+                            112 ;------------------------------------------------------------
+                            113 ;	sincosf.c:50: float sincosf(const float x, const BOOL iscos)
+                            114 ;	-----------------------------------------
+                            115 ;	 function sincosf
+                            116 ;	-----------------------------------------
+   0000                     117 _sincosf:
+                    0002    118 	ar2 = 0x02
+                    0003    119 	ar3 = 0x03
+                    0004    120 	ar4 = 0x04
+                    0005    121 	ar5 = 0x05
+                    0006    122 	ar6 = 0x06
+                    0007    123 	ar7 = 0x07
+                    0000    124 	ar0 = 0x00
+                    0001    125 	ar1 = 0x01
+   0000 AA 82               126 	mov	r2,dpl
+   0002 AB 83               127 	mov	r3,dph
+   0004 AC F0               128 	mov	r4,b
+   0006 FD                  129 	mov	r5,a
+   0007 78r00               130 	mov	r0,#_sincosf_x_1_1
+   0009 EA                  131 	mov	a,r2
+   000A F2                  132 	movx	@r0,a
+   000B 08                  133 	inc	r0
+   000C EB                  134 	mov	a,r3
+   000D F2                  135 	movx	@r0,a
+   000E 08                  136 	inc	r0
+   000F EC                  137 	mov	a,r4
+   0010 F2                  138 	movx	@r0,a
+   0011 08                  139 	inc	r0
+   0012 ED                  140 	mov	a,r5
+   0013 F2                  141 	movx	@r0,a
+                            142 ;	sincosf.c:56: if(iscos)
+   0014 30*00 44            143 	jnb	_sincosf_PARM_2,00105$
+                            144 ;	sincosf.c:58: y=fabsf(x)+HALF_PI;
+   0017 78r00               145 	mov	r0,#_sincosf_x_1_1
+   0019 E2                  146 	movx	a,@r0
+   001A F5 82               147 	mov	dpl,a
+   001C 08                  148 	inc	r0
+   001D E2                  149 	movx	a,@r0
+   001E F5 83               150 	mov	dph,a
+   0020 08                  151 	inc	r0
+   0021 E2                  152 	movx	a,@r0
+   0022 F5 F0               153 	mov	b,a
+   0024 08                  154 	inc	r0
+   0025 E2                  155 	movx	a,@r0
+   0026 12s00r00            156 	lcall	_fabsf
+   0029 AE 82               157 	mov	r6,dpl
+   002B AF 83               158 	mov	r7,dph
+   002D AA F0               159 	mov	r2,b
+   002F FB                  160 	mov	r3,a
+   0030 74 DB               161 	mov	a,#0xDB
+   0032 C0 E0               162 	push	acc
+   0034 74 0F               163 	mov	a,#0x0F
+   0036 C0 E0               164 	push	acc
+   0038 74 C9               165 	mov	a,#0xC9
+   003A C0 E0               166 	push	acc
+   003C 74 3F               167 	mov	a,#0x3F
+   003E C0 E0               168 	push	acc
+   0040 8E 82               169 	mov	dpl,r6
+   0042 8F 83               170 	mov	dph,r7
+   0044 8A F0               171 	mov	b,r2
+   0046 EB                  172 	mov	a,r3
+   0047 12s00r00            173 	lcall	___fsadd
+   004A AA 82               174 	mov	r2,dpl
+   004C AB 83               175 	mov	r3,dph
+   004E AC F0               176 	mov	r4,b
+   0050 FD                  177 	mov	r5,a
+   0051 E5 81               178 	mov	a,sp
+   0053 24 FC               179 	add	a,#0xfc
+   0055 F5 81               180 	mov	sp,a
+                            181 ;	sincosf.c:59: sign=0;
+   0057 C2*01               182 	clr	_sincosf_sign_1_1
+   0059 80 48               183 	sjmp	00106$
+   005B                     184 00105$:
+                            185 ;	sincosf.c:63: if(x<0.0)
+   005B E4                  186 	clr	a
+   005C C0 E0               187 	push	acc
+   005E C0 E0               188 	push	acc
+   0060 C0 E0               189 	push	acc
+   0062 C0 E0               190 	push	acc
+   0064 78r00               191 	mov	r0,#_sincosf_x_1_1
+   0066 E2                  192 	movx	a,@r0
+   0067 F5 82               193 	mov	dpl,a
+   0069 08                  194 	inc	r0
+   006A E2                  195 	movx	a,@r0
+   006B F5 83               196 	mov	dph,a
+   006D 08                  197 	inc	r0
+   006E E2                  198 	movx	a,@r0
+   006F F5 F0               199 	mov	b,a
+   0071 08                  200 	inc	r0
+   0072 E2                  201 	movx	a,@r0
+   0073 12s00r00            202 	lcall	___fslt
+   0076 AE 82               203 	mov	r6,dpl
+   0078 E5 81               204 	mov	a,sp
+   007A 24 FC               205 	add	a,#0xfc
+   007C F5 81               206 	mov	sp,a
+   007E EE                  207 	mov	a,r6
+   007F 60 13               208 	jz	00102$
+                            209 ;	sincosf.c:64: { y=-x; sign=1; }
+   0081 78r00               210 	mov	r0,#_sincosf_x_1_1
+   0083 E2                  211 	movx	a,@r0
+   0084 FA                  212 	mov	r2,a
+   0085 08                  213 	inc	r0
+   0086 E2                  214 	movx	a,@r0
+   0087 FB                  215 	mov	r3,a
+   0088 08                  216 	inc	r0
+   0089 E2                  217 	movx	a,@r0
+   008A FC                  218 	mov	r4,a
+   008B 08                  219 	inc	r0
+   008C E2                  220 	movx	a,@r0
+   008D B2 E7               221 	cpl	acc.7
+   008F FD                  222 	mov	r5,a
+   0090 D2*01               223 	setb	_sincosf_sign_1_1
+   0092 80 0F               224 	sjmp	00106$
+   0094                     225 00102$:
+                            226 ;	sincosf.c:66: { y=x; sign=0; }
+   0094 78r00               227 	mov	r0,#_sincosf_x_1_1
+   0096 E2                  228 	movx	a,@r0
+   0097 FA                  229 	mov	r2,a
+   0098 08                  230 	inc	r0
+   0099 E2                  231 	movx	a,@r0
+   009A FB                  232 	mov	r3,a
+   009B 08                  233 	inc	r0
+   009C E2                  234 	movx	a,@r0
+   009D FC                  235 	mov	r4,a
+   009E 08                  236 	inc	r0
+   009F E2                  237 	movx	a,@r0
+   00A0 FD                  238 	mov	r5,a
+   00A1 C2*01               239 	clr	_sincosf_sign_1_1
+   00A3                     240 00106$:
+                            241 ;	sincosf.c:69: if(y>YMAX)
+   00A3 C0 02               242 	push	ar2
+   00A5 C0 03               243 	push	ar3
+   00A7 C0 04               244 	push	ar4
+   00A9 C0 05               245 	push	ar5
+   00AB E4                  246 	clr	a
+   00AC C0 E0               247 	push	acc
+   00AE 74 0C               248 	mov	a,#0x0C
+   00B0 C0 E0               249 	push	acc
+   00B2 74 49               250 	mov	a,#0x49
+   00B4 C0 E0               251 	push	acc
+   00B6 74 46               252 	mov	a,#0x46
+   00B8 C0 E0               253 	push	acc
+   00BA 8A 82               254 	mov	dpl,r2
+   00BC 8B 83               255 	mov	dph,r3
+   00BE 8C F0               256 	mov	b,r4
+   00C0 ED                  257 	mov	a,r5
+   00C1 12s00r00            258 	lcall	___fsgt
+   00C4 AE 82               259 	mov	r6,dpl
+   00C6 E5 81               260 	mov	a,sp
+   00C8 24 FC               261 	add	a,#0xfc
+   00CA F5 81               262 	mov	sp,a
+   00CC D0 05               263 	pop	ar5
+   00CE D0 04               264 	pop	ar4
+   00D0 D0 03               265 	pop	ar3
+   00D2 D0 02               266 	pop	ar2
+   00D4 EE                  267 	mov	a,r6
+   00D5 60 0F               268 	jz	00108$
+                            269 ;	sincosf.c:71: errno=ERANGE;
+   00D7 78r00               270 	mov	r0,#_errno
+   00D9 74 22               271 	mov	a,#0x22
+   00DB F2                  272 	movx	@r0,a
+   00DC 08                  273 	inc	r0
+   00DD E4                  274 	clr	a
+   00DE F2                  275 	movx	@r0,a
+                            276 ;	sincosf.c:72: return 0.0;
+   00DF 90 00 00            277 	mov	dptr,#(0x00&0x00ff)
+   00E2 E4                  278 	clr	a
+   00E3 F5 F0               279 	mov	b,a
+   00E5 22                  280 	ret
+   00E6                     281 00108$:
+                            282 ;	sincosf.c:76: N=((y*iPI)+0.5); /*y is positive*/
+   00E6 C0 02               283 	push	ar2
+   00E8 C0 03               284 	push	ar3
+   00EA C0 04               285 	push	ar4
+   00EC C0 05               286 	push	ar5
+   00EE 90 F9 83            287 	mov	dptr,#0xF983
+   00F1 75 F0 A2            288 	mov	b,#0xA2
+   00F4 74 3E               289 	mov	a,#0x3E
+   00F6 12s00r00            290 	lcall	___fsmul
+   00F9 85 82*00            291 	mov	_sincosf_sloc0_1_0,dpl
+   00FC 85 83*01            292 	mov	(_sincosf_sloc0_1_0 + 1),dph
+   00FF 85 F0*02            293 	mov	(_sincosf_sloc0_1_0 + 2),b
+   0102 F5*03               294 	mov	(_sincosf_sloc0_1_0 + 3),a
+   0104 E5 81               295 	mov	a,sp
+   0106 24 FC               296 	add	a,#0xfc
+   0108 F5 81               297 	mov	sp,a
+   010A E4                  298 	clr	a
+   010B C0 E0               299 	push	acc
+   010D C0 E0               300 	push	acc
+   010F C0 E0               301 	push	acc
+   0111 74 3F               302 	mov	a,#0x3F
+   0113 C0 E0               303 	push	acc
+   0115 85*00 82            304 	mov	dpl,_sincosf_sloc0_1_0
+   0118 85*01 83            305 	mov	dph,(_sincosf_sloc0_1_0 + 1)
+   011B 85*02 F0            306 	mov	b,(_sincosf_sloc0_1_0 + 2)
+   011E E5*03               307 	mov	a,(_sincosf_sloc0_1_0 + 3)
+   0120 12s00r00            308 	lcall	___fsadd
+   0123 85 82*00            309 	mov	_sincosf_sloc0_1_0,dpl
+   0126 85 83*01            310 	mov	(_sincosf_sloc0_1_0 + 1),dph
+   0129 85 F0*02            311 	mov	(_sincosf_sloc0_1_0 + 2),b
+   012C F5*03               312 	mov	(_sincosf_sloc0_1_0 + 3),a
+   012E E5 81               313 	mov	a,sp
+   0130 24 FC               314 	add	a,#0xfc
+   0132 F5 81               315 	mov	sp,a
+   0134 85*00 82            316 	mov	dpl,_sincosf_sloc0_1_0
+   0137 85*01 83            317 	mov	dph,(_sincosf_sloc0_1_0 + 1)
+   013A 85*02 F0            318 	mov	b,(_sincosf_sloc0_1_0 + 2)
+   013D E5*03               319 	mov	a,(_sincosf_sloc0_1_0 + 3)
+   013F 12s00r00            320 	lcall	___fs2sint
+   0142 AE 82               321 	mov	r6,dpl
+   0144 AF 83               322 	mov	r7,dph
+                            323 ;	sincosf.c:79: if(N&1) sign=!sign;
+   0146 EE                  324 	mov	a,r6
+   0147 30 E0 02            325 	jnb	acc.0,00110$
+   014A B2*01               326 	cpl	_sincosf_sign_1_1
+   014C                     327 00110$:
+                            328 ;	sincosf.c:81: XN=N;
+   014C 8E 82               329 	mov	dpl,r6
+   014E 8F 83               330 	mov	dph,r7
+   0150 12s00r00            331 	lcall	___sint2fs
+   0153 78r10               332 	mov	r0,#_sincosf_XN_1_1
+   0155 C0 E0               333 	push	acc
+   0157 E5 82               334 	mov	a,dpl
+   0159 F2                  335 	movx	@r0,a
+   015A 08                  336 	inc	r0
+   015B E5 83               337 	mov	a,dph
+   015D F2                  338 	movx	@r0,a
+   015E 08                  339 	inc	r0
+   015F E5 F0               340 	mov	a,b
+   0161 F2                  341 	movx	@r0,a
+   0162 D0 E0               342 	pop	acc
+   0164 08                  343 	inc	r0
+   0165 F2                  344 	movx	@r0,a
+                            345 ;	sincosf.c:83: if(iscos) XN-=0.5;
+   0166 30*00 36            346 	jnb	_sincosf_PARM_2,00112$
+   0169 E4                  347 	clr	a
+   016A C0 E0               348 	push	acc
+   016C C0 E0               349 	push	acc
+   016E C0 E0               350 	push	acc
+   0170 74 3F               351 	mov	a,#0x3F
+   0172 C0 E0               352 	push	acc
+   0174 78r10               353 	mov	r0,#_sincosf_XN_1_1
+   0176 E2                  354 	movx	a,@r0
+   0177 F5 82               355 	mov	dpl,a
+   0179 08                  356 	inc	r0
+   017A E2                  357 	movx	a,@r0
+   017B F5 83               358 	mov	dph,a
+   017D 08                  359 	inc	r0
+   017E E2                  360 	movx	a,@r0
+   017F F5 F0               361 	mov	b,a
+   0181 08                  362 	inc	r0
+   0182 E2                  363 	movx	a,@r0
+   0183 12s00r00            364 	lcall	___fssub
+   0186 78r10               365 	mov	r0,#_sincosf_XN_1_1
+   0188 C0 E0               366 	push	acc
+   018A E5 82               367 	mov	a,dpl
+   018C F2                  368 	movx	@r0,a
+   018D 08                  369 	inc	r0
+   018E E5 83               370 	mov	a,dph
+   0190 F2                  371 	movx	@r0,a
+   0191 08                  372 	inc	r0
+   0192 E5 F0               373 	mov	a,b
+   0194 F2                  374 	movx	@r0,a
+   0195 D0 E0               375 	pop	acc
+   0197 08                  376 	inc	r0
+   0198 F2                  377 	movx	@r0,a
+   0199 E5 81               378 	mov	a,sp
+   019B 24 FC               379 	add	a,#0xfc
+   019D F5 81               380 	mov	sp,a
+   019F                     381 00112$:
+                            382 ;	sincosf.c:85: y=fabsf(x);
+   019F 78r00               383 	mov	r0,#_sincosf_x_1_1
+   01A1 E2                  384 	movx	a,@r0
+   01A2 F5 82               385 	mov	dpl,a
+   01A4 08                  386 	inc	r0
+   01A5 E2                  387 	movx	a,@r0
+   01A6 F5 83               388 	mov	dph,a
+   01A8 08                  389 	inc	r0
+   01A9 E2                  390 	movx	a,@r0
+   01AA F5 F0               391 	mov	b,a
+   01AC 08                  392 	inc	r0
+   01AD E2                  393 	movx	a,@r0
+   01AE 12s00r00            394 	lcall	_fabsf
+                            395 ;	sincosf.c:86: r=(int)y;
+   01B1 AA 82               396 	mov	r2,dpl
+   01B3 AB 83               397 	mov	r3,dph
+   01B5 AC F0               398 	mov	r4,b
+   01B7 FD                  399 	mov	r5,a
+   01B8 C0 02               400 	push	ar2
+   01BA C0 03               401 	push	ar3
+   01BC C0 04               402 	push	ar4
+   01BE C0 05               403 	push	ar5
+   01C0 12s00r00            404 	lcall	___fs2sint
+   01C3 12s00r00            405 	lcall	___sint2fs
+   01C6 78r08               406 	mov	r0,#_sincosf_r_1_1
+   01C8 C0 E0               407 	push	acc
+   01CA E5 82               408 	mov	a,dpl
+   01CC F2                  409 	movx	@r0,a
+   01CD 08                  410 	inc	r0
+   01CE E5 83               411 	mov	a,dph
+   01D0 F2                  412 	movx	@r0,a
+   01D1 08                  413 	inc	r0
+   01D2 E5 F0               414 	mov	a,b
+   01D4 F2                  415 	movx	@r0,a
+   01D5 D0 E0               416 	pop	acc
+   01D7 08                  417 	inc	r0
+   01D8 F2                  418 	movx	@r0,a
+   01D9 D0 05               419 	pop	ar5
+   01DB D0 04               420 	pop	ar4
+   01DD D0 03               421 	pop	ar3
+   01DF D0 02               422 	pop	ar2
+                            423 ;	sincosf.c:87: g=y-r;
+   01E1 78r08               424 	mov	r0,#_sincosf_r_1_1
+   01E3 E2                  425 	movx	a,@r0
+   01E4 C0 E0               426 	push	acc
+   01E6 08                  427 	inc	r0
+   01E7 E2                  428 	movx	a,@r0
+   01E8 C0 E0               429 	push	acc
+   01EA 08                  430 	inc	r0
+   01EB E2                  431 	movx	a,@r0
+   01EC C0 E0               432 	push	acc
+   01EE 08                  433 	inc	r0
+   01EF E2                  434 	movx	a,@r0
+   01F0 C0 E0               435 	push	acc
+   01F2 8A 82               436 	mov	dpl,r2
+   01F4 8B 83               437 	mov	dph,r3
+   01F6 8C F0               438 	mov	b,r4
+   01F8 ED                  439 	mov	a,r5
+   01F9 12s00r00            440 	lcall	___fssub
+   01FC 78r0C               441 	mov	r0,#_sincosf_g_1_1
+   01FE C0 E0               442 	push	acc
+   0200 E5 82               443 	mov	a,dpl
+   0202 F2                  444 	movx	@r0,a
+   0203 08                  445 	inc	r0
+   0204 E5 83               446 	mov	a,dph
+   0206 F2                  447 	movx	@r0,a
+   0207 08                  448 	inc	r0
+   0208 E5 F0               449 	mov	a,b
+   020A F2                  450 	movx	@r0,a
+   020B D0 E0               451 	pop	acc
+   020D 08                  452 	inc	r0
+   020E F2                  453 	movx	@r0,a
+   020F E5 81               454 	mov	a,sp
+   0211 24 FC               455 	add	a,#0xfc
+   0213 F5 81               456 	mov	sp,a
+                            457 ;	sincosf.c:88: f=((r-XN*C1)+g)-XN*C2;
+   0215 78r10               458 	mov	r0,#_sincosf_XN_1_1
+   0217 E2                  459 	movx	a,@r0
+   0218 C0 E0               460 	push	acc
+   021A 08                  461 	inc	r0
+   021B E2                  462 	movx	a,@r0
+   021C C0 E0               463 	push	acc
+   021E 08                  464 	inc	r0
+   021F E2                  465 	movx	a,@r0
+   0220 C0 E0               466 	push	acc
+   0222 08                  467 	inc	r0
+   0223 E2                  468 	movx	a,@r0
+   0224 C0 E0               469 	push	acc
+   0226 90 00 00            470 	mov	dptr,#0x0000
+   0229 75 F0 49            471 	mov	b,#0x49
+   022C 74 40               472 	mov	a,#0x40
+   022E 12s00r00            473 	lcall	___fsmul
+   0231 AE 82               474 	mov	r6,dpl
+   0233 AF 83               475 	mov	r7,dph
+   0235 AA F0               476 	mov	r2,b
+   0237 FB                  477 	mov	r3,a
+   0238 E5 81               478 	mov	a,sp
+   023A 24 FC               479 	add	a,#0xfc
+   023C F5 81               480 	mov	sp,a
+   023E C0 06               481 	push	ar6
+   0240 C0 07               482 	push	ar7
+   0242 C0 02               483 	push	ar2
+   0244 C0 03               484 	push	ar3
+   0246 78r08               485 	mov	r0,#_sincosf_r_1_1
+   0248 E2                  486 	movx	a,@r0
+   0249 F5 82               487 	mov	dpl,a
+   024B 08                  488 	inc	r0
+   024C E2                  489 	movx	a,@r0
+   024D F5 83               490 	mov	dph,a
+   024F 08                  491 	inc	r0
+   0250 E2                  492 	movx	a,@r0
+   0251 F5 F0               493 	mov	b,a
+   0253 08                  494 	inc	r0
+   0254 E2                  495 	movx	a,@r0
+   0255 12s00r00            496 	lcall	___fssub
+   0258 AA 82               497 	mov	r2,dpl
+   025A AB 83               498 	mov	r3,dph
+   025C AC F0               499 	mov	r4,b
+   025E FD                  500 	mov	r5,a
+   025F E5 81               501 	mov	a,sp
+   0261 24 FC               502 	add	a,#0xfc
+   0263 F5 81               503 	mov	sp,a
+   0265 78r0C               504 	mov	r0,#_sincosf_g_1_1
+   0267 E2                  505 	movx	a,@r0
+   0268 C0 E0               506 	push	acc
+   026A 08                  507 	inc	r0
+   026B E2                  508 	movx	a,@r0
+   026C C0 E0               509 	push	acc
+   026E 08                  510 	inc	r0
+   026F E2                  511 	movx	a,@r0
+   0270 C0 E0               512 	push	acc
+   0272 08                  513 	inc	r0
+   0273 E2                  514 	movx	a,@r0
+   0274 C0 E0               515 	push	acc
+   0276 8A 82               516 	mov	dpl,r2
+   0278 8B 83               517 	mov	dph,r3
+   027A 8C F0               518 	mov	b,r4
+   027C ED                  519 	mov	a,r5
+   027D 12s00r00            520 	lcall	___fsadd
+   0280 85 82*00            521 	mov	_sincosf_sloc0_1_0,dpl
+   0283 85 83*01            522 	mov	(_sincosf_sloc0_1_0 + 1),dph
+   0286 85 F0*02            523 	mov	(_sincosf_sloc0_1_0 + 2),b
+   0289 F5*03               524 	mov	(_sincosf_sloc0_1_0 + 3),a
+   028B E5 81               525 	mov	a,sp
+   028D 24 FC               526 	add	a,#0xfc
+   028F F5 81               527 	mov	sp,a
+   0291 78r10               528 	mov	r0,#_sincosf_XN_1_1
+   0293 E2                  529 	movx	a,@r0
+   0294 C0 E0               530 	push	acc
+   0296 08                  531 	inc	r0
+   0297 E2                  532 	movx	a,@r0
+   0298 C0 E0               533 	push	acc
+   029A 08                  534 	inc	r0
+   029B E2                  535 	movx	a,@r0
+   029C C0 E0               536 	push	acc
+   029E 08                  537 	inc	r0
+   029F E2                  538 	movx	a,@r0
+   02A0 C0 E0               539 	push	acc
+   02A2 90 AA 22            540 	mov	dptr,#0xAA22
+   02A5 75 F0 7D            541 	mov	b,#0x7D
+   02A8 74 3A               542 	mov	a,#0x3A
+   02AA 12s00r00            543 	lcall	___fsmul
+   02AD AE 82               544 	mov	r6,dpl
+   02AF AF 83               545 	mov	r7,dph
+   02B1 AA F0               546 	mov	r2,b
+   02B3 FB                  547 	mov	r3,a
+   02B4 E5 81               548 	mov	a,sp
+   02B6 24 FC               549 	add	a,#0xfc
+   02B8 F5 81               550 	mov	sp,a
+   02BA C0 06               551 	push	ar6
+   02BC C0 07               552 	push	ar7
+   02BE C0 02               553 	push	ar2
+   02C0 C0 03               554 	push	ar3
+   02C2 85*00 82            555 	mov	dpl,_sincosf_sloc0_1_0
+   02C5 85*01 83            556 	mov	dph,(_sincosf_sloc0_1_0 + 1)
+   02C8 85*02 F0            557 	mov	b,(_sincosf_sloc0_1_0 + 2)
+   02CB E5*03               558 	mov	a,(_sincosf_sloc0_1_0 + 3)
+   02CD 12s00r00            559 	lcall	___fssub
+   02D0 78r04               560 	mov	r0,#_sincosf_f_1_1
+   02D2 C0 E0               561 	push	acc
+   02D4 E5 82               562 	mov	a,dpl
+   02D6 F2                  563 	movx	@r0,a
+   02D7 08                  564 	inc	r0
+   02D8 E5 83               565 	mov	a,dph
+   02DA F2                  566 	movx	@r0,a
+   02DB 08                  567 	inc	r0
+   02DC E5 F0               568 	mov	a,b
+   02DE F2                  569 	movx	@r0,a
+   02DF D0 E0               570 	pop	acc
+   02E1 08                  571 	inc	r0
+   02E2 F2                  572 	movx	@r0,a
+   02E3 E5 81               573 	mov	a,sp
+   02E5 24 FC               574 	add	a,#0xfc
+   02E7 F5 81               575 	mov	sp,a
+                            576 ;	sincosf.c:90: g=f*f;
+   02E9 78r04               577 	mov	r0,#_sincosf_f_1_1
+   02EB E2                  578 	movx	a,@r0
+   02EC C0 E0               579 	push	acc
+   02EE 08                  580 	inc	r0
+   02EF E2                  581 	movx	a,@r0
+   02F0 C0 E0               582 	push	acc
+   02F2 08                  583 	inc	r0
+   02F3 E2                  584 	movx	a,@r0
+   02F4 C0 E0               585 	push	acc
+   02F6 08                  586 	inc	r0
+   02F7 E2                  587 	movx	a,@r0
+   02F8 C0 E0               588 	push	acc
+   02FA 78r04               589 	mov	r0,#_sincosf_f_1_1
+   02FC E2                  590 	movx	a,@r0
+   02FD F5 82               591 	mov	dpl,a
+   02FF 08                  592 	inc	r0
+   0300 E2                  593 	movx	a,@r0
+   0301 F5 83               594 	mov	dph,a
+   0303 08                  595 	inc	r0
+   0304 E2                  596 	movx	a,@r0
+   0305 F5 F0               597 	mov	b,a
+   0307 08                  598 	inc	r0
+   0308 E2                  599 	movx	a,@r0
+   0309 12s00r00            600 	lcall	___fsmul
+   030C 78r0C               601 	mov	r0,#_sincosf_g_1_1
+   030E C0 E0               602 	push	acc
+   0310 E5 82               603 	mov	a,dpl
+   0312 F2                  604 	movx	@r0,a
+   0313 08                  605 	inc	r0
+   0314 E5 83               606 	mov	a,dph
+   0316 F2                  607 	movx	@r0,a
+   0317 08                  608 	inc	r0
+   0318 E5 F0               609 	mov	a,b
+   031A F2                  610 	movx	@r0,a
+   031B D0 E0               611 	pop	acc
+   031D 08                  612 	inc	r0
+   031E F2                  613 	movx	@r0,a
+   031F E5 81               614 	mov	a,sp
+   0321 24 FC               615 	add	a,#0xfc
+   0323 F5 81               616 	mov	sp,a
+                            617 ;	sincosf.c:91: if(g>EPS2) //Used to be if(fabsf(f)>EPS)
+   0325 74 F3               618 	mov	a,#0xF3
+   0327 C0 E0               619 	push	acc
+   0329 74 FF               620 	mov	a,#0xFF
+   032B C0 E0               621 	push	acc
+   032D 74 7F               622 	mov	a,#0x7F
+   032F C0 E0               623 	push	acc
+   0331 74 33               624 	mov	a,#0x33
+   0333 C0 E0               625 	push	acc
+   0335 78r0C               626 	mov	r0,#_sincosf_g_1_1
+   0337 E2                  627 	movx	a,@r0
+   0338 F5 82               628 	mov	dpl,a
+   033A 08                  629 	inc	r0
+   033B E2                  630 	movx	a,@r0
+   033C F5 83               631 	mov	dph,a
+   033E 08                  632 	inc	r0
+   033F E2                  633 	movx	a,@r0
+   0340 F5 F0               634 	mov	b,a
+   0342 08                  635 	inc	r0
+   0343 E2                  636 	movx	a,@r0
+   0344 12s00r00            637 	lcall	___fsgt
+   0347 AE 82               638 	mov	r6,dpl
+   0349 E5 81               639 	mov	a,sp
+   034B 24 FC               640 	add	a,#0xfc
+   034D F5 81               641 	mov	sp,a
+   034F EE                  642 	mov	a,r6
+   0350 70 03               643 	jnz	00131$
+   0352 02s04rDA            644 	ljmp	00114$
+   0355                     645 00131$:
+                            646 ;	sincosf.c:93: r=(((r4*g+r3)*g+r2)*g+r1)*g;
+   0355 78r0C               647 	mov	r0,#_sincosf_g_1_1
+   0357 E2                  648 	movx	a,@r0
+   0358 C0 E0               649 	push	acc
+   035A 08                  650 	inc	r0
+   035B E2                  651 	movx	a,@r0
+   035C C0 E0               652 	push	acc
+   035E 08                  653 	inc	r0
+   035F E2                  654 	movx	a,@r0
+   0360 C0 E0               655 	push	acc
+   0362 08                  656 	inc	r0
+   0363 E2                  657 	movx	a,@r0
+   0364 C0 E0               658 	push	acc
+   0366 90 9C 5B            659 	mov	dptr,#0x9C5B
+   0369 75 F0 2E            660 	mov	b,#0x2E
+   036C 74 36               661 	mov	a,#0x36
+   036E 12s00r00            662 	lcall	___fsmul
+   0371 AE 82               663 	mov	r6,dpl
+   0373 AF 83               664 	mov	r7,dph
+   0375 AA F0               665 	mov	r2,b
+   0377 FB                  666 	mov	r3,a
+   0378 E5 81               667 	mov	a,sp
+   037A 24 FC               668 	add	a,#0xfc
+   037C F5 81               669 	mov	sp,a
+   037E 74 22               670 	mov	a,#0x22
+   0380 C0 E0               671 	push	acc
+   0382 74 B2               672 	mov	a,#0xB2
+   0384 C0 E0               673 	push	acc
+   0386 74 4F               674 	mov	a,#0x4F
+   0388 C0 E0               675 	push	acc
+   038A 74 B9               676 	mov	a,#0xB9
+   038C C0 E0               677 	push	acc
+   038E 8E 82               678 	mov	dpl,r6
+   0390 8F 83               679 	mov	dph,r7
+   0392 8A F0               680 	mov	b,r2
+   0394 EB                  681 	mov	a,r3
+   0395 12s00r00            682 	lcall	___fsadd
+   0398 AA 82               683 	mov	r2,dpl
+   039A AB 83               684 	mov	r3,dph
+   039C AC F0               685 	mov	r4,b
+   039E FD                  686 	mov	r5,a
+   039F E5 81               687 	mov	a,sp
+   03A1 24 FC               688 	add	a,#0xfc
+   03A3 F5 81               689 	mov	sp,a
+   03A5 78r0C               690 	mov	r0,#_sincosf_g_1_1
+   03A7 E2                  691 	movx	a,@r0
+   03A8 C0 E0               692 	push	acc
+   03AA 08                  693 	inc	r0
+   03AB E2                  694 	movx	a,@r0
+   03AC C0 E0               695 	push	acc
+   03AE 08                  696 	inc	r0
+   03AF E2                  697 	movx	a,@r0
+   03B0 C0 E0               698 	push	acc
+   03B2 08                  699 	inc	r0
+   03B3 E2                  700 	movx	a,@r0
+   03B4 C0 E0               701 	push	acc
+   03B6 8A 82               702 	mov	dpl,r2
+   03B8 8B 83               703 	mov	dph,r3
+   03BA 8C F0               704 	mov	b,r4
+   03BC ED                  705 	mov	a,r5
+   03BD 12s00r00            706 	lcall	___fsmul
+   03C0 AA 82               707 	mov	r2,dpl
+   03C2 AB 83               708 	mov	r3,dph
+   03C4 AC F0               709 	mov	r4,b
+   03C6 FD                  710 	mov	r5,a
+   03C7 E5 81               711 	mov	a,sp
+   03C9 24 FC               712 	add	a,#0xfc
+   03CB F5 81               713 	mov	sp,a
+   03CD 74 3E               714 	mov	a,#0x3E
+   03CF C0 E0               715 	push	acc
+   03D1 74 87               716 	mov	a,#0x87
+   03D3 C0 E0               717 	push	acc
+   03D5 74 08               718 	mov	a,#0x08
+   03D7 C0 E0               719 	push	acc
+   03D9 74 3C               720 	mov	a,#0x3C
+   03DB C0 E0               721 	push	acc
+   03DD 8A 82               722 	mov	dpl,r2
+   03DF 8B 83               723 	mov	dph,r3
+   03E1 8C F0               724 	mov	b,r4
+   03E3 ED                  725 	mov	a,r5
+   03E4 12s00r00            726 	lcall	___fsadd
+   03E7 AA 82               727 	mov	r2,dpl
+   03E9 AB 83               728 	mov	r3,dph
+   03EB AC F0               729 	mov	r4,b
+   03ED FD                  730 	mov	r5,a
+   03EE E5 81               731 	mov	a,sp
+   03F0 24 FC               732 	add	a,#0xfc
+   03F2 F5 81               733 	mov	sp,a
+   03F4 78r0C               734 	mov	r0,#_sincosf_g_1_1
+   03F6 E2                  735 	movx	a,@r0
+   03F7 C0 E0               736 	push	acc
+   03F9 08                  737 	inc	r0
+   03FA E2                  738 	movx	a,@r0
+   03FB C0 E0               739 	push	acc
+   03FD 08                  740 	inc	r0
+   03FE E2                  741 	movx	a,@r0
+   03FF C0 E0               742 	push	acc
+   0401 08                  743 	inc	r0
+   0402 E2                  744 	movx	a,@r0
+   0403 C0 E0               745 	push	acc
+   0405 8A 82               746 	mov	dpl,r2
+   0407 8B 83               747 	mov	dph,r3
+   0409 8C F0               748 	mov	b,r4
+   040B ED                  749 	mov	a,r5
+   040C 12s00r00            750 	lcall	___fsmul
+   040F AA 82               751 	mov	r2,dpl
+   0411 AB 83               752 	mov	r3,dph
+   0413 AC F0               753 	mov	r4,b
+   0415 FD                  754 	mov	r5,a
+   0416 E5 81               755 	mov	a,sp
+   0418 24 FC               756 	add	a,#0xfc
+   041A F5 81               757 	mov	sp,a
+   041C 74 A4               758 	mov	a,#0xA4
+   041E C0 E0               759 	push	acc
+   0420 74 AA               760 	mov	a,#0xAA
+   0422 C0 E0               761 	push	acc
+   0424 74 2A               762 	mov	a,#0x2A
+   0426 C0 E0               763 	push	acc
+   0428 74 BE               764 	mov	a,#0xBE
+   042A C0 E0               765 	push	acc
+   042C 8A 82               766 	mov	dpl,r2
+   042E 8B 83               767 	mov	dph,r3
+   0430 8C F0               768 	mov	b,r4
+   0432 ED                  769 	mov	a,r5
+   0433 12s00r00            770 	lcall	___fsadd
+   0436 AA 82               771 	mov	r2,dpl
+   0438 AB 83               772 	mov	r3,dph
+   043A AC F0               773 	mov	r4,b
+   043C FD                  774 	mov	r5,a
+   043D E5 81               775 	mov	a,sp
+   043F 24 FC               776 	add	a,#0xfc
+   0441 F5 81               777 	mov	sp,a
+   0443 78r0C               778 	mov	r0,#_sincosf_g_1_1
+   0445 E2                  779 	movx	a,@r0
+   0446 C0 E0               780 	push	acc
+   0448 08                  781 	inc	r0
+   0449 E2                  782 	movx	a,@r0
+   044A C0 E0               783 	push	acc
+   044C 08                  784 	inc	r0
+   044D E2                  785 	movx	a,@r0
+   044E C0 E0               786 	push	acc
+   0450 08                  787 	inc	r0
+   0451 E2                  788 	movx	a,@r0
+   0452 C0 E0               789 	push	acc
+   0454 8A 82               790 	mov	dpl,r2
+   0456 8B 83               791 	mov	dph,r3
+   0458 8C F0               792 	mov	b,r4
+   045A ED                  793 	mov	a,r5
+   045B 12s00r00            794 	lcall	___fsmul
+   045E 78r08               795 	mov	r0,#_sincosf_r_1_1
+   0460 C0 E0               796 	push	acc
+   0462 E5 82               797 	mov	a,dpl
+   0464 F2                  798 	movx	@r0,a
+   0465 08                  799 	inc	r0
+   0466 E5 83               800 	mov	a,dph
+   0468 F2                  801 	movx	@r0,a
+   0469 08                  802 	inc	r0
+   046A E5 F0               803 	mov	a,b
+   046C F2                  804 	movx	@r0,a
+   046D D0 E0               805 	pop	acc
+   046F 08                  806 	inc	r0
+   0470 F2                  807 	movx	@r0,a
+   0471 E5 81               808 	mov	a,sp
+   0473 24 FC               809 	add	a,#0xfc
+   0475 F5 81               810 	mov	sp,a
+                            811 ;	sincosf.c:94: f+=f*r;
+   0477 78r08               812 	mov	r0,#_sincosf_r_1_1
+   0479 E2                  813 	movx	a,@r0
+   047A C0 E0               814 	push	acc
+   047C 08                  815 	inc	r0
+   047D E2                  816 	movx	a,@r0
+   047E C0 E0               817 	push	acc
+   0480 08                  818 	inc	r0
+   0481 E2                  819 	movx	a,@r0
+   0482 C0 E0               820 	push	acc
+   0484 08                  821 	inc	r0
+   0485 E2                  822 	movx	a,@r0
+   0486 C0 E0               823 	push	acc
+   0488 78r04               824 	mov	r0,#_sincosf_f_1_1
+   048A E2                  825 	movx	a,@r0
+   048B F5 82               826 	mov	dpl,a
+   048D 08                  827 	inc	r0
+   048E E2                  828 	movx	a,@r0
+   048F F5 83               829 	mov	dph,a
+   0491 08                  830 	inc	r0
+   0492 E2                  831 	movx	a,@r0
+   0493 F5 F0               832 	mov	b,a
+   0495 08                  833 	inc	r0
+   0496 E2                  834 	movx	a,@r0
+   0497 12s00r00            835 	lcall	___fsmul
+   049A AA 82               836 	mov	r2,dpl
+   049C AB 83               837 	mov	r3,dph
+   049E AC F0               838 	mov	r4,b
+   04A0 FD                  839 	mov	r5,a
+   04A1 E5 81               840 	mov	a,sp
+   04A3 24 FC               841 	add	a,#0xfc
+   04A5 F5 81               842 	mov	sp,a
+   04A7 C0 02               843 	push	ar2
+   04A9 C0 03               844 	push	ar3
+   04AB C0 04               845 	push	ar4
+   04AD C0 05               846 	push	ar5
+   04AF 78r04               847 	mov	r0,#_sincosf_f_1_1
+   04B1 E2                  848 	movx	a,@r0
+   04B2 F5 82               849 	mov	dpl,a
+   04B4 08                  850 	inc	r0
+   04B5 E2                  851 	movx	a,@r0
+   04B6 F5 83               852 	mov	dph,a
+   04B8 08                  853 	inc	r0
+   04B9 E2                  854 	movx	a,@r0
+   04BA F5 F0               855 	mov	b,a
+   04BC 08                  856 	inc	r0
+   04BD E2                  857 	movx	a,@r0
+   04BE 12s00r00            858 	lcall	___fsadd
+   04C1 78r04               859 	mov	r0,#_sincosf_f_1_1
+   04C3 C0 E0               860 	push	acc
+   04C5 E5 82               861 	mov	a,dpl
+   04C7 F2                  862 	movx	@r0,a
+   04C8 08                  863 	inc	r0
+   04C9 E5 83               864 	mov	a,dph
+   04CB F2                  865 	movx	@r0,a
+   04CC 08                  866 	inc	r0
+   04CD E5 F0               867 	mov	a,b
+   04CF F2                  868 	movx	@r0,a
+   04D0 D0 E0               869 	pop	acc
+   04D2 08                  870 	inc	r0
+   04D3 F2                  871 	movx	@r0,a
+   04D4 E5 81               872 	mov	a,sp
+   04D6 24 FC               873 	add	a,#0xfc
+   04D8 F5 81               874 	mov	sp,a
+   04DA                     875 00114$:
+                            876 ;	sincosf.c:96: return (sign?-f:f);
+   04DA 30*01 11            877 	jnb	_sincosf_sign_1_1,00117$
+   04DD 78r04               878 	mov	r0,#_sincosf_f_1_1
+   04DF E2                  879 	movx	a,@r0
+   04E0 FA                  880 	mov	r2,a
+   04E1 08                  881 	inc	r0
+   04E2 E2                  882 	movx	a,@r0
+   04E3 FB                  883 	mov	r3,a
+   04E4 08                  884 	inc	r0
+   04E5 E2                  885 	movx	a,@r0
+   04E6 FC                  886 	mov	r4,a
+   04E7 08                  887 	inc	r0
+   04E8 E2                  888 	movx	a,@r0
+   04E9 B2 E7               889 	cpl	acc.7
+   04EB FD                  890 	mov	r5,a
+   04EC 80 0D               891 	sjmp	00118$
+   04EE                     892 00117$:
+   04EE 78r04               893 	mov	r0,#_sincosf_f_1_1
+   04F0 E2                  894 	movx	a,@r0
+   04F1 FA                  895 	mov	r2,a
+   04F2 08                  896 	inc	r0
+   04F3 E2                  897 	movx	a,@r0
+   04F4 FB                  898 	mov	r3,a
+   04F5 08                  899 	inc	r0
+   04F6 E2                  900 	movx	a,@r0
+   04F7 FC                  901 	mov	r4,a
+   04F8 08                  902 	inc	r0
+   04F9 E2                  903 	movx	a,@r0
+   04FA FD                  904 	mov	r5,a
+   04FB                     905 00118$:
+   04FB 8A 82               906 	mov	dpl,r2
+   04FD 8B 83               907 	mov	dph,r3
+   04FF 8C F0               908 	mov	b,r4
+   0501 ED                  909 	mov	a,r5
+   0502 22                  910 	ret
+                            911 	.area CSEG    (CODE)
+                            912 	.area CONST   (CODE)
+                            913 	.area XINIT   (CODE)
+                            914 	.area CABS    (ABS,CODE)

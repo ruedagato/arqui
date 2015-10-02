@@ -1,0 +1,270 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:19 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _moduint
+                              7 	.optsdcc -mds400 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl __moduint_PARM_2
+                             31 	.globl __moduint
+                             32 ;--------------------------------------------------------
+                             33 ; special function registers
+                             34 ;--------------------------------------------------------
+                             35 ;--------------------------------------------------------
+                             36 ; special function bits
+                             37 ;--------------------------------------------------------
+                             38 ;--------------------------------------------------------
+                             39 ; overlayable register banks
+                             40 ;--------------------------------------------------------
+                             41 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      42 	.ds 8
+                             43 	.area REG_BANK_3	(REL,OVR,DATA)
+   0000                      44 	.ds 8
+                             45 ;--------------------------------------------------------
+                             46 ; internal ram data
+                             47 ;--------------------------------------------------------
+                             48 	.area DSEG    (DATA)
+                             49 ;--------------------------------------------------------
+                             50 ; overlayable items in internal ram 
+                             51 ;--------------------------------------------------------
+                             52 	.area OSEG    (OVR,DATA)
+                             53 ;--------------------------------------------------------
+                             54 ; indirectly addressable internal ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area ISEG    (DATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute internal ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area IABS    (ABS,DATA)
+                             61 	.area IABS    (ABS,DATA)
+                             62 ;--------------------------------------------------------
+                             63 ; bit data
+                             64 ;--------------------------------------------------------
+                             65 	.area BSEG    (BIT)
+                             66 ;--------------------------------------------------------
+                             67 ; paged external ram data
+                             68 ;--------------------------------------------------------
+                             69 	.area PSEG    (PAG,XDATA)
+                             70 ;--------------------------------------------------------
+                             71 ; external ram data
+                             72 ;--------------------------------------------------------
+                             73 	.area XSEG    (XDATA)
+   0000                      74 __moduint_PARM_2:
+   0000                      75 	.ds 2
+                             76 ;--------------------------------------------------------
+                             77 ; absolute external ram data
+                             78 ;--------------------------------------------------------
+                             79 	.area XABS    (ABS,XDATA)
+                             80 ;--------------------------------------------------------
+                             81 ; external initialized ram data
+                             82 ;--------------------------------------------------------
+                             83 	.area XISEG   (XDATA)
+                             84 ;--------------------------------------------------------
+                             85 ; global & static initialisations
+                             86 ;--------------------------------------------------------
+                             87 	.area HOME    (CODE)
+                             88 	.area GSINIT  (CODE)
+                             89 	.area GSFINAL (CODE)
+                             90 	.area GSINIT  (CODE)
+                             91 ;--------------------------------------------------------
+                             92 ; Home
+                             93 ;--------------------------------------------------------
+                             94 	.area HOME    (CODE)
+                             95 	.area HOME    (CODE)
+                             96 ;--------------------------------------------------------
+                             97 ; code
+                             98 ;--------------------------------------------------------
+                             99 	.area CSEG    (CODE)
+                            100 ;------------------------------------------------------------
+                            101 ;Allocation info for local variables in function '_moduint'
+                            102 ;------------------------------------------------------------
+                            103 ;b                         Allocated with name '__moduint_PARM_2'
+                            104 ;a                         Allocated to registers r2 r3 
+                            105 ;count                     Allocated to registers r4 
+                            106 ;------------------------------------------------------------
+                            107 ;	_moduint.c:173: _moduint (unsigned int a, unsigned int b)
+                            108 ;	-----------------------------------------
+                            109 ;	 function _moduint
+                            110 ;	-----------------------------------------
+   0000                     111 __moduint:
+                    0002    112 	ar2 = 0x02
+                    0003    113 	ar3 = 0x03
+                    0004    114 	ar4 = 0x04
+                    0005    115 	ar5 = 0x05
+                    0006    116 	ar6 = 0x06
+                    0007    117 	ar7 = 0x07
+                    0000    118 	ar0 = 0x00
+                    0001    119 	ar1 = 0x01
+   0000 85 82 84            120 	mov	dpl1,dpl
+   0003 85 83 85            121 	mov	dph1,dph
+                            122 ;	_moduint.c:175: unsigned char count = 0;
+                            123 ;	genAssign: resultIsFar = TRUE
+   0006 7C 00               124 	mov	r4,#0x00
+                            125 ;	_moduint.c:178: while (!MSB_SET(b))
+                            126 ;	genAssign: resultIsFar = FALSE
+   0008 7D 00               127 	mov	r5,#0x00
+   000A                     128 00103$:
+   000A 90s00r00r00         129 	mov	dptr,#__moduint_PARM_2
+   000E A3                  130 	inc	dptr
+   000F E0                  131 	movx	a,@dptr
+   0010 23                  132 	rl	a
+   0011 54 01               133 	anl	a,#0x01
+   0013 FE                  134 	mov  r6,a
+   0014 70 4F               135 	jnz  00117$
+   0016                     136 00120$:
+                            137 ;	_moduint.c:180: b <<= 1;
+   0016 90s00r00r00         138 	mov	dptr,#__moduint_PARM_2
+   001A E0                  139 	movx	a,@dptr
+   001B FE                  140 	mov	r6,a
+   001C A3                  141 	inc	dptr
+   001D E0                  142 	movx	a,@dptr
+   001E CE                  143 	xch	a,r6
+   001F 25 E0               144 	add	a,acc
+   0021 CE                  145 	xch	a,r6
+   0022 33                  146 	rlc	a
+   0023 FF                  147 	mov	r7,a
+                            148 ;	genAssign: resultIsFar = TRUE
+   0024 90s00r00r00         149 	mov	dptr,#__moduint_PARM_2
+   0028 EE                  150 	mov	a,r6
+   0029 F0                  151 	movx	@dptr,a
+   002A A3                  152 	inc	dptr
+   002B EF                  153 	mov	a,r7
+   002C F0                  154 	movx	@dptr,a
+                            155 ;	_moduint.c:181: if (b > a)
+   002D 90s00r00r00         156 	mov	dptr,#__moduint_PARM_2
+   0031 C3                  157 	clr	c
+   0032 E5 84               158 	mov	a,dpl1
+   0034 C5 F0               159 	xch	a, b
+   0036 E0                  160 	movx	a,@dptr
+   0037 C5 F0               161 	xch	a, b
+   0039 95 F0               162 	subb	a,b
+   003B E5 85               163 	mov	a,dph1
+   003D C5 F0               164 	xch	a, b
+   003F A3                  165 	inc	dptr
+   0040 E0                  166 	movx	a,@dptr
+   0041 C5 F0               167 	xch	a, b
+   0043 95 F0               168 	subb	a,b
+   0045 50 19               169 	jnc  00102$
+   0047                     170 00121$:
+                            171 ;	_moduint.c:183: b >>=1;
+   0047 90s00r00r00         172 	mov	dptr,#__moduint_PARM_2
+   004B E0                  173 	movx	a,@dptr
+   004C FE                  174 	mov	r6,a
+   004D A3                  175 	inc	dptr
+   004E E0                  176 	movx	a,@dptr
+   004F C3                  177 	clr	c
+   0050 13                  178 	rrc	a
+   0051 CE                  179 	xch	a,r6
+   0052 13                  180 	rrc	a
+   0053 CE                  181 	xch	a,r6
+   0054 FF                  182 	mov	r7,a
+                            183 ;	genAssign: resultIsFar = TRUE
+   0055 90s00r00r00         184 	mov	dptr,#__moduint_PARM_2
+   0059 EE                  185 	mov	a,r6
+   005A F0                  186 	movx	@dptr,a
+   005B A3                  187 	inc	dptr
+   005C EF                  188 	mov	a,r7
+   005D F0                  189 	movx	@dptr,a
+                            190 ;	_moduint.c:184: break;
+   005E 80 05               191 	sjmp 00117$
+   0060                     192 00102$:
+                            193 ;	_moduint.c:186: count++;
+   0060 0D                  194 	inc	r5
+                            195 ;	genAssign: resultIsFar = TRUE
+   0061 8D 04               196 	mov	ar4,r5
+                            197 ;	_moduint.c:188: do
+   0063 80 A5               198 	sjmp 00103$
+   0065                     199 00117$:
+                            200 ;	genAssign: resultIsFar = FALSE
+   0065                     201 00108$:
+                            202 ;	_moduint.c:190: if (a >= b)
+   0065 90s00r00r00         203 	mov	dptr,#__moduint_PARM_2
+   0069 C3                  204 	clr	c
+   006A E5 84               205 	mov	a,dpl1
+   006C C5 F0               206 	xch	a, b
+   006E E0                  207 	movx	a,@dptr
+   006F C5 F0               208 	xch	a, b
+   0071 95 F0               209 	subb	a,b
+   0073 E5 85               210 	mov	a,dph1
+   0075 C5 F0               211 	xch	a, b
+   0077 A3                  212 	inc	dptr
+   0078 E0                  213 	movx	a,@dptr
+   0079 C5 F0               214 	xch	a, b
+   007B 95 F0               215 	subb	a,b
+   007D 40 1A               216 	jc   00107$
+   007F                     217 00122$:
+                            218 ;	_moduint.c:191: a -= b;
+   007F 90s00r00r00         219 	mov	dptr,#__moduint_PARM_2
+   0083 C3                  220 	clr	c
+   0084 E0                  221 	movx	a,@dptr
+   0085 F5 F0               222 	mov	b,a
+   0087 E5 84               223 	mov	a,dpl1
+   0089 95 F0               224 	subb	a,b
+   008B FD                  225 	mov	r5,a
+   008C A3                  226 	inc	dptr
+   008D E0                  227 	movx	a,@dptr
+   008E F5 F0               228 	mov	b,a
+   0090 E5 85               229 	mov	a,dph1
+   0092 95 F0               230 	subb	a,b
+   0094 FE                  231 	mov	r6,a
+                            232 ;	genAssign: resultIsFar = TRUE
+   0095 8D 84               233 	mov	dpl1,r5
+   0097 8E 85               234 	mov	dph1,r6
+   0099                     235 00107$:
+                            236 ;	_moduint.c:192: b >>= 1;
+   0099 90s00r00r00         237 	mov	dptr,#__moduint_PARM_2
+   009D E0                  238 	movx	a,@dptr
+   009E FD                  239 	mov	r5,a
+   009F A3                  240 	inc	dptr
+   00A0 E0                  241 	movx	a,@dptr
+   00A1 C3                  242 	clr	c
+   00A2 13                  243 	rrc	a
+   00A3 CD                  244 	xch	a,r5
+   00A4 13                  245 	rrc	a
+   00A5 CD                  246 	xch	a,r5
+   00A6 FE                  247 	mov	r6,a
+                            248 ;	genAssign: resultIsFar = TRUE
+   00A7 90s00r00r00         249 	mov	dptr,#__moduint_PARM_2
+   00AB ED                  250 	mov	a,r5
+   00AC F0                  251 	movx	@dptr,a
+   00AD A3                  252 	inc	dptr
+   00AE EE                  253 	mov	a,r6
+   00AF F0                  254 	movx	@dptr,a
+                            255 ;	_moduint.c:194: while (count--);
+                            256 ;	genAssign: resultIsFar = FALSE
+   00B0 8C 05               257 	mov	ar5,r4
+   00B2 1C                  258 	dec	r4
+   00B3 ED                  259 	mov	a,r5
+   00B4 70 AF               260 	jnz  00108$
+   00B6                     261 00123$:
+                            262 ;	_moduint.c:195: return a;
+   00B6 85 84 82            263 	mov	dpl,dpl1
+   00B9 85 85 83            264 	mov	dph,dph1
+   00BC                     265 00111$:
+   00BC 22                  266 	ret
+                            267 	.area CSEG    (CODE)
+                            268 	.area CONST   (CODE)
+                            269 	.area XINIT   (CODE)
+                            270 	.area CABS    (ABS,CODE)

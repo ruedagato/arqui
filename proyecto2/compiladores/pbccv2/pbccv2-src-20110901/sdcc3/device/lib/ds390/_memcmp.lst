@@ -1,0 +1,266 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:17 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _memcmp
+                              7 	.optsdcc -mds390 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _memcmp_PARM_3
+                             31 	.globl _memcmp_PARM_2
+                             32 	.globl _memcmp
+                             33 ;--------------------------------------------------------
+                             34 ; special function registers
+                             35 ;--------------------------------------------------------
+                             36 ;--------------------------------------------------------
+                             37 ; special function bits
+                             38 ;--------------------------------------------------------
+                             39 ;--------------------------------------------------------
+                             40 ; overlayable register banks
+                             41 ;--------------------------------------------------------
+                             42 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      43 	.ds 8
+                             44 ;--------------------------------------------------------
+                             45 ; internal ram data
+                             46 ;--------------------------------------------------------
+                             47 	.area DSEG    (DATA)
+                             48 ;--------------------------------------------------------
+                             49 ; overlayable items in internal ram 
+                             50 ;--------------------------------------------------------
+                             51 	.area OSEG    (OVR,DATA)
+                             52 ;--------------------------------------------------------
+                             53 ; indirectly addressable internal ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area ISEG    (DATA)
+                             56 ;--------------------------------------------------------
+                             57 ; absolute internal ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area IABS    (ABS,DATA)
+                             60 	.area IABS    (ABS,DATA)
+                             61 ;--------------------------------------------------------
+                             62 ; bit data
+                             63 ;--------------------------------------------------------
+                             64 	.area BSEG    (BIT)
+                             65 ;--------------------------------------------------------
+                             66 ; paged external ram data
+                             67 ;--------------------------------------------------------
+                             68 	.area PSEG    (PAG,XDATA)
+                             69 ;--------------------------------------------------------
+                             70 ; external ram data
+                             71 ;--------------------------------------------------------
+                             72 	.area XSEG    (XDATA)
+   0000                      73 _memcmp_PARM_2:
+   0000                      74 	.ds 4
+   0004                      75 _memcmp_PARM_3:
+   0004                      76 	.ds 2
+   0006                      77 _memcmp_sloc1_1_0:
+   0006                      78 	.ds 4
+                             79 ;--------------------------------------------------------
+                             80 ; absolute external ram data
+                             81 ;--------------------------------------------------------
+                             82 	.area XABS    (ABS,XDATA)
+                             83 ;--------------------------------------------------------
+                             84 ; external initialized ram data
+                             85 ;--------------------------------------------------------
+                             86 	.area XISEG   (XDATA)
+                             87 ;--------------------------------------------------------
+                             88 ; global & static initialisations
+                             89 ;--------------------------------------------------------
+                             90 	.area HOME    (CODE)
+                             91 	.area GSINIT  (CODE)
+                             92 	.area GSFINAL (CODE)
+                             93 	.area GSINIT  (CODE)
+                             94 ;--------------------------------------------------------
+                             95 ; Home
+                             96 ;--------------------------------------------------------
+                             97 	.area HOME    (CODE)
+                             98 	.area HOME    (CODE)
+                             99 ;--------------------------------------------------------
+                            100 ; code
+                            101 ;--------------------------------------------------------
+                            102 	.area CSEG    (CODE)
+                            103 ;------------------------------------------------------------
+                            104 ;Allocation info for local variables in function 'memcmp'
+                            105 ;------------------------------------------------------------
+                            106 ;buf2                      Allocated with name '_memcmp_PARM_2'
+                            107 ;count                     Allocated with name '_memcmp_PARM_3'
+                            108 ;buf1                      Allocated to registers r2 r3 r4 r5 
+                            109 ;sloc0                     Allocated with name '_memcmp_sloc0_1_0'
+                            110 ;sloc1                     Allocated with name '_memcmp_sloc1_1_0'
+                            111 ;------------------------------------------------------------
+                            112 ;	_memcmp.c:31: int memcmp (
+                            113 ;	-----------------------------------------
+                            114 ;	 function memcmp
+                            115 ;	-----------------------------------------
+   0000                     116 _memcmp:
+                    0002    117 	ar2 = 0x02
+                    0003    118 	ar3 = 0x03
+                    0004    119 	ar4 = 0x04
+                    0005    120 	ar5 = 0x05
+                    0006    121 	ar6 = 0x06
+                    0007    122 	ar7 = 0x07
+                    0000    123 	ar0 = 0x00
+                    0001    124 	ar1 = 0x01
+   0000 AA 82               125 	mov	r2,dpl
+   0002 AB 83               126 	mov	r3,dph
+   0004 AC 93               127 	mov	r4,dpx
+   0006 AD F0               128 	mov	r5,b
+                            129 ;	_memcmp.c:37: if (!count)
+   0008 90s00r00r04         130 	mov	dptr,#_memcmp_PARM_3
+   000C E0                  131 	movx	a,@dptr
+   000D F5 F0               132 	mov	b,a
+   000F A3                  133 	inc	dptr
+   0010 E0                  134 	movx	a,@dptr
+   0011 45 F0               135 	orl	a,b
+   0013 70 08               136 	jnz  00112$
+   0015                     137 00114$:
+                            138 ;	_memcmp.c:38: return(0);
+   0015 90 00 00 00         139 	mov  dptr,#0x0000
+   0019 02s00r00rD2         140 	ljmp	00107$
+                            141 ;	_memcmp.c:40: while ( --count && *((char *)buf1) == *((char *)buf2) ) {
+   001D                     142 00112$:
+                            143 ;	genAssign: resultIsFar = FALSE
+   001D 90s00r00r00         144 	mov	dptr,#_memcmp_PARM_2
+                            145 ;	genAssign: resultIsFar = TRUE
+   0021 75 86 21            146 	mov	dps,#0x21
+   0024 90s00r00r06         147 	mov	dptr,#_memcmp_sloc1_1_0
+   0028 E0                  148 	movx	a,@dptr
+   0029 F0                  149 	movx	@dptr,a
+   002A A3                  150 	inc	dptr
+   002B A3                  151 	inc	dptr
+   002C E0                  152 	movx	a,@dptr
+   002D F0                  153 	movx	@dptr,a
+   002E A3                  154 	inc	dptr
+   002F A3                  155 	inc	dptr
+   0030 E0                  156 	movx	a,@dptr
+   0031 F0                  157 	movx	@dptr,a
+   0032 A3                  158 	inc	dptr
+   0033 A3                  159 	inc	dptr
+   0034 E0                  160 	movx	a,@dptr
+   0035 F0                  161 	movx	@dptr,a
+   0036 75 86 00            162 	mov	dps,#0
+   0039 90s00r00r04         163 	mov	dptr,#_memcmp_PARM_3
+                            164 ;	genAssign: resultIsFar = FALSE
+   003D E0                  165 	movx	a,@dptr
+   003E F8                  166 	mov	r0,a
+   003F A3                  167 	inc	dptr
+   0040 E0                  168 	movx	a,@dptr
+   0041 F9                  169 	mov	r1,a
+   0042                     170 00104$:
+   0042 18                  171 	dec	r0
+   0043 B8 FF 01            172 	cjne	r0,#0xFF,00115$
+   0046 19                  173 	dec	r1
+   0047                     174 00115$:
+   0047 E8                  175 	mov	a,r0
+   0048 49                  176 	orl	a,r1
+   0049 60 4F               177 	jz  00106$
+   004B                     178 00116$:
+   004B 8A 82               179 	mov	dpl,r2
+   004D 8B 83               180 	mov	dph,r3
+   004F 8C 93               181 	mov	dpx,r4
+   0051 8D F0               182 	mov	b,r5
+   0053 12s00r00r00         183 	lcall	__gptrget
+   0057 FE                  184 	mov	r6,a
+   0058 75 86 01            185 	mov     dps, #1
+   005B 90s00r00r06         186 	mov     dptr, #_memcmp_sloc1_1_0
+   005F E0                  187 	movx	a,@dptr
+   0060 F5 82               188 	mov	dpl,a
+   0062 A3                  189 	inc	dptr
+   0063 E0                  190 	movx	a,@dptr
+   0064 F5 83               191 	mov	dph,a
+   0066 A3                  192 	inc	dptr
+   0067 E0                  193 	movx	a,@dptr
+   0068 F5 93               194 	mov	dpx,a
+   006A A3                  195 	inc	dptr
+   006B E0                  196 	movx	a,@dptr
+   006C F5 F0               197 	mov	b,a
+   006E 75 86 00            198 	mov	dps,#0
+   0071 12s00r00r00         199 	lcall	__gptrget
+   0075 FF                  200 	mov	r7,a
+   0076 EE                  201 	mov	a,r6
+   0077 B5 07 20            202 	cjne a,ar7,00106$
+   007A                     203 00118$:
+                            204 ;	_memcmp.c:41: buf1 = (char *)buf1 + 1;
+   007A 0A                  205 	inc	r2
+   007B BA 00 05            206 	cjne	r2,#0,00119$
+   007E 0B                  207 	inc	r3
+   007F BB 00 01            208 	cjne	r3,#0,00119$
+   0082 0C                  209 	inc	r4
+   0083                     210 00119$:
+                            211 ;	_memcmp.c:42: buf2 = (char *)buf2 + 1;
+   0083 90s00r00r06         212 	mov	dptr,#_memcmp_sloc1_1_0
+   0087 E0                  213 	movx	a,@dptr
+   0088 24 01               214 	add	a,#0x01
+   008A F0                  215 	movx	@dptr,a
+   008B A3                  216 	inc	dptr
+   008C E0                  217 	movx	a,@dptr
+   008D 34 00               218 	addc	a,#0x00
+   008F F0                  219 	movx	@dptr,a
+   0090 A3                  220 	inc	dptr
+   0091 E0                  221 	movx	a,@dptr
+   0092 34 00               222 	addc	a,#0x00
+   0094 F0                  223 	movx	@dptr,a
+   0095 A3                  224 	inc	dptr
+   0096 E0                  225 	movx	a,@dptr
+   0097 F0                  226 	movx	@dptr,a
+   0098 80 A8               227 	sjmp 00104$
+   009A                     228 00106$:
+                            229 ;	_memcmp.c:45: return( *((unsigned char *)buf1) - *((unsigned char *)buf2) );
+   009A 8A 82               230 	mov	dpl,r2
+   009C 8B 83               231 	mov	dph,r3
+   009E 8C 93               232 	mov	dpx,r4
+   00A0 8D F0               233 	mov	b,r5
+   00A2 12s00r00r00         234 	lcall	__gptrget
+   00A6 FA                  235 	mov	r2,a
+   00A7 7B 00               236 	mov	r3,#0
+   00A9 75 86 01            237 	mov     dps, #1
+   00AC 90s00r00r06         238 	mov     dptr, #_memcmp_sloc1_1_0
+   00B0 E0                  239 	movx	a,@dptr
+   00B1 F5 82               240 	mov	dpl,a
+   00B3 A3                  241 	inc	dptr
+   00B4 E0                  242 	movx	a,@dptr
+   00B5 F5 83               243 	mov	dph,a
+   00B7 A3                  244 	inc	dptr
+   00B8 E0                  245 	movx	a,@dptr
+   00B9 F5 93               246 	mov	dpx,a
+   00BB A3                  247 	inc	dptr
+   00BC E0                  248 	movx	a,@dptr
+   00BD F5 F0               249 	mov	b,a
+   00BF 75 86 00            250 	mov	dps,#0
+   00C2 12s00r00r00         251 	lcall	__gptrget
+   00C6 FC                  252 	mov	r4,a
+   00C7 7D 00               253 	mov	r5,#0
+   00C9 C3                  254 	clr	c
+   00CA EA                  255 	mov	a,r2
+   00CB 9C                  256 	subb	a,r4
+   00CC F5 82               257 	mov	dpl,a
+   00CE EB                  258 	mov	a,r3
+   00CF 9D                  259 	subb	a,r5
+   00D0 F5 83               260 	mov	dph,a
+   00D2                     261 00107$:
+   00D2 22                  262 	ret
+                            263 	.area CSEG    (CODE)
+                            264 	.area CONST   (CODE)
+                            265 	.area XINIT   (CODE)
+                            266 	.area CABS    (ABS,CODE)

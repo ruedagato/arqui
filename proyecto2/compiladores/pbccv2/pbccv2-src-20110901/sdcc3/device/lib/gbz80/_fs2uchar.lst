@@ -1,0 +1,100 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:19 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _fs2uchar
+                              7 	.optsdcc -mgbz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl ___fs2uchar
+                             13 ;--------------------------------------------------------
+                             14 ;  ram data
+                             15 ;--------------------------------------------------------
+                             16 	.area _DATA
+                             17 ;--------------------------------------------------------
+                             18 ; overlayable items in  ram 
+                             19 ;--------------------------------------------------------
+                             20 	.area _OVERLAY
+                             21 ;--------------------------------------------------------
+                             22 ; external initialized ram data
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; global & static initialisations
+                             26 ;--------------------------------------------------------
+                             27 	.area _HOME
+                             28 	.area _GSINIT
+                             29 	.area _GSFINAL
+                             30 	.area _GSINIT
+                             31 ;--------------------------------------------------------
+                             32 ; Home
+                             33 ;--------------------------------------------------------
+                             34 	.area _HOME
+                             35 ;../_fs2uchar.c:51: unsigned char __fs2uchar (float f)
+                             36 ;	---------------------------------
+                             37 ; Function __fs2uchar
+                             38 ; ---------------------------------
+   0000                      39 ___fs2uchar_start::
+   0000                      40 ___fs2uchar:
+                             41 	
+   0000 F5                   42 	push	af
+   0001 F5                   43 	push	af
+                             44 ;../_fs2uchar.c:53: unsigned long ul=__fs2ulong(f);
+   0002 F8 08                45 	ldhl	sp,#8
+   0004 7E                   46 	ld	a,(hl)
+   0005 23                   47 	inc	hl
+   0006 66                   48 	ld	h,(hl)
+   0007 6F                   49 	ld	l,a
+   0008 E5                   50 	push	hl
+   0009 F8 08                51 	ldhl	sp,#8
+   000B 7E                   52 	ld	a,(hl)
+   000C 23                   53 	inc	hl
+   000D 66                   54 	ld	h,(hl)
+   000E 6F                   55 	ld	l,a
+   000F E5                   56 	push	hl
+   0010 CDr00s00             57 	call	___fs2ulong
+   0013 E8 04                58 	lda	sp,4(sp)
+   0015 E5                   59 	push	hl
+   0016 F8 02                60 	ldhl	sp,#2
+   0018 73                   61 	ld	(hl),e
+   0019 23                   62 	inc	hl
+   001A 72                   63 	ld	(hl),d
+   001B D1                   64 	pop	de
+   001C 23                   65 	inc	hl
+   001D 73                   66 	ld	(hl),e
+   001E 23                   67 	inc	hl
+   001F 72                   68 	ld	(hl),d
+                             69 ;../_fs2uchar.c:54: if (ul>=UCHAR_MAX) return UCHAR_MAX;
+   0020 F8 00                70 	ldhl	sp,#0
+   0022 7E                   71 	ld	a, (hl)
+   0023 D6 FF                72 	sub	a, #0xFF
+   0025 23                   73 	inc	hl
+   0026 7E                   74 	ld	a, (hl)
+   0027 DE 00                75 	sbc	a, #0x00
+   0029 23                   76 	inc	hl
+   002A 7E                   77 	ld	a, (hl)
+   002B DE 00                78 	sbc	a, #0x00
+   002D 23                   79 	inc	hl
+   002E 7E                   80 	ld	a, (hl)
+   002F DE 00                81 	sbc	a, #0x00
+   0031 DAr38s00             82 	jp	C,00102$
+   0034 1E FF                83 	ld	e,#0xFF
+   0036 18 04                84 	jr	00103$
+   0038                      85 00102$:
+                             86 ;../_fs2uchar.c:55: return ul;
+   0038 F8 00                87 	ldhl	sp,#0
+   003A 4E                   88 	ld	c,(hl)
+   003B 59                   89 	ld	e,c
+   003C                      90 00103$:
+   003C E8 04                91 	lda	sp,4(sp)
+   003E C9                   92 	ret
+   003F                      93 ___fs2uchar_end::
+                             94 	.area _HOME
+                             95 ;--------------------------------------------------------
+                             96 ; code
+                             97 ;--------------------------------------------------------
+                             98 	.area _CODE
+                             99 	.area _CODE
+                            100 	.area _CABS

@@ -1,0 +1,209 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:19 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module asinf
+                              7 	.optsdcc -mds400 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _asinf
+                             31 ;--------------------------------------------------------
+                             32 ; special function registers
+                             33 ;--------------------------------------------------------
+                             34 ;--------------------------------------------------------
+                             35 ; special function bits
+                             36 ;--------------------------------------------------------
+                             37 ;--------------------------------------------------------
+                             38 ; overlayable register banks
+                             39 ;--------------------------------------------------------
+                             40 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      41 	.ds 8
+                             42 	.area REG_BANK_3	(REL,OVR,DATA)
+   0000                      43 	.ds 8
+                             44 ;--------------------------------------------------------
+                             45 ; internal ram data
+                             46 ;--------------------------------------------------------
+                             47 	.area DSEG    (DATA)
+                             48 ;--------------------------------------------------------
+                             49 ; overlayable items in internal ram 
+                             50 ;--------------------------------------------------------
+                             51 	.area OSEG    (OVR,DATA)
+                             52 ;--------------------------------------------------------
+                             53 ; indirectly addressable internal ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area ISEG    (DATA)
+                             56 ;--------------------------------------------------------
+                             57 ; absolute internal ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area IABS    (ABS,DATA)
+                             60 	.area IABS    (ABS,DATA)
+                             61 ;--------------------------------------------------------
+                             62 ; bit data
+                             63 ;--------------------------------------------------------
+                             64 	.area BSEG    (BIT)
+                             65 ;--------------------------------------------------------
+                             66 ; paged external ram data
+                             67 ;--------------------------------------------------------
+                             68 	.area PSEG    (PAG,XDATA)
+                             69 ;--------------------------------------------------------
+                             70 ; external ram data
+                             71 ;--------------------------------------------------------
+                             72 	.area XSEG    (XDATA)
+                             73 ;--------------------------------------------------------
+                             74 ; absolute external ram data
+                             75 ;--------------------------------------------------------
+                             76 	.area XABS    (ABS,XDATA)
+                             77 ;--------------------------------------------------------
+                             78 ; external initialized ram data
+                             79 ;--------------------------------------------------------
+                             80 	.area XISEG   (XDATA)
+                             81 ;--------------------------------------------------------
+                             82 ; global & static initialisations
+                             83 ;--------------------------------------------------------
+                             84 	.area HOME    (CODE)
+                             85 	.area GSINIT  (CODE)
+                             86 	.area GSFINAL (CODE)
+                             87 	.area GSINIT  (CODE)
+                             88 ;--------------------------------------------------------
+                             89 ; Home
+                             90 ;--------------------------------------------------------
+                             91 	.area HOME    (CODE)
+                             92 	.area HOME    (CODE)
+                             93 ;--------------------------------------------------------
+                             94 ; code
+                             95 ;--------------------------------------------------------
+                             96 	.area CSEG    (CODE)
+                             97 ;------------------------------------------------------------
+                             98 ;Allocation info for local variables in function 'asinf'
+                             99 ;------------------------------------------------------------
+                            100 ;x                         Allocated to registers r2 r3 r4 r5 
+                            101 ;------------------------------------------------------------
+                            102 ;	asinf.c:36: float asinf(const float x) _FLOAT_FUNC_REENTRANT
+                            103 ;	-----------------------------------------
+                            104 ;	 function asinf
+                            105 ;	-----------------------------------------
+   0000                     106 _asinf:
+                    0002    107 	ar2 = 0x02
+                    0003    108 	ar3 = 0x03
+                    0004    109 	ar4 = 0x04
+                    0005    110 	ar5 = 0x05
+                    0006    111 	ar6 = 0x06
+                    0007    112 	ar7 = 0x07
+                    0000    113 	ar0 = 0x00
+                    0001    114 	ar1 = 0x01
+   0000 AA 82               115 	mov	r2,dpl
+   0002 AB 83               116 	mov	r3,dph
+   0004 AC 93               117 	mov	r4,dpx
+   0006 AD F0               118 	mov	r5,b
+                            119 ;	asinf.c:38: if (x == 1.0) return  HALF_PI;
+                            120 ;	genAssign: resultIsFar = TRUE
+   0008 90s00r00r00         121 	mov	dptr,#___fseq_PARM_2
+   000C E4                  122 	clr  a
+   000D F0                  123 	movx @dptr,a
+   000E A3                  124 	inc  dptr
+   000F F0                  125 	movx @dptr,a
+   0010 A3                  126 	inc	dptr
+   0011 74 80               127 	mov	a,#0x80
+   0013 F0                  128 	movx	@dptr,a
+   0014 A3                  129 	inc	dptr
+   0015 74 3F               130 	mov	a,#0x3F
+   0017 F0                  131 	movx	@dptr,a
+   0018 C0 02               132 	push	ar2
+   001A C0 03               133 	push	ar3
+   001C C0 04               134 	push	ar4
+   001E C0 05               135 	push	ar5
+   0020 8A 82               136 	mov	dpl,r2
+   0022 8B 83               137 	mov	dph,r3
+   0024 8C 93               138 	mov	dpx,r4
+   0026 8D F0               139 	mov	b,r5
+   0028 12s00r00r00         140 	lcall	___fseq
+   002C D0 05               141 	pop	ar5
+   002E D0 04               142 	pop	ar4
+   0030 D0 03               143 	pop	ar3
+   0032 D0 02               144 	pop	ar2
+   0034 E5 82               145 	mov	a,dpl
+   0036 60 09               146 	jz  00108$
+   0038                     147 00115$:
+   0038 90 C9 0F DB         148 	mov	dptr,#0xC90FDB
+   003C 75 F0 3F            149 	mov	b,#0x3F
+   003F 80 56               150 	sjmp 00110$
+   0041                     151 00108$:
+                            152 ;	asinf.c:39: else if (x ==-1.0) return -HALF_PI;
+                            153 ;	genAssign: resultIsFar = TRUE
+   0041 90s00r00r00         154 	mov	dptr,#___fseq_PARM_2
+   0045 E4                  155 	clr  a
+   0046 F0                  156 	movx @dptr,a
+   0047 A3                  157 	inc  dptr
+   0048 F0                  158 	movx @dptr,a
+   0049 A3                  159 	inc	dptr
+   004A 74 80               160 	mov	a,#0x80
+   004C F0                  161 	movx	@dptr,a
+   004D A3                  162 	inc	dptr
+   004E 74 BF               163 	mov	a,#0xBF
+   0050 F0                  164 	movx	@dptr,a
+   0051 C0 02               165 	push	ar2
+   0053 C0 03               166 	push	ar3
+   0055 C0 04               167 	push	ar4
+   0057 C0 05               168 	push	ar5
+   0059 8A 82               169 	mov	dpl,r2
+   005B 8B 83               170 	mov	dph,r3
+   005D 8C 93               171 	mov	dpx,r4
+   005F 8D F0               172 	mov	b,r5
+   0061 12s00r00r00         173 	lcall	___fseq
+   0065 D0 05               174 	pop	ar5
+   0067 D0 04               175 	pop	ar4
+   0069 D0 03               176 	pop	ar3
+   006B D0 02               177 	pop	ar2
+   006D E5 82               178 	mov	a,dpl
+   006F 60 09               179 	jz  00105$
+   0071                     180 00116$:
+   0071 90 C9 0F DB         181 	mov	dptr,#0xC90FDB
+   0075 75 F0 BF            182 	mov	b,#0xBF
+   0078 80 1D               183 	sjmp 00110$
+   007A                     184 00105$:
+                            185 ;	asinf.c:40: else if (x == 0.0) return 0.0;
+   007A EA                  186 	mov	a,r2
+   007B 4B                  187 	orl	a,r3
+   007C 4C                  188 	orl	a,r4
+   007D 4D                  189 	orl	a,r5
+   007E 70 09               190 	jnz  00102$
+   0080                     191 00117$:
+   0080 90 00 00 00         192 	mov  dptr,#0x0000
+   0084 75 F0 00            193 	mov	b,#0x00
+   0087 80 0E               194 	sjmp 00110$
+   0089                     195 00102$:
+                            196 ;	asinf.c:41: else               return asincosf(x, false);
+                            197 ;	genAssign: resultIsFar = FALSE
+   0089 C2*00               198 	clr	_asincosf_PARM_2
+   008B 8A 82               199 	mov	dpl,r2
+   008D 8B 83               200 	mov	dph,r3
+   008F 8C 93               201 	mov	dpx,r4
+   0091 8D F0               202 	mov	b,r5
+   0093 12s00r00r00         203 	lcall	_asincosf
+   0097                     204 00110$:
+   0097 22                  205 	ret
+                            206 	.area CSEG    (CODE)
+                            207 	.area CONST   (CODE)
+                            208 	.area XINIT   (CODE)
+                            209 	.area CABS    (ABS,CODE)

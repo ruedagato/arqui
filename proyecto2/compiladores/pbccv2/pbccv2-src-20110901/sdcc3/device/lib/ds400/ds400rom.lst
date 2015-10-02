@@ -1,0 +1,505 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:20 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module ds400rom
+                              7 	.optsdcc -mds400 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl __romredirect
+                             31 	.globl __romcall
+                             32 	.globl _init_rom_PARM_2
+                             33 	.globl _DSS_hb_chandle
+                             34 	.globl _DSS_ms_count
+                             35 	.globl _DSS_sched
+                             36 	.globl _DSS_curr_pc
+                             37 	.globl _DSS_timerReload
+                             38 	.globl _DSS_wos_crit_count
+                             39 	.globl _init_rom
+                             40 	.globl _task_gettimemillis_long
+                             41 	.globl _task_getthreadID
+                             42 	.globl _task_gettickreload
+                             43 	.globl _task_settickreload
+                             44 ;--------------------------------------------------------
+                             45 ; special function registers
+                             46 ;--------------------------------------------------------
+                    0080     47 _P4	=	0x0080
+                    0081     48 _SP	=	0x0081
+                    0082     49 _DPL	=	0x0082
+                    0083     50 _DPH	=	0x0083
+                    0084     51 _DPL1	=	0x0084
+                    0085     52 _DPH1	=	0x0085
+                    0086     53 _DPS	=	0x0086
+                    0087     54 _PCON	=	0x0087
+                    0088     55 _TCON	=	0x0088
+                    0089     56 _TMOD	=	0x0089
+                    008A     57 _TL0	=	0x008a
+                    008B     58 _TL1	=	0x008b
+                    008C     59 _TH0	=	0x008c
+                    008D     60 _TH1	=	0x008d
+                    008E     61 _CKCON	=	0x008e
+                    0090     62 _P1	=	0x0090
+                    0091     63 _EXIF	=	0x0091
+                    0092     64 _P4CNT	=	0x0092
+                    0093     65 _DPX	=	0x0093
+                    0095     66 _DPX1	=	0x0095
+                    0098     67 _SCON0	=	0x0098
+                    0099     68 _SBUF0	=	0x0099
+                    009B     69 _ESP	=	0x009b
+                    009C     70 _AP	=	0x009c
+                    009D     71 _ACON	=	0x009d
+                    00A0     72 _P2	=	0x00a0
+                    00A1     73 _P5	=	0x00a1
+                    00A2     74 _P5CNT	=	0x00a2
+                    00A8     75 _IE	=	0x00a8
+                    00B0     76 _P3	=	0x00b0
+                    00B8     77 _IP	=	0x00b8
+                    00C0     78 _SCON1	=	0x00c0
+                    00C1     79 _SBUF1	=	0x00c1
+                    00C4     80 _PMR	=	0x00c4
+                    00C6     81 _MCON	=	0x00c6
+                    00C7     82 _TA	=	0x00c7
+                    00C8     83 _T2CON	=	0x00c8
+                    00C9     84 _T2MOD	=	0x00c9
+                    00CA     85 _RCAP2L	=	0x00ca
+                    00CA     86 _RTL2	=	0x00ca
+                    00CB     87 _RCAP2H	=	0x00cb
+                    00CB     88 _RTH2	=	0x00cb
+                    00CC     89 _TL2	=	0x00cc
+                    00CD     90 _TH2	=	0x00cd
+                    00D0     91 _PSW	=	0x00d0
+                    00D1     92 _MCNT0	=	0x00d1
+                    00D2     93 _MCNT1	=	0x00d2
+                    00D3     94 _MA	=	0x00d3
+                    00D4     95 _MB	=	0x00d4
+                    00D5     96 _MC	=	0x00d5
+                    00D8     97 _WDCON	=	0x00d8
+                    00E0     98 _ACC	=	0x00e0
+                    00E8     99 _EIE	=	0x00e8
+                    00EA    100 _MXAX	=	0x00ea
+                    00F0    101 _B	=	0x00f0
+                    00F8    102 _EIP	=	0x00f8
+                    8C8A    103 _TMR0	=	0x8c8a
+                    8D8B    104 _TMR1	=	0x8d8b
+                    CDCC    105 _TMR2	=	0xcdcc
+                    CBCA    106 _RCAP2	=	0xcbca
+                            107 ;--------------------------------------------------------
+                            108 ; special function bits
+                            109 ;--------------------------------------------------------
+                    0088    110 _IT0	=	0x0088
+                    0089    111 _IE0	=	0x0089
+                    008A    112 _IT1	=	0x008a
+                    008B    113 _IE1	=	0x008b
+                    008C    114 _TR0	=	0x008c
+                    008D    115 _TF0	=	0x008d
+                    008E    116 _TR1	=	0x008e
+                    008F    117 _TF1	=	0x008f
+                    0090    118 _T2	=	0x0090
+                    0091    119 _T2EX	=	0x0091
+                    0092    120 _RXD1	=	0x0092
+                    0093    121 _TXD1	=	0x0093
+                    0094    122 _INT2	=	0x0094
+                    0095    123 _INT3	=	0x0095
+                    0096    124 _INT4	=	0x0096
+                    0097    125 _INT5	=	0x0097
+                    0098    126 _RI_0	=	0x0098
+                    0099    127 _TI_0	=	0x0099
+                    009A    128 _RB8_0	=	0x009a
+                    009B    129 _TB8_0	=	0x009b
+                    009C    130 _REN_0	=	0x009c
+                    009D    131 _SM2_0	=	0x009d
+                    009E    132 _SM1_0	=	0x009e
+                    009F    133 _SM0_0	=	0x009f
+                    009F    134 _FE_0	=	0x009f
+                    00A8    135 _EX0	=	0x00a8
+                    00A9    136 _ET0	=	0x00a9
+                    00AA    137 _EX1	=	0x00aa
+                    00AB    138 _ET1	=	0x00ab
+                    00AC    139 _ES0	=	0x00ac
+                    00AD    140 _ET2	=	0x00ad
+                    00AE    141 _ES1	=	0x00ae
+                    00AF    142 _EA	=	0x00af
+                    00B0    143 _RXD0	=	0x00b0
+                    00B1    144 _TXD0	=	0x00b1
+                    00B2    145 _INT0	=	0x00b2
+                    00B3    146 _INT1	=	0x00b3
+                    00B4    147 _T0	=	0x00b4
+                    00B5    148 _T1	=	0x00b5
+                    00B6    149 _WR	=	0x00b6
+                    00B7    150 _RD	=	0x00b7
+                    00B8    151 _PX0	=	0x00b8
+                    00B9    152 _PT0	=	0x00b9
+                    00BA    153 _PX1	=	0x00ba
+                    00BB    154 _PT1	=	0x00bb
+                    00BC    155 _PS0	=	0x00bc
+                    00BD    156 _PT2	=	0x00bd
+                    00BE    157 _PS1	=	0x00be
+                    00C0    158 _RI_1	=	0x00c0
+                    00C1    159 _TI_1	=	0x00c1
+                    00C2    160 _RB8_1	=	0x00c2
+                    00C3    161 _TB8_1	=	0x00c3
+                    00C4    162 _REN_1	=	0x00c4
+                    00C5    163 _SM2_1	=	0x00c5
+                    00C6    164 _SM1_1	=	0x00c6
+                    00C7    165 _SM0_1	=	0x00c7
+                    00C7    166 _FE_1	=	0x00c7
+                    00C8    167 _CP_RL	=	0x00c8
+                    00C9    168 _C_T	=	0x00c9
+                    00CA    169 _TR2	=	0x00ca
+                    00CB    170 _EXEN2	=	0x00cb
+                    00CC    171 _TCLK	=	0x00cc
+                    00CD    172 _RCLK	=	0x00cd
+                    00CE    173 _EXF2	=	0x00ce
+                    00CF    174 _TF2	=	0x00cf
+                    00D0    175 _P	=	0x00d0
+                    00D1    176 _F1	=	0x00d1
+                    00D2    177 _OV	=	0x00d2
+                    00D3    178 _RS0	=	0x00d3
+                    00D4    179 _RS1	=	0x00d4
+                    00D5    180 _F0	=	0x00d5
+                    00D6    181 _AC	=	0x00d6
+                    00D7    182 _CY	=	0x00d7
+                    00D8    183 _RWT	=	0x00d8
+                    00D9    184 _EWT	=	0x00d9
+                    00DA    185 _WDRF	=	0x00da
+                    00DB    186 _WDIF	=	0x00db
+                    00DC    187 _PFI	=	0x00dc
+                    00DD    188 _EPFI	=	0x00dd
+                    00DE    189 _POR	=	0x00de
+                    00DF    190 _SMOD_1	=	0x00df
+                    00E8    191 _EX2	=	0x00e8
+                    00E9    192 _EX3	=	0x00e9
+                    00EA    193 _EX4	=	0x00ea
+                    00EB    194 _EX5	=	0x00eb
+                    00EC    195 _EWDI	=	0x00ec
+                    00ED    196 _C1IE	=	0x00ed
+                    00EE    197 _C0IE	=	0x00ee
+                    00EF    198 _CANBIE	=	0x00ef
+                    00F8    199 _PX2	=	0x00f8
+                    00F9    200 _PX3	=	0x00f9
+                    00FA    201 _PX4	=	0x00fa
+                    00FB    202 _PX5	=	0x00fb
+                    00FC    203 _PWDI	=	0x00fc
+                    00FD    204 _C1IP	=	0x00fd
+                    00FE    205 _C0IP	=	0x00fe
+                    00FF    206 _CANBIP	=	0x00ff
+                            207 ;--------------------------------------------------------
+                            208 ; overlayable register banks
+                            209 ;--------------------------------------------------------
+                            210 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     211 	.ds 8
+                            212 	.area REG_BANK_3	(REL,OVR,DATA)
+   0000                     213 	.ds 8
+                            214 ;--------------------------------------------------------
+                            215 ; internal ram data
+                            216 ;--------------------------------------------------------
+                            217 	.area DSEG    (DATA)
+                    0068    218 _DSS_wos_crit_count	=	0x0068
+                    006B    219 _DSS_timerReload	=	0x006b
+                    006D    220 _DSS_curr_pc	=	0x006d
+                    0072    221 _DSS_sched	=	0x0072
+                    0074    222 _DSS_ms_count	=	0x0074
+                    007B    223 _DSS_hb_chandle	=	0x007b
+                            224 ;--------------------------------------------------------
+                            225 ; overlayable items in internal ram 
+                            226 ;--------------------------------------------------------
+                            227 	.area OSEG    (OVR,DATA)
+                            228 ;--------------------------------------------------------
+                            229 ; indirectly addressable internal ram data
+                            230 ;--------------------------------------------------------
+                            231 	.area ISEG    (DATA)
+                            232 ;--------------------------------------------------------
+                            233 ; absolute internal ram data
+                            234 ;--------------------------------------------------------
+                            235 	.area IABS    (ABS,DATA)
+                            236 	.area IABS    (ABS,DATA)
+                            237 ;--------------------------------------------------------
+                            238 ; bit data
+                            239 ;--------------------------------------------------------
+                            240 	.area BSEG    (BIT)
+                            241 ;--------------------------------------------------------
+                            242 ; paged external ram data
+                            243 ;--------------------------------------------------------
+                            244 	.area PSEG    (PAG,XDATA)
+                            245 ;--------------------------------------------------------
+                            246 ; external ram data
+                            247 ;--------------------------------------------------------
+                            248 	.area XSEG    (XDATA)
+   0000                     249 _init_rom_PARM_2:
+   0000                     250 	.ds 3
+                            251 ;--------------------------------------------------------
+                            252 ; absolute external ram data
+                            253 ;--------------------------------------------------------
+                            254 	.area XABS    (ABS,XDATA)
+                            255 ;--------------------------------------------------------
+                            256 ; external initialized ram data
+                            257 ;--------------------------------------------------------
+                            258 	.area XISEG   (XDATA)
+                            259 ;--------------------------------------------------------
+                            260 ; global & static initialisations
+                            261 ;--------------------------------------------------------
+                            262 	.area HOME    (CODE)
+                            263 	.area GSINIT  (CODE)
+                            264 	.area GSFINAL (CODE)
+                            265 	.area GSINIT  (CODE)
+                            266 ;--------------------------------------------------------
+                            267 ; Home
+                            268 ;--------------------------------------------------------
+                            269 	.area HOME    (CODE)
+                            270 	.area HOME    (CODE)
+                            271 ;--------------------------------------------------------
+                            272 ; code
+                            273 ;--------------------------------------------------------
+                            274 	.area CSEG    (CODE)
+                            275 ;------------------------------------------------------------
+                            276 ;Allocation info for local variables in function '_romcall'
+                            277 ;------------------------------------------------------------
+                            278 ;------------------------------------------------------------
+                            279 ;	ds400rom.c:271: void _romcall(void) __naked
+                            280 ;	-----------------------------------------
+                            281 ;	 function _romcall
+                            282 ;	-----------------------------------------
+   0000                     283 __romcall:
+                            284 ;	naked function: no prologue.
+                            285 ;	ds400rom.c:284: GETC                                    ; get the address of the table
+                            286 	
+   0000 C0 93               287 	      push dpx ; dptr0 preserved here
+   0002 C0 83               288 	      push dph
+   0004 C0 82               289 	      push dpl
+                            290 	
+                            291       ; point to the address of the table
+   0006 90 FF 00 02         292 	      mov dptr, #(0xFF << 16 | 2)
+                            293 	
+   000A C0 E0               294 	      push acc ; acc preserved here
+   000C C0 F0               295 	      push b ; b preserved here
+   000E A3                  296 	      inc dptr
+   000F E4                  297 	      clr a 
+                            298 ;	ds400rom.c:287: GETC
+   0010 93                  299 	 movc a, @a+dptr ; get the address of the table
+   0011 C0 E0               300 	      push acc
+   0013 A3                  301 	      inc dptr
+   0014 E4                  302 	      clr a 
+                            303 ;	ds400rom.c:298: GETC
+   0015 93                  304 	 movc a, @a+dptr
+   0016 25 1E               305 	      add a, 0x1E ; add function offset to the table
+   0018 F5 82               306 	      mov dpl, a
+   001A D0 E0               307 	      pop acc
+   001C 35 1F               308 	      addc a, 0x1F
+   001E F5 83               309 	      mov dph, a
+                            310 	
+                            311       ;
+                            312       ; dpx is the same, all in the same bank
+                            313       ;
+   0020 A3                  314 	      inc dptr ; get the target address of the function we want
+   0021 E4                  315 	      clr a 
+                            316 ;	ds400rom.c:301: GETC
+   0022 93                  317 	 movc a, @a+dptr
+   0023 F5 F0               318 	      mov b, a
+   0025 A3                  319 	      inc dptr
+   0026 E4                  320 	      clr a 
+                            321 ;	ds400rom.c:316: __endasm ;
+   0027 93                  322 	 movc a, @a+dptr
+   0028 F5 1B               323 	      mov 0x1B, a
+   002A 85 F0 1C            324 	      mov 0x1C, b
+   002D 85 93 1D            325 	      mov 0x1D, dpx ; high byte does not change
+   0030 D0 F0               326 	      pop b ; b restored here
+   0032 D0 E0               327 	      pop acc ; acc restored here
+   0034 D0 82               328 	      pop dpl ; dptr0 preserved here
+   0036 D0 83               329 	      pop dph
+   0038 D0 93               330 	      pop dpx
+   003A C0 1B               331 	      push 0x1B ; push the target address
+   003C C0 1C               332 	      push 0x1C
+   003E C0 1D               333 	      push 0x1D
+   0040 22                  334 	      ret ; this is not a ret, it is a call!
+                            335 	
+                            336       ; the called function ends with a ret which will return to our original caller.
+   0041                     337 00101$:
+                            338 ;	naked function: no epilogue.
+                            339 ;------------------------------------------------------------
+                            340 ;Allocation info for local variables in function '_romredirect'
+                            341 ;------------------------------------------------------------
+                            342 ;------------------------------------------------------------
+                            343 ;	ds400rom.c:320: void _romredirect(void) __naked
+                            344 ;	-----------------------------------------
+                            345 ;	 function _romredirect
+                            346 ;	-----------------------------------------
+   0041                     347 __romredirect:
+                            348 ;	naked function: no prologue.
+                            349 ;	ds400rom.c:353: __endasm;	
+                            350 	
+   0041 C0 93               351 	      push dpx
+   0043 C0 83               352 	      push dph
+   0045 C0 82               353 	      push dpl
+   0047 C0 E0               354 	      push acc
+                            355       ; dptr = 256 + function offset.
+   0049 74 00               356 	      mov a, #(256 & 0xff)
+   004B 25 1E               357 	      add a, 0x1E ; add function offset to the table
+   004D F5 82               358 	      mov dpl, a
+   004F 74 01               359 	      mov a, #((256 >> 8) & 0xff)
+   0051 35 1F               360 	      addc a, 0x1F
+   0053 F5 83               361 	      mov dph, a
+   0055 75 93 00            362 	      mov dpx, #((256 >> 16) & 0xff)
+   0058 E0                  363 	      movx a, @dptr ; read high byte
+   0059 F5 1D               364 	      mov 0x1D, a
+   005B A3                  365 	      inc dptr
+   005C E0                  366 	      movx a, @dptr ; read mid byte
+   005D F5 1C               367 	      mov 0x1C, a
+   005F A3                  368 	      inc dptr
+   0060 E0                  369 	      movx a, @dptr ; read low byte
+   0061 F5 1B               370 	      mov 0x1B, a
+   0063 D0 E0               371 	      pop acc ; restore acc and dptr
+   0065 D0 82               372 	      pop dpl
+   0067 D0 83               373 	      pop dph
+   0069 D0 93               374 	      pop dpx
+   006B C0 1B               375 	      push 0x1B ; push low byte of target address
+   006D C0 1C               376 	      push 0x1C
+   006F C0 1D               377 	      push 0x1D ; push high byte of target address
+   0071 22                  378 	      ret ; this is not a ret, it is a call!
+                            379 	
+                            380       ; the called function ends with a ret which will return to our original caller.
+   0072                     381 00101$:
+                            382 ;	naked function: no epilogue.
+                            383 ;------------------------------------------------------------
+                            384 ;Allocation info for local variables in function 'init_rom'
+                            385 ;------------------------------------------------------------
+                            386 ;hiMem                     Allocated with name '_init_rom_PARM_2'
+                            387 ;loMem                     Allocated to registers 
+                            388 ;------------------------------------------------------------
+                            389 ;	ds400rom.c:373: unsigned char init_rom(void __xdata *loMem,
+                            390 ;	-----------------------------------------
+                            391 ;	 function init_rom
+                            392 ;	-----------------------------------------
+   0072                     393 _init_rom:
+                            394 ;	naked function: no prologue.
+                            395 ;	ds400rom.c:392: ROMCALL(ROMXT_ROM_INIT)
+                            396 	
+                            397  ; load params.
+                            398  ; loMem is already in DPTR.
+   0072 AA 93               399 	 mov r2, dpx
+   0074 A9 83               400 	 mov r1, dph
+   0076 A8 82               401 	 mov r0, dpl
+                            402  ; hiMem is in _init_rom_PARM_2
+   0078 90s00r00r00         403 	 mov dptr, #_init_rom_PARM_2
+   007C AD 93               404 	 mov r5, dpx
+   007E AC 83               405 	 mov r4, dph
+   0080 AB 82               406 	 mov r3, dpl
+                            407 	
+   0082 75 1E CF            408 	 mov 0x1E, #((69 * 3) & 0xff) 
+   0085 75 1F 00            409 	 mov 0x1F, #(((69 * 3) >> 8) & 0xff) 
+                            410 ;	ds400rom.c:397: __endasm	;
+   0088 12s00r00r00         411 	 lcall __romcall
+                            412 	
+                            413  ; result is in acc, move to dpl for C convention.
+   008C F5 82               414 	 mov dpl, a
+   008E 22                  415 	 ret
+   008F                     416 00101$:
+                            417 ;	naked function: no epilogue.
+                            418 ;------------------------------------------------------------
+                            419 ;Allocation info for local variables in function 'task_gettimemillis_long'
+                            420 ;------------------------------------------------------------
+                            421 ;------------------------------------------------------------
+                            422 ;	ds400rom.c:402: unsigned long task_gettimemillis_long(void) __naked
+                            423 ;	-----------------------------------------
+                            424 ;	 function task_gettimemillis_long
+                            425 ;	-----------------------------------------
+   008F                     426 _task_gettimemillis_long:
+                            427 ;	naked function: no prologue.
+                            428 ;	ds400rom.c:406: ROMREDIRECT(ROMRT_GETTIMEMILLIS)
+                            429 	
+                            430     ; no parameters to load.
+   008F 75 1E 18            431 	    mov 0x1E, #(( 8 * 3) & 0xff) 
+   0092 75 1F 00            432 	 mov 0x1F, #((( 8 * 3) >> 8) & 0xff) 
+                            433 ;	ds400rom.c:413: __endasm;
+   0095 12s00r00r41         434 	 lcall __romredirect
+                            435    ; results in r4 - r0, return in DPTR/B
+   0099 88 82               436 	   mov dpl, r0
+   009B 89 83               437 	   mov dph, r1
+   009D 8A 93               438 	   mov dpx, r2
+   009F 8B F0               439 	   mov b, r3
+   00A1 22                  440 	   ret
+   00A2                     441 00101$:
+                            442 ;	naked function: no epilogue.
+                            443 ;------------------------------------------------------------
+                            444 ;Allocation info for local variables in function 'task_getthreadID'
+                            445 ;------------------------------------------------------------
+                            446 ;------------------------------------------------------------
+                            447 ;	ds400rom.c:416: unsigned char task_getthreadID(void) __naked
+                            448 ;	-----------------------------------------
+                            449 ;	 function task_getthreadID
+                            450 ;	-----------------------------------------
+   00A2                     451 _task_getthreadID:
+                            452 ;	naked function: no prologue.
+                            453 ;	ds400rom.c:420: ROMREDIRECT(ROMRT_GETTHREADID)
+                            454 	
+                            455     ; no parameters to load.
+   00A2 75 1E 1B            456 	    mov 0x1E, #(( 9 * 3) & 0xff) 
+   00A5 75 1F 00            457 	 mov 0x1F, #((( 9 * 3) >> 8) & 0xff) 
+                            458 ;	ds400rom.c:424: __endasm;    
+   00A8 12s00r00r41         459 	 lcall __romredirect
+                            460    ; results in acc, return in dpl
+   00AC F5 82               461 	   mov dpl, a
+   00AE 22                  462 	   ret
+   00AF                     463 00101$:
+                            464 ;	naked function: no epilogue.
+                            465 ;------------------------------------------------------------
+                            466 ;Allocation info for local variables in function 'task_gettickreload'
+                            467 ;------------------------------------------------------------
+                            468 ;------------------------------------------------------------
+                            469 ;	ds400rom.c:427: unsigned int task_gettickreload(void)
+                            470 ;	-----------------------------------------
+                            471 ;	 function task_gettickreload
+                            472 ;	-----------------------------------------
+   00AF                     473 _task_gettickreload:
+                    0002    474 	ar2 = 0x02
+                    0003    475 	ar3 = 0x03
+                    0004    476 	ar4 = 0x04
+                    0005    477 	ar5 = 0x05
+                    0006    478 	ar6 = 0x06
+                    0007    479 	ar7 = 0x07
+                    0000    480 	ar0 = 0x00
+                    0001    481 	ar1 = 0x01
+                            482 ;	ds400rom.c:429: return DSS_timerReload;
+   00AF 85 6B 82            483 	mov	dpl,_DSS_timerReload
+   00B2 85 6C 83            484 	mov	dph,(_DSS_timerReload + 1)
+   00B5                     485 00101$:
+   00B5 22                  486 	ret
+                            487 ;------------------------------------------------------------
+                            488 ;Allocation info for local variables in function 'task_settickreload'
+                            489 ;------------------------------------------------------------
+                            490 ;rl                        Allocated to registers 
+                            491 ;------------------------------------------------------------
+                            492 ;	ds400rom.c:432: void task_settickreload(unsigned int rl)
+                            493 ;	-----------------------------------------
+                            494 ;	 function task_settickreload
+                            495 ;	-----------------------------------------
+   00B6                     496 _task_settickreload:
+   00B6 85 82 6B            497 	mov	_DSS_timerReload,dpl
+   00B9 85 83 6C            498 	mov	(_DSS_timerReload + 1),dph
+                            499 ;	ds400rom.c:434: DSS_timerReload = rl;
+   00BC                     500 00101$:
+   00BC 22                  501 	ret
+                            502 	.area CSEG    (CODE)
+                            503 	.area CONST   (CODE)
+                            504 	.area XINIT   (CODE)
+                            505 	.area CABS    (ABS,CODE)

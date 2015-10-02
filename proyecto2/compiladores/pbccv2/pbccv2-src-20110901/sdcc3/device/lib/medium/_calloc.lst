@@ -1,0 +1,177 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:26 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _calloc
+                              7 	.optsdcc -mmcs51 --model-medium
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _calloc_PARM_2
+                             13 	.globl _calloc
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 	.area RSEG    (ABS,DATA)
+   0000                      18 	.org 0x0000
+                             19 ;--------------------------------------------------------
+                             20 ; special function bits
+                             21 ;--------------------------------------------------------
+                             22 	.area RSEG    (ABS,DATA)
+   0000                      23 	.org 0x0000
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable register banks
+                             26 ;--------------------------------------------------------
+                             27 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      28 	.ds 8
+                             29 ;--------------------------------------------------------
+                             30 ; internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area DSEG    (DATA)
+                             33 ;--------------------------------------------------------
+                             34 ; overlayable items in internal ram 
+                             35 ;--------------------------------------------------------
+                             36 	.area OSEG    (OVR,DATA)
+                             37 ;--------------------------------------------------------
+                             38 ; indirectly addressable internal ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area ISEG    (DATA)
+                             41 ;--------------------------------------------------------
+                             42 ; absolute internal ram data
+                             43 ;--------------------------------------------------------
+                             44 	.area IABS    (ABS,DATA)
+                             45 	.area IABS    (ABS,DATA)
+                             46 ;--------------------------------------------------------
+                             47 ; bit data
+                             48 ;--------------------------------------------------------
+                             49 	.area BSEG    (BIT)
+                             50 ;--------------------------------------------------------
+                             51 ; paged external ram data
+                             52 ;--------------------------------------------------------
+                             53 	.area PSEG    (PAG,XDATA)
+   0000                      54 _calloc_PARM_2:
+   0000                      55 	.ds 2
+   0002                      56 _calloc_ptr_1_1:
+   0002                      57 	.ds 2
+                             58 ;--------------------------------------------------------
+                             59 ; external ram data
+                             60 ;--------------------------------------------------------
+                             61 	.area XSEG    (XDATA)
+                             62 ;--------------------------------------------------------
+                             63 ; absolute external ram data
+                             64 ;--------------------------------------------------------
+                             65 	.area XABS    (ABS,XDATA)
+                             66 ;--------------------------------------------------------
+                             67 ; external initialized ram data
+                             68 ;--------------------------------------------------------
+                             69 	.area XISEG   (XDATA)
+                             70 	.area HOME    (CODE)
+                             71 	.area GSINIT0 (CODE)
+                             72 	.area GSINIT1 (CODE)
+                             73 	.area GSINIT2 (CODE)
+                             74 	.area GSINIT3 (CODE)
+                             75 	.area GSINIT4 (CODE)
+                             76 	.area GSINIT5 (CODE)
+                             77 	.area GSINIT  (CODE)
+                             78 	.area GSFINAL (CODE)
+                             79 	.area CSEG    (CODE)
+                             80 ;--------------------------------------------------------
+                             81 ; global & static initialisations
+                             82 ;--------------------------------------------------------
+                             83 	.area HOME    (CODE)
+                             84 	.area GSINIT  (CODE)
+                             85 	.area GSFINAL (CODE)
+                             86 	.area GSINIT  (CODE)
+                             87 ;--------------------------------------------------------
+                             88 ; Home
+                             89 ;--------------------------------------------------------
+                             90 	.area HOME    (CODE)
+                             91 	.area HOME    (CODE)
+                             92 ;--------------------------------------------------------
+                             93 ; code
+                             94 ;--------------------------------------------------------
+                             95 	.area CSEG    (CODE)
+                             96 ;------------------------------------------------------------
+                             97 ;Allocation info for local variables in function 'calloc'
+                             98 ;------------------------------------------------------------
+                             99 ;------------------------------------------------------------
+                            100 ;	_calloc.c:70: void __xdata * calloc (size_t nmemb, size_t size)
+                            101 ;	-----------------------------------------
+                            102 ;	 function calloc
+                            103 ;	-----------------------------------------
+   0000                     104 _calloc:
+                    0002    105 	ar2 = 0x02
+                    0003    106 	ar3 = 0x03
+                    0004    107 	ar4 = 0x04
+                    0005    108 	ar5 = 0x05
+                    0006    109 	ar6 = 0x06
+                    0007    110 	ar7 = 0x07
+                    0000    111 	ar0 = 0x00
+                    0001    112 	ar1 = 0x01
+                            113 ;	_calloc.c:74: ptr = malloc(nmemb * size);
+   0000 78r00               114 	mov	r0,#_calloc_PARM_2
+   0002 79r00               115 	mov	r1,#__mulint_PARM_2
+   0004 E2                  116 	movx	a,@r0
+   0005 F3                  117 	movx	@r1,a
+   0006 08                  118 	inc	r0
+   0007 E2                  119 	movx	a,@r0
+   0008 09                  120 	inc	r1
+   0009 F3                  121 	movx	@r1,a
+   000A 12s00r00            122 	lcall	__mulint
+   000D AA 82               123 	mov	r2,dpl
+   000F AB 83               124 	mov  r3,dph
+   0011 C0 02               125 	push	ar2
+   0013 C0 03               126 	push	ar3
+   0015 12s00r00            127 	lcall	_malloc
+   0018 78r02               128 	mov	r0,#_calloc_ptr_1_1
+   001A E5 82               129 	mov	a,dpl
+   001C F2                  130 	movx	@r0,a
+   001D 08                  131 	inc	r0
+   001E E5 83               132 	mov	a,dph
+   0020 F2                  133 	movx	@r0,a
+   0021 D0 03               134 	pop	ar3
+   0023 D0 02               135 	pop	ar2
+                            136 ;	_calloc.c:75: if (ptr)
+   0025 78r02               137 	mov	r0,#_calloc_ptr_1_1
+   0027 E2                  138 	movx	a,@r0
+   0028 F5 F0               139 	mov	b,a
+   002A 08                  140 	inc	r0
+   002B E2                  141 	movx	a,@r0
+   002C 45 F0               142 	orl	a,b
+   002E 60 1D               143 	jz	00102$
+                            144 ;	_calloc.c:77: memset(ptr, 0, nmemb * size);
+   0030 78r02               145 	mov	r0,#_calloc_ptr_1_1
+   0032 E2                  146 	movx	a,@r0
+   0033 FE                  147 	mov	r6,a
+   0034 08                  148 	inc	r0
+   0035 E2                  149 	movx	a,@r0
+   0036 FF                  150 	mov	r7,a
+   0037 7C 00               151 	mov	r4,#0x00
+   0039 78r00               152 	mov	r0,#_memset_PARM_2
+   003B E4                  153 	clr	a
+   003C F2                  154 	movx	@r0,a
+   003D 78r00               155 	mov	r0,#_memset_PARM_3
+   003F EA                  156 	mov	a,r2
+   0040 F2                  157 	movx	@r0,a
+   0041 08                  158 	inc	r0
+   0042 EB                  159 	mov	a,r3
+   0043 F2                  160 	movx	@r0,a
+   0044 8E 82               161 	mov	dpl,r6
+   0046 8F 83               162 	mov	dph,r7
+   0048 8C F0               163 	mov	b,r4
+   004A 12s00r00            164 	lcall	_memset
+   004D                     165 00102$:
+                            166 ;	_calloc.c:79: return ptr;
+   004D 78r02               167 	mov	r0,#_calloc_ptr_1_1
+   004F E2                  168 	movx	a,@r0
+   0050 F5 82               169 	mov	dpl,a
+   0052 08                  170 	inc	r0
+   0053 E2                  171 	movx	a,@r0
+   0054 F5 83               172 	mov	dph,a
+   0056 22                  173 	ret
+                            174 	.area CSEG    (CODE)
+                            175 	.area CONST   (CODE)
+                            176 	.area XINIT   (CODE)
+                            177 	.area CABS    (ABS,CODE)

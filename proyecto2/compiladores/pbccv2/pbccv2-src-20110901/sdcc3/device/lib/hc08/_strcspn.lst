@@ -1,0 +1,136 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _strcspn
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _strcspn_PARM_2
+                             25 	.globl _strcspn
+                             26 ;--------------------------------------------------------
+                             27 ;  ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area DSEG
+   0000                      30 _strcspn_count_1_1:
+   0000                      31 	.ds 2
+   0002                      32 _strcspn_ch_1_1:
+   0002                      33 	.ds 1
+   0003                      34 _strcspn_sloc0_1_0:
+   0003                      35 	.ds 2
+   0005                      36 _strcspn_sloc1_1_0:
+   0005                      37 	.ds 1
+                             38 ;--------------------------------------------------------
+                             39 ; overlayable items in  ram 
+                             40 ;--------------------------------------------------------
+                             41 	.area OSEG    (OVR)
+                             42 ;--------------------------------------------------------
+                             43 ; absolute external ram data
+                             44 ;--------------------------------------------------------
+                             45 	.area XABS    (ABS)
+                             46 ;--------------------------------------------------------
+                             47 ; external initialized ram data
+                             48 ;--------------------------------------------------------
+                             49 	.area XISEG
+                             50 ;--------------------------------------------------------
+                             51 ; extended address mode data
+                             52 ;--------------------------------------------------------
+                             53 	.area XSEG
+   0000                      54 _strcspn_PARM_2:
+   0000                      55 	.ds 2
+   0002                      56 _strcspn_string_1_1:
+   0002                      57 	.ds 2
+                             58 ;--------------------------------------------------------
+                             59 ; global & static initialisations
+                             60 ;--------------------------------------------------------
+                             61 	.area HOME (CODE)
+                             62 	.area GSINIT (CODE)
+                             63 	.area GSFINAL (CODE)
+                             64 	.area GSINIT (CODE)
+                             65 ;--------------------------------------------------------
+                             66 ; Home
+                             67 ;--------------------------------------------------------
+                             68 	.area HOME (CODE)
+                             69 	.area HOME (CODE)
+                             70 ;--------------------------------------------------------
+                             71 ; code
+                             72 ;--------------------------------------------------------
+                             73 	.area CSEG (CODE)
+                             74 ;------------------------------------------------------------
+                             75 ;Allocation info for local variables in function 'strcspn'
+                             76 ;------------------------------------------------------------
+                             77 ;count                     Allocated with name '_strcspn_count_1_1'
+                             78 ;ch                        Allocated with name '_strcspn_ch_1_1'
+                             79 ;sloc0                     Allocated with name '_strcspn_sloc0_1_0'
+                             80 ;sloc1                     Allocated with name '_strcspn_sloc1_1_0'
+                             81 ;control                   Allocated with name '_strcspn_PARM_2'
+                             82 ;string                    Allocated with name '_strcspn_string_1_1'
+                             83 ;------------------------------------------------------------
+                             84 ;../_strcspn.c:31: size_t strcspn ( 
+                             85 ;	-----------------------------------------
+                             86 ;	 function strcspn
+                             87 ;	-----------------------------------------
+   0000                      88 _strcspn:
+   0000 C7s00r03             89 	sta	(_strcspn_string_1_1 + 1)
+   0003 CFs00r02             90 	stx	_strcspn_string_1_1
+                             91 ;../_strcspn.c:39: while (ch = *string) {
+   0006 3F*00                92 	clr	*_strcspn_count_1_1
+   0008 3F*01                93 	clr	*(_strcspn_count_1_1 + 1)
+   000A C6s00r02             94 	lda	_strcspn_string_1_1
+   000D B7*03                95 	sta	*_strcspn_sloc0_1_0
+   000F C6s00r03             96 	lda	(_strcspn_string_1_1 + 1)
+   0012 B7*04                97 	sta	*(_strcspn_sloc0_1_0 + 1)
+   0014                      98 00104$:
+   0014 55*03                99 	ldhx	*_strcspn_sloc0_1_0
+   0016 F6                  100 	lda	,x
+   0017 B7*02               101 	sta	*_strcspn_ch_1_1
+   0019 4E*02*05            102 	mov	*_strcspn_ch_1_1,*_strcspn_sloc1_1_0
+   001C 3D*02               103 	tst	*_strcspn_ch_1_1
+   001E 27 22               104 	beq	00106$
+   0020                     105 00113$:
+                            106 ;../_strcspn.c:40: if (strchr(control,ch))
+   0020 B6*05               107 	lda	*_strcspn_sloc1_1_0
+   0022 C7s00r00            108 	sta	_strchr_PARM_2
+   0025 CEs00r00            109 	ldx	_strcspn_PARM_2
+   0028 C6s00r01            110 	lda	(_strcspn_PARM_2 + 1)
+   002B CDs00r00            111 	jsr	_strchr
+   002E 4D                  112 	tsta
+   002F 26 01               113 	bne	00114$
+   0031 5D                  114 	tstx
+   0032                     115 00114$:
+   0032 26 0E               116 	bne	00106$
+   0034                     117 00115$:
+                            118 ;../_strcspn.c:43: count++ ;
+   0034 55*00               119 	ldhx	*_strcspn_count_1_1
+   0036 AF 01               120 	aix	#1
+   0038 35*00               121 	sthx	*_strcspn_count_1_1
+                            122 ;../_strcspn.c:44: string++ ;
+   003A 55*03               123 	ldhx	*_strcspn_sloc0_1_0
+   003C AF 01               124 	aix	#1
+   003E 35*03               125 	sthx	*_strcspn_sloc0_1_0
+   0040 20 D2               126 	bra	00104$
+   0042                     127 00106$:
+                            128 ;../_strcspn.c:47: return count ;
+   0042 BE*00               129 	ldx	*_strcspn_count_1_1
+   0044 B6*01               130 	lda	*(_strcspn_count_1_1 + 1)
+   0046                     131 00107$:
+   0046 81                  132 	rts
+                            133 	.area CSEG (CODE)
+                            134 	.area CONST   (CODE)
+                            135 	.area XINIT
+                            136 	.area CABS    (ABS,CODE)

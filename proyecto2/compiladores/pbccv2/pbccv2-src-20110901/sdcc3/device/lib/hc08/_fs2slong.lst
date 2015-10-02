@@ -1,0 +1,169 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _fs2slong
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl ___fs2slong_PARM_1
+                             25 	.globl ___fs2slong
+                             26 ;--------------------------------------------------------
+                             27 ;  ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area DSEG
+   0000                      30 ___fs2slong_sloc0_1_0:
+   0000                      31 	.ds 1
+   0001                      32 ___fs2slong_sloc1_1_0:
+   0001                      33 	.ds 4
+                             34 ;--------------------------------------------------------
+                             35 ; overlayable items in  ram 
+                             36 ;--------------------------------------------------------
+                             37 	.area OSEG    (OVR)
+                             38 ;--------------------------------------------------------
+                             39 ; absolute external ram data
+                             40 ;--------------------------------------------------------
+                             41 	.area XABS    (ABS)
+                             42 ;--------------------------------------------------------
+                             43 ; external initialized ram data
+                             44 ;--------------------------------------------------------
+                             45 	.area XISEG
+                             46 ;--------------------------------------------------------
+                             47 ; extended address mode data
+                             48 ;--------------------------------------------------------
+                             49 	.area XSEG
+   0000                      50 ___fs2slong_PARM_1:
+   0000                      51 	.ds 4
+                             52 ;--------------------------------------------------------
+                             53 ; global & static initialisations
+                             54 ;--------------------------------------------------------
+                             55 	.area HOME (CODE)
+                             56 	.area GSINIT (CODE)
+                             57 	.area GSFINAL (CODE)
+                             58 	.area GSINIT (CODE)
+                             59 ;--------------------------------------------------------
+                             60 ; Home
+                             61 ;--------------------------------------------------------
+                             62 	.area HOME (CODE)
+                             63 	.area HOME (CODE)
+                             64 ;--------------------------------------------------------
+                             65 ; code
+                             66 ;--------------------------------------------------------
+                             67 	.area CSEG (CODE)
+                             68 ;------------------------------------------------------------
+                             69 ;Allocation info for local variables in function '__fs2slong'
+                             70 ;------------------------------------------------------------
+                             71 ;sloc0                     Allocated with name '___fs2slong_sloc0_1_0'
+                             72 ;sloc1                     Allocated with name '___fs2slong_sloc1_1_0'
+                             73 ;f                         Allocated with name '___fs2slong_PARM_1'
+                             74 ;------------------------------------------------------------
+                             75 ;../_fs2slong.c:108: signed long __fs2slong (float f)
+                             76 ;	-----------------------------------------
+                             77 ;	 function __fs2slong
+                             78 ;	-----------------------------------------
+   0000                      79 ___fs2slong:
+                             80 ;../_fs2slong.c:111: if (!f)
+   0000 C6s00r03             81 	lda	(___fs2slong_PARM_1 + 3)
+   0003 CAs00r02             82 	ora	(___fs2slong_PARM_1 + 2)
+   0006 CAs00r01             83 	ora	(___fs2slong_PARM_1 + 1)
+   0009 CAs00r00             84 	ora	___fs2slong_PARM_1
+   000C 26 07                85 	bne	00102$
+   000E                      86 00110$:
+                             87 ;../_fs2slong.c:112: return 0;
+   000E 3F*00                88 	clr	*__ret3
+   0010 3F*00                89 	clr	*__ret2
+   0012 5F                   90 	clrx
+   0013 4F                   91 	clra
+   0014 81                   92 	rts
+   0015                      93 00102$:
+                             94 ;../_fs2slong.c:114: if (f<0) {
+   0015 C6s00r00             95 	lda	___fs2slong_PARM_1
+   0018 C7s00r00             96 	sta	___fslt_PARM_1
+   001B C6s00r01             97 	lda	(___fs2slong_PARM_1 + 1)
+   001E C7s00r01             98 	sta	(___fslt_PARM_1 + 1)
+   0021 C6s00r02             99 	lda	(___fs2slong_PARM_1 + 2)
+   0024 C7s00r02            100 	sta	(___fslt_PARM_1 + 2)
+   0027 C6s00r03            101 	lda	(___fs2slong_PARM_1 + 3)
+   002A C7s00r03            102 	sta	(___fslt_PARM_1 + 3)
+   002D 4F                  103 	clra
+   002E C7s00r00            104 	sta	___fslt_PARM_2
+   0031 C7s00r01            105 	sta	(___fslt_PARM_2 + 1)
+   0034 C7s00r02            106 	sta	(___fslt_PARM_2 + 2)
+   0037 C7s00r03            107 	sta	(___fslt_PARM_2 + 3)
+   003A CDs00r00            108 	jsr	___fslt
+   003D B7*00               109 	sta	*___fs2slong_sloc0_1_0
+   003F 3D*00               110 	tst	*___fs2slong_sloc0_1_0
+   0041 27 46               111 	beq	00104$
+   0043                     112 00111$:
+                            113 ;../_fs2slong.c:115: return -__fs2ulong(-f);
+   0043 C6s00r03            114 	lda	(___fs2slong_PARM_1 + 3)
+   0046 C7s00r03            115 	sta	(___fs2ulong_PARM_1 + 3)
+   0049 C6s00r02            116 	lda	(___fs2slong_PARM_1 + 2)
+   004C C7s00r02            117 	sta	(___fs2ulong_PARM_1 + 2)
+   004F C6s00r01            118 	lda	(___fs2slong_PARM_1 + 1)
+   0052 C7s00r01            119 	sta	(___fs2ulong_PARM_1 + 1)
+   0055 C6s00r00            120 	lda	___fs2slong_PARM_1
+   0058 A8 80               121 	eor	#0x80
+   005A C7s00r00            122 	sta	___fs2ulong_PARM_1
+   005D CDs00r00            123 	jsr	___fs2ulong
+   0060 B7*04               124 	sta	*(___fs2slong_sloc1_1_0 + 3)
+   0062 BF*03               125 	stx	*(___fs2slong_sloc1_1_0 + 2)
+   0064 4E*00*02            126 	mov	*__ret2,*(___fs2slong_sloc1_1_0 + 1)
+   0067 4E*00*01            127 	mov	*__ret3,*___fs2slong_sloc1_1_0
+   006A 4F                  128 	clra
+   006B B0*04               129 	sub	*(___fs2slong_sloc1_1_0 + 3)
+   006D B7*04               130 	sta	*(___fs2slong_sloc1_1_0 + 3)
+   006F 4F                  131 	clra
+   0070 B2*03               132 	sbc	*(___fs2slong_sloc1_1_0 + 2)
+   0072 B7*03               133 	sta	*(___fs2slong_sloc1_1_0 + 2)
+   0074 4F                  134 	clra
+   0075 B2*02               135 	sbc	*(___fs2slong_sloc1_1_0 + 1)
+   0077 B7*02               136 	sta	*(___fs2slong_sloc1_1_0 + 1)
+   0079 4F                  137 	clra
+   007A B2*01               138 	sbc	*___fs2slong_sloc1_1_0
+   007C B7*01               139 	sta	*___fs2slong_sloc1_1_0
+   007E 4E*01*00            140 	mov	*___fs2slong_sloc1_1_0,*__ret3
+   0081 4E*02*00            141 	mov	*(___fs2slong_sloc1_1_0 + 1),*__ret2
+   0084 BE*03               142 	ldx	*(___fs2slong_sloc1_1_0 + 2)
+   0086 B6*04               143 	lda	*(___fs2slong_sloc1_1_0 + 3)
+   0088 81                  144 	rts
+   0089                     145 00104$:
+                            146 ;../_fs2slong.c:117: return __fs2ulong(f);
+   0089 C6s00r00            147 	lda	___fs2slong_PARM_1
+   008C C7s00r00            148 	sta	___fs2ulong_PARM_1
+   008F C6s00r01            149 	lda	(___fs2slong_PARM_1 + 1)
+   0092 C7s00r01            150 	sta	(___fs2ulong_PARM_1 + 1)
+   0095 C6s00r02            151 	lda	(___fs2slong_PARM_1 + 2)
+   0098 C7s00r02            152 	sta	(___fs2ulong_PARM_1 + 2)
+   009B C6s00r03            153 	lda	(___fs2slong_PARM_1 + 3)
+   009E C7s00r03            154 	sta	(___fs2ulong_PARM_1 + 3)
+   00A1 CDs00r00            155 	jsr	___fs2ulong
+   00A4 B7*04               156 	sta	*(___fs2slong_sloc1_1_0 + 3)
+   00A6 BF*03               157 	stx	*(___fs2slong_sloc1_1_0 + 2)
+   00A8 4E*00*02            158 	mov	*__ret2,*(___fs2slong_sloc1_1_0 + 1)
+   00AB 4E*00*01            159 	mov	*__ret3,*___fs2slong_sloc1_1_0
+   00AE 4E*01*00            160 	mov	*___fs2slong_sloc1_1_0,*__ret3
+   00B1 4E*02*00            161 	mov	*(___fs2slong_sloc1_1_0 + 1),*__ret2
+   00B4 BE*03               162 	ldx	*(___fs2slong_sloc1_1_0 + 2)
+   00B6 B6*04               163 	lda	*(___fs2slong_sloc1_1_0 + 3)
+   00B8                     164 00106$:
+   00B8 81                  165 	rts
+                            166 	.area CSEG (CODE)
+                            167 	.area CONST   (CODE)
+                            168 	.area XINIT
+                            169 	.area CABS    (ABS,CODE)

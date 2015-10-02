@@ -1,0 +1,267 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:28 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module floorf
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _floorf
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 	.area RSEG    (ABS,DATA)
+   0000                      17 	.org 0x0000
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (ABS,DATA)
+   0000                      22 	.org 0x0000
+                             23 ;--------------------------------------------------------
+                             24 ; overlayable register banks
+                             25 ;--------------------------------------------------------
+                             26 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      27 	.ds 8
+                             28 ;--------------------------------------------------------
+                             29 ; internal ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG    (DATA)
+                             32 ;--------------------------------------------------------
+                             33 ; overlayable items in internal ram 
+                             34 ;--------------------------------------------------------
+                             35 	.area OSEG    (OVR,DATA)
+                             36 ;--------------------------------------------------------
+                             37 ; indirectly addressable internal ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area ISEG    (DATA)
+                             40 ;--------------------------------------------------------
+                             41 ; absolute internal ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area IABS    (ABS,DATA)
+                             44 	.area IABS    (ABS,DATA)
+                             45 ;--------------------------------------------------------
+                             46 ; bit data
+                             47 ;--------------------------------------------------------
+                             48 	.area BSEG    (BIT)
+                             49 ;--------------------------------------------------------
+                             50 ; paged external ram data
+                             51 ;--------------------------------------------------------
+                             52 	.area PSEG    (PAG,XDATA)
+                             53 ;--------------------------------------------------------
+                             54 ; external ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area XSEG    (XDATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute external ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area XABS    (ABS,XDATA)
+                             61 ;--------------------------------------------------------
+                             62 ; external initialized ram data
+                             63 ;--------------------------------------------------------
+                             64 	.area XISEG   (XDATA)
+                             65 	.area HOME    (CODE)
+                             66 	.area GSINIT0 (CODE)
+                             67 	.area GSINIT1 (CODE)
+                             68 	.area GSINIT2 (CODE)
+                             69 	.area GSINIT3 (CODE)
+                             70 	.area GSINIT4 (CODE)
+                             71 	.area GSINIT5 (CODE)
+                             72 	.area GSINIT  (CODE)
+                             73 	.area GSFINAL (CODE)
+                             74 	.area CSEG    (CODE)
+                             75 ;--------------------------------------------------------
+                             76 ; global & static initialisations
+                             77 ;--------------------------------------------------------
+                             78 	.area HOME    (CODE)
+                             79 	.area GSINIT  (CODE)
+                             80 	.area GSFINAL (CODE)
+                             81 	.area GSINIT  (CODE)
+                             82 ;--------------------------------------------------------
+                             83 ; Home
+                             84 ;--------------------------------------------------------
+                             85 	.area HOME    (CODE)
+                             86 	.area HOME    (CODE)
+                             87 ;--------------------------------------------------------
+                             88 ; code
+                             89 ;--------------------------------------------------------
+                             90 	.area CSEG    (CODE)
+                             91 ;------------------------------------------------------------
+                             92 ;Allocation info for local variables in function 'floorf'
+                             93 ;------------------------------------------------------------
+                             94 ;x                         Allocated to stack - offset 1
+                             95 ;r                         Allocated to stack - offset 5
+                             96 ;------------------------------------------------------------
+                             97 ;	floorf.c:33: float floorf (float x) _FLOAT_FUNC_REENTRANT
+                             98 ;	-----------------------------------------
+                             99 ;	 function floorf
+                            100 ;	-----------------------------------------
+   0000                     101 _floorf:
+                    0002    102 	ar2 = 0x02
+                    0003    103 	ar3 = 0x03
+                    0004    104 	ar4 = 0x04
+                    0005    105 	ar5 = 0x05
+                    0006    106 	ar6 = 0x06
+                    0007    107 	ar7 = 0x07
+                    0000    108 	ar0 = 0x00
+                    0001    109 	ar1 = 0x01
+   0000 C0*00               110 	push	_bp
+   0002 85 81*00            111 	mov	_bp,sp
+   0005 C0 82               112 	push	dpl
+   0007 C0 83               113 	push	dph
+   0009 C0 F0               114 	push	b
+   000B C0 E0               115 	push	acc
+   000D E5 81               116 	mov	a,sp
+   000F 24 08               117 	add	a,#0x08
+   0011 F5 81               118 	mov	sp,a
+                            119 ;	floorf.c:36: r=x;
+   0013 A8*00               120 	mov	r0,_bp
+   0015 08                  121 	inc	r0
+   0016 86 82               122 	mov	dpl,@r0
+   0018 08                  123 	inc	r0
+   0019 86 83               124 	mov	dph,@r0
+   001B 08                  125 	inc	r0
+   001C 86 F0               126 	mov	b,@r0
+   001E 08                  127 	inc	r0
+   001F E6                  128 	mov	a,@r0
+   0020 12s00r00            129 	lcall	___fs2slong
+   0023 AA 82               130 	mov	r2,dpl
+   0025 AB 83               131 	mov	r3,dph
+   0027 AC F0               132 	mov	r4,b
+   0029 FD                  133 	mov	r5,a
+   002A E5*00               134 	mov	a,_bp
+   002C 24 05               135 	add	a,#0x05
+   002E F8                  136 	mov	r0,a
+   002F A6 02               137 	mov	@r0,ar2
+   0031 08                  138 	inc	r0
+   0032 A6 03               139 	mov	@r0,ar3
+   0034 08                  140 	inc	r0
+   0035 A6 04               141 	mov	@r0,ar4
+   0037 08                  142 	inc	r0
+   0038 A6 05               143 	mov	@r0,ar5
+                            144 ;	floorf.c:37: if (r<=0)
+   003A E5*00               145 	mov	a,_bp
+   003C 24 05               146 	add	a,#0x05
+   003E F8                  147 	mov	r0,a
+   003F C3                  148 	clr	c
+   0040 E4                  149 	clr	a
+   0041 96                  150 	subb	a,@r0
+   0042 E4                  151 	clr	a
+   0043 08                  152 	inc	r0
+   0044 96                  153 	subb	a,@r0
+   0045 E4                  154 	clr	a
+   0046 08                  155 	inc	r0
+   0047 96                  156 	subb	a,@r0
+   0048 E4                  157 	clr	a
+   0049 64 80               158 	xrl	a,#0x80
+   004B 08                  159 	inc	r0
+   004C 86 F0               160 	mov	b,@r0
+   004E 63 F0 80            161 	xrl	b,#0x80
+   0051 95 F0               162 	subb	a,b
+   0053 50 03               163 	jnc	00110$
+   0055 02s00rCA            164 	ljmp	00102$
+   0058                     165 00110$:
+                            166 ;	floorf.c:38: return (r+((r>x)?-1:0));
+   0058 E5*00               167 	mov	a,_bp
+   005A 24 05               168 	add	a,#0x05
+   005C F8                  169 	mov	r0,a
+   005D 86 82               170 	mov	dpl,@r0
+   005F 08                  171 	inc	r0
+   0060 86 83               172 	mov	dph,@r0
+   0062 08                  173 	inc	r0
+   0063 86 F0               174 	mov	b,@r0
+   0065 08                  175 	inc	r0
+   0066 E6                  176 	mov	a,@r0
+   0067 12s00r00            177 	lcall	___slong2fs
+   006A AC 82               178 	mov	r4,dpl
+   006C AD 83               179 	mov	r5,dph
+   006E AA F0               180 	mov	r2,b
+   0070 FB                  181 	mov	r3,a
+   0071 A8*00               182 	mov	r0,_bp
+   0073 08                  183 	inc	r0
+   0074 E6                  184 	mov	a,@r0
+   0075 C0 E0               185 	push	acc
+   0077 08                  186 	inc	r0
+   0078 E6                  187 	mov	a,@r0
+   0079 C0 E0               188 	push	acc
+   007B 08                  189 	inc	r0
+   007C E6                  190 	mov	a,@r0
+   007D C0 E0               191 	push	acc
+   007F 08                  192 	inc	r0
+   0080 E6                  193 	mov	a,@r0
+   0081 C0 E0               194 	push	acc
+   0083 8C 82               195 	mov	dpl,r4
+   0085 8D 83               196 	mov	dph,r5
+   0087 8A F0               197 	mov	b,r2
+   0089 EB                  198 	mov	a,r3
+   008A 12s00r00            199 	lcall	___fsgt
+   008D AA 82               200 	mov	r2,dpl
+   008F E5 81               201 	mov	a,sp
+   0091 24 FC               202 	add	a,#0xfc
+   0093 F5 81               203 	mov	sp,a
+   0095 EA                  204 	mov	a,r2
+   0096 60 04               205 	jz	00106$
+   0098 7A FF               206 	mov	r2,#0xFF
+   009A 80 02               207 	sjmp	00107$
+   009C                     208 00106$:
+   009C 7A 00               209 	mov	r2,#0x00
+   009E                     210 00107$:
+   009E EA                  211 	mov	a,r2
+   009F 33                  212 	rlc	a
+   00A0 95 E0               213 	subb	a,acc
+   00A2 FB                  214 	mov	r3,a
+   00A3 FC                  215 	mov	r4,a
+   00A4 FD                  216 	mov	r5,a
+   00A5 E5*00               217 	mov	a,_bp
+   00A7 24 05               218 	add	a,#0x05
+   00A9 F8                  219 	mov	r0,a
+   00AA EA                  220 	mov	a,r2
+   00AB 26                  221 	add	a,@r0
+   00AC FA                  222 	mov	r2,a
+   00AD EB                  223 	mov	a,r3
+   00AE 08                  224 	inc	r0
+   00AF 36                  225 	addc	a,@r0
+   00B0 FB                  226 	mov	r3,a
+   00B1 EC                  227 	mov	a,r4
+   00B2 08                  228 	inc	r0
+   00B3 36                  229 	addc	a,@r0
+   00B4 FC                  230 	mov	r4,a
+   00B5 ED                  231 	mov	a,r5
+   00B6 08                  232 	inc	r0
+   00B7 36                  233 	addc	a,@r0
+   00B8 8A 82               234 	mov	dpl,r2
+   00BA 8B 83               235 	mov	dph,r3
+   00BC 8C F0               236 	mov	b,r4
+   00BE 12s00r00            237 	lcall	___slong2fs
+   00C1 AA 82               238 	mov	r2,dpl
+   00C3 AB 83               239 	mov	r3,dph
+   00C5 AC F0               240 	mov	r4,b
+   00C7 FD                  241 	mov	r5,a
+   00C8 80 19               242 	sjmp	00104$
+   00CA                     243 00102$:
+                            244 ;	floorf.c:40: return r;
+   00CA E5*00               245 	mov	a,_bp
+   00CC 24 05               246 	add	a,#0x05
+   00CE F8                  247 	mov	r0,a
+   00CF 86 82               248 	mov	dpl,@r0
+   00D1 08                  249 	inc	r0
+   00D2 86 83               250 	mov	dph,@r0
+   00D4 08                  251 	inc	r0
+   00D5 86 F0               252 	mov	b,@r0
+   00D7 08                  253 	inc	r0
+   00D8 E6                  254 	mov	a,@r0
+   00D9 12s00r00            255 	lcall	___slong2fs
+   00DC AA 82               256 	mov	r2,dpl
+   00DE AB 83               257 	mov	r3,dph
+   00E0 AC F0               258 	mov	r4,b
+   00E2 FD                  259 	mov	r5,a
+   00E3                     260 00104$:
+   00E3 85*00 81            261 	mov	sp,_bp
+   00E6 D0*00               262 	pop	_bp
+   00E8 22                  263 	ret
+                            264 	.area CSEG    (CODE)
+                            265 	.area CONST   (CODE)
+                            266 	.area XINIT   (CODE)
+                            267 	.area CABS    (ABS,CODE)

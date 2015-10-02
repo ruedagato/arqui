@@ -1,0 +1,390 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:17 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _strstr
+                              7 	.optsdcc -mds390 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _strstr_PARM_2
+                             31 	.globl _strstr
+                             32 ;--------------------------------------------------------
+                             33 ; special function registers
+                             34 ;--------------------------------------------------------
+                             35 ;--------------------------------------------------------
+                             36 ; special function bits
+                             37 ;--------------------------------------------------------
+                             38 ;--------------------------------------------------------
+                             39 ; overlayable register banks
+                             40 ;--------------------------------------------------------
+                             41 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      42 	.ds 8
+                             43 ;--------------------------------------------------------
+                             44 ; internal ram data
+                             45 ;--------------------------------------------------------
+                             46 	.area DSEG    (DATA)
+                             47 ;--------------------------------------------------------
+                             48 ; overlayable items in internal ram 
+                             49 ;--------------------------------------------------------
+                             50 	.area OSEG    (OVR,DATA)
+                             51 ;--------------------------------------------------------
+                             52 ; indirectly addressable internal ram data
+                             53 ;--------------------------------------------------------
+                             54 	.area ISEG    (DATA)
+                             55 ;--------------------------------------------------------
+                             56 ; absolute internal ram data
+                             57 ;--------------------------------------------------------
+                             58 	.area IABS    (ABS,DATA)
+                             59 	.area IABS    (ABS,DATA)
+                             60 ;--------------------------------------------------------
+                             61 ; bit data
+                             62 ;--------------------------------------------------------
+                             63 	.area BSEG    (BIT)
+                             64 ;--------------------------------------------------------
+                             65 ; paged external ram data
+                             66 ;--------------------------------------------------------
+                             67 	.area PSEG    (PAG,XDATA)
+                             68 ;--------------------------------------------------------
+                             69 ; external ram data
+                             70 ;--------------------------------------------------------
+                             71 	.area XSEG    (XDATA)
+   0000                      72 _strstr_PARM_2:
+   0000                      73 	.ds 4
+   0004                      74 _strstr_cp_1_1:
+   0004                      75 	.ds 4
+   0008                      76 _strstr_sloc0_1_0:
+   0008                      77 	.ds 4
+   000C                      78 _strstr_sloc1_1_0:
+   000C                      79 	.ds 4
+   0010                      80 _strstr_sloc2_1_0:
+   0010                      81 	.ds 1
+   0011                      82 _strstr_sloc3_1_0:
+   0011                      83 	.ds 1
+                             84 ;--------------------------------------------------------
+                             85 ; absolute external ram data
+                             86 ;--------------------------------------------------------
+                             87 	.area XABS    (ABS,XDATA)
+                             88 ;--------------------------------------------------------
+                             89 ; external initialized ram data
+                             90 ;--------------------------------------------------------
+                             91 	.area XISEG   (XDATA)
+                             92 ;--------------------------------------------------------
+                             93 ; global & static initialisations
+                             94 ;--------------------------------------------------------
+                             95 	.area HOME    (CODE)
+                             96 	.area GSINIT  (CODE)
+                             97 	.area GSFINAL (CODE)
+                             98 	.area GSINIT  (CODE)
+                             99 ;--------------------------------------------------------
+                            100 ; Home
+                            101 ;--------------------------------------------------------
+                            102 	.area HOME    (CODE)
+                            103 	.area HOME    (CODE)
+                            104 ;--------------------------------------------------------
+                            105 ; code
+                            106 ;--------------------------------------------------------
+                            107 	.area CSEG    (CODE)
+                            108 ;------------------------------------------------------------
+                            109 ;Allocation info for local variables in function 'strstr'
+                            110 ;------------------------------------------------------------
+                            111 ;str2                      Allocated with name '_strstr_PARM_2'
+                            112 ;str1                      Allocated to registers r6 r3 r4 r5 
+                            113 ;cp                        Allocated with name '_strstr_cp_1_1'
+                            114 ;s1                        Allocated to registers 
+                            115 ;s2                        Allocated to registers r6 r7 r0 r1 
+                            116 ;sloc0                     Allocated with name '_strstr_sloc0_1_0'
+                            117 ;sloc1                     Allocated with name '_strstr_sloc1_1_0'
+                            118 ;sloc2                     Allocated with name '_strstr_sloc2_1_0'
+                            119 ;sloc3                     Allocated with name '_strstr_sloc3_1_0'
+                            120 ;------------------------------------------------------------
+                            121 ;	_strstr.c:31: char * strstr (
+                            122 ;	-----------------------------------------
+                            123 ;	 function strstr
+                            124 ;	-----------------------------------------
+   0000                     125 _strstr:
+                    0002    126 	ar2 = 0x02
+                    0003    127 	ar3 = 0x03
+                    0004    128 	ar4 = 0x04
+                    0005    129 	ar5 = 0x05
+                    0006    130 	ar6 = 0x06
+                    0007    131 	ar7 = 0x07
+                    0000    132 	ar0 = 0x00
+                    0001    133 	ar1 = 0x01
+   0000 AE 82               134 	mov	r6,dpl
+   0002 AB 83               135 	mov	r3,dph
+   0004 AC 93               136 	mov	r4,dpx
+   0006 AD F0               137 	mov	r5,b
+                            138 ;	_strstr.c:36: const char * cp = str1;
+                            139 ;	genAssign: resultIsFar = TRUE
+   0008 90s00r00r04         140 	mov	dptr,#_strstr_cp_1_1
+   000C EE                  141 	mov	a,r6
+   000D F0                  142 	movx	@dptr,a
+   000E A3                  143 	inc	dptr
+   000F EB                  144 	mov	a,r3
+   0010 F0                  145 	movx	@dptr,a
+   0011 A3                  146 	inc	dptr
+   0012 EC                  147 	mov	a,r4
+   0013 F0                  148 	movx	@dptr,a
+   0014 A3                  149 	inc	dptr
+   0015 ED                  150 	mov	a,r5
+   0016 F0                  151 	movx	@dptr,a
+                            152 ;	_strstr.c:40: if ( !*str2 )
+   0017 90s00r00r00         153 	mov	dptr,#_strstr_PARM_2
+                            154 ;	genAssign: resultIsFar = TRUE
+   001B 75 86 21            155 	mov	dps,#0x21
+   001E 90s00r00r08         156 	mov	dptr,#_strstr_sloc0_1_0
+   0022 E0                  157 	movx	a,@dptr
+   0023 F0                  158 	movx	@dptr,a
+   0024 A3                  159 	inc	dptr
+   0025 A3                  160 	inc	dptr
+   0026 E0                  161 	movx	a,@dptr
+   0027 F0                  162 	movx	@dptr,a
+   0028 A3                  163 	inc	dptr
+   0029 A3                  164 	inc	dptr
+   002A E0                  165 	movx	a,@dptr
+   002B F0                  166 	movx	@dptr,a
+   002C A3                  167 	inc	dptr
+   002D A3                  168 	inc	dptr
+   002E E0                  169 	movx	a,@dptr
+   002F F0                  170 	movx	@dptr,a
+   0030 75 86 01            171 	mov     dps, #1
+   0033 90s00r00r08         172 	mov     dptr, #_strstr_sloc0_1_0
+   0037 E0                  173 	movx	a,@dptr
+   0038 F5 82               174 	mov	dpl,a
+   003A A3                  175 	inc	dptr
+   003B E0                  176 	movx	a,@dptr
+   003C F5 83               177 	mov	dph,a
+   003E A3                  178 	inc	dptr
+   003F E0                  179 	movx	a,@dptr
+   0040 F5 93               180 	mov	dpx,a
+   0042 A3                  181 	inc	dptr
+   0043 E0                  182 	movx	a,@dptr
+   0044 F5 F0               183 	mov	b,a
+   0046 75 86 00            184 	mov	dps,#0
+   0049 12s00r00r00         185 	lcall	__gptrget
+   004D FA                  186 	mov  r2,a
+   004E 70 0C               187 	jnz  00122$
+   0050                     188 00124$:
+                            189 ;	_strstr.c:41: return str1;
+   0050 8E 82               190 	mov	dpl,r6
+   0052 8B 83               191 	mov	dph,r3
+   0054 8C 93               192 	mov	dpx,r4
+   0056 8D F0               193 	mov	b,r5
+   0058 02s00r01r82         194 	ljmp	00113$
+                            195 ;	_strstr.c:43: while (*cp)
+   005C                     196 00122$:
+                            197 ;	genAssign: resultIsFar = FALSE
+   005C 8E 02               198 	mov	ar2,r6
+   005E                     199 00110$:
+   005E 8A 82               200 	mov	dpl,r2
+   0060 8B 83               201 	mov	dph,r3
+   0062 8C 93               202 	mov	dpx,r4
+   0064 8D F0               203 	mov	b,r5
+   0066 12s00r00r00         204 	lcall	__gptrget
+   006A FE                  205 	mov  r6,a
+   006B 70 04               206 	jnz	00125$
+   006D 02s00r01r7B         207 	ljmp	00112$
+   0071                     208 00125$:
+                            209 ;	_strstr.c:46: s2 = str2;
+   0071 90s00r00r08         210 	mov	dptr,#_strstr_sloc0_1_0
+                            211 ;	genAssign: resultIsFar = TRUE
+   0075 E0                  212 	movx	a,@dptr
+   0076 FE                  213 	mov	r6,a
+   0077 A3                  214 	inc	dptr
+   0078 E0                  215 	movx	a,@dptr
+   0079 FF                  216 	mov	r7,a
+   007A A3                  217 	inc	dptr
+   007B E0                  218 	movx	a,@dptr
+   007C F8                  219 	mov	r0,a
+   007D A3                  220 	inc	dptr
+   007E E0                  221 	movx	a,@dptr
+   007F F9                  222 	mov	r1,a
+                            223 ;	_strstr.c:48: while ( *s1 && *s2 && !(*s1-*s2) )
+                            224 ;	genAssign: resultIsFar = TRUE
+   0080 90s00r00r0C         225 	mov	dptr,#_strstr_sloc1_1_0
+   0084 EA                  226 	mov	a,r2
+   0085 F0                  227 	movx	@dptr,a
+   0086 A3                  228 	inc	dptr
+   0087 EB                  229 	mov	a,r3
+   0088 F0                  230 	movx	@dptr,a
+   0089 A3                  231 	inc	dptr
+   008A EC                  232 	mov	a,r4
+   008B F0                  233 	movx	@dptr,a
+   008C A3                  234 	inc	dptr
+   008D ED                  235 	mov	a,r5
+   008E F0                  236 	movx	@dptr,a
+                            237 ;	genAssign: resultIsFar = FALSE
+   008F                     238 00105$:
+   008F 75 86 01            239 	mov     dps, #1
+   0092 90s00r00r0C         240 	mov     dptr, #_strstr_sloc1_1_0
+   0096 E0                  241 	movx	a,@dptr
+   0097 F5 82               242 	mov	dpl,a
+   0099 A3                  243 	inc	dptr
+   009A E0                  244 	movx	a,@dptr
+   009B F5 83               245 	mov	dph,a
+   009D A3                  246 	inc	dptr
+   009E E0                  247 	movx	a,@dptr
+   009F F5 93               248 	mov	dpx,a
+   00A1 A3                  249 	inc	dptr
+   00A2 E0                  250 	movx	a,@dptr
+   00A3 F5 F0               251 	mov	b,a
+   00A5 75 86 01            252 	mov	dps, #1
+   00A8 90s00r00r10         253 	mov	dptr, #_strstr_sloc2_1_0
+   00AC 15 86               254 	dec	dps
+   00AE 12s00r00r00         255 	lcall	__gptrget
+   00B2 75 86 01            256 	mov	dps,#1
+   00B5 F0                  257 	movx	@dptr,a
+   00B6 75 86 00            258 	mov	dps,#0
+   00B9 90s00r00r10         259 	mov	dptr,#_strstr_sloc2_1_0
+   00BD E0                  260 	movx	a,@dptr
+   00BE 60 75               261 	jz   00107$
+   00C0                     262 00126$:
+   00C0 8E 82               263 	mov	dpl,r6
+   00C2 8F 83               264 	mov	dph,r7
+   00C4 88 93               265 	mov	dpx,r0
+   00C6 89 F0               266 	mov	b,r1
+   00C8 75 86 01            267 	mov	dps, #1
+   00CB 90s00r00r11         268 	mov	dptr, #_strstr_sloc3_1_0
+   00CF 15 86               269 	dec	dps
+   00D1 12s00r00r00         270 	lcall	__gptrget
+   00D5 75 86 01            271 	mov	dps,#1
+   00D8 F0                  272 	movx	@dptr,a
+   00D9 75 86 00            273 	mov	dps,#0
+   00DC 90s00r00r11         274 	mov	dptr,#_strstr_sloc3_1_0
+   00E0 E0                  275 	movx	a,@dptr
+   00E1 60 52               276 	jz  00107$
+   00E3                     277 00127$:
+   00E3 C0 02               278 	push	ar2
+   00E5 C0 03               279 	push	ar3
+   00E7 C0 04               280 	push	ar4
+   00E9 C0 05               281 	push	ar5
+   00EB 90s00r00r10         282 	mov	dptr,#_strstr_sloc2_1_0
+   00EF E0                  283 	movx	a,@dptr
+   00F0 FA                  284 	mov	r2,a
+   00F1 E0                  285 	movx	a,@dptr
+   00F2 33                  286 	rlc	a
+   00F3 95 E0               287 	subb	a,acc
+   00F5 FB                  288 	mov	r3,a
+   00F6 90s00r00r11         289 	mov	dptr,#_strstr_sloc3_1_0
+   00FA E0                  290 	movx	a,@dptr
+   00FB FC                  291 	mov	r4,a
+   00FC E0                  292 	movx	a,@dptr
+   00FD 33                  293 	rlc	a
+   00FE 95 E0               294 	subb	a,acc
+   0100 FD                  295 	mov	r5,a
+   0101 C3                  296 	clr	c
+   0102 EA                  297 	mov	a,r2
+   0103 9C                  298 	subb	a,r4
+   0104 FA                  299 	mov	r2,a
+   0105 EB                  300 	mov	a,r3
+   0106 9D                  301 	subb	a,r5
+   0107 FB                  302 	mov  r3,a
+   0108 4A                  303 	orl  a,r2
+   0109 D0 05               304 	pop	ar5
+   010B D0 04               305 	pop	ar4
+   010D D0 03               306 	pop	ar3
+   010F D0 02               307 	pop	ar2
+   0111 70 22               308 	jnz  00107$
+   0113                     309 00128$:
+                            310 ;	_strstr.c:49: s1++, s2++;
+   0113 90s00r00r0C         311 	mov	dptr,#_strstr_sloc1_1_0
+   0117 E0                  312 	movx	a,@dptr
+   0118 24 01               313 	add	a,#0x01
+   011A F0                  314 	movx	@dptr,a
+   011B A3                  315 	inc	dptr
+   011C E0                  316 	movx	a,@dptr
+   011D 34 00               317 	addc	a,#0x00
+   011F F0                  318 	movx	@dptr,a
+   0120 A3                  319 	inc	dptr
+   0121 E0                  320 	movx	a,@dptr
+   0122 34 00               321 	addc	a,#0x00
+   0124 F0                  322 	movx	@dptr,a
+   0125 A3                  323 	inc	dptr
+   0126 E0                  324 	movx	a,@dptr
+   0127 F0                  325 	movx	@dptr,a
+   0128 0E                  326 	inc	r6
+   0129 BE 00 05            327 	cjne	r6,#0,00129$
+   012C 0F                  328 	inc	r7
+   012D BF 00 01            329 	cjne	r7,#0,00129$
+   0130 08                  330 	inc	r0
+   0131                     331 00129$:
+   0131 02s00r00r8F         332 	ljmp	00105$
+   0135                     333 00107$:
+                            334 ;	_strstr.c:51: if (!*s2)
+   0135 8E 82               335 	mov	dpl,r6
+   0137 8F 83               336 	mov	dph,r7
+   0139 88 93               337 	mov	dpx,r0
+   013B 89 F0               338 	mov	b,r1
+   013D 12s00r00r00         339 	lcall	__gptrget
+   0141 FE                  340 	mov  r6,a
+   0142 70 1B               341 	jnz  00109$
+   0144                     342 00130$:
+                            343 ;	_strstr.c:52: return( (char*)cp );
+   0144 75 86 01            344 	mov     dps, #1
+   0147 90s00r00r04         345 	mov     dptr, #_strstr_cp_1_1
+   014B E0                  346 	movx	a,@dptr
+   014C F5 82               347 	mov	dpl,a
+   014E A3                  348 	inc	dptr
+   014F E0                  349 	movx	a,@dptr
+   0150 F5 83               350 	mov	dph,a
+   0152 A3                  351 	inc	dptr
+   0153 E0                  352 	movx	a,@dptr
+   0154 F5 93               353 	mov	dpx,a
+   0156 A3                  354 	inc	dptr
+   0157 E0                  355 	movx	a,@dptr
+   0158 F5 F0               356 	mov	b,a
+   015A 75 86 00            357 	mov	dps,#0
+   015D 80 23               358 	sjmp 00113$
+   015F                     359 00109$:
+                            360 ;	_strstr.c:54: cp++;
+   015F 0A                  361 	inc	r2
+   0160 BA 00 05            362 	cjne	r2,#0,00131$
+   0163 0B                  363 	inc	r3
+   0164 BB 00 01            364 	cjne	r3,#0,00131$
+   0167 0C                  365 	inc	r4
+   0168                     366 00131$:
+                            367 ;	genAssign: resultIsFar = TRUE
+   0168 90s00r00r04         368 	mov	dptr,#_strstr_cp_1_1
+   016C EA                  369 	mov	a,r2
+   016D F0                  370 	movx	@dptr,a
+   016E A3                  371 	inc	dptr
+   016F EB                  372 	mov	a,r3
+   0170 F0                  373 	movx	@dptr,a
+   0171 A3                  374 	inc	dptr
+   0172 EC                  375 	mov	a,r4
+   0173 F0                  376 	movx	@dptr,a
+   0174 A3                  377 	inc	dptr
+   0175 ED                  378 	mov	a,r5
+   0176 F0                  379 	movx	@dptr,a
+   0177 02s00r00r5E         380 	ljmp	00110$
+   017B                     381 00112$:
+                            382 ;	_strstr.c:57: return (NULL) ;
+   017B 90 00 00 00         383 	mov  dptr,#0x0000
+   017F 75 F0 00            384 	mov	b,#0x00
+   0182                     385 00113$:
+   0182 22                  386 	ret
+                            387 	.area CSEG    (CODE)
+                            388 	.area CONST   (CODE)
+                            389 	.area XINIT   (CODE)
+                            390 	.area CABS    (ABS,CODE)

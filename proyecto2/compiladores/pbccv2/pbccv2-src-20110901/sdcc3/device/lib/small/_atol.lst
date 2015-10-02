@@ -1,0 +1,301 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:23 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _atol
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _atol
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 	.area RSEG    (ABS,DATA)
+   0000                      17 	.org 0x0000
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (ABS,DATA)
+   0000                      22 	.org 0x0000
+                             23 ;--------------------------------------------------------
+                             24 ; overlayable register banks
+                             25 ;--------------------------------------------------------
+                             26 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      27 	.ds 8
+                             28 ;--------------------------------------------------------
+                             29 ; internal ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG    (DATA)
+   0000                      32 _atol_s_1_1:
+   0000                      33 	.ds 3
+   0003                      34 _atol_sloc0_1_0:
+   0003                      35 	.ds 1
+   0004                      36 _atol_sloc1_1_0:
+   0004                      37 	.ds 3
+   0007                      38 _atol_sloc2_1_0:
+   0007                      39 	.ds 4
+                             40 ;--------------------------------------------------------
+                             41 ; overlayable items in internal ram 
+                             42 ;--------------------------------------------------------
+                             43 	.area OSEG    (OVR,DATA)
+                             44 ;--------------------------------------------------------
+                             45 ; indirectly addressable internal ram data
+                             46 ;--------------------------------------------------------
+                             47 	.area ISEG    (DATA)
+                             48 ;--------------------------------------------------------
+                             49 ; absolute internal ram data
+                             50 ;--------------------------------------------------------
+                             51 	.area IABS    (ABS,DATA)
+                             52 	.area IABS    (ABS,DATA)
+                             53 ;--------------------------------------------------------
+                             54 ; bit data
+                             55 ;--------------------------------------------------------
+                             56 	.area BSEG    (BIT)
+                             57 ;--------------------------------------------------------
+                             58 ; paged external ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area PSEG    (PAG,XDATA)
+                             61 ;--------------------------------------------------------
+                             62 ; external ram data
+                             63 ;--------------------------------------------------------
+                             64 	.area XSEG    (XDATA)
+                             65 ;--------------------------------------------------------
+                             66 ; absolute external ram data
+                             67 ;--------------------------------------------------------
+                             68 	.area XABS    (ABS,XDATA)
+                             69 ;--------------------------------------------------------
+                             70 ; external initialized ram data
+                             71 ;--------------------------------------------------------
+                             72 	.area XISEG   (XDATA)
+                             73 	.area HOME    (CODE)
+                             74 	.area GSINIT0 (CODE)
+                             75 	.area GSINIT1 (CODE)
+                             76 	.area GSINIT2 (CODE)
+                             77 	.area GSINIT3 (CODE)
+                             78 	.area GSINIT4 (CODE)
+                             79 	.area GSINIT5 (CODE)
+                             80 	.area GSINIT  (CODE)
+                             81 	.area GSFINAL (CODE)
+                             82 	.area CSEG    (CODE)
+                             83 ;--------------------------------------------------------
+                             84 ; global & static initialisations
+                             85 ;--------------------------------------------------------
+                             86 	.area HOME    (CODE)
+                             87 	.area GSINIT  (CODE)
+                             88 	.area GSFINAL (CODE)
+                             89 	.area GSINIT  (CODE)
+                             90 ;--------------------------------------------------------
+                             91 ; Home
+                             92 ;--------------------------------------------------------
+                             93 	.area HOME    (CODE)
+                             94 	.area HOME    (CODE)
+                             95 ;--------------------------------------------------------
+                             96 ; code
+                             97 ;--------------------------------------------------------
+                             98 	.area CSEG    (CODE)
+                             99 ;------------------------------------------------------------
+                            100 ;Allocation info for local variables in function 'atol'
+                            101 ;------------------------------------------------------------
+                            102 ;s                         Allocated with name '_atol_s_1_1'
+                            103 ;rv                        Allocated to registers r5 r6 r7 r0 
+                            104 ;sign                      Allocated to registers r4 
+                            105 ;sloc0                     Allocated with name '_atol_sloc0_1_0'
+                            106 ;sloc1                     Allocated with name '_atol_sloc1_1_0'
+                            107 ;sloc2                     Allocated with name '_atol_sloc2_1_0'
+                            108 ;------------------------------------------------------------
+                            109 ;	_atol.c:29: long atol(char * s)
+                            110 ;	-----------------------------------------
+                            111 ;	 function atol
+                            112 ;	-----------------------------------------
+   0000                     113 _atol:
+                    0002    114 	ar2 = 0x02
+                    0003    115 	ar3 = 0x03
+                    0004    116 	ar4 = 0x04
+                    0005    117 	ar5 = 0x05
+                    0006    118 	ar6 = 0x06
+                    0007    119 	ar7 = 0x07
+                    0000    120 	ar0 = 0x00
+                    0001    121 	ar1 = 0x01
+   0000 85 82*00            122 	mov	_atol_s_1_1,dpl
+   0003 85 83*01            123 	mov	(_atol_s_1_1 + 1),dph
+   0006 85 F0*02            124 	mov	(_atol_s_1_1 + 2),b
+                            125 ;	_atol.c:31: register long rv=0; 
+   0009 7D 00               126 	mov	r5,#0x00
+   000B 7E 00               127 	mov	r6,#0x00
+   000D 7F 00               128 	mov	r7,#0x00
+   000F 78 00               129 	mov	r0,#0x00
+                            130 ;	_atol.c:35: while (*s) {
+   0011 A9*00               131 	mov	r1,_atol_s_1_1
+   0013 AA*01               132 	mov	r2,(_atol_s_1_1 + 1)
+   0015 AB*02               133 	mov	r3,(_atol_s_1_1 + 2)
+   0017                     134 00107$:
+   0017 89 82               135 	mov	dpl,r1
+   0019 8A 83               136 	mov	dph,r2
+   001B 8B F0               137 	mov	b,r3
+   001D 12s00r00            138 	lcall	__gptrget
+   0020 FC                  139 	mov	r4,a
+   0021 60 2E               140 	jz	00133$
+                            141 ;	_atol.c:36: if (*s <= '9' && *s >= '0')
+   0023 C3                  142 	clr	c
+   0024 74 B9               143 	mov	a,#(0x39 ^ 0x80)
+   0026 8C F0               144 	mov	b,r4
+   0028 63 F0 80            145 	xrl	b,#0x80
+   002B 95 F0               146 	subb	a,b
+   002D 40 07               147 	jc	00102$
+   002F EC                  148 	mov	a,r4
+   0030 64 80               149 	xrl	a,#0x80
+   0032 94 B0               150 	subb	a,#0xb0
+   0034 50 1B               151 	jnc	00133$
+                            152 ;	_atol.c:37: break;
+   0036                     153 00102$:
+                            154 ;	_atol.c:38: if (*s == '-' || *s == '+') 
+   0036 89 82               155 	mov	dpl,r1
+   0038 8A 83               156 	mov	dph,r2
+   003A 8B F0               157 	mov	b,r3
+   003C 12s00r00            158 	lcall	__gptrget
+   003F FC                  159 	mov	r4,a
+   0040 BC 2D 02            160 	cjne	r4,#0x2D,00138$
+   0043 80 0C               161 	sjmp	00133$
+   0045                     162 00138$:
+   0045 BC 2B 02            163 	cjne	r4,#0x2B,00139$
+   0048 80 07               164 	sjmp	00133$
+   004A                     165 00139$:
+                            166 ;	_atol.c:40: s++;
+   004A 09                  167 	inc	r1
+   004B B9 00 C9            168 	cjne	r1,#0x00,00107$
+   004E 0A                  169 	inc	r2
+   004F 80 C6               170 	sjmp	00107$
+   0051                     171 00133$:
+   0051 89*00               172 	mov	_atol_s_1_1,r1
+   0053 8A*01               173 	mov	(_atol_s_1_1 + 1),r2
+   0055 8B*02               174 	mov	(_atol_s_1_1 + 2),r3
+                            175 ;	_atol.c:43: sign = (*s == '-');
+   0057 89 82               176 	mov	dpl,r1
+   0059 8A 83               177 	mov	dph,r2
+   005B 8B F0               178 	mov	b,r3
+   005D 12s00r00            179 	lcall	__gptrget
+   0060 FA                  180 	mov	r2,a
+   0061 E4                  181 	clr	a
+   0062 BA 2D 01            182 	cjne	r2,#0x2D,00141$
+   0065 04                  183 	inc	a
+   0066                     184 00141$:
+                            185 ;	_atol.c:44: if (*s == '-' || *s == '+') s++;
+   0066 FB                  186 	mov	r3,a
+   0067 FC                  187 	mov	r4,a
+   0068 70 03               188 	jnz	00110$
+   006A BA 2B 08            189 	cjne	r2,#0x2B,00131$
+   006D                     190 00110$:
+   006D 05*00               191 	inc	_atol_s_1_1
+   006F E4                  192 	clr	a
+   0070 B5*00 02            193 	cjne	a,_atol_s_1_1,00146$
+   0073 05*01               194 	inc	(_atol_s_1_1 + 1)
+   0075                     195 00146$:
+                            196 ;	_atol.c:46: while (*s && *s >= '0' && *s <= '9') {
+   0075                     197 00131$:
+   0075 85*00*04            198 	mov	_atol_sloc1_1_0,_atol_s_1_1
+   0078 85*01*05            199 	mov	(_atol_sloc1_1_0 + 1),(_atol_s_1_1 + 1)
+   007B 85*02*06            200 	mov	(_atol_sloc1_1_0 + 2),(_atol_s_1_1 + 2)
+   007E                     201 00115$:
+   007E 85*04 82            202 	mov	dpl,_atol_sloc1_1_0
+   0081 85*05 83            203 	mov	dph,(_atol_sloc1_1_0 + 1)
+   0084 85*06 F0            204 	mov	b,(_atol_sloc1_1_0 + 2)
+   0087 12s00r00            205 	lcall	__gptrget
+   008A F5*03               206 	mov	_atol_sloc0_1_0,a
+   008C 60 68               207 	jz	00117$
+   008E C3                  208 	clr	c
+   008F E5*03               209 	mov	a,_atol_sloc0_1_0
+   0091 64 80               210 	xrl	a,#0x80
+   0093 94 B0               211 	subb	a,#0xb0
+   0095 40 5F               212 	jc	00117$
+   0097 74 B9               213 	mov	a,#(0x39 ^ 0x80)
+   0099 85*03 F0            214 	mov	b,_atol_sloc0_1_0
+   009C 63 F0 80            215 	xrl	b,#0x80
+   009F 95 F0               216 	subb	a,b
+   00A1 40 53               217 	jc	00117$
+                            218 ;	_atol.c:47: rv = (rv * 10) + (*s - '0');
+   00A3 C0 04               219 	push	ar4
+   00A5 8D*00               220 	mov	__mullong_PARM_2,r5
+   00A7 8E*01               221 	mov	(__mullong_PARM_2 + 1),r6
+   00A9 8F*02               222 	mov	(__mullong_PARM_2 + 2),r7
+   00AB 88*03               223 	mov	(__mullong_PARM_2 + 3),r0
+   00AD 90 00 0A            224 	mov	dptr,#(0x0A&0x00ff)
+   00B0 E4                  225 	clr	a
+   00B1 F5 F0               226 	mov	b,a
+   00B3 C0 04               227 	push	ar4
+   00B5 12s00r00            228 	lcall	__mullong
+   00B8 85 82*07            229 	mov	_atol_sloc2_1_0,dpl
+   00BB 85 83*08            230 	mov	(_atol_sloc2_1_0 + 1),dph
+   00BE 85 F0*09            231 	mov	(_atol_sloc2_1_0 + 2),b
+   00C1 F5*0A               232 	mov	(_atol_sloc2_1_0 + 3),a
+   00C3 D0 04               233 	pop	ar4
+   00C5 E5*03               234 	mov	a,_atol_sloc0_1_0
+   00C7 FA                  235 	mov	r2,a
+   00C8 33                  236 	rlc	a
+   00C9 95 E0               237 	subb	a,acc
+   00CB FB                  238 	mov	r3,a
+   00CC EA                  239 	mov	a,r2
+   00CD 24 D0               240 	add	a,#0xd0
+   00CF FA                  241 	mov	r2,a
+   00D0 EB                  242 	mov	a,r3
+   00D1 34 FF               243 	addc	a,#0xff
+   00D3 FB                  244 	mov	r3,a
+   00D4 33                  245 	rlc	a
+   00D5 95 E0               246 	subb	a,acc
+   00D7 FC                  247 	mov	r4,a
+   00D8 F9                  248 	mov	r1,a
+   00D9 EA                  249 	mov	a,r2
+   00DA 25*07               250 	add	a,_atol_sloc2_1_0
+   00DC FD                  251 	mov	r5,a
+   00DD EB                  252 	mov	a,r3
+   00DE 35*08               253 	addc	a,(_atol_sloc2_1_0 + 1)
+   00E0 FE                  254 	mov	r6,a
+   00E1 EC                  255 	mov	a,r4
+   00E2 35*09               256 	addc	a,(_atol_sloc2_1_0 + 2)
+   00E4 FF                  257 	mov	r7,a
+   00E5 E9                  258 	mov	a,r1
+   00E6 35*0A               259 	addc	a,(_atol_sloc2_1_0 + 3)
+   00E8 F8                  260 	mov	r0,a
+                            261 ;	_atol.c:48: s++;
+   00E9 05*04               262 	inc	_atol_sloc1_1_0
+   00EB E4                  263 	clr	a
+   00EC B5*04 02            264 	cjne	a,_atol_sloc1_1_0,00150$
+   00EF 05*05               265 	inc	(_atol_sloc1_1_0 + 1)
+   00F1                     266 00150$:
+   00F1 D0 04               267 	pop	ar4
+   00F3 02s00r7E            268 	ljmp	00115$
+   00F6                     269 00117$:
+                            270 ;	_atol.c:51: return (sign ? -rv : rv);
+   00F6 EC                  271 	mov	a,r4
+   00F7 60 0F               272 	jz	00120$
+   00F9 C3                  273 	clr	c
+   00FA E4                  274 	clr	a
+   00FB 9D                  275 	subb	a,r5
+   00FC FA                  276 	mov	r2,a
+   00FD E4                  277 	clr	a
+   00FE 9E                  278 	subb	a,r6
+   00FF FB                  279 	mov	r3,a
+   0100 E4                  280 	clr	a
+   0101 9F                  281 	subb	a,r7
+   0102 FC                  282 	mov	r4,a
+   0103 E4                  283 	clr	a
+   0104 98                  284 	subb	a,r0
+   0105 F9                  285 	mov	r1,a
+   0106 80 08               286 	sjmp	00121$
+   0108                     287 00120$:
+   0108 8D 02               288 	mov	ar2,r5
+   010A 8E 03               289 	mov	ar3,r6
+   010C 8F 04               290 	mov	ar4,r7
+   010E 88 01               291 	mov	ar1,r0
+   0110                     292 00121$:
+   0110 8A 82               293 	mov	dpl,r2
+   0112 8B 83               294 	mov	dph,r3
+   0114 8C F0               295 	mov	b,r4
+   0116 E9                  296 	mov	a,r1
+   0117 22                  297 	ret
+                            298 	.area CSEG    (CODE)
+                            299 	.area CONST   (CODE)
+                            300 	.area XINIT   (CODE)
+                            301 	.area CABS    (ABS,CODE)

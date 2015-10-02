@@ -1,0 +1,245 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:31 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _strncmp
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _strncmp
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 	.area RSEG    (ABS,DATA)
+   0000                      17 	.org 0x0000
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (ABS,DATA)
+   0000                      22 	.org 0x0000
+                             23 ;--------------------------------------------------------
+                             24 ; overlayable register banks
+                             25 ;--------------------------------------------------------
+                             26 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      27 	.ds 8
+                             28 ;--------------------------------------------------------
+                             29 ; internal ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG    (DATA)
+                             32 ;--------------------------------------------------------
+                             33 ; overlayable items in internal ram 
+                             34 ;--------------------------------------------------------
+                             35 	.area OSEG    (OVR,DATA)
+                             36 ;--------------------------------------------------------
+                             37 ; indirectly addressable internal ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area ISEG    (DATA)
+                             40 ;--------------------------------------------------------
+                             41 ; absolute internal ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area IABS    (ABS,DATA)
+                             44 	.area IABS    (ABS,DATA)
+                             45 ;--------------------------------------------------------
+                             46 ; bit data
+                             47 ;--------------------------------------------------------
+                             48 	.area BSEG    (BIT)
+                             49 ;--------------------------------------------------------
+                             50 ; paged external ram data
+                             51 ;--------------------------------------------------------
+                             52 	.area PSEG    (PAG,XDATA)
+                             53 ;--------------------------------------------------------
+                             54 ; external ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area XSEG    (XDATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute external ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area XABS    (ABS,XDATA)
+                             61 ;--------------------------------------------------------
+                             62 ; external initialized ram data
+                             63 ;--------------------------------------------------------
+                             64 	.area XISEG   (XDATA)
+                             65 	.area HOME    (CODE)
+                             66 	.area GSINIT0 (CODE)
+                             67 	.area GSINIT1 (CODE)
+                             68 	.area GSINIT2 (CODE)
+                             69 	.area GSINIT3 (CODE)
+                             70 	.area GSINIT4 (CODE)
+                             71 	.area GSINIT5 (CODE)
+                             72 	.area GSINIT  (CODE)
+                             73 	.area GSFINAL (CODE)
+                             74 	.area CSEG    (CODE)
+                             75 ;--------------------------------------------------------
+                             76 ; global & static initialisations
+                             77 ;--------------------------------------------------------
+                             78 	.area HOME    (CODE)
+                             79 	.area GSINIT  (CODE)
+                             80 	.area GSFINAL (CODE)
+                             81 	.area GSINIT  (CODE)
+                             82 ;--------------------------------------------------------
+                             83 ; Home
+                             84 ;--------------------------------------------------------
+                             85 	.area HOME    (CODE)
+                             86 	.area HOME    (CODE)
+                             87 ;--------------------------------------------------------
+                             88 ; code
+                             89 ;--------------------------------------------------------
+                             90 	.area CSEG    (CODE)
+                             91 ;------------------------------------------------------------
+                             92 ;Allocation info for local variables in function 'strncmp'
+                             93 ;------------------------------------------------------------
+                             94 ;last                      Allocated to stack - offset -5
+                             95 ;count                     Allocated to stack - offset -7
+                             96 ;first                     Allocated to registers r2 r3 r4 
+                             97 ;sloc0                     Allocated to stack - offset 1
+                             98 ;sloc1                     Allocated to stack - offset 3
+                             99 ;------------------------------------------------------------
+                            100 ;	_strncmp.c:31: int strncmp (
+                            101 ;	-----------------------------------------
+                            102 ;	 function strncmp
+                            103 ;	-----------------------------------------
+   0000                     104 _strncmp:
+                    0002    105 	ar2 = 0x02
+                    0003    106 	ar3 = 0x03
+                    0004    107 	ar4 = 0x04
+                    0005    108 	ar5 = 0x05
+                    0006    109 	ar6 = 0x06
+                    0007    110 	ar7 = 0x07
+                    0000    111 	ar0 = 0x00
+                    0001    112 	ar1 = 0x01
+   0000 C0*00               113 	push	_bp
+   0002 85 81*00            114 	mov	_bp,sp
+   0005 05 81               115 	inc	sp
+   0007 05 81               116 	inc	sp
+   0009 05 81               117 	inc	sp
+   000B AA 82               118 	mov	r2,dpl
+   000D AB 83               119 	mov	r3,dph
+   000F AC F0               120 	mov	r4,b
+                            121 ;	_strncmp.c:37: if (!count)
+   0011 E5*00               122 	mov	a,_bp
+   0013 24 F9               123 	add	a,#0xf9
+   0015 F8                  124 	mov	r0,a
+   0016 E6                  125 	mov	a,@r0
+   0017 08                  126 	inc	r0
+   0018 46                  127 	orl	a,@r0
+   0019 70 06               128 	jnz	00114$
+                            129 ;	_strncmp.c:38: return(0);
+   001B 90 00 00            130 	mov	dptr,#0x0000
+   001E 02s00rBE            131 	ljmp	00108$
+                            132 ;	_strncmp.c:40: while (--count && *first && *first == *last) {
+   0021                     133 00114$:
+   0021 E5*00               134 	mov	a,_bp
+   0023 24 FB               135 	add	a,#0xfb
+   0025 F8                  136 	mov	r0,a
+   0026 86 05               137 	mov	ar5,@r0
+   0028 08                  138 	inc	r0
+   0029 86 06               139 	mov	ar6,@r0
+   002B 08                  140 	inc	r0
+   002C 86 07               141 	mov	ar7,@r0
+   002E E5*00               142 	mov	a,_bp
+   0030 24 F9               143 	add	a,#0xf9
+   0032 F8                  144 	mov	r0,a
+   0033 A9*00               145 	mov	r1,_bp
+   0035 09                  146 	inc	r1
+   0036 E6                  147 	mov	a,@r0
+   0037 F7                  148 	mov	@r1,a
+   0038 08                  149 	inc	r0
+   0039 09                  150 	inc	r1
+   003A E6                  151 	mov	a,@r0
+   003B F7                  152 	mov	@r1,a
+   003C                     153 00105$:
+   003C A8*00               154 	mov	r0,_bp
+   003E 08                  155 	inc	r0
+   003F 16                  156 	dec	@r0
+   0040 B6 FF 02            157 	cjne	@r0,#0xff,00117$
+   0043 08                  158 	inc	r0
+   0044 16                  159 	dec	@r0
+   0045                     160 00117$:
+   0045 A8*00               161 	mov	r0,_bp
+   0047 08                  162 	inc	r0
+   0048 E6                  163 	mov	a,@r0
+   0049 08                  164 	inc	r0
+   004A 46                  165 	orl	a,@r0
+   004B 60 4C               166 	jz	00107$
+   004D 8A 82               167 	mov	dpl,r2
+   004F 8B 83               168 	mov	dph,r3
+   0051 8C F0               169 	mov	b,r4
+   0053 E5*00               170 	mov	a,_bp
+   0055 24 03               171 	add	a,#0x03
+   0057 F8                  172 	mov	r0,a
+   0058 12s00r00            173 	lcall	__gptrget
+   005B F6                  174 	mov	@r0,a
+   005C E5*00               175 	mov	a,_bp
+   005E 24 03               176 	add	a,#0x03
+   0060 F8                  177 	mov	r0,a
+   0061 E6                  178 	mov	a,@r0
+   0062 60 35               179 	jz	00107$
+   0064 C0 02               180 	push	ar2
+   0066 C0 03               181 	push	ar3
+   0068 C0 04               182 	push	ar4
+   006A 8D 82               183 	mov	dpl,r5
+   006C 8E 83               184 	mov	dph,r6
+   006E 8F F0               185 	mov	b,r7
+   0070 12s00r00            186 	lcall	__gptrget
+   0073 FA                  187 	mov	r2,a
+   0074 E5*00               188 	mov	a,_bp
+   0076 24 03               189 	add	a,#0x03
+   0078 F8                  190 	mov	r0,a
+   0079 E6                  191 	mov	a,@r0
+   007A B5 02 02            192 	cjne	a,ar2,00120$
+   007D 80 08               193 	sjmp	00121$
+   007F                     194 00120$:
+   007F D0 04               195 	pop	ar4
+   0081 D0 03               196 	pop	ar3
+   0083 D0 02               197 	pop	ar2
+   0085 80 12               198 	sjmp	00107$
+   0087                     199 00121$:
+   0087 D0 04               200 	pop	ar4
+   0089 D0 03               201 	pop	ar3
+   008B D0 02               202 	pop	ar2
+                            203 ;	_strncmp.c:41: first++;
+   008D 0A                  204 	inc	r2
+   008E BA 00 01            205 	cjne	r2,#0x00,00122$
+   0091 0B                  206 	inc	r3
+   0092                     207 00122$:
+                            208 ;	_strncmp.c:42: last++;
+   0092 0D                  209 	inc	r5
+   0093 BD 00 A6            210 	cjne	r5,#0x00,00105$
+   0096 0E                  211 	inc	r6
+   0097 80 A3               212 	sjmp	00105$
+   0099                     213 00107$:
+                            214 ;	_strncmp.c:45: return( *first - *last );
+   0099 8A 82               215 	mov	dpl,r2
+   009B 8B 83               216 	mov	dph,r3
+   009D 8C F0               217 	mov	b,r4
+   009F 12s00r00            218 	lcall	__gptrget
+   00A2 FA                  219 	mov	r2,a
+   00A3 33                  220 	rlc	a
+   00A4 95 E0               221 	subb	a,acc
+   00A6 FB                  222 	mov	r3,a
+   00A7 8D 82               223 	mov	dpl,r5
+   00A9 8E 83               224 	mov	dph,r6
+   00AB 8F F0               225 	mov	b,r7
+   00AD 12s00r00            226 	lcall	__gptrget
+   00B0 FD                  227 	mov	r5,a
+   00B1 33                  228 	rlc	a
+   00B2 95 E0               229 	subb	a,acc
+   00B4 FC                  230 	mov	r4,a
+   00B5 EA                  231 	mov	a,r2
+   00B6 C3                  232 	clr	c
+   00B7 9D                  233 	subb	a,r5
+   00B8 F5 82               234 	mov	dpl,a
+   00BA EB                  235 	mov	a,r3
+   00BB 9C                  236 	subb	a,r4
+   00BC F5 83               237 	mov	dph,a
+   00BE                     238 00108$:
+   00BE 85*00 81            239 	mov	sp,_bp
+   00C1 D0*00               240 	pop	_bp
+   00C3 22                  241 	ret
+                            242 	.area CSEG    (CODE)
+                            243 	.area CONST   (CODE)
+                            244 	.area XINIT   (CODE)
+                            245 	.area CABS    (ABS,CODE)

@@ -1,0 +1,25 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24  (GameBoy Z80-like CPU), page 1.
+
+Symbol Table
+
+    .__.ABS.=  0000 G   |   0 __divsch   0027 GR  |     __divsch   **** GX
+  0 __divsin   0015 GR  |     __divsin   **** GX  |     __divslo   **** GX
+  0 __divslo   0009 GR  |   0 __divslo   0009 GR  |   0 __divuch   0033 GR
+    __divuch   **** GX  |   0 __divuin   001B GR  |     __divuin   **** GX
+    __divulo   **** GX  |   0 __divulo   000C GR  |   0 __divulo   000C GR
+  0 __modsch   0039 GR  |     __modsch   **** GX  |   0 __modsin   0045 GR
+    __modsin   **** GX  |     __modslo   **** GX  |   0 __modslo   0003 GR
+  0 __modslo   0003 GR  |   0 __moduch   003F GR  |     __moduch   **** GX
+  0 __moduin   004B GR  |     __moduin   **** GX  |     __modulo   **** GX
+  0 __modulo   0006 GR  |   0 __modulo   0006 GR  |   0 __mulint   000F GR
+    __mulint   **** GX  |     __mullon   **** GX  |   0 __mullon   0000 GR
+  0 __mullon   0000 GR  |   0 __mulsch   0021 GR  |     __mulsch   **** GX
+  0 __muluch   002D GR  |     __muluch   **** GX  |   0 __rlslon   0063 GR
+    __rlslon   **** GX  |   0 __rlulon   005D GR  |     __rlulon   **** GX
+  0 __rrslon   0057 GR  |     __rrslon   **** GX  |   0 __rrulon   0051 GR
+    __rrulon   **** GX
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24  (GameBoy Z80-like CPU), page 2.
+
+Area Table
+
+   0 _CODE      size   69   flags 0

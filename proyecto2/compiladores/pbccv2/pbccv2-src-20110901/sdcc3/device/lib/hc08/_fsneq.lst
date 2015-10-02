@@ -1,0 +1,195 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _fsneq
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl ___fsneq_PARM_2
+                             25 	.globl ___fsneq_PARM_1
+                             26 	.globl ___fsneq
+                             27 ;--------------------------------------------------------
+                             28 ;  ram data
+                             29 ;--------------------------------------------------------
+                             30 	.area DSEG
+                             31 ;--------------------------------------------------------
+                             32 ; overlayable items in  ram 
+                             33 ;--------------------------------------------------------
+                             34 	.area	OSEG    (OVR)
+   0000                      35 ___fsneq_sloc0_1_0::
+   0000                      36 	.ds 4
+   0004                      37 ___fsneq_sloc1_1_0::
+   0004                      38 	.ds 4
+                             39 ;--------------------------------------------------------
+                             40 ; absolute external ram data
+                             41 ;--------------------------------------------------------
+                             42 	.area XABS    (ABS)
+                             43 ;--------------------------------------------------------
+                             44 ; external initialized ram data
+                             45 ;--------------------------------------------------------
+                             46 	.area XISEG
+                             47 ;--------------------------------------------------------
+                             48 ; extended address mode data
+                             49 ;--------------------------------------------------------
+                             50 	.area XSEG
+   0000                      51 ___fsneq_PARM_1:
+   0000                      52 	.ds 4
+   0004                      53 ___fsneq_PARM_2:
+   0004                      54 	.ds 4
+   0008                      55 ___fsneq_fl1_1_1:
+   0008                      56 	.ds 4
+   000C                      57 ___fsneq_fl2_1_1:
+   000C                      58 	.ds 4
+                             59 ;--------------------------------------------------------
+                             60 ; global & static initialisations
+                             61 ;--------------------------------------------------------
+                             62 	.area HOME (CODE)
+                             63 	.area GSINIT (CODE)
+                             64 	.area GSFINAL (CODE)
+                             65 	.area GSINIT (CODE)
+                             66 ;--------------------------------------------------------
+                             67 ; Home
+                             68 ;--------------------------------------------------------
+                             69 	.area HOME (CODE)
+                             70 	.area HOME (CODE)
+                             71 ;--------------------------------------------------------
+                             72 ; code
+                             73 ;--------------------------------------------------------
+                             74 	.area CSEG (CODE)
+                             75 ;------------------------------------------------------------
+                             76 ;Allocation info for local variables in function '__fsneq'
+                             77 ;------------------------------------------------------------
+                             78 ;a1                        Allocated with name '___fsneq_PARM_1'
+                             79 ;a2                        Allocated with name '___fsneq_PARM_2'
+                             80 ;fl1                       Allocated with name '___fsneq_fl1_1_1'
+                             81 ;fl2                       Allocated with name '___fsneq_fl2_1_1'
+                             82 ;sloc0                     Allocated with name '___fsneq_sloc0_1_0'
+                             83 ;sloc1                     Allocated with name '___fsneq_sloc1_1_0'
+                             84 ;------------------------------------------------------------
+                             85 ;../_fsneq.c:80: char __fsneq (float a1, float a2)
+                             86 ;	-----------------------------------------
+                             87 ;	 function __fsneq
+                             88 ;	-----------------------------------------
+   0000                      89 ___fsneq:
+                             90 ;../_fsneq.c:84: fl1.f = a1;
+   0000 C6s00r00             91 	lda	___fsneq_PARM_1
+   0003 C7s00r08             92 	sta	___fsneq_fl1_1_1
+   0006 C6s00r01             93 	lda	(___fsneq_PARM_1 + 1)
+   0009 C7s00r09             94 	sta	(___fsneq_fl1_1_1 + 1)
+   000C C6s00r02             95 	lda	(___fsneq_PARM_1 + 2)
+   000F C7s00r0A             96 	sta	(___fsneq_fl1_1_1 + 2)
+   0012 C6s00r03             97 	lda	(___fsneq_PARM_1 + 3)
+   0015 C7s00r0B             98 	sta	(___fsneq_fl1_1_1 + 3)
+                             99 ;../_fsneq.c:85: fl2.f = a2;
+   0018 C6s00r04            100 	lda	___fsneq_PARM_2
+   001B C7s00r0C            101 	sta	___fsneq_fl2_1_1
+   001E C6s00r05            102 	lda	(___fsneq_PARM_2 + 1)
+   0021 C7s00r0D            103 	sta	(___fsneq_fl2_1_1 + 1)
+   0024 C6s00r06            104 	lda	(___fsneq_PARM_2 + 2)
+   0027 C7s00r0E            105 	sta	(___fsneq_fl2_1_1 + 2)
+   002A C6s00r07            106 	lda	(___fsneq_PARM_2 + 3)
+   002D C7s00r0F            107 	sta	(___fsneq_fl2_1_1 + 3)
+                            108 ;../_fsneq.c:87: if (fl1.l == fl2.l)
+   0030 C6s00r08            109 	lda	___fsneq_fl1_1_1
+   0033 B7*00               110 	sta	*___fsneq_sloc0_1_0
+   0035 C6s00r09            111 	lda	(___fsneq_fl1_1_1 + 1)
+   0038 B7*01               112 	sta	*(___fsneq_sloc0_1_0 + 1)
+   003A C6s00r0A            113 	lda	(___fsneq_fl1_1_1 + 2)
+   003D B7*02               114 	sta	*(___fsneq_sloc0_1_0 + 2)
+   003F C6s00r0B            115 	lda	(___fsneq_fl1_1_1 + 3)
+   0042 B7*03               116 	sta	*(___fsneq_sloc0_1_0 + 3)
+   0044 C6s00r0C            117 	lda	___fsneq_fl2_1_1
+   0047 B7*04               118 	sta	*___fsneq_sloc1_1_0
+   0049 C6s00r0D            119 	lda	(___fsneq_fl2_1_1 + 1)
+   004C B7*05               120 	sta	*(___fsneq_sloc1_1_0 + 1)
+   004E C6s00r0E            121 	lda	(___fsneq_fl2_1_1 + 2)
+   0051 B7*06               122 	sta	*(___fsneq_sloc1_1_0 + 2)
+   0053 C6s00r0F            123 	lda	(___fsneq_fl2_1_1 + 3)
+   0056 B7*07               124 	sta	*(___fsneq_sloc1_1_0 + 3)
+   0058 B6*03               125 	lda	*(___fsneq_sloc0_1_0 + 3)
+   005A B1*07               126 	cmp	*(___fsneq_sloc1_1_0 + 3)
+   005C 26 12               127 	bne	00109$
+   005E B6*02               128 	lda	*(___fsneq_sloc0_1_0 + 2)
+   0060 B1*06               129 	cmp	*(___fsneq_sloc1_1_0 + 2)
+   0062 26 0C               130 	bne	00109$
+   0064 B6*01               131 	lda	*(___fsneq_sloc0_1_0 + 1)
+   0066 B1*05               132 	cmp	*(___fsneq_sloc1_1_0 + 1)
+   0068 26 06               133 	bne	00109$
+   006A B6*00               134 	lda	*___fsneq_sloc0_1_0
+   006C B1*04               135 	cmp	*___fsneq_sloc1_1_0
+   006E 27 02               136 	beq	00110$
+   0070                     137 00109$:
+   0070 20 02               138 	bra	00102$
+   0072                     139 00110$:
+                            140 ;../_fsneq.c:88: return (0);
+   0072 4F                  141 	clra
+   0073 81                  142 	rts
+   0074                     143 00102$:
+                            144 ;../_fsneq.c:89: if (((fl1.l | fl2.l) & 0x7FFFFFFF) == 0)
+   0074 C6s00r08            145 	lda	___fsneq_fl1_1_1
+   0077 B7*04               146 	sta	*___fsneq_sloc1_1_0
+   0079 C6s00r09            147 	lda	(___fsneq_fl1_1_1 + 1)
+   007C B7*05               148 	sta	*(___fsneq_sloc1_1_0 + 1)
+   007E C6s00r0A            149 	lda	(___fsneq_fl1_1_1 + 2)
+   0081 B7*06               150 	sta	*(___fsneq_sloc1_1_0 + 2)
+   0083 C6s00r0B            151 	lda	(___fsneq_fl1_1_1 + 3)
+   0086 B7*07               152 	sta	*(___fsneq_sloc1_1_0 + 3)
+   0088 C6s00r0C            153 	lda	___fsneq_fl2_1_1
+   008B B7*00               154 	sta	*___fsneq_sloc0_1_0
+   008D C6s00r0D            155 	lda	(___fsneq_fl2_1_1 + 1)
+   0090 B7*01               156 	sta	*(___fsneq_sloc0_1_0 + 1)
+   0092 C6s00r0E            157 	lda	(___fsneq_fl2_1_1 + 2)
+   0095 B7*02               158 	sta	*(___fsneq_sloc0_1_0 + 2)
+   0097 C6s00r0F            159 	lda	(___fsneq_fl2_1_1 + 3)
+   009A B7*03               160 	sta	*(___fsneq_sloc0_1_0 + 3)
+   009C B6*07               161 	lda	*(___fsneq_sloc1_1_0 + 3)
+   009E BA*03               162 	ora	*(___fsneq_sloc0_1_0 + 3)
+   00A0 B7*07               163 	sta	*(___fsneq_sloc1_1_0 + 3)
+   00A2 B6*06               164 	lda	*(___fsneq_sloc1_1_0 + 2)
+   00A4 BA*02               165 	ora	*(___fsneq_sloc0_1_0 + 2)
+   00A6 B7*06               166 	sta	*(___fsneq_sloc1_1_0 + 2)
+   00A8 B6*05               167 	lda	*(___fsneq_sloc1_1_0 + 1)
+   00AA BA*01               168 	ora	*(___fsneq_sloc0_1_0 + 1)
+   00AC B7*05               169 	sta	*(___fsneq_sloc1_1_0 + 1)
+   00AE B6*04               170 	lda	*___fsneq_sloc1_1_0
+   00B0 BA*00               171 	ora	*___fsneq_sloc0_1_0
+   00B2 B7*04               172 	sta	*___fsneq_sloc1_1_0
+   00B4 3D*07               173 	tst	*(___fsneq_sloc1_1_0 + 3)
+   00B6 26 0C               174 	bne	00111$
+   00B8 3D*06               175 	tst	*(___fsneq_sloc1_1_0 + 2)
+   00BA 26 08               176 	bne	00111$
+   00BC 3D*05               177 	tst	*(___fsneq_sloc1_1_0 + 1)
+   00BE 26 04               178 	bne	00111$
+   00C0 B6*04               179 	lda	*___fsneq_sloc1_1_0
+   00C2 A4 7F               180 	and	#0x7F
+   00C4                     181 00111$:
+   00C4 26 02               182 	bne	00104$
+   00C6                     183 00112$:
+                            184 ;../_fsneq.c:90: return (0);
+   00C6 4F                  185 	clra
+   00C7 81                  186 	rts
+   00C8                     187 00104$:
+                            188 ;../_fsneq.c:91: return (1);
+   00C8 A6 01               189 	lda	#0x01
+   00CA                     190 00105$:
+   00CA 81                  191 	rts
+                            192 	.area CSEG (CODE)
+                            193 	.area CONST   (CODE)
+                            194 	.area XINIT
+                            195 	.area CABS    (ABS,CODE)

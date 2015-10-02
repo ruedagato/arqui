@@ -1,0 +1,128 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:17 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module rand
+                              7 	.optsdcc -mz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _rand
+                             13 	.globl _srand
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 ;--------------------------------------------------------
+                             18 ;  ram data
+                             19 ;--------------------------------------------------------
+                             20 	.area _DATA
+   0000                      21 _next:
+   0000                      22 	.ds 4
+                             23 ;--------------------------------------------------------
+                             24 ; overlayable items in  ram 
+                             25 ;--------------------------------------------------------
+                             26 	.area _OVERLAY
+                             27 ;--------------------------------------------------------
+                             28 ; external initialized ram data
+                             29 ;--------------------------------------------------------
+                             30 ;--------------------------------------------------------
+                             31 ; global & static initialisations
+                             32 ;--------------------------------------------------------
+                             33 	.area _HOME
+                             34 	.area _GSINIT
+                             35 	.area _GSFINAL
+                             36 	.area _GSINIT
+                             37 ;../rand.c:31: static unsigned long int next = 1;
+   0000 FD 21r00s00          38 	ld	iy,#_next
+   0004 FD 36 00 01          39 	ld	0 (iy),#0x01
+   0008 AF                   40 	xor	a,a
+   0009 FD 77 01             41 	ld	1 (iy),a
+   000C FD 77 02             42 	ld	2 (iy),a
+   000F FD 77 03             43 	ld	3 (iy),a
+                             44 ;--------------------------------------------------------
+                             45 ; Home
+                             46 ;--------------------------------------------------------
+                             47 	.area _HOME
+                             48 	.area _HOME
+                             49 ;--------------------------------------------------------
+                             50 ; code
+                             51 ;--------------------------------------------------------
+                             52 	.area _CODE
+                             53 ;../rand.c:33: int rand(void)
+                             54 ;	---------------------------------
+                             55 ; Function rand
+                             56 ; ---------------------------------
+   0000                      57 _rand_start::
+   0000                      58 _rand:
+                             59 ;../rand.c:35: next = next * 1103515245UL + 12345;
+   0000 2Ar02s00             60 	ld	hl,(_next + 2)
+   0003 E5                   61 	push	hl
+   0004 2Ar00s00             62 	ld	hl,(_next)
+   0007 E5                   63 	push	hl
+   0008 21 C6 41             64 	ld	hl,#0x41C6
+   000B E5                   65 	push	hl
+   000C 21 6D 4E             66 	ld	hl,#0x41C64E6D
+   000F E5                   67 	push	hl
+   0010 CDr00s00             68 	call	__mullong_rrx_s
+   0013 F1                   69 	pop	af
+   0014 F1                   70 	pop	af
+   0015 F1                   71 	pop	af
+   0016 F1                   72 	pop	af
+   0017 44                   73 	ld	b,h
+   0018 7D                   74 	ld	a, l
+   0019 21r00s00             75 	ld	hl, #_next
+   001C C6 39                76 	add	a,#0x39
+   001E 77                   77 	ld	(hl),a
+   001F 78                   78 	ld	a,b
+   0020 CE 30                79 	adc	a,#0x30
+   0022 23                   80 	inc	hl
+   0023 77                   81 	ld	(hl),a
+   0024 7B                   82 	ld	a,e
+   0025 CE 00                83 	adc	a,#0x00
+   0027 23                   84 	inc	hl
+   0028 77                   85 	ld	(hl),a
+   0029 7A                   86 	ld	a,d
+   002A CE 00                87 	adc	a,#0x00
+   002C 23                   88 	inc	hl
+   002D 77                   89 	ld	(hl),a
+                             90 ;../rand.c:36: return (unsigned int)(next/65536) % (RAND_MAX + 1U);
+   002E 3E 10                91 	ld	a,#0x10
+   0030 F5                   92 	push	af
+   0031 33                   93 	inc	sp
+   0032 2Ar02s00             94 	ld	hl,(_next + 2)
+   0035 E5                   95 	push	hl
+   0036 2Ar00s00             96 	ld	hl,(_next)
+   0039 E5                   97 	push	hl
+   003A CDr00s00             98 	call	__rrulong_rrx_s
+   003D F1                   99 	pop	af
+   003E F1                  100 	pop	af
+   003F 33                  101 	inc	sp
+   0040 7C                  102 	ld	a, h
+   0041 E6 7F               103 	and	a,#0x7F
+   0043 67                  104 	ld	h,a
+   0044 C9                  105 	ret
+   0045                     106 _rand_end::
+                            107 ;../rand.c:39: void srand(unsigned int seed)
+                            108 ;	---------------------------------
+                            109 ; Function srand
+                            110 ; ---------------------------------
+   0045                     111 _srand_start::
+   0045                     112 _srand:
+   0045 DD E5               113 	push	ix
+   0047 DD 21 00 00         114 	ld	ix,#0
+   004B DD 39               115 	add	ix,sp
+                            116 ;../rand.c:41: next = seed;
+   004D DD 7E 04            117 	ld	a,4 (ix)
+   0050 FD 21r00s00         118 	ld	iy,#_next
+   0054 FD 77 00            119 	ld	0 (iy),a
+   0057 DD 7E 05            120 	ld	a,5 (ix)
+   005A FD 77 01            121 	ld	1 (iy),a
+   005D FD 36 02 00         122 	ld	2 (iy),#0x00
+   0061 FD 36 03 00         123 	ld	3 (iy),#0x00
+   0065 DD E1               124 	pop	ix
+   0067 C9                  125 	ret
+   0068                     126 _srand_end::
+                            127 	.area _CODE
+                            128 	.area _CABS

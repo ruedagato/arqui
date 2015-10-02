@@ -1,0 +1,1214 @@
+[
+{
+        "structType": "iCode",
+        "uid": 10355488,
+        "next": 10355704,
+        "prev": 0,
+        "opIntValue": 367,
+        "opConverted": "LABEL",
+        "op": "LABEL",
+        "key": 2,
+        "name": "_entry"
+    },
+{
+        "structType": "iCode",
+        "uid": 10355704,
+        "next": 10356688,
+        "prev": 10355488,
+        "opIntValue": 9,
+        "opConverted": "FUNCTION",
+        "op": "FUNCTION",
+        "name": "sum"
+    },
+{
+        "structType": "iCode",
+        "uid": 10356688,
+        "next": 10357672,
+        "prev": 10355704,
+        "opIntValue": 368,
+        "opConverted": "RECEIVE",
+        "op": "RECEIVE"
+    },
+{
+        "structType": "iCode",
+        "uid": 10357672,
+        "next": 10358656,
+        "prev": 10356688,
+        "opIntValue": 368,
+        "opConverted": "RECEIVE",
+        "op": "RECEIVE"
+    },
+{
+        "structType": "iCode",
+        "uid": 10358656,
+        "next": 10359472,
+        "prev": 10357672,
+        "opIntValue": 368,
+        "opConverted": "RECEIVE",
+        "op": "RECEIVE"
+    },
+{
+        "structType": "iCode",
+        "uid": 10359472,
+        "next": 10360680,
+        "prev": 10358656,
+        "opIntValue": 362,
+        "opConverted": "CAST",
+        "op": "CAST",
+        "left": {
+            "structType": "operand",
+            "type": 3,
+            "typeValue": "TYPE",
+            "typeOperand": {
+                "structType": "sym_link"
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        },
+        "right": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp0",
+                "rname": "iTemp0",
+                "level": 1,
+                "block": 0,
+                "key": 2,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 1,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 3,
+                "liveTo": 6
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "next": 10361736,
+        "prev": 10359472,
+        "opIntValue": 43,
+        "opConverted": "+",
+        "op": "PLUS",
+        "uid": 10360680,
+        "left": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp3",
+                "rname": "iTemp3",
+                "level": 1,
+                "block": 0,
+                "key": 8,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 6,
+                "liveTo": 7
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        },
+        "right": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp1",
+                "rname": "iTemp1",
+                "level": 1,
+                "block": 0,
+                "key": 4,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 1,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 4,
+                "liveTo": 7
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "next": 10362496,
+        "prev": 10360680,
+        "opIntValue": 43,
+        "opConverted": "+",
+        "op": "PLUS",
+        "uid": 10361736,
+        "left": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp4",
+                "rname": "iTemp4",
+                "level": 1,
+                "block": 0,
+                "key": 9,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 7,
+                "liveTo": 8
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        },
+        "right": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp2",
+                "rname": "iTemp2",
+                "level": 1,
+                "block": 0,
+                "key": 6,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 1,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 5,
+                "liveTo": 8
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10362496,
+        "next": 10362712,
+        "prev": 10361736,
+        "opIntValue": 339,
+        "opConverted": "RETURN",
+        "op": "RETURN",
+        "left": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp5",
+                "rname": "iTemp5",
+                "level": 1,
+                "block": 0,
+                "key": 10,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 8,
+                "liveTo": 9
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10362712,
+        "next": 10362928,
+        "prev": 10362496,
+        "opIntValue": 367,
+        "opConverted": "LABEL",
+        "op": "LABEL",
+        "key": 1,
+        "name": "_return"
+    },
+{
+        "structType": "iCode",
+        "uid": 10362928,
+        "next": 0,
+        "prev": 10362712,
+        "opIntValue": 358,
+        "opConverted": "ENDFUNCTION",
+        "op": "ENDFUNCTION",
+        "name": "sum"
+    },
+{
+        "structType": "iCode",
+        "uid": 10584656,
+        "next": 10584872,
+        "prev": 0,
+        "opIntValue": 367,
+        "opConverted": "LABEL",
+        "op": "LABEL",
+        "key": 5,
+        "name": "_entry"
+    },
+{
+        "structType": "iCode",
+        "uid": 10584872,
+        "next": 10591424,
+        "prev": 10584656,
+        "opIntValue": 9,
+        "opConverted": "FUNCTION",
+        "op": "FUNCTION",
+        "name": "main"
+    },
+{
+        "structType": "iCode",
+        "uid": 10591424,
+        "next": 10591640,
+        "prev": 10584872,
+        "opIntValue": 369,
+        "opConverted": "SEND",
+        "op": "SEND",
+        "left": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 4,
+                        "nounValue": "V_CHAR",
+                        "v_int": 1,
+                        "v_char": 1
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10591640,
+        "next": 10591856,
+        "prev": 10591424,
+        "opIntValue": 369,
+        "opConverted": "SEND",
+        "op": "SEND",
+        "left": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 1,
+                        "nounValue": "V_INT",
+                        "v_int": 2
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10591856,
+        "next": 10592072,
+        "prev": 10591640,
+        "opIntValue": 369,
+        "opConverted": "SEND",
+        "op": "SEND",
+        "left": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 1,
+                        "nounValue": "V_INT",
+                        "v_int": 3
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10592072,
+        "next": 10594264,
+        "prev": 10591856,
+        "opIntValue": 363,
+        "opConverted": "CALL",
+        "op": "CALL",
+        "fname": "_sum",
+        "result": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp3",
+                "rname": "iTemp3",
+                "level": 1,
+                "block": 0,
+                "key": 9,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 6,
+                "liveTo": 7
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10594264,
+        "next": 10595176,
+        "prev": 10592072,
+        "opIntValue": 62,
+        "opConverted": ">"
+    },
+{
+        "structType": "iCode",
+        "uid": 10598672,
+        "next": 10598888,
+        "prev": 10595176,
+        "opIntValue": 369,
+        "opConverted": "SEND",
+        "op": "SEND",
+        "left": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 4,
+                        "nounValue": "V_CHAR",
+                        "v_int": 2,
+                        "v_char": 2
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10598888,
+        "next": 10599104,
+        "prev": 10598672,
+        "opIntValue": 369,
+        "opConverted": "SEND",
+        "op": "SEND",
+        "left": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 1,
+                        "nounValue": "V_INT",
+                        "v_int": 3
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10599104,
+        "next": 10599320,
+        "prev": 10598888,
+        "opIntValue": 369,
+        "opConverted": "SEND",
+        "op": "SEND",
+        "left": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 1,
+                        "nounValue": "V_INT",
+                        "v_int": 86
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10599320,
+        "next": 10600232,
+        "prev": 10599104,
+        "opIntValue": 363,
+        "opConverted": "CALL",
+        "op": "CALL",
+        "fname": "_sum",
+        "result": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp7",
+                "rname": "iTemp7",
+                "level": 1,
+                "block": 0,
+                "key": 13,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 12,
+                "liveTo": 12
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10600232,
+        "next": 10600808,
+        "prev": 10599320,
+        "opIntValue": 339,
+        "opConverted": "RETURN",
+        "op": "RETURN"
+    },
+{
+        "structType": "iCode",
+        "uid": 10600808,
+        "next": 10601432,
+        "prev": 10600232,
+        "opIntValue": 367,
+        "opConverted": "LABEL",
+        "op": "LABEL",
+        "key": 2,
+        "name": "_iffalse_0"
+    },
+{
+        "structType": "iCode",
+        "uid": 10601432,
+        "next": 10605344,
+        "prev": 10600808,
+        "opIntValue": 345,
+        "opConverted": "ADDRESS_OF",
+        "left": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "struktura",
+                "rname": "_struktura",
+                "level": 0,
+                "block": 0,
+                "key": 14,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 0,
+                "islbl": 0,
+                "isref": 1,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 1,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 0,
+                "liveTo": 0
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        },
+        "result": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp8",
+                "rname": "iTemp8",
+                "level": 1,
+                "block": 0,
+                "key": 15,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 15,
+                "liveTo": 17
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10605344,
+        "next": 10610640,
+        "prev": 10601432,
+        "opIntValue": 61,
+        "opConverted": "=",
+        "op": "POINTER_SET",
+        "right": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 1,
+                        "nounValue": "V_INT",
+                        "v_int": 99
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        },
+        "result": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp8",
+                "rname": "iTemp8",
+                "level": 1,
+                "block": 0,
+                "key": 15,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 15,
+                "liveTo": 17
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10610640,
+        "next": 10611208,
+        "prev": 10605344,
+        "opIntValue": 61,
+        "opConverted": "=",
+        "op": "POINTER_SET",
+        "right": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 1,
+                        "nounValue": "V_INT",
+                        "v_int": 226
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        },
+        "result": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp8",
+                "rname": "iTemp8",
+                "level": 1,
+                "block": 0,
+                "key": 15,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 15,
+                "liveTo": 17
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10611208,
+        "next": 10613288,
+        "prev": 10610640,
+        "opIntValue": 345,
+        "opConverted": "ADDRESS_OF",
+        "left": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "struktura",
+                "rname": "_struktura",
+                "level": 0,
+                "block": 0,
+                "key": 14,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 0,
+                "islbl": 0,
+                "isref": 1,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 1,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 0,
+                "liveTo": 0
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        },
+        "result": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp13",
+                "rname": "iTemp13",
+                "level": 1,
+                "block": 0,
+                "key": 22,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 18,
+                "liveTo": 19
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "next": 10614288,
+        "prev": 10611208,
+        "opIntValue": 43,
+        "opConverted": "+",
+        "op": "PLUS",
+        "uid": 10613288,
+        "left": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp13",
+                "rname": "iTemp13",
+                "level": 1,
+                "block": 0,
+                "key": 22,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 18,
+                "liveTo": 19
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        },
+        "right": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 4,
+                        "nounValue": "V_CHAR",
+                        "v_int": 2,
+                        "v_char": 2
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10614288,
+        "next": 10618840,
+        "prev": 10613288,
+        "opIntValue": 61,
+        "opConverted": "=",
+        "op": "POINTER_SET",
+        "right": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 4,
+                        "nounValue": "V_CHAR",
+                        "v_int": 29,
+                        "v_char": 29
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        },
+        "result": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp14",
+                "rname": "iTemp14",
+                "level": 1,
+                "block": 0,
+                "key": 24,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 19,
+                "liveTo": 20
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10618840,
+        "next": 10619056,
+        "prev": 10614288,
+        "opIntValue": 369,
+        "opConverted": "SEND",
+        "op": "SEND",
+        "left": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 4,
+                        "nounValue": "V_CHAR",
+                        "v_int": 29,
+                        "v_char": 29
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10619056,
+        "next": 10619272,
+        "prev": 10618840,
+        "opIntValue": 369,
+        "opConverted": "SEND",
+        "op": "SEND",
+        "left": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 1,
+                        "nounValue": "V_INT",
+                        "v_int": 57
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10619272,
+        "next": 10619488,
+        "prev": 10619056,
+        "opIntValue": 369,
+        "opConverted": "SEND",
+        "op": "SEND",
+        "left": {
+            "structType": "operand",
+            "type": 2,
+            "typeValue": "VALUE",
+            "valOperand": {
+                "structType": "value",
+                "name": "",
+                "type": {
+                    "structType": "sym_link",
+                    "class": 2,
+                    "tdef": 0,
+                    "select": {
+                        "structType": "specifier",
+                        "noun": 1,
+                        "nounValue": "V_INT",
+                        "v_int": 113
+                    }
+                },
+                "vArgs": 0
+            },
+            "isLiteral": 1,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10619488,
+        "next": 10620400,
+        "prev": 10619272,
+        "opIntValue": 363,
+        "opConverted": "CALL",
+        "op": "CALL",
+        "fname": "_sum",
+        "result": {
+            "structType": "operand",
+            "type": 1,
+            "typeValue": "SYMBOL",
+            "symOperand": {
+                "structType": "symbol",
+                "name": "iTemp18",
+                "rname": "iTemp18",
+                "level": 1,
+                "block": 0,
+                "key": 29,
+                "flexArrayLength": 0,
+                "implicit": 0,
+                "undefined": 0,
+                "infertype": 0,
+                "_isparm": 0,
+                "ismyparm": 0,
+                "isitmp": 1,
+                "islbl": 0,
+                "isref": 0,
+                "isind": 0,
+                "isinvariant": 0,
+                "cdef": 0,
+                "addrtaken": 0,
+                "isreqv": 0,
+                "udChked": 0,
+                "generated": 0,
+                "liveFrom": 24,
+                "liveTo": 24
+            },
+            "isLiteral": 0,
+            "isParam": 0
+        }
+    },
+{
+        "structType": "iCode",
+        "uid": 10620400,
+        "next": 10620616,
+        "prev": 10619488,
+        "opIntValue": 367,
+        "opConverted": "LABEL",
+        "op": "LABEL",
+        "key": 4,
+        "name": "_return"
+    },
+{
+        "structType": "iCode",
+        "uid": 10620616,
+        "next": 0,
+        "prev": 10620400,
+        "opIntValue": 358,
+        "opConverted": "ENDFUNCTION",
+        "op": "ENDFUNCTION",
+        "name": "main"
+    }]

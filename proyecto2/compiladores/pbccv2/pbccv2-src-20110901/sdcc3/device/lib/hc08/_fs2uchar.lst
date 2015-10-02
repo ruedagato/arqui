@@ -1,0 +1,114 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _fs2uchar
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl ___fs2uchar_PARM_1
+                             25 	.globl ___fs2uchar
+                             26 ;--------------------------------------------------------
+                             27 ;  ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area DSEG
+                             30 ;--------------------------------------------------------
+                             31 ; overlayable items in  ram 
+                             32 ;--------------------------------------------------------
+                             33 	.area OSEG    (OVR)
+                             34 ;--------------------------------------------------------
+                             35 ; absolute external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area XABS    (ABS)
+                             38 ;--------------------------------------------------------
+                             39 ; external initialized ram data
+                             40 ;--------------------------------------------------------
+                             41 	.area XISEG
+                             42 ;--------------------------------------------------------
+                             43 ; extended address mode data
+                             44 ;--------------------------------------------------------
+                             45 	.area XSEG
+   0000                      46 ___fs2uchar_PARM_1:
+   0000                      47 	.ds 4
+   0004                      48 ___fs2uchar_ul_1_1:
+   0004                      49 	.ds 4
+                             50 ;--------------------------------------------------------
+                             51 ; global & static initialisations
+                             52 ;--------------------------------------------------------
+                             53 	.area HOME (CODE)
+                             54 	.area GSINIT (CODE)
+                             55 	.area GSFINAL (CODE)
+                             56 	.area GSINIT (CODE)
+                             57 ;--------------------------------------------------------
+                             58 ; Home
+                             59 ;--------------------------------------------------------
+                             60 	.area HOME (CODE)
+                             61 	.area HOME (CODE)
+                             62 ;--------------------------------------------------------
+                             63 ; code
+                             64 ;--------------------------------------------------------
+                             65 	.area CSEG (CODE)
+                             66 ;------------------------------------------------------------
+                             67 ;Allocation info for local variables in function '__fs2uchar'
+                             68 ;------------------------------------------------------------
+                             69 ;f                         Allocated with name '___fs2uchar_PARM_1'
+                             70 ;ul                        Allocated with name '___fs2uchar_ul_1_1'
+                             71 ;------------------------------------------------------------
+                             72 ;../_fs2uchar.c:51: unsigned char __fs2uchar (float f)
+                             73 ;	-----------------------------------------
+                             74 ;	 function __fs2uchar
+                             75 ;	-----------------------------------------
+   0000                      76 ___fs2uchar:
+                             77 ;../_fs2uchar.c:53: unsigned long ul=__fs2ulong(f);
+   0000 C6s00r00             78 	lda	___fs2uchar_PARM_1
+   0003 C7s00r00             79 	sta	___fs2ulong_PARM_1
+   0006 C6s00r01             80 	lda	(___fs2uchar_PARM_1 + 1)
+   0009 C7s00r01             81 	sta	(___fs2ulong_PARM_1 + 1)
+   000C C6s00r02             82 	lda	(___fs2uchar_PARM_1 + 2)
+   000F C7s00r02             83 	sta	(___fs2ulong_PARM_1 + 2)
+   0012 C6s00r03             84 	lda	(___fs2uchar_PARM_1 + 3)
+   0015 C7s00r03             85 	sta	(___fs2ulong_PARM_1 + 3)
+   0018 CDs00r00             86 	jsr	___fs2ulong
+   001B C7s00r07             87 	sta	(___fs2uchar_ul_1_1 + 3)
+   001E CFs00r06             88 	stx	(___fs2uchar_ul_1_1 + 2)
+   0021 B6*00                89 	lda	*__ret2
+   0023 C7s00r05             90 	sta	(___fs2uchar_ul_1_1 + 1)
+   0026 B6*00                91 	lda	*__ret3
+   0028 C7s00r04             92 	sta	___fs2uchar_ul_1_1
+                             93 ;../_fs2uchar.c:54: if (ul>=UCHAR_MAX) return UCHAR_MAX;
+   002B C6s00r07             94 	lda	(___fs2uchar_ul_1_1 + 3)
+   002E A0 FF                95 	sub	#0xFF
+   0030 C6s00r06             96 	lda	(___fs2uchar_ul_1_1 + 2)
+   0033 A2 00                97 	sbc	#0x00
+   0035 C6s00r05             98 	lda	(___fs2uchar_ul_1_1 + 1)
+   0038 A2 00                99 	sbc	#0x00
+   003A C6s00r04            100 	lda	___fs2uchar_ul_1_1
+   003D A2 00               101 	sbc	#0x00
+   003F 25 03               102 	bcs	00102$
+   0041                     103 00106$:
+   0041 A6 FF               104 	lda	#0xFF
+   0043 81                  105 	rts
+   0044                     106 00102$:
+                            107 ;../_fs2uchar.c:55: return ul;
+   0044 C6s00r07            108 	lda	(___fs2uchar_ul_1_1 + 3)
+   0047                     109 00103$:
+   0047 81                  110 	rts
+                            111 	.area CSEG (CODE)
+                            112 	.area CONST   (CODE)
+                            113 	.area XINIT
+                            114 	.area CABS    (ABS,CODE)

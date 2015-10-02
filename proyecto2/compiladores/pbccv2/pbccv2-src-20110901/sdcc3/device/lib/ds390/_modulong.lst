@@ -1,0 +1,442 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:16 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _modulong
+                              7 	.optsdcc -mds390 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl __modulong_PARM_2
+                             31 	.globl __modulong
+                             32 ;--------------------------------------------------------
+                             33 ; special function registers
+                             34 ;--------------------------------------------------------
+                             35 ;--------------------------------------------------------
+                             36 ; special function bits
+                             37 ;--------------------------------------------------------
+                             38 ;--------------------------------------------------------
+                             39 ; overlayable register banks
+                             40 ;--------------------------------------------------------
+                             41 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      42 	.ds 8
+                             43 ;--------------------------------------------------------
+                             44 ; internal ram data
+                             45 ;--------------------------------------------------------
+                             46 	.area DSEG    (DATA)
+                             47 ;--------------------------------------------------------
+                             48 ; overlayable items in internal ram 
+                             49 ;--------------------------------------------------------
+                             50 	.area OSEG    (OVR,DATA)
+                             51 ;--------------------------------------------------------
+                             52 ; indirectly addressable internal ram data
+                             53 ;--------------------------------------------------------
+                             54 	.area ISEG    (DATA)
+                             55 ;--------------------------------------------------------
+                             56 ; absolute internal ram data
+                             57 ;--------------------------------------------------------
+                             58 	.area IABS    (ABS,DATA)
+                             59 	.area IABS    (ABS,DATA)
+                             60 ;--------------------------------------------------------
+                             61 ; bit data
+                             62 ;--------------------------------------------------------
+                             63 	.area BSEG    (BIT)
+                             64 ;--------------------------------------------------------
+                             65 ; paged external ram data
+                             66 ;--------------------------------------------------------
+                             67 	.area PSEG    (PAG,XDATA)
+                             68 ;--------------------------------------------------------
+                             69 ; external ram data
+                             70 ;--------------------------------------------------------
+                             71 	.area XSEG    (XDATA)
+   0000                      72 __modulong_PARM_2:
+   0000                      73 	.ds 4
+   0004                      74 __modulong_a_1_1:
+   0004                      75 	.ds 4
+                             76 ;--------------------------------------------------------
+                             77 ; absolute external ram data
+                             78 ;--------------------------------------------------------
+                             79 	.area XABS    (ABS,XDATA)
+                             80 ;--------------------------------------------------------
+                             81 ; external initialized ram data
+                             82 ;--------------------------------------------------------
+                             83 	.area XISEG   (XDATA)
+                             84 ;--------------------------------------------------------
+                             85 ; global & static initialisations
+                             86 ;--------------------------------------------------------
+                             87 	.area HOME    (CODE)
+                             88 	.area GSINIT  (CODE)
+                             89 	.area GSFINAL (CODE)
+                             90 	.area GSINIT  (CODE)
+                             91 ;--------------------------------------------------------
+                             92 ; Home
+                             93 ;--------------------------------------------------------
+                             94 	.area HOME    (CODE)
+                             95 	.area HOME    (CODE)
+                             96 ;--------------------------------------------------------
+                             97 ; code
+                             98 ;--------------------------------------------------------
+                             99 	.area CSEG    (CODE)
+                            100 ;------------------------------------------------------------
+                            101 ;Allocation info for local variables in function '_modulong'
+                            102 ;------------------------------------------------------------
+                            103 ;b                         Allocated with name '__modulong_PARM_2'
+                            104 ;a                         Allocated with name '__modulong_a_1_1'
+                            105 ;count                     Allocated to registers r6 
+                            106 ;------------------------------------------------------------
+                            107 ;	_modulong.c:340: _modulong (unsigned long a, unsigned long b)
+                            108 ;	-----------------------------------------
+                            109 ;	 function _modulong
+                            110 ;	-----------------------------------------
+   0000                     111 __modulong:
+                    0002    112 	ar2 = 0x02
+                    0003    113 	ar3 = 0x03
+                    0004    114 	ar4 = 0x04
+                    0005    115 	ar5 = 0x05
+                    0006    116 	ar6 = 0x06
+                    0007    117 	ar7 = 0x07
+                    0000    118 	ar0 = 0x00
+                    0001    119 	ar1 = 0x01
+   0000 75 86 01            120 	mov     dps, #1
+   0003 90s00r00r04         121 	mov     dptr, #__modulong_a_1_1
+   0007 E5 82               122 	mov	a,dpl
+   0009 F0                  123 	movx	@dptr,a
+   000A A3                  124 	inc	dptr
+   000B E5 83               125 	mov	a,dph
+   000D F0                  126 	movx	@dptr,a
+   000E A3                  127 	inc	dptr
+   000F E5 93               128 	mov	a,dpx
+   0011 F0                  129 	movx	@dptr,a
+   0012 A3                  130 	inc	dptr
+   0013 E5 F0               131 	mov	a,b
+   0015 F0                  132 	movx	@dptr,a
+   0016 75 86 00            133 	mov	dps,#0
+                            134 ;	_modulong.c:342: unsigned char count = 0;
+                            135 ;	genAssign: resultIsFar = TRUE
+   0019 7E 00               136 	mov	r6,#0x00
+                            137 ;	_modulong.c:344: while (!MSB_SET(b))
+                            138 ;	genAssign: resultIsFar = FALSE
+   001B 7F 00               139 	mov	r7,#0x00
+   001D                     140 00103$:
+   001D 90s00r00r00         141 	mov	dptr,#__modulong_PARM_2
+   0021 A3                  142 	inc	dptr
+   0022 A3                  143 	inc	dptr
+   0023 A3                  144 	inc	dptr
+   0024 E0                  145 	movx	a,@dptr
+   0025 23                  146 	rl	a
+   0026 54 01               147 	anl	a,#0x01
+   0028 F8                  148 	mov  r0,a
+   0029 60 04               149 	jz	00120$
+   002B 02s00r00rEB         150 	ljmp	00117$
+   002F                     151 00120$:
+                            152 ;	_modulong.c:346: b <<= 1;
+   002F C0 06               153 	push	ar6
+   0031 75 F0 02            154 	mov	b,#0x02
+   0034 90s00r00r00         155 	mov	dptr,#__modulong_PARM_2
+   0038 E0                  156 	movx	a,@dptr
+   0039 F8                  157 	mov     r0,a
+   003A A3                  158 	inc	dptr
+   003B E0                  159 	movx	a,@dptr
+   003C F9                  160 	mov     r1,a
+   003D A3                  161 	inc	dptr
+   003E E0                  162 	movx	a,@dptr
+   003F FE                  163 	mov     r6,a
+   0040 A3                  164 	inc	dptr
+   0041 E0                  165 	movx	a,@dptr
+   0042 FA                  166 	mov     r2,a
+   0043 80 0D               167 	sjmp	00122$
+   0045                     168 00121$:
+   0045 E8                  169 	mov	a,r0
+   0046 25 E0               170 	add	a,acc
+   0048 F8                  171 	mov	r0,a
+   0049 E9                  172 	mov	a,r1
+   004A 33                  173 	rlc	a
+   004B F9                  174 	mov	r1,a
+   004C EE                  175 	mov	a,r6
+   004D 33                  176 	rlc	a
+   004E FE                  177 	mov	r6,a
+   004F EA                  178 	mov	a,r2
+   0050 33                  179 	rlc	a
+   0051 FA                  180 	mov	r2,a
+   0052                     181 00122$:
+   0052 D5 F0 F0            182 	djnz	b,00121$
+                            183 ;	genAssign: resultIsFar = TRUE
+   0055 90s00r00r00         184 	mov	dptr,#__modulong_PARM_2
+   0059 E8                  185 	mov	a,r0
+   005A F0                  186 	movx	@dptr,a
+   005B A3                  187 	inc	dptr
+   005C E9                  188 	mov	a,r1
+   005D F0                  189 	movx	@dptr,a
+   005E A3                  190 	inc	dptr
+   005F EE                  191 	mov	a,r6
+   0060 F0                  192 	movx	@dptr,a
+   0061 A3                  193 	inc	dptr
+   0062 EA                  194 	mov	a,r2
+   0063 F0                  195 	movx	@dptr,a
+                            196 ;	_modulong.c:347: if (b > a)
+   0064 90s00r00r04         197 	mov	dptr,#__modulong_a_1_1
+   0068 75 86 01            198 	mov	dps, #1
+   006B 90s00r00r00         199 	mov	dptr, #__modulong_PARM_2
+   006F 15 86               200 	dec	dps
+   0071 C3                  201 	clr	c
+   0072 E0                  202 	movx	a,@dptr
+   0073 75 86 01            203 	mov	dps,#1
+   0076 C5 F0               204 	xch	a, b
+   0078 E0                  205 	movx	a,@dptr
+   0079 75 86 00            206 	mov	dps,#0
+   007C C5 F0               207 	xch	a, b
+   007E 95 F0               208 	subb	a,b
+   0080 A3                  209 	inc	dptr
+   0081 E0                  210 	movx	a,@dptr
+   0082 75 86 01            211 	mov	dps,#1
+   0085 C5 F0               212 	xch	a, b
+   0087 A3                  213 	inc	dptr
+   0088 E0                  214 	movx	a,@dptr
+   0089 75 86 00            215 	mov	dps,#0
+   008C C5 F0               216 	xch	a, b
+   008E 95 F0               217 	subb	a,b
+   0090 A3                  218 	inc	dptr
+   0091 E0                  219 	movx	a,@dptr
+   0092 75 86 01            220 	mov	dps,#1
+   0095 C5 F0               221 	xch	a, b
+   0097 A3                  222 	inc	dptr
+   0098 E0                  223 	movx	a,@dptr
+   0099 75 86 00            224 	mov	dps,#0
+   009C C5 F0               225 	xch	a, b
+   009E 95 F0               226 	subb	a,b
+   00A0 A3                  227 	inc	dptr
+   00A1 E0                  228 	movx	a,@dptr
+   00A2 75 86 01            229 	mov	dps,#1
+   00A5 C5 F0               230 	xch	a, b
+   00A7 A3                  231 	inc	dptr
+   00A8 E0                  232 	movx	a,@dptr
+   00A9 75 86 00            233 	mov	dps,#0
+   00AC C5 F0               234 	xch	a, b
+   00AE 95 F0               235 	subb	a,b
+   00B0 D0 06               236 	pop	ar6
+   00B2 50 30               237 	jnc  00102$
+   00B4                     238 00123$:
+                            239 ;	_modulong.c:349: b >>=1;
+   00B4 90s00r00r00         240 	mov	dptr,#__modulong_PARM_2
+   00B8 A3                  241 	inc	dptr
+   00B9 A3                  242 	inc	dptr
+   00BA A3                  243 	inc	dptr
+   00BB E0                  244 	movx	a,@dptr
+   00BC C3                  245 	clr	c
+   00BD 13                  246 	rrc	a
+   00BE FD                  247 	mov	r5,a
+   00BF 12s00r00r00         248 	lcall	__decdptr
+   00C3 E0                  249 	movx	a,@dptr
+   00C4 13                  250 	rrc	a
+   00C5 FC                  251 	mov	r4,a
+   00C6 12s00r00r00         252 	lcall	__decdptr
+   00CA E0                  253 	movx	a,@dptr
+   00CB 13                  254 	rrc	a
+   00CC FB                  255 	mov	r3,a
+   00CD 12s00r00r00         256 	lcall	__decdptr
+   00D1 E0                  257 	movx	a,@dptr
+   00D2 13                  258 	rrc	a
+                            259 ;	genAssign: resultIsFar = TRUE
+   00D3 FA                  260 	mov  r2,a
+   00D4 90s00r00r00         261 	mov  dptr,#__modulong_PARM_2
+   00D8 F0                  262 	movx @dptr,a
+   00D9 A3                  263 	inc	dptr
+   00DA EB                  264 	mov	a,r3
+   00DB F0                  265 	movx	@dptr,a
+   00DC A3                  266 	inc	dptr
+   00DD EC                  267 	mov	a,r4
+   00DE F0                  268 	movx	@dptr,a
+   00DF A3                  269 	inc	dptr
+   00E0 ED                  270 	mov	a,r5
+   00E1 F0                  271 	movx	@dptr,a
+                            272 ;	_modulong.c:350: break;
+   00E2 80 07               273 	sjmp 00117$
+   00E4                     274 00102$:
+                            275 ;	_modulong.c:352: count++;
+   00E4 0F                  276 	inc	r7
+                            277 ;	genAssign: resultIsFar = TRUE
+   00E5 8F 06               278 	mov	ar6,r7
+   00E7 02s00r00r1D         279 	ljmp	00103$
+                            280 ;	_modulong.c:354: do
+   00EB                     281 00117$:
+                            282 ;	genAssign: resultIsFar = FALSE
+   00EB 8E 02               283 	mov	ar2,r6
+   00ED                     284 00108$:
+                            285 ;	_modulong.c:356: if (a >= b)
+   00ED 90s00r00r00         286 	mov	dptr,#__modulong_PARM_2
+   00F1 75 86 01            287 	mov	dps, #1
+   00F4 90s00r00r04         288 	mov	dptr, #__modulong_a_1_1
+   00F8 15 86               289 	dec	dps
+   00FA C3                  290 	clr	c
+   00FB 75 86 01            291 	mov	dps,#1
+   00FE E0                  292 	movx	a,@dptr
+   00FF 75 86 00            293 	mov	dps,#0
+   0102 C5 F0               294 	xch	a, b
+   0104 E0                  295 	movx	a,@dptr
+   0105 C5 F0               296 	xch	a, b
+   0107 95 F0               297 	subb	a,b
+   0109 75 86 01            298 	mov	dps,#1
+   010C A3                  299 	inc	dptr
+   010D E0                  300 	movx	a,@dptr
+   010E 75 86 00            301 	mov	dps,#0
+   0111 C5 F0               302 	xch	a, b
+   0113 A3                  303 	inc	dptr
+   0114 E0                  304 	movx	a,@dptr
+   0115 C5 F0               305 	xch	a, b
+   0117 95 F0               306 	subb	a,b
+   0119 75 86 01            307 	mov	dps,#1
+   011C A3                  308 	inc	dptr
+   011D E0                  309 	movx	a,@dptr
+   011E 75 86 00            310 	mov	dps,#0
+   0121 C5 F0               311 	xch	a, b
+   0123 A3                  312 	inc	dptr
+   0124 E0                  313 	movx	a,@dptr
+   0125 C5 F0               314 	xch	a, b
+   0127 95 F0               315 	subb	a,b
+   0129 75 86 01            316 	mov	dps,#1
+   012C A3                  317 	inc	dptr
+   012D E0                  318 	movx	a,@dptr
+   012E 75 86 00            319 	mov	dps,#0
+   0131 C5 F0               320 	xch	a, b
+   0133 A3                  321 	inc	dptr
+   0134 E0                  322 	movx	a,@dptr
+   0135 C5 F0               323 	xch	a, b
+   0137 95 F0               324 	subb	a,b
+   0139 40 50               325 	jc   00107$
+   013B                     326 00124$:
+                            327 ;	_modulong.c:357: a -= b;
+   013B 90s00r00r00         328 	mov	dptr,#__modulong_PARM_2
+   013F 75 86 01            329 	mov	dps, #1
+   0142 90s00r00r04         330 	mov	dptr, #__modulong_a_1_1
+   0146 15 86               331 	dec	dps
+   0148 C3                  332 	clr	c
+   0149 E0                  333 	movx	a,@dptr
+   014A F5 F0               334 	mov	b,a
+   014C 05 86               335 	inc	dps
+   014E E0                  336 	movx	a,@dptr
+   014F 95 F0               337 	subb	a,b
+   0151 FB                  338 	mov	r3,a
+   0152 15 86               339 	dec	dps
+   0154 A3                  340 	inc	dptr
+   0155 E0                  341 	movx	a,@dptr
+   0156 F5 F0               342 	mov	b,a
+   0158 05 86               343 	inc	dps
+   015A A3                  344 	inc	dptr
+   015B E0                  345 	movx	a,@dptr
+   015C 95 F0               346 	subb	a,b
+   015E FC                  347 	mov	r4,a
+   015F 15 86               348 	dec	dps
+   0161 A3                  349 	inc	dptr
+   0162 E0                  350 	movx	a,@dptr
+   0163 F5 F0               351 	mov	b,a
+   0165 05 86               352 	inc	dps
+   0167 A3                  353 	inc	dptr
+   0168 E0                  354 	movx	a,@dptr
+   0169 95 F0               355 	subb	a,b
+   016B FD                  356 	mov	r5,a
+   016C 15 86               357 	dec	dps
+   016E A3                  358 	inc	dptr
+   016F E0                  359 	movx	a,@dptr
+   0170 F5 F0               360 	mov	b,a
+   0172 05 86               361 	inc	dps
+   0174 A3                  362 	inc	dptr
+   0175 E0                  363 	movx	a,@dptr
+   0176 95 F0               364 	subb	a,b
+   0178 FE                  365 	mov	r6,a
+   0179 75 86 00            366 	mov	dps,#0
+                            367 ;	genAssign: resultIsFar = TRUE
+   017C 90s00r00r04         368 	mov	dptr,#__modulong_a_1_1
+   0180 EB                  369 	mov	a,r3
+   0181 F0                  370 	movx	@dptr,a
+   0182 A3                  371 	inc	dptr
+   0183 EC                  372 	mov	a,r4
+   0184 F0                  373 	movx	@dptr,a
+   0185 A3                  374 	inc	dptr
+   0186 ED                  375 	mov	a,r5
+   0187 F0                  376 	movx	@dptr,a
+   0188 A3                  377 	inc	dptr
+   0189 EE                  378 	mov	a,r6
+   018A F0                  379 	movx	@dptr,a
+   018B                     380 00107$:
+                            381 ;	_modulong.c:358: b >>= 1;
+   018B 90s00r00r00         382 	mov	dptr,#__modulong_PARM_2
+   018F A3                  383 	inc	dptr
+   0190 A3                  384 	inc	dptr
+   0191 A3                  385 	inc	dptr
+   0192 E0                  386 	movx	a,@dptr
+   0193 C3                  387 	clr	c
+   0194 13                  388 	rrc	a
+   0195 FE                  389 	mov	r6,a
+   0196 12s00r00r00         390 	lcall	__decdptr
+   019A E0                  391 	movx	a,@dptr
+   019B 13                  392 	rrc	a
+   019C FD                  393 	mov	r5,a
+   019D 12s00r00r00         394 	lcall	__decdptr
+   01A1 E0                  395 	movx	a,@dptr
+   01A2 13                  396 	rrc	a
+   01A3 FC                  397 	mov	r4,a
+   01A4 12s00r00r00         398 	lcall	__decdptr
+   01A8 E0                  399 	movx	a,@dptr
+   01A9 13                  400 	rrc	a
+                            401 ;	genAssign: resultIsFar = TRUE
+   01AA FB                  402 	mov  r3,a
+   01AB 90s00r00r00         403 	mov  dptr,#__modulong_PARM_2
+   01AF F0                  404 	movx @dptr,a
+   01B0 A3                  405 	inc	dptr
+   01B1 EC                  406 	mov	a,r4
+   01B2 F0                  407 	movx	@dptr,a
+   01B3 A3                  408 	inc	dptr
+   01B4 ED                  409 	mov	a,r5
+   01B5 F0                  410 	movx	@dptr,a
+   01B6 A3                  411 	inc	dptr
+   01B7 EE                  412 	mov	a,r6
+   01B8 F0                  413 	movx	@dptr,a
+                            414 ;	_modulong.c:360: while (count--);
+                            415 ;	genAssign: resultIsFar = FALSE
+   01B9 8A 03               416 	mov	ar3,r2
+   01BB 1A                  417 	dec	r2
+   01BC EB                  418 	mov	a,r3
+   01BD 60 04               419 	jz	00125$
+   01BF 02s00r00rED         420 	ljmp	00108$
+   01C3                     421 00125$:
+                            422 ;	_modulong.c:362: return a;
+   01C3 75 86 01            423 	mov     dps, #1
+   01C6 90s00r00r04         424 	mov     dptr, #__modulong_a_1_1
+   01CA E0                  425 	movx	a,@dptr
+   01CB F5 82               426 	mov	dpl,a
+   01CD A3                  427 	inc	dptr
+   01CE E0                  428 	movx	a,@dptr
+   01CF F5 83               429 	mov	dph,a
+   01D1 A3                  430 	inc	dptr
+   01D2 E0                  431 	movx	a,@dptr
+   01D3 F5 93               432 	mov	dpx,a
+   01D5 A3                  433 	inc	dptr
+   01D6 E0                  434 	movx	a,@dptr
+   01D7 F5 F0               435 	mov	b,a
+   01D9 75 86 00            436 	mov	dps,#0
+   01DC                     437 00111$:
+   01DC 22                  438 	ret
+                            439 	.area CSEG    (CODE)
+                            440 	.area CONST   (CODE)
+                            441 	.area XINIT   (CODE)
+                            442 	.area CABS    (ABS,CODE)

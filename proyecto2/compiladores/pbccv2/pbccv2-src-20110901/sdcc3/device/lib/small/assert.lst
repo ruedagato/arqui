@@ -1,0 +1,155 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:24 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module assert
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl __assert
+                             13 	.globl __assert_PARM_3
+                             14 	.globl __assert_PARM_2
+                             15 ;--------------------------------------------------------
+                             16 ; special function registers
+                             17 ;--------------------------------------------------------
+                             18 	.area RSEG    (ABS,DATA)
+   0000                      19 	.org 0x0000
+                             20 ;--------------------------------------------------------
+                             21 ; special function bits
+                             22 ;--------------------------------------------------------
+                             23 	.area RSEG    (ABS,DATA)
+   0000                      24 	.org 0x0000
+                             25 ;--------------------------------------------------------
+                             26 ; overlayable register banks
+                             27 ;--------------------------------------------------------
+                             28 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      29 	.ds 8
+                             30 ;--------------------------------------------------------
+                             31 ; internal ram data
+                             32 ;--------------------------------------------------------
+                             33 	.area DSEG    (DATA)
+   0000                      34 __assert_PARM_2:
+   0000                      35 	.ds 3
+   0003                      36 __assert_PARM_3:
+   0003                      37 	.ds 2
+                             38 ;--------------------------------------------------------
+                             39 ; overlayable items in internal ram 
+                             40 ;--------------------------------------------------------
+                             41 	.area OSEG    (OVR,DATA)
+                             42 ;--------------------------------------------------------
+                             43 ; indirectly addressable internal ram data
+                             44 ;--------------------------------------------------------
+                             45 	.area ISEG    (DATA)
+                             46 ;--------------------------------------------------------
+                             47 ; absolute internal ram data
+                             48 ;--------------------------------------------------------
+                             49 	.area IABS    (ABS,DATA)
+                             50 	.area IABS    (ABS,DATA)
+                             51 ;--------------------------------------------------------
+                             52 ; bit data
+                             53 ;--------------------------------------------------------
+                             54 	.area BSEG    (BIT)
+                             55 ;--------------------------------------------------------
+                             56 ; paged external ram data
+                             57 ;--------------------------------------------------------
+                             58 	.area PSEG    (PAG,XDATA)
+                             59 ;--------------------------------------------------------
+                             60 ; external ram data
+                             61 ;--------------------------------------------------------
+                             62 	.area XSEG    (XDATA)
+                             63 ;--------------------------------------------------------
+                             64 ; absolute external ram data
+                             65 ;--------------------------------------------------------
+                             66 	.area XABS    (ABS,XDATA)
+                             67 ;--------------------------------------------------------
+                             68 ; external initialized ram data
+                             69 ;--------------------------------------------------------
+                             70 	.area XISEG   (XDATA)
+                             71 	.area HOME    (CODE)
+                             72 	.area GSINIT0 (CODE)
+                             73 	.area GSINIT1 (CODE)
+                             74 	.area GSINIT2 (CODE)
+                             75 	.area GSINIT3 (CODE)
+                             76 	.area GSINIT4 (CODE)
+                             77 	.area GSINIT5 (CODE)
+                             78 	.area GSINIT  (CODE)
+                             79 	.area GSFINAL (CODE)
+                             80 	.area CSEG    (CODE)
+                             81 ;--------------------------------------------------------
+                             82 ; global & static initialisations
+                             83 ;--------------------------------------------------------
+                             84 	.area HOME    (CODE)
+                             85 	.area GSINIT  (CODE)
+                             86 	.area GSFINAL (CODE)
+                             87 	.area GSINIT  (CODE)
+                             88 ;--------------------------------------------------------
+                             89 ; Home
+                             90 ;--------------------------------------------------------
+                             91 	.area HOME    (CODE)
+                             92 	.area HOME    (CODE)
+                             93 ;--------------------------------------------------------
+                             94 ; code
+                             95 ;--------------------------------------------------------
+                             96 	.area CSEG    (CODE)
+                             97 ;------------------------------------------------------------
+                             98 ;Allocation info for local variables in function '_assert'
+                             99 ;------------------------------------------------------------
+                            100 ;filename                  Allocated with name '__assert_PARM_2'
+                            101 ;linenumber                Allocated with name '__assert_PARM_3'
+                            102 ;expr                      Allocated to registers r2 r3 r4 
+                            103 ;------------------------------------------------------------
+                            104 ;	assert.c:32: void _assert(char *expr, const char *filename, unsigned int linenumber)
+                            105 ;	-----------------------------------------
+                            106 ;	 function _assert
+                            107 ;	-----------------------------------------
+   0000                     108 __assert:
+                    0002    109 	ar2 = 0x02
+                    0003    110 	ar3 = 0x03
+                    0004    111 	ar4 = 0x04
+                    0005    112 	ar5 = 0x05
+                    0006    113 	ar6 = 0x06
+                    0007    114 	ar7 = 0x07
+                    0000    115 	ar0 = 0x00
+                    0001    116 	ar1 = 0x01
+   0000 AA 82               117 	mov	r2,dpl
+   0002 AB 83               118 	mov	r3,dph
+   0004 AC F0               119 	mov	r4,b
+                            120 ;	assert.c:34: printf("Assert(%s) failed at line %u in file %s.\n",
+   0006 C0*00               121 	push	__assert_PARM_2
+   0008 C0*01               122 	push	(__assert_PARM_2 + 1)
+   000A C0*02               123 	push	(__assert_PARM_2 + 2)
+   000C C0*03               124 	push	__assert_PARM_3
+   000E C0*04               125 	push	(__assert_PARM_3 + 1)
+   0010 C0 02               126 	push	ar2
+   0012 C0 03               127 	push	ar3
+   0014 C0 04               128 	push	ar4
+   0016 74r00               129 	mov	a,#__str_0
+   0018 C0 E0               130 	push	acc
+   001A 74s00               131 	mov	a,#(__str_0 >> 8)
+   001C C0 E0               132 	push	acc
+   001E 74 80               133 	mov	a,#0x80
+   0020 C0 E0               134 	push	acc
+   0022 12s00r00            135 	lcall	_printf
+   0025 E5 81               136 	mov	a,sp
+   0027 24 F5               137 	add	a,#0xf5
+   0029 F5 81               138 	mov	sp,a
+                            139 ;	assert.c:36: while(1);
+   002B                     140 00102$:
+   002B 80 FE               141 	sjmp	00102$
+                            142 	.area CSEG    (CODE)
+                            143 	.area CONST   (CODE)
+   0000                     144 __str_0:
+   0000 41 73 73 65 72 74   145 	.ascii "Assert(%s) failed at line %u in file %s."
+        28 25 73 29 20 66
+        61 69 6C 65 64 20
+        61 74 20 6C 69 6E
+        65 20 25 75 20 69
+        6E 20 66 69 6C 65
+        20 25 73 2E
+   0028 0A                  146 	.db 0x0A
+   0029 00                  147 	.db 0x00
+                            148 	.area XINIT   (CODE)
+                            149 	.area CABS    (ABS,CODE)

@@ -1,0 +1,184 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:20 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module memcpyx
+                              7 	.optsdcc -mds400 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _memcpyx_PARM_3
+                             31 	.globl _memcpyx_PARM_2
+                             32 	.globl _memcpyx
+                             33 ;--------------------------------------------------------
+                             34 ; special function registers
+                             35 ;--------------------------------------------------------
+                             36 ;--------------------------------------------------------
+                             37 ; special function bits
+                             38 ;--------------------------------------------------------
+                             39 ;--------------------------------------------------------
+                             40 ; overlayable register banks
+                             41 ;--------------------------------------------------------
+                             42 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      43 	.ds 8
+                             44 	.area REG_BANK_3	(REL,OVR,DATA)
+   0000                      45 	.ds 8
+                             46 ;--------------------------------------------------------
+                             47 ; internal ram data
+                             48 ;--------------------------------------------------------
+                             49 	.area DSEG    (DATA)
+                             50 ;--------------------------------------------------------
+                             51 ; overlayable items in internal ram 
+                             52 ;--------------------------------------------------------
+                             53 	.area OSEG    (OVR,DATA)
+                             54 ;--------------------------------------------------------
+                             55 ; indirectly addressable internal ram data
+                             56 ;--------------------------------------------------------
+                             57 	.area ISEG    (DATA)
+                             58 ;--------------------------------------------------------
+                             59 ; absolute internal ram data
+                             60 ;--------------------------------------------------------
+                             61 	.area IABS    (ABS,DATA)
+                             62 	.area IABS    (ABS,DATA)
+                             63 ;--------------------------------------------------------
+                             64 ; bit data
+                             65 ;--------------------------------------------------------
+                             66 	.area BSEG    (BIT)
+                             67 ;--------------------------------------------------------
+                             68 ; paged external ram data
+                             69 ;--------------------------------------------------------
+                             70 	.area PSEG    (PAG,XDATA)
+                             71 ;--------------------------------------------------------
+                             72 ; external ram data
+                             73 ;--------------------------------------------------------
+                             74 	.area XSEG    (XDATA)
+   0000                      75 _memcpyx_PARM_2:
+   0000                      76 	.ds 3
+   0003                      77 _memcpyx_PARM_3:
+   0003                      78 	.ds 2
+                             79 ;--------------------------------------------------------
+                             80 ; absolute external ram data
+                             81 ;--------------------------------------------------------
+                             82 	.area XABS    (ABS,XDATA)
+                             83 ;--------------------------------------------------------
+                             84 ; external initialized ram data
+                             85 ;--------------------------------------------------------
+                             86 	.area XISEG   (XDATA)
+                             87 ;--------------------------------------------------------
+                             88 ; global & static initialisations
+                             89 ;--------------------------------------------------------
+                             90 	.area HOME    (CODE)
+                             91 	.area GSINIT  (CODE)
+                             92 	.area GSFINAL (CODE)
+                             93 	.area GSINIT  (CODE)
+                             94 ;--------------------------------------------------------
+                             95 ; Home
+                             96 ;--------------------------------------------------------
+                             97 	.area HOME    (CODE)
+                             98 	.area HOME    (CODE)
+                             99 ;--------------------------------------------------------
+                            100 ; code
+                            101 ;--------------------------------------------------------
+                            102 	.area CSEG    (CODE)
+                            103 ;------------------------------------------------------------
+                            104 ;Allocation info for local variables in function 'memcpyx'
+                            105 ;------------------------------------------------------------
+                            106 ;src                       Allocated with name '_memcpyx_PARM_2'
+                            107 ;count                     Allocated with name '_memcpyx_PARM_3'
+                            108 ;dst                       Allocated to registers 
+                            109 ;------------------------------------------------------------
+                            110 ;	memcpyx.c:33: void __xdata * memcpyx (
+                            111 ;	-----------------------------------------
+                            112 ;	 function memcpyx
+                            113 ;	-----------------------------------------
+   0000                     114 _memcpyx:
+                            115 ;	naked function: no prologue.
+                            116 ;	memcpyx.c:104: __endasm;    
+                            117 	
+                            118     ; Destination is in DPTR. Save it on stack so we can return it at end.
+                            119 	
+   0000 C0 93               120 	    push dpx
+   0002 C0 83               121 	    push dph
+   0004 C0 82               122 	    push dpl
+                            123 	
+   0006 75 86 01            124 	    mov dps, #0x1 ; Alternate DPTR.
+                            125 	
+                            126     ; count is in _memcpyx_PARM_3
+   0009 90s00r00r03         127 	    mov dptr, #_memcpyx_PARM_3
+   000D E0                  128 	    movx a, @dptr
+   000E A3                  129 	    inc dptr
+   000F FA                  130 	    mov r2, a
+   0010 E0                  131 	    movx a, @dptr
+   0011 FB                  132 	    mov r3, a
+                            133 	
+                            134     ; src is in _memcpyx_PARM_2
+   0012 90s00r00r00         135 	    mov dptr, #_memcpyx_PARM_2
+   0016 E0                  136 	    movx a, @dptr
+   0017 A3                  137 	    inc dptr
+   0018 C0 E0               138 	    push acc
+   001A E0                  139 	    movx a, @dptr
+   001B A3                  140 	    inc dptr
+   001C C0 E0               141 	    push acc
+   001E E0                  142 	    movx a, @dptr
+   001F F5 95               143 	    mov dpx1, a
+   0021 D0 85               144 	    pop dph1
+   0023 D0 84               145 	    pop dpl1
+                            146 	
+   0025 75 86 21            147 	    mov dps, #0x21 ; Current DPTR is alt DPTR, toggle after each op.
+                            148 	
+                            149     ; src is in alt DPTR, dst is in normal DPTR, count is in r2/r3.
+                            150 	
+                            151     ; If we have zero bytes to copy, quick out.
+   0028 EA                  152 	    mov a, r2
+   0029 4B                  153 	    orl a, r3
+   002A 60 0D               154 	    jz _memcpy_done
+                            155 	
+                            156     ; increment r3 if r2 != 0 (makes djnz end-of-loop sequence possible).
+   002C 0B                  157 	    inc r3
+   002D BA 00 01            158 	    cjne r2, #0x0, _memcpyx_loopTop
+   0030 1B                  159 	    dec r3
+                            160 	
+   0031                     161 	_memcpyx_loopTop:
+                            162 	
+   0031 E0                  163 	    movx a, @dptr
+   0032 F0                  164 	    movx @dptr, a
+   0033 A3                  165 	    inc dptr
+   0034 A3                  166 	    inc dptr
+                            167 	
+   0035 DA FA               168 	    djnz r2, _memcpyx_loopTop
+   0037 DB F8               169 	    djnz r3, _memcpyx_loopTop
+                            170 	
+   0039                     171 	_memcpy_done:
+                            172 	
+   0039 75 86 00            173 	    mov dps, #0x0
+                            174 	
+   003C D0 82               175 	    pop dpl
+   003E D0 83               176 	    pop dph
+   0040 D0 93               177 	    pop dpx
+   0042 22                  178 	    ret
+   0043                     179 00101$:
+                            180 ;	naked function: no epilogue.
+                            181 	.area CSEG    (CODE)
+                            182 	.area CONST   (CODE)
+                            183 	.area XINIT   (CODE)
+                            184 	.area CABS    (ABS,CODE)

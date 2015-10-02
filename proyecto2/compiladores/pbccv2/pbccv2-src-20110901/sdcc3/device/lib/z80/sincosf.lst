@@ -1,0 +1,586 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:17 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module sincosf
+                              7 	.optsdcc -mz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _sincosf
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 ;--------------------------------------------------------
+                             17 ;  ram data
+                             18 ;--------------------------------------------------------
+                             19 	.area _DATA
+                             20 ;--------------------------------------------------------
+                             21 ; overlayable items in  ram 
+                             22 ;--------------------------------------------------------
+                             23 	.area _OVERLAY
+                             24 ;--------------------------------------------------------
+                             25 ; external initialized ram data
+                             26 ;--------------------------------------------------------
+                             27 ;--------------------------------------------------------
+                             28 ; global & static initialisations
+                             29 ;--------------------------------------------------------
+                             30 	.area _HOME
+                             31 	.area _GSINIT
+                             32 	.area _GSFINAL
+                             33 	.area _GSINIT
+                             34 ;--------------------------------------------------------
+                             35 ; Home
+                             36 ;--------------------------------------------------------
+                             37 	.area _HOME
+                             38 	.area _HOME
+                             39 ;--------------------------------------------------------
+                             40 ; code
+                             41 ;--------------------------------------------------------
+                             42 	.area _CODE
+                             43 ;../sincosf.c:50: float sincosf(const float x, const BOOL iscos)
+                             44 ;	---------------------------------
+                             45 ; Function sincosf
+                             46 ; ---------------------------------
+   0000                      47 _sincosf_start::
+   0000                      48 _sincosf:
+   0000 DD E5                49 	push	ix
+   0002 DD 21 00 00          50 	ld	ix,#0
+   0006 DD 39                51 	add	ix,sp
+   0008 21 E6 FF             52 	ld	hl,#-26
+   000B 39                   53 	add	hl,sp
+   000C F9                   54 	ld	sp,hl
+                             55 ;../sincosf.c:56: if(iscos)
+   000D DD CB 08 46          56 	bit	0,8 (ix)
+   0011 28 38                57 	jr	Z,00105$
+                             58 ;../sincosf.c:58: y=fabsf(x)+HALF_PI;
+   0013 DD 6E 06             59 	ld	l,6 (ix)
+   0016 DD 66 07             60 	ld	h,7 (ix)
+   0019 E5                   61 	push	hl
+   001A DD 6E 04             62 	ld	l,4 (ix)
+   001D DD 66 05             63 	ld	h,5 (ix)
+   0020 E5                   64 	push	hl
+   0021 CDr00s00             65 	call	_fabsf
+   0024 F1                   66 	pop	af
+   0025 F1                   67 	pop	af
+   0026 44                   68 	ld	b,h
+   0027 4D                   69 	ld	c,l
+   0028 21 C9 3F             70 	ld	hl,#0x3FC9
+   002B E5                   71 	push	hl
+   002C 21 DB 0F             72 	ld	hl,#0x0FDB
+   002F E5                   73 	push	hl
+   0030 D5                   74 	push	de
+   0031 C5                   75 	push	bc
+   0032 CDr00s00             76 	call	___fsadd
+   0035 F1                   77 	pop	af
+   0036 F1                   78 	pop	af
+   0037 F1                   79 	pop	af
+   0038 F1                   80 	pop	af
+   0039 DD 75 FC             81 	ld	-4 (ix), l
+   003C DD 74 FD             82 	ld	-3 (ix), h
+   003F DD 73 FE             83 	ld	-2 (ix),e
+   0042 DD 72 FF             84 	ld	-1 (ix),d
+                             85 ;../sincosf.c:59: sign=0;
+   0045 DD 36 EB 00          86 	ld	-21 (ix),#0x00
+   0049 18 63                87 	jr	00106$
+   004B                      88 00105$:
+                             89 ;../sincosf.c:63: if(x<0.0)
+   004B 21 00 00             90 	ld	hl,#0x0000
+   004E E5                   91 	push	hl
+   004F 21 00 00             92 	ld	hl,#0x0000
+   0052 E5                   93 	push	hl
+   0053 DD 6E 06             94 	ld	l,6 (ix)
+   0056 DD 66 07             95 	ld	h,7 (ix)
+   0059 E5                   96 	push	hl
+   005A DD 6E 04             97 	ld	l,4 (ix)
+   005D DD 66 05             98 	ld	h,5 (ix)
+   0060 E5                   99 	push	hl
+   0061 CDr00s00            100 	call	___fslt
+   0064 F1                  101 	pop	af
+   0065 F1                  102 	pop	af
+   0066 F1                  103 	pop	af
+   0067 F1                  104 	pop	af
+   0068 DD 75 EA            105 	ld	-22 (ix),l
+   006B AF                  106 	xor	a,a
+   006C DD B6 EA            107 	or	a,-22 (ix)
+   006F 28 21               108 	jr	Z,00102$
+                            109 ;../sincosf.c:64: { y=-x; sign=1; }
+   0071 DD 7E 07            110 	ld	a,7 (ix)
+   0074 EE 80               111 	xor	a,#0x80
+   0076 57                  112 	ld	d,a
+   0077 DD 4E 04            113 	ld	c,4 (ix)
+   007A DD 46 05            114 	ld	b,5 (ix)
+   007D DD 5E 06            115 	ld	e,6 (ix)
+   0080 DD 71 FC            116 	ld	-4 (ix),c
+   0083 DD 70 FD            117 	ld	-3 (ix),b
+   0086 DD 73 FE            118 	ld	-2 (ix),e
+   0089 DD 72 FF            119 	ld	-1 (ix),d
+   008C DD 36 EB 01         120 	ld	-21 (ix),#0x01
+   0090 18 1C               121 	jr	00106$
+   0092                     122 00102$:
+                            123 ;../sincosf.c:66: { y=x; sign=0; }
+   0092 DD 7E 04            124 	ld	a,4 (ix)
+   0095 DD 77 FC            125 	ld	-4 (ix),a
+   0098 DD 7E 05            126 	ld	a,5 (ix)
+   009B DD 77 FD            127 	ld	-3 (ix),a
+   009E DD 7E 06            128 	ld	a,6 (ix)
+   00A1 DD 77 FE            129 	ld	-2 (ix),a
+   00A4 DD 7E 07            130 	ld	a,7 (ix)
+   00A7 DD 77 FF            131 	ld	-1 (ix),a
+   00AA DD 36 EB 00         132 	ld	-21 (ix),#0x00
+   00AE                     133 00106$:
+                            134 ;../sincosf.c:69: if(y>YMAX)
+   00AE 21 49 46            135 	ld	hl,#0x4649
+   00B1 E5                  136 	push	hl
+   00B2 21 00 0C            137 	ld	hl,#0x0C00
+   00B5 E5                  138 	push	hl
+   00B6 DD 6E FE            139 	ld	l,-2 (ix)
+   00B9 DD 66 FF            140 	ld	h,-1 (ix)
+   00BC E5                  141 	push	hl
+   00BD DD 6E FC            142 	ld	l,-4 (ix)
+   00C0 DD 66 FD            143 	ld	h,-3 (ix)
+   00C3 E5                  144 	push	hl
+   00C4 CDr00s00            145 	call	___fsgt
+   00C7 F1                  146 	pop	af
+   00C8 F1                  147 	pop	af
+   00C9 F1                  148 	pop	af
+   00CA F1                  149 	pop	af
+   00CB AF                  150 	xor	a,a
+   00CC B5                  151 	or	a,l
+   00CD 28 14               152 	jr	Z,00108$
+                            153 ;../sincosf.c:71: errno=ERANGE;
+   00CF FD 21r00s00         154 	ld	iy,#_errno
+   00D3 FD 36 00 22         155 	ld	0 (iy),#0x22
+   00D7 FD 36 01 00         156 	ld	1 (iy),#0x00
+                            157 ;../sincosf.c:72: return 0.0;
+   00DB 21 00 00            158 	ld	hl,#0x0000
+   00DE 5D                  159 	ld	e,l
+   00DF 54                  160 	ld	d,h
+   00E0 C3rE7s03            161 	jp	00115$
+   00E3                     162 00108$:
+                            163 ;../sincosf.c:76: N=((y*iPI)+0.5); /*y is positive*/
+   00E3 DD 6E FE            164 	ld	l,-2 (ix)
+   00E6 DD 66 FF            165 	ld	h,-1 (ix)
+   00E9 E5                  166 	push	hl
+   00EA DD 6E FC            167 	ld	l,-4 (ix)
+   00ED DD 66 FD            168 	ld	h,-3 (ix)
+   00F0 E5                  169 	push	hl
+   00F1 21 A2 3E            170 	ld	hl,#0x3EA2
+   00F4 E5                  171 	push	hl
+   00F5 21 83 F9            172 	ld	hl,#0xF983
+   00F8 E5                  173 	push	hl
+   00F9 CDr00s00            174 	call	___fsmul
+   00FC F1                  175 	pop	af
+   00FD F1                  176 	pop	af
+   00FE F1                  177 	pop	af
+   00FF F1                  178 	pop	af
+   0100 44                  179 	ld	b,h
+   0101 4D                  180 	ld	c,l
+   0102 21 00 3F            181 	ld	hl,#0x3F00
+   0105 E5                  182 	push	hl
+   0106 21 00 00            183 	ld	hl,#0x0000
+   0109 E5                  184 	push	hl
+   010A D5                  185 	push	de
+   010B C5                  186 	push	bc
+   010C CDr00s00            187 	call	___fsadd
+   010F F1                  188 	pop	af
+   0110 F1                  189 	pop	af
+   0111 F1                  190 	pop	af
+   0112 F1                  191 	pop	af
+   0113 44                  192 	ld	b,h
+   0114 4D                  193 	ld	c,l
+   0115 D5                  194 	push	de
+   0116 C5                  195 	push	bc
+   0117 CDr00s00            196 	call	___fs2sint
+   011A F1                  197 	pop	af
+   011B F1                  198 	pop	af
+   011C 44                  199 	ld	b,h
+   011D 4D                  200 	ld	c,l
+                            201 ;../sincosf.c:79: if(N&1) sign=!sign;
+   011E 79                  202 	ld	a,c
+   011F E6 01               203 	and	a,#0x01
+   0121 28 08               204 	jr	Z,00110$
+   0123 DD 7E EB            205 	ld	a,-21 (ix)
+   0126 EE 01               206 	xor	a,#0x01
+   0128 DD 77 EB            207 	ld	-21 (ix),a
+   012B                     208 00110$:
+                            209 ;../sincosf.c:81: XN=N;
+   012B C5                  210 	push	bc
+   012C CDr00s00            211 	call	___sint2fs
+   012F F1                  212 	pop	af
+   0130 DD 75 EC            213 	ld	-20 (ix), l
+   0133 DD 74 ED            214 	ld	-19 (ix), h
+   0136 DD 73 EE            215 	ld	-18 (ix),e
+   0139 DD 72 EF            216 	ld	-17 (ix),d
+                            217 ;../sincosf.c:83: if(iscos) XN-=0.5;
+   013C DD CB 08 46         218 	bit	0,8 (ix)
+   0140 28 29               219 	jr	Z,00112$
+   0142 21 00 3F            220 	ld	hl,#0x3F00
+   0145 E5                  221 	push	hl
+   0146 21 00 00            222 	ld	hl,#0x0000
+   0149 E5                  223 	push	hl
+   014A DD 6E EE            224 	ld	l,-18 (ix)
+   014D DD 66 EF            225 	ld	h,-17 (ix)
+   0150 E5                  226 	push	hl
+   0151 DD 6E EC            227 	ld	l,-20 (ix)
+   0154 DD 66 ED            228 	ld	h,-19 (ix)
+   0157 E5                  229 	push	hl
+   0158 CDr00s00            230 	call	___fssub
+   015B F1                  231 	pop	af
+   015C F1                  232 	pop	af
+   015D F1                  233 	pop	af
+   015E F1                  234 	pop	af
+   015F DD 75 EC            235 	ld	-20 (ix), l
+   0162 DD 74 ED            236 	ld	-19 (ix), h
+   0165 DD 73 EE            237 	ld	-18 (ix),e
+   0168 DD 72 EF            238 	ld	-17 (ix),d
+   016B                     239 00112$:
+                            240 ;../sincosf.c:85: y=fabsf(x);
+   016B DD 6E 06            241 	ld	l,6 (ix)
+   016E DD 66 07            242 	ld	h,7 (ix)
+   0171 E5                  243 	push	hl
+   0172 DD 6E 04            244 	ld	l,4 (ix)
+   0175 DD 66 05            245 	ld	h,5 (ix)
+   0178 E5                  246 	push	hl
+   0179 CDr00s00            247 	call	_fabsf
+   017C F1                  248 	pop	af
+   017D F1                  249 	pop	af
+   017E DD 75 FC            250 	ld	-4 (ix), l
+   0181 DD 74 FD            251 	ld	-3 (ix), h
+   0184 DD 73 FE            252 	ld	-2 (ix),e
+   0187 DD 72 FF            253 	ld	-1 (ix),d
+                            254 ;../sincosf.c:86: r=(int)y;
+   018A DD 6E FE            255 	ld	l,-2 (ix)
+   018D DD 66 FF            256 	ld	h,-1 (ix)
+   0190 E5                  257 	push	hl
+   0191 DD 6E FC            258 	ld	l,-4 (ix)
+   0194 DD 66 FD            259 	ld	h,-3 (ix)
+   0197 E5                  260 	push	hl
+   0198 CDr00s00            261 	call	___fs2sint
+   019B F1                  262 	pop	af
+   019C F1                  263 	pop	af
+   019D 44                  264 	ld	b,h
+   019E 4D                  265 	ld	c,l
+   019F C5                  266 	push	bc
+   01A0 CDr00s00            267 	call	___sint2fs
+   01A3 F1                  268 	pop	af
+   01A4 DD 75 F4            269 	ld	-12 (ix), l
+   01A7 DD 74 F5            270 	ld	-11 (ix), h
+   01AA DD 73 F6            271 	ld	-10 (ix),e
+   01AD DD 72 F7            272 	ld	-9 (ix),d
+                            273 ;../sincosf.c:87: g=y-r;
+   01B0 DD 6E F6            274 	ld	l,-10 (ix)
+   01B3 DD 66 F7            275 	ld	h,-9 (ix)
+   01B6 E5                  276 	push	hl
+   01B7 DD 6E F4            277 	ld	l,-12 (ix)
+   01BA DD 66 F5            278 	ld	h,-11 (ix)
+   01BD E5                  279 	push	hl
+   01BE DD 6E FE            280 	ld	l,-2 (ix)
+   01C1 DD 66 FF            281 	ld	h,-1 (ix)
+   01C4 E5                  282 	push	hl
+   01C5 DD 6E FC            283 	ld	l,-4 (ix)
+   01C8 DD 66 FD            284 	ld	h,-3 (ix)
+   01CB E5                  285 	push	hl
+   01CC CDr00s00            286 	call	___fssub
+   01CF F1                  287 	pop	af
+   01D0 F1                  288 	pop	af
+   01D1 F1                  289 	pop	af
+   01D2 F1                  290 	pop	af
+   01D3 DD 75 F0            291 	ld	-16 (ix), l
+   01D6 DD 74 F1            292 	ld	-15 (ix), h
+   01D9 DD 73 F2            293 	ld	-14 (ix),e
+   01DC DD 72 F3            294 	ld	-13 (ix),d
+                            295 ;../sincosf.c:88: f=((r-XN*C1)+g)-XN*C2;
+   01DF DD 6E EE            296 	ld	l,-18 (ix)
+   01E2 DD 66 EF            297 	ld	h,-17 (ix)
+   01E5 E5                  298 	push	hl
+   01E6 DD 6E EC            299 	ld	l,-20 (ix)
+   01E9 DD 66 ED            300 	ld	h,-19 (ix)
+   01EC E5                  301 	push	hl
+   01ED 21 49 40            302 	ld	hl,#0x4049
+   01F0 E5                  303 	push	hl
+   01F1 21 00 00            304 	ld	hl,#0x0000
+   01F4 E5                  305 	push	hl
+   01F5 CDr00s00            306 	call	___fsmul
+   01F8 F1                  307 	pop	af
+   01F9 F1                  308 	pop	af
+   01FA F1                  309 	pop	af
+   01FB F1                  310 	pop	af
+   01FC 44                  311 	ld	b,h
+   01FD 4D                  312 	ld	c,l
+   01FE D5                  313 	push	de
+   01FF C5                  314 	push	bc
+   0200 DD 6E F6            315 	ld	l,-10 (ix)
+   0203 DD 66 F7            316 	ld	h,-9 (ix)
+   0206 E5                  317 	push	hl
+   0207 DD 6E F4            318 	ld	l,-12 (ix)
+   020A DD 66 F5            319 	ld	h,-11 (ix)
+   020D E5                  320 	push	hl
+   020E CDr00s00            321 	call	___fssub
+   0211 F1                  322 	pop	af
+   0212 F1                  323 	pop	af
+   0213 F1                  324 	pop	af
+   0214 F1                  325 	pop	af
+   0215 44                  326 	ld	b,h
+   0216 4D                  327 	ld	c,l
+   0217 DD 6E F2            328 	ld	l,-14 (ix)
+   021A DD 66 F3            329 	ld	h,-13 (ix)
+   021D E5                  330 	push	hl
+   021E DD 6E F0            331 	ld	l,-16 (ix)
+   0221 DD 66 F1            332 	ld	h,-15 (ix)
+   0224 E5                  333 	push	hl
+   0225 D5                  334 	push	de
+   0226 C5                  335 	push	bc
+   0227 CDr00s00            336 	call	___fsadd
+   022A F1                  337 	pop	af
+   022B F1                  338 	pop	af
+   022C F1                  339 	pop	af
+   022D F1                  340 	pop	af
+   022E DD 72 E9            341 	ld	-23 (ix),d
+   0231 DD 73 E8            342 	ld	-24 (ix),e
+   0234 DD 74 E7            343 	ld	-25 (ix),h
+   0237 DD 75 E6            344 	ld	-26 (ix),l
+   023A DD 6E EE            345 	ld	l,-18 (ix)
+   023D DD 66 EF            346 	ld	h,-17 (ix)
+   0240 E5                  347 	push	hl
+   0241 DD 6E EC            348 	ld	l,-20 (ix)
+   0244 DD 66 ED            349 	ld	h,-19 (ix)
+   0247 E5                  350 	push	hl
+   0248 21 7D 3A            351 	ld	hl,#0x3A7D
+   024B E5                  352 	push	hl
+   024C 21 22 AA            353 	ld	hl,#0xAA22
+   024F E5                  354 	push	hl
+   0250 CDr00s00            355 	call	___fsmul
+   0253 F1                  356 	pop	af
+   0254 F1                  357 	pop	af
+   0255 F1                  358 	pop	af
+   0256 F1                  359 	pop	af
+   0257 44                  360 	ld	b,h
+   0258 4D                  361 	ld	c,l
+   0259 D5                  362 	push	de
+   025A C5                  363 	push	bc
+   025B DD 6E E8            364 	ld	l,-24 (ix)
+   025E DD 66 E9            365 	ld	h,-23 (ix)
+   0261 E5                  366 	push	hl
+   0262 DD 6E E6            367 	ld	l,-26 (ix)
+   0265 DD 66 E7            368 	ld	h,-25 (ix)
+   0268 E5                  369 	push	hl
+   0269 CDr00s00            370 	call	___fssub
+   026C F1                  371 	pop	af
+   026D F1                  372 	pop	af
+   026E F1                  373 	pop	af
+   026F F1                  374 	pop	af
+   0270 DD 75 F8            375 	ld	-8 (ix), l
+   0273 DD 74 F9            376 	ld	-7 (ix), h
+   0276 DD 73 FA            377 	ld	-6 (ix),e
+   0279 DD 72 FB            378 	ld	-5 (ix),d
+                            379 ;../sincosf.c:90: g=f*f;
+   027C DD 6E FA            380 	ld	l,-6 (ix)
+   027F DD 66 FB            381 	ld	h,-5 (ix)
+   0282 E5                  382 	push	hl
+   0283 DD 6E F8            383 	ld	l,-8 (ix)
+   0286 DD 66 F9            384 	ld	h,-7 (ix)
+   0289 E5                  385 	push	hl
+   028A DD 6E FA            386 	ld	l,-6 (ix)
+   028D DD 66 FB            387 	ld	h,-5 (ix)
+   0290 E5                  388 	push	hl
+   0291 DD 6E F8            389 	ld	l,-8 (ix)
+   0294 DD 66 F9            390 	ld	h,-7 (ix)
+   0297 E5                  391 	push	hl
+   0298 CDr00s00            392 	call	___fsmul
+   029B F1                  393 	pop	af
+   029C F1                  394 	pop	af
+   029D F1                  395 	pop	af
+   029E F1                  396 	pop	af
+   029F DD 75 F0            397 	ld	-16 (ix), l
+   02A2 DD 74 F1            398 	ld	-15 (ix), h
+   02A5 DD 73 F2            399 	ld	-14 (ix),e
+   02A8 DD 72 F3            400 	ld	-13 (ix),d
+                            401 ;../sincosf.c:91: if(g>EPS2) //Used to be if(fabsf(f)>EPS)
+   02AB 21 7F 33            402 	ld	hl,#0x337F
+   02AE E5                  403 	push	hl
+   02AF 21 F3 FF            404 	ld	hl,#0xFFF3
+   02B2 E5                  405 	push	hl
+   02B3 DD 6E F2            406 	ld	l,-14 (ix)
+   02B6 DD 66 F3            407 	ld	h,-13 (ix)
+   02B9 E5                  408 	push	hl
+   02BA DD 6E F0            409 	ld	l,-16 (ix)
+   02BD DD 66 F1            410 	ld	h,-15 (ix)
+   02C0 E5                  411 	push	hl
+   02C1 CDr00s00            412 	call	___fsgt
+   02C4 F1                  413 	pop	af
+   02C5 F1                  414 	pop	af
+   02C6 F1                  415 	pop	af
+   02C7 F1                  416 	pop	af
+   02C8 AF                  417 	xor	a,a
+   02C9 B5                  418 	or	a,l
+   02CA CArC2s03            419 	jp	Z,00114$
+                            420 ;../sincosf.c:93: r=(((r4*g+r3)*g+r2)*g+r1)*g;
+   02CD DD 6E F2            421 	ld	l,-14 (ix)
+   02D0 DD 66 F3            422 	ld	h,-13 (ix)
+   02D3 E5                  423 	push	hl
+   02D4 DD 6E F0            424 	ld	l,-16 (ix)
+   02D7 DD 66 F1            425 	ld	h,-15 (ix)
+   02DA E5                  426 	push	hl
+   02DB 21 2E 36            427 	ld	hl,#0x362E
+   02DE E5                  428 	push	hl
+   02DF 21 5B 9C            429 	ld	hl,#0x9C5B
+   02E2 E5                  430 	push	hl
+   02E3 CDr00s00            431 	call	___fsmul
+   02E6 F1                  432 	pop	af
+   02E7 F1                  433 	pop	af
+   02E8 F1                  434 	pop	af
+   02E9 F1                  435 	pop	af
+   02EA 44                  436 	ld	b,h
+   02EB 4D                  437 	ld	c,l
+   02EC 21 4F B9            438 	ld	hl,#0xB94F
+   02EF E5                  439 	push	hl
+   02F0 21 22 B2            440 	ld	hl,#0xB222
+   02F3 E5                  441 	push	hl
+   02F4 D5                  442 	push	de
+   02F5 C5                  443 	push	bc
+   02F6 CDr00s00            444 	call	___fsadd
+   02F9 F1                  445 	pop	af
+   02FA F1                  446 	pop	af
+   02FB F1                  447 	pop	af
+   02FC F1                  448 	pop	af
+   02FD 44                  449 	ld	b,h
+   02FE 4D                  450 	ld	c,l
+   02FF DD 6E F2            451 	ld	l,-14 (ix)
+   0302 DD 66 F3            452 	ld	h,-13 (ix)
+   0305 E5                  453 	push	hl
+   0306 DD 6E F0            454 	ld	l,-16 (ix)
+   0309 DD 66 F1            455 	ld	h,-15 (ix)
+   030C E5                  456 	push	hl
+   030D D5                  457 	push	de
+   030E C5                  458 	push	bc
+   030F CDr00s00            459 	call	___fsmul
+   0312 F1                  460 	pop	af
+   0313 F1                  461 	pop	af
+   0314 F1                  462 	pop	af
+   0315 F1                  463 	pop	af
+   0316 44                  464 	ld	b,h
+   0317 4D                  465 	ld	c,l
+   0318 21 08 3C            466 	ld	hl,#0x3C08
+   031B E5                  467 	push	hl
+   031C 21 3E 87            468 	ld	hl,#0x873E
+   031F E5                  469 	push	hl
+   0320 D5                  470 	push	de
+   0321 C5                  471 	push	bc
+   0322 CDr00s00            472 	call	___fsadd
+   0325 F1                  473 	pop	af
+   0326 F1                  474 	pop	af
+   0327 F1                  475 	pop	af
+   0328 F1                  476 	pop	af
+   0329 44                  477 	ld	b,h
+   032A 4D                  478 	ld	c,l
+   032B DD 6E F2            479 	ld	l,-14 (ix)
+   032E DD 66 F3            480 	ld	h,-13 (ix)
+   0331 E5                  481 	push	hl
+   0332 DD 6E F0            482 	ld	l,-16 (ix)
+   0335 DD 66 F1            483 	ld	h,-15 (ix)
+   0338 E5                  484 	push	hl
+   0339 D5                  485 	push	de
+   033A C5                  486 	push	bc
+   033B CDr00s00            487 	call	___fsmul
+   033E F1                  488 	pop	af
+   033F F1                  489 	pop	af
+   0340 F1                  490 	pop	af
+   0341 F1                  491 	pop	af
+   0342 44                  492 	ld	b,h
+   0343 4D                  493 	ld	c,l
+   0344 21 2A BE            494 	ld	hl,#0xBE2A
+   0347 E5                  495 	push	hl
+   0348 21 A4 AA            496 	ld	hl,#0xAAA4
+   034B E5                  497 	push	hl
+   034C D5                  498 	push	de
+   034D C5                  499 	push	bc
+   034E CDr00s00            500 	call	___fsadd
+   0351 F1                  501 	pop	af
+   0352 F1                  502 	pop	af
+   0353 F1                  503 	pop	af
+   0354 F1                  504 	pop	af
+   0355 44                  505 	ld	b,h
+   0356 4D                  506 	ld	c,l
+   0357 DD 6E F2            507 	ld	l,-14 (ix)
+   035A DD 66 F3            508 	ld	h,-13 (ix)
+   035D E5                  509 	push	hl
+   035E DD 6E F0            510 	ld	l,-16 (ix)
+   0361 DD 66 F1            511 	ld	h,-15 (ix)
+   0364 E5                  512 	push	hl
+   0365 D5                  513 	push	de
+   0366 C5                  514 	push	bc
+   0367 CDr00s00            515 	call	___fsmul
+   036A F1                  516 	pop	af
+   036B F1                  517 	pop	af
+   036C F1                  518 	pop	af
+   036D F1                  519 	pop	af
+   036E DD 75 F4            520 	ld	-12 (ix), l
+   0371 DD 74 F5            521 	ld	-11 (ix), h
+   0374 DD 73 F6            522 	ld	-10 (ix),e
+   0377 DD 72 F7            523 	ld	-9 (ix),d
+                            524 ;../sincosf.c:94: f+=f*r;
+   037A DD 6E F6            525 	ld	l,-10 (ix)
+   037D DD 66 F7            526 	ld	h,-9 (ix)
+   0380 E5                  527 	push	hl
+   0381 DD 6E F4            528 	ld	l,-12 (ix)
+   0384 DD 66 F5            529 	ld	h,-11 (ix)
+   0387 E5                  530 	push	hl
+   0388 DD 6E FA            531 	ld	l,-6 (ix)
+   038B DD 66 FB            532 	ld	h,-5 (ix)
+   038E E5                  533 	push	hl
+   038F DD 6E F8            534 	ld	l,-8 (ix)
+   0392 DD 66 F9            535 	ld	h,-7 (ix)
+   0395 E5                  536 	push	hl
+   0396 CDr00s00            537 	call	___fsmul
+   0399 F1                  538 	pop	af
+   039A F1                  539 	pop	af
+   039B F1                  540 	pop	af
+   039C F1                  541 	pop	af
+   039D 44                  542 	ld	b,h
+   039E 4D                  543 	ld	c,l
+   039F D5                  544 	push	de
+   03A0 C5                  545 	push	bc
+   03A1 DD 6E FA            546 	ld	l,-6 (ix)
+   03A4 DD 66 FB            547 	ld	h,-5 (ix)
+   03A7 E5                  548 	push	hl
+   03A8 DD 6E F8            549 	ld	l,-8 (ix)
+   03AB DD 66 F9            550 	ld	h,-7 (ix)
+   03AE E5                  551 	push	hl
+   03AF CDr00s00            552 	call	___fsadd
+   03B2 F1                  553 	pop	af
+   03B3 F1                  554 	pop	af
+   03B4 F1                  555 	pop	af
+   03B5 F1                  556 	pop	af
+   03B6 DD 75 F8            557 	ld	-8 (ix), l
+   03B9 DD 74 F9            558 	ld	-7 (ix), h
+   03BC DD 73 FA            559 	ld	-6 (ix),e
+   03BF DD 72 FB            560 	ld	-5 (ix),d
+   03C2                     561 00114$:
+                            562 ;../sincosf.c:96: return (sign?-f:f);
+   03C2 DD CB EB 46         563 	bit	0,-21 (ix)
+   03C6 28 11               564 	jr	Z,00117$
+   03C8 DD 7E FB            565 	ld	a,-5 (ix)
+   03CB EE 80               566 	xor	a,#0x80
+   03CD 57                  567 	ld	d,a
+   03CE DD 4E F8            568 	ld	c,-8 (ix)
+   03D1 DD 46 F9            569 	ld	b,-7 (ix)
+   03D4 DD 5E FA            570 	ld	e,-6 (ix)
+   03D7 18 0C               571 	jr	00118$
+   03D9                     572 00117$:
+   03D9 DD 4E F8            573 	ld	c,-8 (ix)
+   03DC DD 46 F9            574 	ld	b,-7 (ix)
+   03DF DD 5E FA            575 	ld	e,-6 (ix)
+   03E2 DD 56 FB            576 	ld	d,-5 (ix)
+   03E5                     577 00118$:
+   03E5 69                  578 	ld	l,c
+   03E6 60                  579 	ld	h,b
+   03E7                     580 00115$:
+   03E7 DD F9               581 	ld	sp,ix
+   03E9 DD E1               582 	pop	ix
+   03EB C9                  583 	ret
+   03EC                     584 _sincosf_end::
+                            585 	.area _CODE
+                            586 	.area _CABS

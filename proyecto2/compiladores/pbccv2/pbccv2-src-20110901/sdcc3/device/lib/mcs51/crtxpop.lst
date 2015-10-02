@@ -1,0 +1,68 @@
+                              1 ;--------------------------------------------------------------------------
+                              2 ;  crtxpop.asm - C run-time: pop registers (not bits) from xstack
+                              3 ;
+                              4 ;  Copyright (C) 2009, Maarten Brock
+                              5 ;
+                              6 ;  This library is free software; you can redistribute it and/or modify it
+                              7 ;  under the terms of the GNU General Public License as published by the
+                              8 ;  Free Software Foundation; either version 2.1, or (at your option) any
+                              9 ;  later version.
+                             10 ;
+                             11 ;  This library is distributed in the hope that it will be useful,
+                             12 ;  but WITHOUT ANY WARRANTY; without even the implied warranty of
+                             13 ;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+                             14 ;  GNU General Public License for more details.
+                             15 ;
+                             16 ;  You should have received a copy of the GNU General Public License 
+                             17 ;  along with this library; see the file COPYING. If not, write to the
+                             18 ;  Free Software Foundation, 51 Franklin Street, Fifth Floor, Boston,
+                             19 ;   MA 02110-1301, USA.
+                             20 ;
+                             21 ;  As a special exception, if you link this library with other files,
+                             22 ;  some of which are compiled with SDCC, to produce an executable,
+                             23 ;  this library does not by itself cause the resulting executable to
+                             24 ;  be covered by the GNU General Public License. This exception does
+                             25 ;  not however invalidate any other reasons why the executable file
+                             26 ;  might be covered by the GNU General Public License.
+                             27 ;--------------------------------------------------------------------------
+                             28 
+                             29 ;--------------------------------------------------------
+                             30 ; overlayable bit register bank
+                             31 ;--------------------------------------------------------
+                             32 	.area BIT_BANK	(REL,OVR,DATA)
+   0000                      33 bits:
+   0000                      34 	.ds 1
+                             35 
+                    0000     36 	ar0 = 0x00
+                    0001     37 	ar1 = 0x01
+                             38 
+                             39 	.area HOME    (CODE)
+                             40 
+                             41 ; Pop registers r0..r7 from xstack
+                             42 ; Expect mask in B
+   0000                      43 __sdcc_xpop_regs::
+   0000 E8                   44 	mov	a,r0
+   0001 A8*00                45 	mov	r0,_spx
+   0003 10 F0 04             46 	jbc	B.0,00101$	;if B(0)=0 then
+   0006 18                   47 	dec	r0
+   0007 E2                   48 	movx	a,@r0		;pop R0
+   0008 15*00                49 	dec	_spx
+   000A                      50 00101$:
+   000A C0 E0                51 	push	acc
+   000C 79 08                52 	mov	r1,#0x08
+   000E                      53 00102$:
+   000E E5 F0                54 	mov	a,B
+   0010                      55 00103$:
+   0010 60 0C                56 	jz	00104$		;if B=0 we are done
+   0012 19                   57 	dec	r1
+   0013 25 E0                58 	add	a,acc		;if B(n) then
+   0015 50 F9                59 	jnc	00103$
+   0017 F5 F0                60 	mov	B,a
+   0019 18                   61 	dec	r0		;pop Rn
+   001A E2                   62 	movx	a,@r0
+   001B F7                   63 	mov	@r1,a
+   001C 80 F0                64 	sjmp	00102$
+   001E                      65 00104$:
+   001E 88*00                66 	mov	_spx,r0
+   0020 D0 00                67 	pop	ar0
+   0022 22                   68 	ret

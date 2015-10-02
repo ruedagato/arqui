@@ -1,0 +1,482 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:29 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _realloc
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _realloc_PARM_2
+                             13 	.globl _realloc
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 	.area RSEG    (ABS,DATA)
+   0000                      18 	.org 0x0000
+                             19 ;--------------------------------------------------------
+                             20 ; special function bits
+                             21 ;--------------------------------------------------------
+                             22 	.area RSEG    (ABS,DATA)
+   0000                      23 	.org 0x0000
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable register banks
+                             26 ;--------------------------------------------------------
+                             27 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      28 	.ds 8
+                             29 ;--------------------------------------------------------
+                             30 ; internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area DSEG    (DATA)
+   0000                      33 _realloc_sloc0_1_0:
+   0000                      34 	.ds 2
+   0002                      35 _realloc_sloc1_1_0:
+   0002                      36 	.ds 3
+   0005                      37 _realloc_sloc2_1_0:
+   0005                      38 	.ds 3
+                             39 ;--------------------------------------------------------
+                             40 ; overlayable items in internal ram 
+                             41 ;--------------------------------------------------------
+                             42 	.area OSEG    (OVR,DATA)
+                             43 ;--------------------------------------------------------
+                             44 ; indirectly addressable internal ram data
+                             45 ;--------------------------------------------------------
+                             46 	.area ISEG    (DATA)
+                             47 ;--------------------------------------------------------
+                             48 ; absolute internal ram data
+                             49 ;--------------------------------------------------------
+                             50 	.area IABS    (ABS,DATA)
+                             51 	.area IABS    (ABS,DATA)
+                             52 ;--------------------------------------------------------
+                             53 ; bit data
+                             54 ;--------------------------------------------------------
+                             55 	.area BSEG    (BIT)
+                             56 ;--------------------------------------------------------
+                             57 ; paged external ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area PSEG    (PAG,XDATA)
+                             60 ;--------------------------------------------------------
+                             61 ; external ram data
+                             62 ;--------------------------------------------------------
+                             63 	.area XSEG    (XDATA)
+   0000                      64 _realloc_PARM_2:
+   0000                      65 	.ds 2
+   0002                      66 _realloc_p_1_1:
+   0002                      67 	.ds 3
+   0005                      68 _realloc_pnew_1_1:
+   0005                      69 	.ds 2
+   0007                      70 _realloc_ret_1_1:
+   0007                      71 	.ds 2
+                             72 ;--------------------------------------------------------
+                             73 ; absolute external ram data
+                             74 ;--------------------------------------------------------
+                             75 	.area XABS    (ABS,XDATA)
+                             76 ;--------------------------------------------------------
+                             77 ; external initialized ram data
+                             78 ;--------------------------------------------------------
+                             79 	.area XISEG   (XDATA)
+                             80 	.area HOME    (CODE)
+                             81 	.area GSINIT0 (CODE)
+                             82 	.area GSINIT1 (CODE)
+                             83 	.area GSINIT2 (CODE)
+                             84 	.area GSINIT3 (CODE)
+                             85 	.area GSINIT4 (CODE)
+                             86 	.area GSINIT5 (CODE)
+                             87 	.area GSINIT  (CODE)
+                             88 	.area GSFINAL (CODE)
+                             89 	.area CSEG    (CODE)
+                             90 ;--------------------------------------------------------
+                             91 ; global & static initialisations
+                             92 ;--------------------------------------------------------
+                             93 	.area HOME    (CODE)
+                             94 	.area GSINIT  (CODE)
+                             95 	.area GSFINAL (CODE)
+                             96 	.area GSINIT  (CODE)
+                             97 ;--------------------------------------------------------
+                             98 ; Home
+                             99 ;--------------------------------------------------------
+                            100 	.area HOME    (CODE)
+                            101 	.area HOME    (CODE)
+                            102 ;--------------------------------------------------------
+                            103 ; code
+                            104 ;--------------------------------------------------------
+                            105 	.area CSEG    (CODE)
+                            106 ;------------------------------------------------------------
+                            107 ;Allocation info for local variables in function 'realloc'
+                            108 ;------------------------------------------------------------
+                            109 ;sloc0                     Allocated with name '_realloc_sloc0_1_0'
+                            110 ;sloc1                     Allocated with name '_realloc_sloc1_1_0'
+                            111 ;sloc2                     Allocated with name '_realloc_sloc2_1_0'
+                            112 ;size                      Allocated with name '_realloc_PARM_2'
+                            113 ;p                         Allocated with name '_realloc_p_1_1'
+                            114 ;pthis                     Allocated with name '_realloc_pthis_1_1'
+                            115 ;pnew                      Allocated with name '_realloc_pnew_1_1'
+                            116 ;ret                       Allocated with name '_realloc_ret_1_1'
+                            117 ;------------------------------------------------------------
+                            118 ;	_realloc.c:84: void __xdata * realloc (void * p, size_t size)
+                            119 ;	-----------------------------------------
+                            120 ;	 function realloc
+                            121 ;	-----------------------------------------
+   0000                     122 _realloc:
+                    0002    123 	ar2 = 0x02
+                    0003    124 	ar3 = 0x03
+                    0004    125 	ar4 = 0x04
+                    0005    126 	ar5 = 0x05
+                    0006    127 	ar6 = 0x06
+                    0007    128 	ar7 = 0x07
+                    0000    129 	ar0 = 0x00
+                    0001    130 	ar1 = 0x01
+   0000 AA F0               131 	mov	r2,b
+   0002 AB 83               132 	mov	r3,dph
+   0004 E5 82               133 	mov	a,dpl
+   0006 90s00r02            134 	mov	dptr,#_realloc_p_1_1
+   0009 F0                  135 	movx	@dptr,a
+   000A A3                  136 	inc	dptr
+   000B EB                  137 	mov	a,r3
+   000C F0                  138 	movx	@dptr,a
+   000D A3                  139 	inc	dptr
+   000E EA                  140 	mov	a,r2
+   000F F0                  141 	movx	@dptr,a
+                            142 ;	_realloc.c:92: pthis = _sdcc_find_memheader(p);
+   0010 90s00r02            143 	mov	dptr,#_realloc_p_1_1
+   0013 E0                  144 	movx	a,@dptr
+   0014 F5*02               145 	mov	_realloc_sloc1_1_0,a
+   0016 A3                  146 	inc	dptr
+   0017 E0                  147 	movx	a,@dptr
+   0018 F5*03               148 	mov	(_realloc_sloc1_1_0 + 1),a
+   001A A3                  149 	inc	dptr
+   001B E0                  150 	movx	a,@dptr
+   001C F5*04               151 	mov	(_realloc_sloc1_1_0 + 2),a
+   001E AD*02               152 	mov	r5,_realloc_sloc1_1_0
+   0020 AE*03               153 	mov	r6,(_realloc_sloc1_1_0 + 1)
+   0022 8D 82               154 	mov	dpl,r5
+   0024 8E 83               155 	mov	dph,r6
+   0026 12s00r00            156 	lcall	__sdcc_find_memheader
+   0029 AD 82               157 	mov	r5,dpl
+   002B AE 83               158 	mov	r6,dph
+                            159 ;	_realloc.c:93: if (pthis)
+   002D ED                  160 	mov	a,r5
+   002E 4E                  161 	orl	a,r6
+   002F 70 03               162 	jnz	00124$
+   0031 02s01rB9            163 	ljmp	00114$
+   0034                     164 00124$:
+                            165 ;	_realloc.c:95: if (size > (0xFFFF-HEADER_SIZE))
+   0034 90s00r00            166 	mov	dptr,#_realloc_PARM_2
+   0037 E0                  167 	movx	a,@dptr
+   0038 FF                  168 	mov	r7,a
+   0039 A3                  169 	inc	dptr
+   003A E0                  170 	movx	a,@dptr
+   003B F8                  171 	mov	r0,a
+   003C C3                  172 	clr	c
+   003D 74 FB               173 	mov	a,#0xFB
+   003F 9F                  174 	subb	a,r7
+   0040 74 FF               175 	mov	a,#0xFF
+   0042 98                  176 	subb	a,r0
+   0043 50 0A               177 	jnc	00111$
+                            178 ;	_realloc.c:97: ret = (void __xdata *) NULL; //To prevent overflow in next line
+   0045 90s00r07            179 	mov	dptr,#_realloc_ret_1_1
+   0048 E4                  180 	clr	a
+   0049 F0                  181 	movx	@dptr,a
+   004A A3                  182 	inc	dptr
+   004B F0                  183 	movx	@dptr,a
+   004C 02s01rD5            184 	ljmp	00115$
+   004F                     185 00111$:
+                            186 ;	_realloc.c:101: size += HEADER_SIZE; //We need a memory for header too
+   004F 90s00r00            187 	mov	dptr,#_realloc_PARM_2
+   0052 74 04               188 	mov	a,#0x04
+   0054 2F                  189 	add	a,r7
+   0055 F0                  190 	movx	@dptr,a
+   0056 E4                  191 	clr	a
+   0057 38                  192 	addc	a,r0
+   0058 A3                  193 	inc	dptr
+   0059 F0                  194 	movx	@dptr,a
+                            195 ;	_realloc.c:103: if ((((unsigned int)pthis->next) - ((unsigned int)pthis)) >= size)
+   005A 8D 82               196 	mov	dpl,r5
+   005C 8E 83               197 	mov	dph,r6
+   005E E0                  198 	movx	a,@dptr
+   005F FF                  199 	mov	r7,a
+   0060 A3                  200 	inc	dptr
+   0061 E0                  201 	movx	a,@dptr
+   0062 F8                  202 	mov	r0,a
+   0063 8F 01               203 	mov	ar1,r7
+   0065 88 02               204 	mov	ar2,r0
+   0067 8D 03               205 	mov	ar3,r5
+   0069 8E 04               206 	mov	ar4,r6
+   006B E9                  207 	mov	a,r1
+   006C C3                  208 	clr	c
+   006D 9B                  209 	subb	a,r3
+   006E F9                  210 	mov	r1,a
+   006F EA                  211 	mov	a,r2
+   0070 9C                  212 	subb	a,r4
+   0071 FA                  213 	mov	r2,a
+   0072 90s00r00            214 	mov	dptr,#_realloc_PARM_2
+   0075 E0                  215 	movx	a,@dptr
+   0076 F5*00               216 	mov	_realloc_sloc0_1_0,a
+   0078 A3                  217 	inc	dptr
+   0079 E0                  218 	movx	a,@dptr
+   007A F5*01               219 	mov	(_realloc_sloc0_1_0 + 1),a
+   007C C3                  220 	clr	c
+   007D E9                  221 	mov	a,r1
+   007E 95*00               222 	subb	a,_realloc_sloc0_1_0
+   0080 EA                  223 	mov	a,r2
+   0081 95*01               224 	subb	a,(_realloc_sloc0_1_0 + 1)
+   0083 40 1E               225 	jc	00108$
+                            226 ;	_realloc.c:105: pthis->len = size;
+   0085 8D 82               227 	mov	dpl,r5
+   0087 8E 83               228 	mov	dph,r6
+   0089 A3                  229 	inc	dptr
+   008A A3                  230 	inc	dptr
+   008B E5*00               231 	mov	a,_realloc_sloc0_1_0
+   008D F0                  232 	movx	@dptr,a
+   008E A3                  233 	inc	dptr
+   008F E5*01               234 	mov	a,(_realloc_sloc0_1_0 + 1)
+   0091 F0                  235 	movx	@dptr,a
+                            236 ;	_realloc.c:106: ret = p;
+   0092 A9*02               237 	mov	r1,_realloc_sloc1_1_0
+   0094 AA*03               238 	mov	r2,(_realloc_sloc1_1_0 + 1)
+   0096 AB*04               239 	mov	r3,(_realloc_sloc1_1_0 + 2)
+   0098 90s00r07            240 	mov	dptr,#_realloc_ret_1_1
+   009B E9                  241 	mov	a,r1
+   009C F0                  242 	movx	@dptr,a
+   009D A3                  243 	inc	dptr
+   009E EA                  244 	mov	a,r2
+   009F F0                  245 	movx	@dptr,a
+   00A0 02s01rD5            246 	ljmp	00115$
+   00A3                     247 00108$:
+                            248 ;	_realloc.c:110: if ((_sdcc_prev_memheader) &&
+   00A3 90s00r00            249 	mov	dptr,#__sdcc_prev_memheader
+   00A6 E0                  250 	movx	a,@dptr
+   00A7 FA                  251 	mov	r2,a
+   00A8 A3                  252 	inc	dptr
+   00A9 E0                  253 	movx	a,@dptr
+   00AA FB                  254 	mov	r3,a
+   00AB 4A                  255 	orl	a,r2
+   00AC 70 03               256 	jnz	00127$
+   00AE 02s01r48            257 	ljmp	00104$
+   00B1                     258 00127$:
+                            259 ;	_realloc.c:111: ((((unsigned int)pthis->next) -
+                            260 ;	_realloc.c:112: ((unsigned int)_sdcc_prev_memheader) -
+   00B1 8A 04               261 	mov	ar4,r2
+   00B3 8B 01               262 	mov	ar1,r3
+   00B5 EF                  263 	mov	a,r7
+   00B6 C3                  264 	clr	c
+   00B7 9C                  265 	subb	a,r4
+   00B8 FF                  266 	mov	r7,a
+   00B9 E8                  267 	mov	a,r0
+   00BA 99                  268 	subb	a,r1
+   00BB F8                  269 	mov	r0,a
+                            270 ;	_realloc.c:113: _sdcc_prev_memheader->len) >= size))
+   00BC 8A 82               271 	mov	dpl,r2
+   00BE 8B 83               272 	mov	dph,r3
+   00C0 A3                  273 	inc	dptr
+   00C1 A3                  274 	inc	dptr
+   00C2 E0                  275 	movx	a,@dptr
+   00C3 FC                  276 	mov	r4,a
+   00C4 A3                  277 	inc	dptr
+   00C5 E0                  278 	movx	a,@dptr
+   00C6 F9                  279 	mov	r1,a
+   00C7 EF                  280 	mov	a,r7
+   00C8 C3                  281 	clr	c
+   00C9 9C                  282 	subb	a,r4
+   00CA FF                  283 	mov	r7,a
+   00CB E8                  284 	mov	a,r0
+   00CC 99                  285 	subb	a,r1
+   00CD F8                  286 	mov	r0,a
+   00CE C3                  287 	clr	c
+   00CF EF                  288 	mov	a,r7
+   00D0 95*00               289 	subb	a,_realloc_sloc0_1_0
+   00D2 E8                  290 	mov	a,r0
+   00D3 95*01               291 	subb	a,(_realloc_sloc0_1_0 + 1)
+   00D5 40 71               292 	jc	00104$
+                            293 ;	_realloc.c:115: pnew = (MEMHEADER __xdata * )((char __xdata *)_sdcc_prev_memheader + _sdcc_prev_memheader->len);
+   00D7 EC                  294 	mov	a,r4
+   00D8 2A                  295 	add	a,r2
+   00D9 FC                  296 	mov	r4,a
+   00DA E9                  297 	mov	a,r1
+   00DB 3B                  298 	addc	a,r3
+   00DC F9                  299 	mov	r1,a
+   00DD 90s00r05            300 	mov	dptr,#_realloc_pnew_1_1
+   00E0 EC                  301 	mov	a,r4
+   00E1 F0                  302 	movx	@dptr,a
+   00E2 A3                  303 	inc	dptr
+   00E3 E9                  304 	mov	a,r1
+   00E4 F0                  305 	movx	@dptr,a
+                            306 ;	_realloc.c:116: _sdcc_prev_memheader->next = pnew;
+   00E5 8A 82               307 	mov	dpl,r2
+   00E7 8B 83               308 	mov	dph,r3
+   00E9 EC                  309 	mov	a,r4
+   00EA F0                  310 	movx	@dptr,a
+   00EB A3                  311 	inc	dptr
+   00EC E9                  312 	mov	a,r1
+   00ED F0                  313 	movx	@dptr,a
+                            314 ;	_realloc.c:122: memmove(pnew, pthis, pthis->len);
+   00EE 7A 00               315 	mov	r2,#0x00
+   00F0 8D 03               316 	mov	ar3,r5
+   00F2 8E 07               317 	mov	ar7,r6
+   00F4 8B*05               318 	mov	_realloc_sloc2_1_0,r3
+   00F6 8F*06               319 	mov	(_realloc_sloc2_1_0 + 1),r7
+   00F8 75*07 00            320 	mov	(_realloc_sloc2_1_0 + 2),#0x00
+   00FB 8D 82               321 	mov	dpl,r5
+   00FD 8E 83               322 	mov	dph,r6
+   00FF A3                  323 	inc	dptr
+   0100 A3                  324 	inc	dptr
+   0101 E0                  325 	movx	a,@dptr
+   0102 FB                  326 	mov	r3,a
+   0103 A3                  327 	inc	dptr
+   0104 E0                  328 	movx	a,@dptr
+   0105 FF                  329 	mov	r7,a
+   0106 90s00r00            330 	mov	dptr,#_memmove_PARM_2
+   0109 E5*05               331 	mov	a,_realloc_sloc2_1_0
+   010B F0                  332 	movx	@dptr,a
+   010C A3                  333 	inc	dptr
+   010D E5*06               334 	mov	a,(_realloc_sloc2_1_0 + 1)
+   010F F0                  335 	movx	@dptr,a
+   0110 A3                  336 	inc	dptr
+   0111 E5*07               337 	mov	a,(_realloc_sloc2_1_0 + 2)
+   0113 F0                  338 	movx	@dptr,a
+   0114 90s00r00            339 	mov	dptr,#_memmove_PARM_3
+   0117 EB                  340 	mov	a,r3
+   0118 F0                  341 	movx	@dptr,a
+   0119 A3                  342 	inc	dptr
+   011A EF                  343 	mov	a,r7
+   011B F0                  344 	movx	@dptr,a
+   011C 8C 82               345 	mov	dpl,r4
+   011E 89 83               346 	mov	dph,r1
+   0120 8A F0               347 	mov	b,r2
+   0122 12s00r00            348 	lcall	_memmove
+                            349 ;	_realloc.c:123: pnew->len = size;
+   0125 90s00r05            350 	mov	dptr,#_realloc_pnew_1_1
+   0128 E0                  351 	movx	a,@dptr
+   0129 FA                  352 	mov	r2,a
+   012A A3                  353 	inc	dptr
+   012B E0                  354 	movx	a,@dptr
+   012C FB                  355 	mov	r3,a
+   012D 8A 82               356 	mov	dpl,r2
+   012F 8B 83               357 	mov	dph,r3
+   0131 A3                  358 	inc	dptr
+   0132 A3                  359 	inc	dptr
+   0133 E5*00               360 	mov	a,_realloc_sloc0_1_0
+   0135 F0                  361 	movx	@dptr,a
+   0136 A3                  362 	inc	dptr
+   0137 E5*01               363 	mov	a,(_realloc_sloc0_1_0 + 1)
+   0139 F0                  364 	movx	@dptr,a
+                            365 ;	_realloc.c:124: ret = MEM(pnew);
+   013A 90s00r07            366 	mov	dptr,#_realloc_ret_1_1
+   013D 74 04               367 	mov	a,#0x04
+   013F 2A                  368 	add	a,r2
+   0140 F0                  369 	movx	@dptr,a
+   0141 E4                  370 	clr	a
+   0142 3B                  371 	addc	a,r3
+   0143 A3                  372 	inc	dptr
+   0144 F0                  373 	movx	@dptr,a
+   0145 02s01rD5            374 	ljmp	00115$
+   0148                     375 00104$:
+                            376 ;	_realloc.c:128: ret = malloc(size - HEADER_SIZE);
+   0148 E5*00               377 	mov	a,_realloc_sloc0_1_0
+   014A 24 FC               378 	add	a,#0xfc
+   014C FA                  379 	mov	r2,a
+   014D E5*01               380 	mov	a,(_realloc_sloc0_1_0 + 1)
+   014F 34 FF               381 	addc	a,#0xff
+   0151 FB                  382 	mov	r3,a
+   0152 8A 82               383 	mov	dpl,r2
+   0154 8B 83               384 	mov	dph,r3
+   0156 C0 05               385 	push	ar5
+   0158 C0 06               386 	push	ar6
+   015A 12s00r00            387 	lcall	_malloc
+   015D AA 82               388 	mov	r2,dpl
+   015F AB 83               389 	mov	r3,dph
+   0161 D0 06               390 	pop	ar6
+   0163 D0 05               391 	pop	ar5
+   0165 90s00r07            392 	mov	dptr,#_realloc_ret_1_1
+   0168 EA                  393 	mov	a,r2
+   0169 F0                  394 	movx	@dptr,a
+   016A A3                  395 	inc	dptr
+   016B EB                  396 	mov	a,r3
+   016C F0                  397 	movx	@dptr,a
+                            398 ;	_realloc.c:129: if (ret)
+   016D EA                  399 	mov	a,r2
+   016E 4B                  400 	orl	a,r3
+   016F 60 64               401 	jz	00115$
+                            402 ;	_realloc.c:131: memcpy(ret, MEM(pthis), pthis->len - HEADER_SIZE);
+   0171 7C 00               403 	mov	r4,#0x00
+   0173 74 04               404 	mov	a,#0x04
+   0175 2D                  405 	add	a,r5
+   0176 FF                  406 	mov	r7,a
+   0177 E4                  407 	clr	a
+   0178 3E                  408 	addc	a,r6
+   0179 F8                  409 	mov	r0,a
+   017A 79 00               410 	mov	r1,#0x00
+   017C 8D 82               411 	mov	dpl,r5
+   017E 8E 83               412 	mov	dph,r6
+   0180 A3                  413 	inc	dptr
+   0181 A3                  414 	inc	dptr
+   0182 E0                  415 	movx	a,@dptr
+   0183 FD                  416 	mov	r5,a
+   0184 A3                  417 	inc	dptr
+   0185 E0                  418 	movx	a,@dptr
+   0186 FE                  419 	mov	r6,a
+   0187 ED                  420 	mov	a,r5
+   0188 24 FC               421 	add	a,#0xfc
+   018A FD                  422 	mov	r5,a
+   018B EE                  423 	mov	a,r6
+   018C 34 FF               424 	addc	a,#0xff
+   018E FE                  425 	mov	r6,a
+   018F 90s00r00            426 	mov	dptr,#_memcpy_PARM_2
+   0192 EF                  427 	mov	a,r7
+   0193 F0                  428 	movx	@dptr,a
+   0194 A3                  429 	inc	dptr
+   0195 E8                  430 	mov	a,r0
+   0196 F0                  431 	movx	@dptr,a
+   0197 A3                  432 	inc	dptr
+   0198 E9                  433 	mov	a,r1
+   0199 F0                  434 	movx	@dptr,a
+   019A 90s00r00            435 	mov	dptr,#_memcpy_PARM_3
+   019D ED                  436 	mov	a,r5
+   019E F0                  437 	movx	@dptr,a
+   019F A3                  438 	inc	dptr
+   01A0 EE                  439 	mov	a,r6
+   01A1 F0                  440 	movx	@dptr,a
+   01A2 8A 82               441 	mov	dpl,r2
+   01A4 8B 83               442 	mov	dph,r3
+   01A6 8C F0               443 	mov	b,r4
+   01A8 12s00r00            444 	lcall	_memcpy
+                            445 ;	_realloc.c:132: free(p);
+   01AB 85*02 82            446 	mov	dpl,_realloc_sloc1_1_0
+   01AE 85*03 83            447 	mov	dph,(_realloc_sloc1_1_0 + 1)
+   01B1 85*04 F0            448 	mov	b,(_realloc_sloc1_1_0 + 2)
+   01B4 12s00r00            449 	lcall	_free
+   01B7 80 1C               450 	sjmp	00115$
+   01B9                     451 00114$:
+                            452 ;	_realloc.c:140: ret = malloc(size);
+   01B9 90s00r00            453 	mov	dptr,#_realloc_PARM_2
+   01BC E0                  454 	movx	a,@dptr
+   01BD FA                  455 	mov	r2,a
+   01BE A3                  456 	inc	dptr
+   01BF E0                  457 	movx	a,@dptr
+   01C0 FB                  458 	mov	r3,a
+   01C1 8A 82               459 	mov	dpl,r2
+   01C3 8B 83               460 	mov	dph,r3
+   01C5 12s00r00            461 	lcall	_malloc
+   01C8 E5 82               462 	mov	a,dpl
+   01CA 85 83 F0            463 	mov	b,dph
+   01CD 90s00r07            464 	mov	dptr,#_realloc_ret_1_1
+   01D0 F0                  465 	movx	@dptr,a
+   01D1 A3                  466 	inc	dptr
+   01D2 E5 F0               467 	mov	a,b
+   01D4 F0                  468 	movx	@dptr,a
+   01D5                     469 00115$:
+                            470 ;	_realloc.c:143: return ret;
+   01D5 90s00r07            471 	mov	dptr,#_realloc_ret_1_1
+   01D8 E0                  472 	movx	a,@dptr
+   01D9 FA                  473 	mov	r2,a
+   01DA A3                  474 	inc	dptr
+   01DB E0                  475 	movx	a,@dptr
+   01DC 8A 82               476 	mov	dpl,r2
+   01DE F5 83               477 	mov	dph,a
+   01E0 22                  478 	ret
+                            479 	.area CSEG    (CODE)
+                            480 	.area CONST   (CODE)
+                            481 	.area XINIT   (CODE)
+                            482 	.area CABS    (ABS,CODE)

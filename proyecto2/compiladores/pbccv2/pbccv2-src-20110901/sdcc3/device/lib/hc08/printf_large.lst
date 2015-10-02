@@ -1,0 +1,1524 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:22 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module printf_large
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl __print_format_PARM_4
+                             25 	.globl __print_format_PARM_3
+                             26 	.globl __print_format_PARM_2
+                             27 	.globl __print_format
+                             28 ;--------------------------------------------------------
+                             29 ;  ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG
+   0000                      32 _output_digit_c_1_1:
+   0000                      33 	.ds 1
+   0001                      34 __print_format_sloc0_1_0:
+   0001                      35 	.ds 2
+   0003                      36 __print_format_sloc1_1_0:
+   0003                      37 	.ds 1
+   0004                      38 __print_format_sloc2_1_0:
+   0004                      39 	.ds 4
+   0008                      40 __print_format_sloc3_1_0:
+   0008                      41 	.ds 4
+                             42 ;--------------------------------------------------------
+                             43 ; overlayable items in  ram 
+                             44 ;--------------------------------------------------------
+                             45 	.area	OSEG    (OVR)
+   0000                      46 _calculate_digit_ul_1_1::
+   0000                      47 	.ds 4
+   0004                      48 _calculate_digit_b4_1_1::
+   0004                      49 	.ds 1
+   0005                      50 _calculate_digit_i_1_1::
+   0005                      51 	.ds 1
+                             52 ;--------------------------------------------------------
+                             53 ; absolute external ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area XABS    (ABS)
+                             56 ;--------------------------------------------------------
+                             57 ; external initialized ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area XISEG
+                             60 ;--------------------------------------------------------
+                             61 ; extended address mode data
+                             62 ;--------------------------------------------------------
+                             63 	.area XSEG
+   0000                      64 _lower_case:
+   0000                      65 	.ds 1
+   0001                      66 _output_char:
+   0001                      67 	.ds 2
+   0003                      68 _p:
+   0003                      69 	.ds 2
+   0005                      70 _value:
+   0005                      71 	.ds 5
+   000A                      72 _charsOutputted:
+   000A                      73 	.ds 2
+   000C                      74 __output_char_c_1_1:
+   000C                      75 	.ds 1
+   000D                      76 _output_2digits_b_1_1:
+   000D                      77 	.ds 1
+   000E                      78 _calculate_digit_radix_1_1:
+   000E                      79 	.ds 1
+   000F                      80 __print_format_PARM_2:
+   000F                      81 	.ds 2
+   0011                      82 __print_format_PARM_3:
+   0011                      83 	.ds 2
+   0013                      84 __print_format_PARM_4:
+   0013                      85 	.ds 2
+   0015                      86 __print_format_left_justify_1_1:
+   0015                      87 	.ds 1
+   0016                      88 __print_format_zero_padding_1_1:
+   0016                      89 	.ds 1
+   0017                      90 __print_format_prefix_sign_1_1:
+   0017                      91 	.ds 1
+   0018                      92 __print_format_prefix_space_1_1:
+   0018                      93 	.ds 1
+   0019                      94 __print_format_signed_argument_1_1:
+   0019                      95 	.ds 1
+   001A                      96 __print_format_char_argument_1_1:
+   001A                      97 	.ds 1
+   001B                      98 __print_format_long_argument_1_1:
+   001B                      99 	.ds 1
+   001C                     100 __print_format_float_argument_1_1:
+   001C                     101 	.ds 1
+   001D                     102 __print_format_lsd_1_1:
+   001D                     103 	.ds 1
+   001E                     104 __print_format_radix_1_1:
+   001E                     105 	.ds 1
+   001F                     106 __print_format_width_1_1:
+   001F                     107 	.ds 1
+   0020                     108 __print_format_decimals_1_1:
+   0020                     109 	.ds 1
+   0021                     110 __print_format_length_1_1:
+   0021                     111 	.ds 1
+   0022                     112 __print_format_c_1_1:
+   0022                     113 	.ds 1
+   0023                     114 __print_format_store_4_20:
+   0023                     115 	.ds 6
+   0029                     116 __print_format_pstore_4_20:
+   0029                     117 	.ds 2
+                            118 ;--------------------------------------------------------
+                            119 ; global & static initialisations
+                            120 ;--------------------------------------------------------
+                            121 	.area HOME (CODE)
+                            122 	.area GSINIT (CODE)
+                            123 	.area GSFINAL (CODE)
+                            124 	.area GSINIT (CODE)
+                            125 ;--------------------------------------------------------
+                            126 ; Home
+                            127 ;--------------------------------------------------------
+                            128 	.area HOME (CODE)
+                            129 	.area HOME (CODE)
+                            130 ;--------------------------------------------------------
+                            131 ; code
+                            132 ;--------------------------------------------------------
+                            133 	.area CSEG (CODE)
+                            134 ;------------------------------------------------------------
+                            135 ;Allocation info for local variables in function '_output_char'
+                            136 ;------------------------------------------------------------
+                            137 ;c                         Allocated with name '__output_char_c_1_1'
+                            138 ;------------------------------------------------------------
+                            139 ;../printf_large.c:105: _output_char (unsigned char c)
+                            140 ;	-----------------------------------------
+                            141 ;	 function _output_char
+                            142 ;	-----------------------------------------
+   0000                     143 __output_char:
+   0000 C7s00r0C            144 	sta	__output_char_c_1_1
+                            145 ;../printf_large.c:107: output_char( c, p );
+   0003 C6s00r04            146 	lda	(_p + 1)
+   0006 87                  147 	psha
+   0007 C6s00r03            148 	lda	_p
+   000A 87                  149 	psha
+   000B AD 02               150 	bsr	00104$
+   000D 20 0C               151 	bra	00103$
+   000F                     152 00104$:
+   000F C6s00r02            153 	lda	(_output_char + 1)
+   0012 87                  154 	psha
+   0013 C6s00r01            155 	lda	_output_char
+   0016 87                  156 	psha
+   0017 C6s00r0C            157 	lda	__output_char_c_1_1
+   001A 81                  158 	rts
+   001B                     159 00103$:
+   001B A7 02               160 	ais	#2
+                            161 ;../printf_large.c:108: charsOutputted++;
+   001D C6s00r0B            162 	lda	(_charsOutputted + 1)
+   0020 4C                  163 	inca
+   0021 C7s00r0B            164 	sta	(_charsOutputted + 1)
+   0024 26 07               165 	bne	00105$
+   0026 C6s00r0A            166 	lda	_charsOutputted
+   0029 4C                  167 	inca
+   002A C7s00r0A            168 	sta	_charsOutputted
+   002D                     169 00105$:
+   002D                     170 00101$:
+   002D 81                  171 	rts
+                            172 ;------------------------------------------------------------
+                            173 ;Allocation info for local variables in function 'output_digit'
+                            174 ;------------------------------------------------------------
+                            175 ;c                         Allocated with name '_output_digit_c_1_1'
+                            176 ;n                         Allocated to registers 
+                            177 ;------------------------------------------------------------
+                            178 ;../printf_large.c:130: output_digit (unsigned char n)
+                            179 ;	-----------------------------------------
+                            180 ;	 function output_digit
+                            181 ;	-----------------------------------------
+   002E                     182 _output_digit:
+                            183 ;../printf_large.c:132: register unsigned char c = n + (unsigned char)'0';
+   002E AB 30               184 	add	#0x30
+   0030 B7*00               185 	sta	*_output_digit_c_1_1
+                            186 ;../printf_large.c:134: if (c > (unsigned char)'9')
+   0032 B6*00               187 	lda	*_output_digit_c_1_1
+   0034 A1 39               188 	cmp	#0x39
+   0036 23 0D               189 	bls	00104$
+   0038                     190 00109$:
+                            191 ;../printf_large.c:136: c += (unsigned char)('A' - '0' - 10);
+   0038 B6*00               192 	lda	*_output_digit_c_1_1
+   003A AB 07               193 	add	#0x07
+   003C B7*00               194 	sta	*_output_digit_c_1_1
+                            195 ;../printf_large.c:137: if (lower_case)
+   003E C6s00r00            196 	lda	_lower_case
+   0041 27 02               197 	beq	00104$
+   0043                     198 00110$:
+                            199 ;../printf_large.c:138: c = tolower(c);
+   0043 1A*00               200 	bset	#5,*_output_digit_c_1_1
+   0045                     201 00104$:
+                            202 ;../printf_large.c:140: _output_char( c );
+   0045 B6*00               203 	lda	*_output_digit_c_1_1
+   0047 CDs00r00            204 	jsr	__output_char
+   004A                     205 00105$:
+   004A 81                  206 	rts
+                            207 ;------------------------------------------------------------
+                            208 ;Allocation info for local variables in function 'output_2digits'
+                            209 ;------------------------------------------------------------
+                            210 ;b                         Allocated with name '_output_2digits_b_1_1'
+                            211 ;------------------------------------------------------------
+                            212 ;../printf_large.c:157: output_2digits (unsigned char b)
+                            213 ;	-----------------------------------------
+                            214 ;	 function output_2digits
+                            215 ;	-----------------------------------------
+   004B                     216 _output_2digits:
+   004B C7s00r0D            217 	sta	_output_2digits_b_1_1
+                            218 ;../printf_large.c:159: output_digit( b>>4   );
+   004E C6s00r0D            219 	lda	_output_2digits_b_1_1
+   0051 62                  220 	nsa	
+   0052 A4 0F               221 	and	#0x0f
+   0054 CDs00r2E            222 	jsr	_output_digit
+                            223 ;../printf_large.c:160: output_digit( b&0x0F );
+   0057 C6s00r0D            224 	lda	_output_2digits_b_1_1
+   005A A4 0F               225 	and	#0x0F
+   005C CDs00r2E            226 	jsr	_output_digit
+   005F                     227 00101$:
+   005F 81                  228 	rts
+                            229 ;------------------------------------------------------------
+                            230 ;Allocation info for local variables in function 'calculate_digit'
+                            231 ;------------------------------------------------------------
+                            232 ;radix                     Allocated with name '_calculate_digit_radix_1_1'
+                            233 ;ul                        Allocated with name '_calculate_digit_ul_1_1'
+                            234 ;b4                        Allocated with name '_calculate_digit_b4_1_1'
+                            235 ;i                         Allocated with name '_calculate_digit_i_1_1'
+                            236 ;------------------------------------------------------------
+                            237 ;../printf_large.c:189: calculate_digit (unsigned char radix)
+                            238 ;	-----------------------------------------
+                            239 ;	 function calculate_digit
+                            240 ;	-----------------------------------------
+   0060                     241 _calculate_digit:
+   0060 C7s00r0E            242 	sta	_calculate_digit_radix_1_1
+                            243 ;../printf_large.c:191: register unsigned long ul = value.ul;
+   0063 C6s00r05            244 	lda	_value
+   0066 B7*00               245 	sta	*_calculate_digit_ul_1_1
+   0068 C6s00r06            246 	lda	(_value + 1)
+   006B B7*01               247 	sta	*(_calculate_digit_ul_1_1 + 1)
+   006D C6s00r07            248 	lda	(_value + 2)
+   0070 B7*02               249 	sta	*(_calculate_digit_ul_1_1 + 2)
+   0072 C6s00r08            250 	lda	(_value + 3)
+   0075 B7*03               251 	sta	*(_calculate_digit_ul_1_1 + 3)
+                            252 ;../printf_large.c:192: register unsigned char b4 = value.byte[4];
+   0077 C6s00r09            253 	lda	(_value + 0x0004)
+   007A B7*04               254 	sta	*_calculate_digit_b4_1_1
+                            255 ;../printf_large.c:195: do
+   007C 6E 20*05            256 	mov	#0x20,*_calculate_digit_i_1_1
+   007F                     257 00103$:
+                            258 ;../printf_large.c:197: b4 = (b4 << 1);
+   007F B6*04               259 	lda	*_calculate_digit_b4_1_1
+   0081 48                  260 	lsla	
+   0082 B7*04               261 	sta	*_calculate_digit_b4_1_1
+                            262 ;../printf_large.c:198: b4 |= (ul >> 31) & 0x01;
+   0084 B6*00               263 	lda	*_calculate_digit_ul_1_1
+   0086 49                  264 	rola
+   0087 4F                  265 	clra
+   0088 49                  266 	rola
+   0089 BA*04               267 	ora	*_calculate_digit_b4_1_1
+   008B B7*04               268 	sta	*_calculate_digit_b4_1_1
+                            269 ;../printf_large.c:199: ul <<= 1;
+   008D B6*03               270 	lda	*(_calculate_digit_ul_1_1 + 3)
+   008F BE*02               271 	ldx	*(_calculate_digit_ul_1_1 + 2)
+   0091 48                  272 	lsla
+   0092 59                  273 	rolx
+   0093 B7*03               274 	sta	*(_calculate_digit_ul_1_1 + 3)
+   0095 BF*02               275 	stx	*(_calculate_digit_ul_1_1 + 2)
+   0097 B6*01               276 	lda	*(_calculate_digit_ul_1_1 + 1)
+   0099 BE*00               277 	ldx	*_calculate_digit_ul_1_1
+   009B 49                  278 	rola
+   009C 59                  279 	rolx
+   009D B7*01               280 	sta	*(_calculate_digit_ul_1_1 + 1)
+   009F BF*00               281 	stx	*_calculate_digit_ul_1_1
+                            282 ;../printf_large.c:201: if (radix <= b4 )
+   00A1 C6s00r0E            283 	lda	_calculate_digit_radix_1_1
+   00A4 B1*04               284 	cmp	*_calculate_digit_b4_1_1
+   00A6 22 09               285 	bhi	00104$
+   00A8                     286 00112$:
+                            287 ;../printf_large.c:203: b4 -= radix;
+   00A8 B6*04               288 	lda	*_calculate_digit_b4_1_1
+   00AA C0s00r0E            289 	sub	_calculate_digit_radix_1_1
+   00AD B7*04               290 	sta	*_calculate_digit_b4_1_1
+                            291 ;../printf_large.c:204: ul |= 1;
+   00AF 10*03               292 	bset	#0,*(_calculate_digit_ul_1_1 + 3)
+   00B1                     293 00104$:
+                            294 ;../printf_large.c:206: } while (--i);
+   00B1 3B*05 02            295 	dbnz	*_calculate_digit_i_1_1,00113$
+   00B4 20 02               296 	bra	00114$
+   00B6                     297 00113$:
+   00B6 20 C7               298 	bra	00103$
+   00B8                     299 00114$:
+                            300 ;../printf_large.c:207: value.ul = ul;
+   00B8 B6*00               301 	lda	*_calculate_digit_ul_1_1
+   00BA C7s00r05            302 	sta	_value
+   00BD B6*01               303 	lda	*(_calculate_digit_ul_1_1 + 1)
+   00BF C7s00r06            304 	sta	(_value + 1)
+   00C2 B6*02               305 	lda	*(_calculate_digit_ul_1_1 + 2)
+   00C4 C7s00r07            306 	sta	(_value + 2)
+   00C7 B6*03               307 	lda	*(_calculate_digit_ul_1_1 + 3)
+   00C9 C7s00r08            308 	sta	(_value + 3)
+                            309 ;../printf_large.c:208: value.byte[4] = b4;
+   00CC B6*04               310 	lda	*_calculate_digit_b4_1_1
+   00CE C7s00r09            311 	sta	(_value + 0x0004)
+   00D1                     312 00106$:
+   00D1 81                  313 	rts
+                            314 ;------------------------------------------------------------
+                            315 ;Allocation info for local variables in function '_print_format'
+                            316 ;------------------------------------------------------------
+                            317 ;sloc0                     Allocated with name '__print_format_sloc0_1_0'
+                            318 ;sloc1                     Allocated with name '__print_format_sloc1_1_0'
+                            319 ;sloc2                     Allocated with name '__print_format_sloc2_1_0'
+                            320 ;sloc3                     Allocated with name '__print_format_sloc3_1_0'
+                            321 ;pvoid                     Allocated with name '__print_format_PARM_2'
+                            322 ;format                    Allocated with name '__print_format_PARM_3'
+                            323 ;ap                        Allocated with name '__print_format_PARM_4'
+                            324 ;pfn                       Allocated to registers 
+                            325 ;left_justify              Allocated with name '__print_format_left_justify_1_1'
+                            326 ;zero_padding              Allocated with name '__print_format_zero_padding_1_1'
+                            327 ;prefix_sign               Allocated with name '__print_format_prefix_sign_1_1'
+                            328 ;prefix_space              Allocated with name '__print_format_prefix_space_1_1'
+                            329 ;signed_argument           Allocated with name '__print_format_signed_argument_1_1'
+                            330 ;char_argument             Allocated with name '__print_format_char_argument_1_1'
+                            331 ;long_argument             Allocated with name '__print_format_long_argument_1_1'
+                            332 ;float_argument            Allocated with name '__print_format_float_argument_1_1'
+                            333 ;lsd                       Allocated with name '__print_format_lsd_1_1'
+                            334 ;radix                     Allocated with name '__print_format_radix_1_1'
+                            335 ;width                     Allocated with name '__print_format_width_1_1'
+                            336 ;decimals                  Allocated with name '__print_format_decimals_1_1'
+                            337 ;length                    Allocated with name '__print_format_length_1_1'
+                            338 ;c                         Allocated with name '__print_format_c_1_1'
+                            339 ;store                     Allocated with name '__print_format_store_4_20'
+                            340 ;pstore                    Allocated with name '__print_format_pstore_4_20'
+                            341 ;------------------------------------------------------------
+                            342 ;../printf_large.c:414: _print_format (pfn_outputchar pfn, void* pvoid, const char *format, va_list ap)
+                            343 ;	-----------------------------------------
+                            344 ;	 function _print_format
+                            345 ;	-----------------------------------------
+   00D2                     346 __print_format:
+   00D2 C7s00r02            347 	sta	(_output_char + 1)
+   00D5 CFs00r01            348 	stx	_output_char
+                            349 ;../printf_large.c:442: p = pvoid;
+   00D8 C6s00r0F            350 	lda	__print_format_PARM_2
+   00DB C7s00r03            351 	sta	_p
+   00DE C6s00r10            352 	lda	(__print_format_PARM_2 + 1)
+   00E1 C7s00r04            353 	sta	(_p + 1)
+                            354 ;../printf_large.c:446: charsOutputted = 0;
+   00E4 4F                  355 	clra
+   00E5 C7s00r0A            356 	sta	_charsOutputted
+   00E8 C7s00r0B            357 	sta	(_charsOutputted + 1)
+                            358 ;../printf_large.c:454: while( c=*format++ )
+   00EB                     359 00227$:
+   00EB C6s00r11            360 	lda	__print_format_PARM_3
+   00EE B7*01               361 	sta	*__print_format_sloc0_1_0
+   00F0 C6s00r12            362 	lda	(__print_format_PARM_3 + 1)
+   00F3 B7*02               363 	sta	*(__print_format_sloc0_1_0 + 1)
+   00F5 55*01               364 	ldhx	*__print_format_sloc0_1_0
+   00F7 F6                  365 	lda	,x
+   00F8 B7*03               366 	sta	*__print_format_sloc1_1_0
+   00FA B6*02               367 	lda	*(__print_format_sloc0_1_0 + 1)
+   00FC AB 01               368 	add	#0x01
+   00FE C7s00r12            369 	sta	(__print_format_PARM_3 + 1)
+   0101 B6*01               370 	lda	*__print_format_sloc0_1_0
+   0103 A9 00               371 	adc	#0x00
+   0105 C7s00r11            372 	sta	__print_format_PARM_3
+   0108 B6*03               373 	lda	*__print_format_sloc1_1_0
+   010A C7s00r22            374 	sta	__print_format_c_1_1
+   010D 3D*03               375 	tst	*__print_format_sloc1_1_0
+   010F 26 03               376 	bne	00311$
+   0111 CCs08rCC            377 	jmp	00229$
+   0114                     378 00311$:
+                            379 ;../printf_large.c:456: if ( c=='%' )
+   0114 C6s00r22            380 	lda	__print_format_c_1_1
+   0117 A1 25               381 	cmp	#0x25
+   0119 27 03               382 	beq	00312$
+   011B CCs08rC3            383 	jmp	00225$
+   011E                     384 00312$:
+                            385 ;../printf_large.c:458: left_justify    = 0;
+                            386 ;../printf_large.c:459: zero_padding    = 0;
+                            387 ;../printf_large.c:460: prefix_sign     = 0;
+                            388 ;../printf_large.c:461: prefix_space    = 0;
+   011E 4F                  389 	clra
+   011F C7s00r15            390 	sta	__print_format_left_justify_1_1
+   0122 C7s00r16            391 	sta	__print_format_zero_padding_1_1
+   0125 C7s00r17            392 	sta	__print_format_prefix_sign_1_1
+   0128 C7s00r18            393 	sta	__print_format_prefix_space_1_1
+                            394 ;../printf_large.c:462: signed_argument = 0;
+                            395 ;../printf_large.c:463: char_argument   = 0;
+                            396 ;../printf_large.c:464: long_argument   = 0;
+                            397 ;../printf_large.c:465: float_argument  = 0;
+   012B 4F                  398 	clra
+   012C C7s00r19            399 	sta	__print_format_signed_argument_1_1
+   012F C7s00r1A            400 	sta	__print_format_char_argument_1_1
+   0132 C7s00r1B            401 	sta	__print_format_long_argument_1_1
+   0135 C7s00r1C            402 	sta	__print_format_float_argument_1_1
+                            403 ;../printf_large.c:466: radix           = 0;
+                            404 ;../printf_large.c:467: width           = 0;
+   0138 4F                  405 	clra
+   0139 C7s00r1E            406 	sta	__print_format_radix_1_1
+   013C C7s00r1F            407 	sta	__print_format_width_1_1
+                            408 ;../printf_large.c:468: decimals        = -1;
+   013F A6 FF               409 	lda	#0xFF
+   0141 C7s00r20            410 	sta	__print_format_decimals_1_1
+                            411 ;../printf_large.c:470: get_conversion_spec:
+   0144 C6s00r11            412 	lda	__print_format_PARM_3
+   0147 B7*01               413 	sta	*__print_format_sloc0_1_0
+   0149 C6s00r12            414 	lda	(__print_format_PARM_3 + 1)
+   014C B7*02               415 	sta	*(__print_format_sloc0_1_0 + 1)
+   014E                     416 00101$:
+                            417 ;../printf_large.c:472: c = *format++;
+   014E 55*01               418 	ldhx	*__print_format_sloc0_1_0
+   0150 F6                  419 	lda	,x
+   0151 AF 01               420 	aix	#1
+   0153 C7s00r22            421 	sta	__print_format_c_1_1
+   0156 35*01               422 	sthx	*__print_format_sloc0_1_0
+   0158 B6*01               423 	lda	*__print_format_sloc0_1_0
+   015A C7s00r11            424 	sta	__print_format_PARM_3
+   015D B6*02               425 	lda	*(__print_format_sloc0_1_0 + 1)
+   015F C7s00r12            426 	sta	(__print_format_PARM_3 + 1)
+                            427 ;../printf_large.c:474: if (c=='%') {
+   0162 C6s00r22            428 	lda	__print_format_c_1_1
+   0165 A1 25               429 	cmp	#0x25
+   0167 26 09               430 	bne	00103$
+   0169                     431 00313$:
+                            432 ;../printf_large.c:475: OUTPUT_CHAR(c, p);
+   0169 C6s00r22            433 	lda	__print_format_c_1_1
+   016C CDs00r00            434 	jsr	__output_char
+                            435 ;../printf_large.c:476: continue;
+   016F CCs00rEB            436 	jmp	00227$
+   0172                     437 00103$:
+                            438 ;../printf_large.c:479: if (isdigit(c)) {
+   0172 C6s00r22            439 	lda	__print_format_c_1_1
+   0175 A1 30               440 	cmp	#0x30
+   0177 25 38               441 	bcs	00110$
+   0179                     442 00314$:
+   0179 C6s00r22            443 	lda	__print_format_c_1_1
+   017C A1 39               444 	cmp	#0x39
+   017E 22 31               445 	bhi	00110$
+   0180                     446 00315$:
+                            447 ;../printf_large.c:480: if (decimals==-1) {
+   0180 C6s00r20            448 	lda	__print_format_decimals_1_1
+   0183 A1 FF               449 	cmp	#0xFF
+   0185 26 1A               450 	bne	00107$
+   0187                     451 00316$:
+                            452 ;../printf_large.c:481: width = 10*width + c - '0';
+   0187 C6s00r1F            453 	lda	__print_format_width_1_1
+   018A AE 0A               454 	ldx	#0x0A
+   018C 42                  455 	mul
+   018D CBs00r22            456 	add	__print_format_c_1_1
+   0190 A0 30               457 	sub	#0x30
+   0192 C7s00r1F            458 	sta	__print_format_width_1_1
+                            459 ;../printf_large.c:482: if (width == 0) {
+   0195 C6s00r1F            460 	lda	__print_format_width_1_1
+   0198 26 B4               461 	bne	00101$
+   019A                     462 00317$:
+                            463 ;../printf_large.c:484: zero_padding = 1;
+   019A A6 01               464 	lda	#0x01
+   019C C7s00r16            465 	sta	__print_format_zero_padding_1_1
+   019F 20 AD               466 	bra	00101$
+   01A1                     467 00107$:
+                            468 ;../printf_large.c:487: decimals = 10*decimals + c - '0';
+   01A1 C6s00r20            469 	lda	__print_format_decimals_1_1
+   01A4 AE 0A               470 	ldx	#0x0A
+   01A6 42                  471 	mul
+   01A7 CBs00r22            472 	add	__print_format_c_1_1
+   01AA A0 30               473 	sub	#0x30
+   01AC C7s00r20            474 	sta	__print_format_decimals_1_1
+                            475 ;../printf_large.c:489: goto get_conversion_spec;
+   01AF 20 9D               476 	bra	00101$
+   01B1                     477 00110$:
+                            478 ;../printf_large.c:492: if (c=='.') {
+   01B1 C6s00r22            479 	lda	__print_format_c_1_1
+   01B4 A1 2E               480 	cmp	#0x2E
+   01B6 26 11               481 	bne	00115$
+   01B8                     482 00318$:
+                            483 ;../printf_large.c:493: if (decimals==-1) decimals=0;
+   01B8 C6s00r20            484 	lda	__print_format_decimals_1_1
+   01BB A1 FF               485 	cmp	#0xFF
+   01BD 27 03               486 	beq	00319$
+   01BF CCs01r4E            487 	jmp	00101$
+   01C2                     488 00319$:
+   01C2 4F                  489 	clra
+   01C3 C7s00r20            490 	sta	__print_format_decimals_1_1
+                            491 ;../printf_large.c:496: goto get_conversion_spec;
+   01C6 CCs01r4E            492 	jmp	00101$
+   01C9                     493 00115$:
+                            494 ;../printf_large.c:499: if (islower(c))
+   01C9 C6s00r22            495 	lda	__print_format_c_1_1
+   01CC A1 61               496 	cmp	#0x61
+   01CE 25 16               497 	bcs	00117$
+   01D0                     498 00320$:
+   01D0 C6s00r22            499 	lda	__print_format_c_1_1
+   01D3 A1 7A               500 	cmp	#0x7A
+   01D5 22 0F               501 	bhi	00117$
+   01D7                     502 00321$:
+                            503 ;../printf_large.c:501: c = toupper(c);
+   01D7 C6s00r22            504 	lda	__print_format_c_1_1
+   01DA A4 DF               505 	and	#0xDF
+   01DC C7s00r22            506 	sta	__print_format_c_1_1
+                            507 ;../printf_large.c:502: lower_case = 1;
+   01DF A6 01               508 	lda	#0x01
+   01E1 C7s00r00            509 	sta	_lower_case
+   01E4 20 04               510 	bra	00118$
+   01E6                     511 00117$:
+                            512 ;../printf_large.c:505: lower_case = 0;
+   01E6 4F                  513 	clra
+   01E7 C7s00r00            514 	sta	_lower_case
+   01EA                     515 00118$:
+                            516 ;../printf_large.c:507: switch( c )
+   01EA C6s00r22            517 	lda	__print_format_c_1_1
+   01ED A1 20               518 	cmp	#0x20
+   01EF 26 03               519 	bne	00322$
+   01F1 CCs02r86            520 	jmp	00122$
+   01F4                     521 00322$:
+   01F4 C6s00r22            522 	lda	__print_format_c_1_1
+   01F7 A1 2B               523 	cmp	#0x2B
+   01F9 26 03               524 	bne	00323$
+   01FB CCs02r7E            525 	jmp	00121$
+   01FE                     526 00323$:
+   01FE C6s00r22            527 	lda	__print_format_c_1_1
+   0201 A1 2D               528 	cmp	#0x2D
+   0203 26 03               529 	bne	00324$
+   0205 CCs02r76            530 	jmp	00120$
+   0208                     531 00324$:
+   0208 C6s00r22            532 	lda	__print_format_c_1_1
+   020B A1 42               533 	cmp	#0x42
+   020D 26 03               534 	bne	00325$
+   020F CCs02r8E            535 	jmp	00123$
+   0212                     536 00325$:
+   0212 C6s00r22            537 	lda	__print_format_c_1_1
+   0215 A1 43               538 	cmp	#0x43
+   0217 26 03               539 	bne	00326$
+   0219 CCs02r9E            540 	jmp	00125$
+   021C                     541 00326$:
+   021C C6s00r22            542 	lda	__print_format_c_1_1
+   021F A1 44               543 	cmp	#0x44
+   0221 26 03               544 	bne	00327$
+   0223 CCs04r72            545 	jmp	00150$
+   0226                     546 00327$:
+   0226 C6s00r22            547 	lda	__print_format_c_1_1
+   0229 A1 46               548 	cmp	#0x46
+   022B 26 03               549 	bne	00328$
+   022D CCs04r93            550 	jmp	00154$
+   0230                     551 00328$:
+   0230 C6s00r22            552 	lda	__print_format_c_1_1
+   0233 A1 49               553 	cmp	#0x49
+   0235 26 03               554 	bne	00329$
+   0237 CCs04r72            555 	jmp	00150$
+   023A                     556 00329$:
+   023A C6s00r22            557 	lda	__print_format_c_1_1
+   023D A1 4C               558 	cmp	#0x4C
+   023F 27 55               559 	beq	00124$
+   0241                     560 00330$:
+   0241 C6s00r22            561 	lda	__print_format_c_1_1
+   0244 A1 4F               562 	cmp	#0x4F
+   0246 26 03               563 	bne	00331$
+   0248 CCs04r7E            564 	jmp	00151$
+   024B                     565 00331$:
+   024B C6s00r22            566 	lda	__print_format_c_1_1
+   024E A1 50               567 	cmp	#0x50
+   0250 26 03               568 	bne	00332$
+   0252 CCs04r22            569 	jmp	00148$
+   0255                     570 00332$:
+   0255 C6s00r22            571 	lda	__print_format_c_1_1
+   0258 A1 53               572 	cmp	#0x53
+   025A 26 03               573 	bne	00333$
+   025C CCs03r0B            574 	jmp	00129$
+   025F                     575 00333$:
+   025F C6s00r22            576 	lda	__print_format_c_1_1
+   0262 A1 55               577 	cmp	#0x55
+   0264 26 03               578 	bne	00334$
+   0266 CCs04r85            579 	jmp	00152$
+   0269                     580 00334$:
+   0269 C6s00r22            581 	lda	__print_format_c_1_1
+   026C A1 58               582 	cmp	#0x58
+   026E 26 03               583 	bne	00335$
+   0270 CCs04r8C            584 	jmp	00153$
+   0273                     585 00335$:
+   0273 CCs04r9A            586 	jmp	00155$
+                            587 ;../printf_large.c:509: case '-':
+   0276                     588 00120$:
+                            589 ;../printf_large.c:510: left_justify = 1;
+   0276 A6 01               590 	lda	#0x01
+   0278 C7s00r15            591 	sta	__print_format_left_justify_1_1
+                            592 ;../printf_large.c:511: goto get_conversion_spec;
+   027B CCs01r4E            593 	jmp	00101$
+                            594 ;../printf_large.c:512: case '+':
+   027E                     595 00121$:
+                            596 ;../printf_large.c:513: prefix_sign = 1;
+   027E A6 01               597 	lda	#0x01
+   0280 C7s00r17            598 	sta	__print_format_prefix_sign_1_1
+                            599 ;../printf_large.c:514: goto get_conversion_spec;
+   0283 CCs01r4E            600 	jmp	00101$
+                            601 ;../printf_large.c:515: case ' ':
+   0286                     602 00122$:
+                            603 ;../printf_large.c:516: prefix_space = 1;
+   0286 A6 01               604 	lda	#0x01
+   0288 C7s00r18            605 	sta	__print_format_prefix_space_1_1
+                            606 ;../printf_large.c:517: goto get_conversion_spec;
+   028B CCs01r4E            607 	jmp	00101$
+                            608 ;../printf_large.c:518: case 'B':
+   028E                     609 00123$:
+                            610 ;../printf_large.c:519: char_argument = 1;
+   028E A6 01               611 	lda	#0x01
+   0290 C7s00r1A            612 	sta	__print_format_char_argument_1_1
+                            613 ;../printf_large.c:520: goto get_conversion_spec;
+   0293 CCs01r4E            614 	jmp	00101$
+                            615 ;../printf_large.c:521: case 'L':
+   0296                     616 00124$:
+                            617 ;../printf_large.c:522: long_argument = 1;
+   0296 A6 01               618 	lda	#0x01
+   0298 C7s00r1B            619 	sta	__print_format_long_argument_1_1
+                            620 ;../printf_large.c:523: goto get_conversion_spec;
+   029B CCs01r4E            621 	jmp	00101$
+                            622 ;../printf_large.c:525: case 'C':
+   029E                     623 00125$:
+                            624 ;../printf_large.c:526: if( char_argument )
+   029E C6s00r1A            625 	lda	__print_format_char_argument_1_1
+   02A1 27 2C               626 	beq	00127$
+   02A3                     627 00336$:
+                            628 ;../printf_large.c:527: c = va_arg(ap,char);
+   02A3 C6s00r14            629 	lda	(__print_format_PARM_4 + 1)
+   02A6 AB 01               630 	add	#0x01
+   02A8 B7*02               631 	sta	*(__print_format_sloc0_1_0 + 1)
+   02AA C6s00r13            632 	lda	__print_format_PARM_4
+   02AD A9 00               633 	adc	#0x00
+   02AF B7*01               634 	sta	*__print_format_sloc0_1_0
+   02B1 B6*01               635 	lda	*__print_format_sloc0_1_0
+   02B3 C7s00r13            636 	sta	__print_format_PARM_4
+   02B6 B6*02               637 	lda	*(__print_format_sloc0_1_0 + 1)
+   02B8 C7s00r14            638 	sta	(__print_format_PARM_4 + 1)
+   02BB B6*02               639 	lda	*(__print_format_sloc0_1_0 + 1)
+   02BD A0 01               640 	sub	#0x01
+   02BF B7*02               641 	sta	*(__print_format_sloc0_1_0 + 1)
+   02C1 B6*01               642 	lda	*__print_format_sloc0_1_0
+   02C3 A2 00               643 	sbc	#0x00
+   02C5 B7*01               644 	sta	*__print_format_sloc0_1_0
+   02C7 55*01               645 	ldhx	*__print_format_sloc0_1_0
+   02C9 F6                  646 	lda	,x
+   02CA C7s00r22            647 	sta	__print_format_c_1_1
+   02CD 20 33               648 	bra	00128$
+   02CF                     649 00127$:
+                            650 ;../printf_large.c:529: c = va_arg(ap,int);
+   02CF C6s00r14            651 	lda	(__print_format_PARM_4 + 1)
+   02D2 AB 02               652 	add	#0x02
+   02D4 B7*02               653 	sta	*(__print_format_sloc0_1_0 + 1)
+   02D6 C6s00r13            654 	lda	__print_format_PARM_4
+   02D9 A9 00               655 	adc	#0x00
+   02DB B7*01               656 	sta	*__print_format_sloc0_1_0
+   02DD B6*01               657 	lda	*__print_format_sloc0_1_0
+   02DF C7s00r13            658 	sta	__print_format_PARM_4
+   02E2 B6*02               659 	lda	*(__print_format_sloc0_1_0 + 1)
+   02E4 C7s00r14            660 	sta	(__print_format_PARM_4 + 1)
+   02E7 B6*02               661 	lda	*(__print_format_sloc0_1_0 + 1)
+   02E9 A0 02               662 	sub	#0x02
+   02EB B7*02               663 	sta	*(__print_format_sloc0_1_0 + 1)
+   02ED B6*01               664 	lda	*__print_format_sloc0_1_0
+   02EF A2 00               665 	sbc	#0x00
+   02F1 B7*01               666 	sta	*__print_format_sloc0_1_0
+   02F3 55*01               667 	ldhx	*__print_format_sloc0_1_0
+   02F5 F6                  668 	lda	,x
+   02F6 AF 01               669 	aix	#1
+   02F8 B7*01               670 	sta	*__print_format_sloc0_1_0
+   02FA F6                  671 	lda	,x
+   02FB B7*02               672 	sta	*(__print_format_sloc0_1_0 + 1)
+   02FD B6*02               673 	lda	*(__print_format_sloc0_1_0 + 1)
+   02FF C7s00r22            674 	sta	__print_format_c_1_1
+   0302                     675 00128$:
+                            676 ;../printf_large.c:530: OUTPUT_CHAR( c, p );
+   0302 C6s00r22            677 	lda	__print_format_c_1_1
+   0305 CDs00r00            678 	jsr	__output_char
+                            679 ;../printf_large.c:531: break;
+   0308 CCs04rA7            680 	jmp	00156$
+                            681 ;../printf_large.c:533: case 'S':
+   030B                     682 00129$:
+                            683 ;../printf_large.c:534: PTR = va_arg(ap,ptr_t);
+   030B C6s00r14            684 	lda	(__print_format_PARM_4 + 1)
+   030E AB 02               685 	add	#0x02
+   0310 B7*02               686 	sta	*(__print_format_sloc0_1_0 + 1)
+   0312 C6s00r13            687 	lda	__print_format_PARM_4
+   0315 A9 00               688 	adc	#0x00
+   0317 B7*01               689 	sta	*__print_format_sloc0_1_0
+   0319 B6*01               690 	lda	*__print_format_sloc0_1_0
+   031B C7s00r13            691 	sta	__print_format_PARM_4
+   031E B6*02               692 	lda	*(__print_format_sloc0_1_0 + 1)
+   0320 C7s00r14            693 	sta	(__print_format_PARM_4 + 1)
+   0323 B6*02               694 	lda	*(__print_format_sloc0_1_0 + 1)
+   0325 A0 02               695 	sub	#0x02
+   0327 B7*02               696 	sta	*(__print_format_sloc0_1_0 + 1)
+   0329 B6*01               697 	lda	*__print_format_sloc0_1_0
+   032B A2 00               698 	sbc	#0x00
+   032D B7*01               699 	sta	*__print_format_sloc0_1_0
+   032F 55*01               700 	ldhx	*__print_format_sloc0_1_0
+   0331 F6                  701 	lda	,x
+   0332 AF 01               702 	aix	#1
+   0334 B7*01               703 	sta	*__print_format_sloc0_1_0
+   0336 F6                  704 	lda	,x
+   0337 B7*02               705 	sta	*(__print_format_sloc0_1_0 + 1)
+   0339 B6*01               706 	lda	*__print_format_sloc0_1_0
+   033B C7s00r05            707 	sta	_value
+   033E B6*02               708 	lda	*(__print_format_sloc0_1_0 + 1)
+   0340 C7s00r06            709 	sta	(_value + 1)
+                            710 ;../printf_large.c:544: length = strlen(PTR);
+   0343 C6s00r05            711 	lda	_value
+   0346 B7*01               712 	sta	*__print_format_sloc0_1_0
+   0348 C6s00r06            713 	lda	(_value + 1)
+   034B B7*02               714 	sta	*(__print_format_sloc0_1_0 + 1)
+   034D BE*01               715 	ldx	*__print_format_sloc0_1_0
+   034F B6*02               716 	lda	*(__print_format_sloc0_1_0 + 1)
+   0351 CDs00r00            717 	jsr	_strlen
+   0354 B7*02               718 	sta	*(__print_format_sloc0_1_0 + 1)
+   0356 BF*01               719 	stx	*__print_format_sloc0_1_0
+   0358 B6*02               720 	lda	*(__print_format_sloc0_1_0 + 1)
+   035A C7s00r21            721 	sta	__print_format_length_1_1
+                            722 ;../printf_large.c:546: if ( decimals == -1 )
+   035D C6s00r20            723 	lda	__print_format_decimals_1_1
+   0360 A1 FF               724 	cmp	#0xFF
+   0362 26 06               725 	bne	00131$
+   0364                     726 00337$:
+                            727 ;../printf_large.c:548: decimals = length;
+   0364 C6s00r21            728 	lda	__print_format_length_1_1
+   0367 C7s00r20            729 	sta	__print_format_decimals_1_1
+   036A                     730 00131$:
+                            731 ;../printf_large.c:550: if ( ( !left_justify ) && (length < width) )
+   036A C6s00r15            732 	lda	__print_format_left_justify_1_1
+   036D 26 30               733 	bne	00269$
+   036F                     734 00338$:
+   036F C6s00r21            735 	lda	__print_format_length_1_1
+   0372 C1s00r1F            736 	cmp	__print_format_width_1_1
+   0375 24 28               737 	bcc	00269$
+   0377                     738 00339$:
+                            739 ;../printf_large.c:552: width -= length;
+   0377 C6s00r1F            740 	lda	__print_format_width_1_1
+   037A C0s00r21            741 	sub	__print_format_length_1_1
+   037D C7s00r1F            742 	sta	__print_format_width_1_1
+                            743 ;../printf_large.c:553: while( width-- != 0 )
+   0380 C6s00r1F            744 	lda	__print_format_width_1_1
+   0383 B7*03               745 	sta	*__print_format_sloc1_1_0
+   0385                     746 00132$:
+   0385 4E*03*01            747 	mov	*__print_format_sloc1_1_0,*__print_format_sloc0_1_0
+   0388 3A*03               748 	dec	*__print_format_sloc1_1_0
+   038A B6*03               749 	lda	*__print_format_sloc1_1_0
+   038C C7s00r1F            750 	sta	__print_format_width_1_1
+   038F 3D*01               751 	tst	*__print_format_sloc0_1_0
+   0391 27 07               752 	beq	00304$
+   0393                     753 00340$:
+                            754 ;../printf_large.c:555: OUTPUT_CHAR( ' ', p );
+   0393 A6 20               755 	lda	#0x20
+   0395 CDs00r00            756 	jsr	__output_char
+   0398 20 EB               757 	bra	00132$
+                            758 ;../printf_large.c:559: while ( (c = *PTR)  && (decimals-- > 0))
+   039A                     759 00304$:
+   039A B6*03               760 	lda	*__print_format_sloc1_1_0
+   039C C7s00r1F            761 	sta	__print_format_width_1_1
+   039F                     762 00269$:
+   039F C6s00r20            763 	lda	__print_format_decimals_1_1
+   03A2 B7*03               764 	sta	*__print_format_sloc1_1_0
+   03A4                     765 00139$:
+   03A4 C6s00r05            766 	lda	_value
+   03A7 B7*01               767 	sta	*__print_format_sloc0_1_0
+   03A9 C6s00r06            768 	lda	(_value + 1)
+   03AC B7*02               769 	sta	*(__print_format_sloc0_1_0 + 1)
+   03AE 55*01               770 	ldhx	*__print_format_sloc0_1_0
+   03B0 F6                  771 	lda	,x
+   03B1 B7*01               772 	sta	*__print_format_sloc0_1_0
+   03B3 B6*01               773 	lda	*__print_format_sloc0_1_0
+   03B5 C7s00r22            774 	sta	__print_format_c_1_1
+   03B8 3D*01               775 	tst	*__print_format_sloc0_1_0
+   03BA 27 2D               776 	beq	00141$
+   03BC                     777 00341$:
+   03BC 4E*03*01            778 	mov	*__print_format_sloc1_1_0,*__print_format_sloc0_1_0
+   03BF 3A*03               779 	dec	*__print_format_sloc1_1_0
+   03C1 B6*01               780 	lda	*__print_format_sloc0_1_0
+   03C3 A1 00               781 	cmp	#0x00
+   03C5 93 22               782 	ble	00141$
+   03C7                     783 00342$:
+                            784 ;../printf_large.c:561: OUTPUT_CHAR( c, p );
+   03C7 C6s00r22            785 	lda	__print_format_c_1_1
+   03CA CDs00r00            786 	jsr	__output_char
+                            787 ;../printf_large.c:562: PTR++;
+   03CD C6s00r05            788 	lda	_value
+   03D0 B7*01               789 	sta	*__print_format_sloc0_1_0
+   03D2 C6s00r06            790 	lda	(_value + 1)
+   03D5 B7*02               791 	sta	*(__print_format_sloc0_1_0 + 1)
+   03D7 55*01               792 	ldhx	*__print_format_sloc0_1_0
+   03D9 AF 01               793 	aix	#1
+   03DB 35*01               794 	sthx	*__print_format_sloc0_1_0
+   03DD B6*01               795 	lda	*__print_format_sloc0_1_0
+   03DF C7s00r05            796 	sta	_value
+   03E2 B6*02               797 	lda	*(__print_format_sloc0_1_0 + 1)
+   03E4 C7s00r06            798 	sta	(_value + 1)
+   03E7 20 BB               799 	bra	00139$
+   03E9                     800 00141$:
+                            801 ;../printf_large.c:565: if ( left_justify && (length < width))
+   03E9 C6s00r15            802 	lda	__print_format_left_justify_1_1
+   03EC 26 03               803 	bne	00343$
+   03EE CCs04rA7            804 	jmp	00156$
+   03F1                     805 00343$:
+   03F1 C6s00r21            806 	lda	__print_format_length_1_1
+   03F4 C1s00r1F            807 	cmp	__print_format_width_1_1
+   03F7 25 03               808 	bcs	00344$
+   03F9 CCs04rA7            809 	jmp	00156$
+   03FC                     810 00344$:
+                            811 ;../printf_large.c:567: width -= length;
+   03FC C6s00r1F            812 	lda	__print_format_width_1_1
+   03FF C0s00r21            813 	sub	__print_format_length_1_1
+   0402 C7s00r1F            814 	sta	__print_format_width_1_1
+                            815 ;../printf_large.c:568: while( width-- != 0 )
+   0405 C6s00r1F            816 	lda	__print_format_width_1_1
+   0408 B7*03               817 	sta	*__print_format_sloc1_1_0
+   040A                     818 00142$:
+   040A 4E*03*01            819 	mov	*__print_format_sloc1_1_0,*__print_format_sloc0_1_0
+   040D 3A*03               820 	dec	*__print_format_sloc1_1_0
+   040F B6*03               821 	lda	*__print_format_sloc1_1_0
+   0411 C7s00r1F            822 	sta	__print_format_width_1_1
+   0414 3D*01               823 	tst	*__print_format_sloc0_1_0
+   0416 26 03               824 	bne	00345$
+   0418 CCs04rA2            825 	jmp	00306$
+   041B                     826 00345$:
+                            827 ;../printf_large.c:570: OUTPUT_CHAR( ' ', p );
+   041B A6 20               828 	lda	#0x20
+   041D CDs00r00            829 	jsr	__output_char
+   0420 20 E8               830 	bra	00142$
+                            831 ;../printf_large.c:575: case 'P':
+   0422                     832 00148$:
+                            833 ;../printf_large.c:576: PTR = va_arg(ap,ptr_t);
+   0422 C6s00r14            834 	lda	(__print_format_PARM_4 + 1)
+   0425 AB 02               835 	add	#0x02
+   0427 B7*02               836 	sta	*(__print_format_sloc0_1_0 + 1)
+   0429 C6s00r13            837 	lda	__print_format_PARM_4
+   042C A9 00               838 	adc	#0x00
+   042E B7*01               839 	sta	*__print_format_sloc0_1_0
+   0430 B6*01               840 	lda	*__print_format_sloc0_1_0
+   0432 C7s00r13            841 	sta	__print_format_PARM_4
+   0435 B6*02               842 	lda	*(__print_format_sloc0_1_0 + 1)
+   0437 C7s00r14            843 	sta	(__print_format_PARM_4 + 1)
+   043A B6*02               844 	lda	*(__print_format_sloc0_1_0 + 1)
+   043C A0 02               845 	sub	#0x02
+   043E B7*02               846 	sta	*(__print_format_sloc0_1_0 + 1)
+   0440 B6*01               847 	lda	*__print_format_sloc0_1_0
+   0442 A2 00               848 	sbc	#0x00
+   0444 B7*01               849 	sta	*__print_format_sloc0_1_0
+   0446 55*01               850 	ldhx	*__print_format_sloc0_1_0
+   0448 F6                  851 	lda	,x
+   0449 AF 01               852 	aix	#1
+   044B B7*01               853 	sta	*__print_format_sloc0_1_0
+   044D F6                  854 	lda	,x
+   044E B7*02               855 	sta	*(__print_format_sloc0_1_0 + 1)
+   0450 B6*01               856 	lda	*__print_format_sloc0_1_0
+   0452 C7s00r05            857 	sta	_value
+   0455 B6*02               858 	lda	*(__print_format_sloc0_1_0 + 1)
+   0457 C7s00r06            859 	sta	(_value + 1)
+                            860 ;../printf_large.c:620: OUTPUT_CHAR('0', p);
+   045A A6 30               861 	lda	#0x30
+   045C CDs00r00            862 	jsr	__output_char
+                            863 ;../printf_large.c:621: OUTPUT_CHAR('x', p);
+   045F A6 78               864 	lda	#0x78
+   0461 CDs00r00            865 	jsr	__output_char
+                            866 ;../printf_large.c:622: OUTPUT_2DIGITS( value.byte[1] );
+   0464 C6s00r06            867 	lda	(_value + 0x0001)
+   0467 CDs00r4B            868 	jsr	_output_2digits
+                            869 ;../printf_large.c:623: OUTPUT_2DIGITS( value.byte[0] );
+   046A C6s00r05            870 	lda	_value
+   046D CDs00r4B            871 	jsr	_output_2digits
+                            872 ;../printf_large.c:625: break;
+   0470 20 35               873 	bra	00156$
+                            874 ;../printf_large.c:628: case 'I':
+   0472                     875 00150$:
+                            876 ;../printf_large.c:629: signed_argument = 1;
+   0472 A6 01               877 	lda	#0x01
+   0474 C7s00r19            878 	sta	__print_format_signed_argument_1_1
+                            879 ;../printf_large.c:630: radix = 10;
+   0477 A6 0A               880 	lda	#0x0A
+   0479 C7s00r1E            881 	sta	__print_format_radix_1_1
+                            882 ;../printf_large.c:631: break;
+   047C 20 29               883 	bra	00156$
+                            884 ;../printf_large.c:633: case 'O':
+   047E                     885 00151$:
+                            886 ;../printf_large.c:634: radix = 8;
+   047E A6 08               887 	lda	#0x08
+   0480 C7s00r1E            888 	sta	__print_format_radix_1_1
+                            889 ;../printf_large.c:635: break;
+   0483 20 22               890 	bra	00156$
+                            891 ;../printf_large.c:637: case 'U':
+   0485                     892 00152$:
+                            893 ;../printf_large.c:638: radix = 10;
+   0485 A6 0A               894 	lda	#0x0A
+   0487 C7s00r1E            895 	sta	__print_format_radix_1_1
+                            896 ;../printf_large.c:639: break;
+   048A 20 1B               897 	bra	00156$
+                            898 ;../printf_large.c:641: case 'X':
+   048C                     899 00153$:
+                            900 ;../printf_large.c:642: radix = 16;
+   048C A6 10               901 	lda	#0x10
+   048E C7s00r1E            902 	sta	__print_format_radix_1_1
+                            903 ;../printf_large.c:643: break;
+   0491 20 14               904 	bra	00156$
+                            905 ;../printf_large.c:645: case 'F':
+   0493                     906 00154$:
+                            907 ;../printf_large.c:646: float_argument=1;
+   0493 A6 01               908 	lda	#0x01
+   0495 C7s00r1C            909 	sta	__print_format_float_argument_1_1
+                            910 ;../printf_large.c:647: break;
+   0498 20 0D               911 	bra	00156$
+                            912 ;../printf_large.c:649: default:
+   049A                     913 00155$:
+                            914 ;../printf_large.c:651: OUTPUT_CHAR( c, p );
+   049A C6s00r22            915 	lda	__print_format_c_1_1
+   049D CDs00r00            916 	jsr	__output_char
+                            917 ;../printf_large.c:828: return charsOutputted;
+   04A0 20 05               918 	bra	00156$
+                            919 ;../printf_large.c:653: }
+   04A2                     920 00306$:
+   04A2 B6*03               921 	lda	*__print_format_sloc1_1_0
+   04A4 C7s00r1F            922 	sta	__print_format_width_1_1
+   04A7                     923 00156$:
+                            924 ;../printf_large.c:655: if (float_argument) {
+   04A7 C6s00r1C            925 	lda	__print_format_float_argument_1_1
+   04AA 26 03               926 	bne	00346$
+   04AC CCs05r38            927 	jmp	00222$
+   04AF                     928 00346$:
+                            929 ;../printf_large.c:656: value.f=va_arg(ap,float);
+   04AF C6s00r14            930 	lda	(__print_format_PARM_4 + 1)
+   04B2 AB 04               931 	add	#0x04
+   04B4 B7*02               932 	sta	*(__print_format_sloc0_1_0 + 1)
+   04B6 C6s00r13            933 	lda	__print_format_PARM_4
+   04B9 A9 00               934 	adc	#0x00
+   04BB B7*01               935 	sta	*__print_format_sloc0_1_0
+   04BD B6*01               936 	lda	*__print_format_sloc0_1_0
+   04BF C7s00r13            937 	sta	__print_format_PARM_4
+   04C2 B6*02               938 	lda	*(__print_format_sloc0_1_0 + 1)
+   04C4 C7s00r14            939 	sta	(__print_format_PARM_4 + 1)
+   04C7 B6*02               940 	lda	*(__print_format_sloc0_1_0 + 1)
+   04C9 A0 04               941 	sub	#0x04
+   04CB B7*02               942 	sta	*(__print_format_sloc0_1_0 + 1)
+   04CD B6*01               943 	lda	*__print_format_sloc0_1_0
+   04CF A2 00               944 	sbc	#0x00
+   04D1 B7*01               945 	sta	*__print_format_sloc0_1_0
+   04D3 55*01               946 	ldhx	*__print_format_sloc0_1_0
+   04D5 F6                  947 	lda	,x
+   04D6 AF 01               948 	aix	#1
+   04D8 B7*04               949 	sta	*__print_format_sloc2_1_0
+   04DA F6                  950 	lda	,x
+   04DB AF 01               951 	aix	#1
+   04DD B7*05               952 	sta	*(__print_format_sloc2_1_0 + 1)
+   04DF F6                  953 	lda	,x
+   04E0 AF 01               954 	aix	#1
+   04E2 B7*06               955 	sta	*(__print_format_sloc2_1_0 + 2)
+   04E4 F6                  956 	lda	,x
+   04E5 B7*07               957 	sta	*(__print_format_sloc2_1_0 + 3)
+   04E7 B6*04               958 	lda	*__print_format_sloc2_1_0
+   04E9 C7s00r05            959 	sta	_value
+   04EC B6*05               960 	lda	*(__print_format_sloc2_1_0 + 1)
+   04EE C7s00r06            961 	sta	(_value + 1)
+   04F1 B6*06               962 	lda	*(__print_format_sloc2_1_0 + 2)
+   04F3 C7s00r07            963 	sta	(_value + 2)
+   04F6 B6*07               964 	lda	*(__print_format_sloc2_1_0 + 3)
+   04F8 C7s00r08            965 	sta	(_value + 3)
+                            966 ;../printf_large.c:658: PTR="<NO FLOAT>";
+   04FB A6s00               967 	lda	#>__str_0
+   04FD C7s00r05            968 	sta	_value
+   0500 A6r00               969 	lda	#__str_0
+   0502 C7s00r06            970 	sta	(_value + 1)
+                            971 ;../printf_large.c:659: while (c=*PTR++)
+   0505                     972 00157$:
+   0505 C6s00r05            973 	lda	_value
+   0508 B7*04               974 	sta	*__print_format_sloc2_1_0
+   050A C6s00r06            975 	lda	(_value + 1)
+   050D B7*05               976 	sta	*(__print_format_sloc2_1_0 + 1)
+   050F 55*04               977 	ldhx	*__print_format_sloc2_1_0
+   0511 AF 01               978 	aix	#1
+   0513 35*01               979 	sthx	*__print_format_sloc0_1_0
+   0515 B6*01               980 	lda	*__print_format_sloc0_1_0
+   0517 C7s00r05            981 	sta	_value
+   051A B6*02               982 	lda	*(__print_format_sloc0_1_0 + 1)
+   051C C7s00r06            983 	sta	(_value + 1)
+   051F 55*04               984 	ldhx	*__print_format_sloc2_1_0
+   0521 F6                  985 	lda	,x
+   0522 B7*04               986 	sta	*__print_format_sloc2_1_0
+   0524 B6*04               987 	lda	*__print_format_sloc2_1_0
+   0526 C7s00r22            988 	sta	__print_format_c_1_1
+   0529 3D*04               989 	tst	*__print_format_sloc2_1_0
+   052B 26 03               990 	bne	00347$
+   052D CCs00rEB            991 	jmp	00227$
+   0530                     992 00347$:
+                            993 ;../printf_large.c:661: OUTPUT_CHAR (c, p);
+   0530 C6s00r22            994 	lda	__print_format_c_1_1
+   0533 CDs00r00            995 	jsr	__output_char
+   0536 20 CD               996 	bra	00157$
+   0538                     997 00222$:
+                            998 ;../printf_large.c:678: } else if (radix != 0)
+   0538 C6s00r1E            999 	lda	__print_format_radix_1_1
+   053B 26 03              1000 	bne	00348$
+   053D CCs00rEB           1001 	jmp	00227$
+   0540                    1002 00348$:
+                           1003 ;../printf_large.c:683: unsigned char MEM_SPACE_BUF_PP *pstore = &store[5];
+   0540 A6s00              1004 	lda	#>(__print_format_store_4_20 + 0x0005)
+   0542 C7s00r29           1005 	sta	__print_format_pstore_4_20
+   0545 A6r28              1006 	lda	#(__print_format_store_4_20 + 0x0005)
+   0547 C7s00r2A           1007 	sta	(__print_format_pstore_4_20 + 1)
+                           1008 ;../printf_large.c:686: if (char_argument)
+   054A C6s00r1A           1009 	lda	__print_format_char_argument_1_1
+   054D 26 03              1010 	bne	00349$
+   054F CCs05rD2           1011 	jmp	00168$
+   0552                    1012 00349$:
+                           1013 ;../printf_large.c:688: value.l = va_arg(ap,char);
+   0552 C6s00r14           1014 	lda	(__print_format_PARM_4 + 1)
+   0555 AB 01              1015 	add	#0x01
+   0557 B7*05              1016 	sta	*(__print_format_sloc2_1_0 + 1)
+   0559 C6s00r13           1017 	lda	__print_format_PARM_4
+   055C A9 00              1018 	adc	#0x00
+   055E B7*04              1019 	sta	*__print_format_sloc2_1_0
+   0560 B6*04              1020 	lda	*__print_format_sloc2_1_0
+   0562 C7s00r13           1021 	sta	__print_format_PARM_4
+   0565 B6*05              1022 	lda	*(__print_format_sloc2_1_0 + 1)
+   0567 C7s00r14           1023 	sta	(__print_format_PARM_4 + 1)
+   056A B6*05              1024 	lda	*(__print_format_sloc2_1_0 + 1)
+   056C A0 01              1025 	sub	#0x01
+   056E B7*05              1026 	sta	*(__print_format_sloc2_1_0 + 1)
+   0570 B6*04              1027 	lda	*__print_format_sloc2_1_0
+   0572 A2 00              1028 	sbc	#0x00
+   0574 B7*04              1029 	sta	*__print_format_sloc2_1_0
+   0576 55*04              1030 	ldhx	*__print_format_sloc2_1_0
+   0578 F6                 1031 	lda	,x
+   0579 B7*07              1032 	sta	*(__print_format_sloc2_1_0 + 3)
+   057B 49                 1033 	rola	
+   057C 4F                 1034 	clra	
+   057D A2 00              1035 	sbc	#0x00
+   057F B7*06              1036 	sta	*(__print_format_sloc2_1_0 + 2)
+   0581 B7*05              1037 	sta	*(__print_format_sloc2_1_0 + 1)
+   0583 B7*04              1038 	sta	*__print_format_sloc2_1_0
+   0585 B6*04              1039 	lda	*__print_format_sloc2_1_0
+   0587 C7s00r05           1040 	sta	_value
+   058A B6*05              1041 	lda	*(__print_format_sloc2_1_0 + 1)
+   058C C7s00r06           1042 	sta	(_value + 1)
+   058F B6*06              1043 	lda	*(__print_format_sloc2_1_0 + 2)
+   0591 C7s00r07           1044 	sta	(_value + 2)
+   0594 B6*07              1045 	lda	*(__print_format_sloc2_1_0 + 3)
+   0596 C7s00r08           1046 	sta	(_value + 3)
+                           1047 ;../printf_large.c:689: if (!signed_argument)
+   0599 C6s00r19           1048 	lda	__print_format_signed_argument_1_1
+   059C 27 03              1049 	beq	00350$
+   059E CCs06rA9           1050 	jmp	00169$
+   05A1                    1051 00350$:
+                           1052 ;../printf_large.c:691: value.l &= 0xFF;
+   05A1 C6s00r05           1053 	lda	_value
+   05A4 B7*04              1054 	sta	*__print_format_sloc2_1_0
+   05A6 C6s00r06           1055 	lda	(_value + 1)
+   05A9 B7*05              1056 	sta	*(__print_format_sloc2_1_0 + 1)
+   05AB C6s00r07           1057 	lda	(_value + 2)
+   05AE B7*06              1058 	sta	*(__print_format_sloc2_1_0 + 2)
+   05B0 C6s00r08           1059 	lda	(_value + 3)
+   05B3 B7*07              1060 	sta	*(__print_format_sloc2_1_0 + 3)
+   05B5 3F*06              1061 	clr	*(__print_format_sloc2_1_0 + 2)
+   05B7 3F*05              1062 	clr	*(__print_format_sloc2_1_0 + 1)
+   05B9 3F*04              1063 	clr	*__print_format_sloc2_1_0
+   05BB B6*04              1064 	lda	*__print_format_sloc2_1_0
+   05BD C7s00r05           1065 	sta	_value
+   05C0 B6*05              1066 	lda	*(__print_format_sloc2_1_0 + 1)
+   05C2 C7s00r06           1067 	sta	(_value + 1)
+   05C5 B6*06              1068 	lda	*(__print_format_sloc2_1_0 + 2)
+   05C7 C7s00r07           1069 	sta	(_value + 2)
+   05CA B6*07              1070 	lda	*(__print_format_sloc2_1_0 + 3)
+   05CC C7s00r08           1071 	sta	(_value + 3)
+   05CF CCs06rA9           1072 	jmp	00169$
+   05D2                    1073 00168$:
+                           1074 ;../printf_large.c:694: else if (long_argument)
+   05D2 C6s00r1B           1075 	lda	__print_format_long_argument_1_1
+   05D5 27 4F              1076 	beq	00165$
+   05D7                    1077 00351$:
+                           1078 ;../printf_large.c:696: value.l = va_arg(ap,long);
+   05D7 C6s00r14           1079 	lda	(__print_format_PARM_4 + 1)
+   05DA AB 04              1080 	add	#0x04
+   05DC B7*05              1081 	sta	*(__print_format_sloc2_1_0 + 1)
+   05DE C6s00r13           1082 	lda	__print_format_PARM_4
+   05E1 A9 00              1083 	adc	#0x00
+   05E3 B7*04              1084 	sta	*__print_format_sloc2_1_0
+   05E5 B6*04              1085 	lda	*__print_format_sloc2_1_0
+   05E7 C7s00r13           1086 	sta	__print_format_PARM_4
+   05EA B6*05              1087 	lda	*(__print_format_sloc2_1_0 + 1)
+   05EC C7s00r14           1088 	sta	(__print_format_PARM_4 + 1)
+   05EF B6*05              1089 	lda	*(__print_format_sloc2_1_0 + 1)
+   05F1 A0 04              1090 	sub	#0x04
+   05F3 B7*05              1091 	sta	*(__print_format_sloc2_1_0 + 1)
+   05F5 B6*04              1092 	lda	*__print_format_sloc2_1_0
+   05F7 A2 00              1093 	sbc	#0x00
+   05F9 B7*04              1094 	sta	*__print_format_sloc2_1_0
+   05FB 55*04              1095 	ldhx	*__print_format_sloc2_1_0
+   05FD F6                 1096 	lda	,x
+   05FE AF 01              1097 	aix	#1
+   0600 B7*04              1098 	sta	*__print_format_sloc2_1_0
+   0602 F6                 1099 	lda	,x
+   0603 AF 01              1100 	aix	#1
+   0605 B7*05              1101 	sta	*(__print_format_sloc2_1_0 + 1)
+   0607 F6                 1102 	lda	,x
+   0608 AF 01              1103 	aix	#1
+   060A B7*06              1104 	sta	*(__print_format_sloc2_1_0 + 2)
+   060C F6                 1105 	lda	,x
+   060D B7*07              1106 	sta	*(__print_format_sloc2_1_0 + 3)
+   060F B6*04              1107 	lda	*__print_format_sloc2_1_0
+   0611 C7s00r05           1108 	sta	_value
+   0614 B6*05              1109 	lda	*(__print_format_sloc2_1_0 + 1)
+   0616 C7s00r06           1110 	sta	(_value + 1)
+   0619 B6*06              1111 	lda	*(__print_format_sloc2_1_0 + 2)
+   061B C7s00r07           1112 	sta	(_value + 2)
+   061E B6*07              1113 	lda	*(__print_format_sloc2_1_0 + 3)
+   0620 C7s00r08           1114 	sta	(_value + 3)
+   0623 CCs06rA9           1115 	jmp	00169$
+   0626                    1116 00165$:
+                           1117 ;../printf_large.c:700: value.l = va_arg(ap,int);
+   0626 C6s00r14           1118 	lda	(__print_format_PARM_4 + 1)
+   0629 AB 02              1119 	add	#0x02
+   062B B7*05              1120 	sta	*(__print_format_sloc2_1_0 + 1)
+   062D C6s00r13           1121 	lda	__print_format_PARM_4
+   0630 A9 00              1122 	adc	#0x00
+   0632 B7*04              1123 	sta	*__print_format_sloc2_1_0
+   0634 B6*04              1124 	lda	*__print_format_sloc2_1_0
+   0636 C7s00r13           1125 	sta	__print_format_PARM_4
+   0639 B6*05              1126 	lda	*(__print_format_sloc2_1_0 + 1)
+   063B C7s00r14           1127 	sta	(__print_format_PARM_4 + 1)
+   063E B6*05              1128 	lda	*(__print_format_sloc2_1_0 + 1)
+   0640 A0 02              1129 	sub	#0x02
+   0642 B7*05              1130 	sta	*(__print_format_sloc2_1_0 + 1)
+   0644 B6*04              1131 	lda	*__print_format_sloc2_1_0
+   0646 A2 00              1132 	sbc	#0x00
+   0648 B7*04              1133 	sta	*__print_format_sloc2_1_0
+   064A 55*04              1134 	ldhx	*__print_format_sloc2_1_0
+   064C F6                 1135 	lda	,x
+   064D AF 01              1136 	aix	#1
+   064F B7*04              1137 	sta	*__print_format_sloc2_1_0
+   0651 F6                 1138 	lda	,x
+   0652 B7*05              1139 	sta	*(__print_format_sloc2_1_0 + 1)
+   0654 4E*05*07           1140 	mov	*(__print_format_sloc2_1_0 + 1),*(__print_format_sloc2_1_0 + 3)
+   0657 4E*04*06           1141 	mov	*__print_format_sloc2_1_0,*(__print_format_sloc2_1_0 + 2)
+   065A B6*04              1142 	lda	*__print_format_sloc2_1_0
+   065C 49                 1143 	rola	
+   065D 4F                 1144 	clra	
+   065E A2 00              1145 	sbc	#0x00
+   0660 B7*05              1146 	sta	*(__print_format_sloc2_1_0 + 1)
+   0662 B7*04              1147 	sta	*__print_format_sloc2_1_0
+   0664 B6*04              1148 	lda	*__print_format_sloc2_1_0
+   0666 C7s00r05           1149 	sta	_value
+   0669 B6*05              1150 	lda	*(__print_format_sloc2_1_0 + 1)
+   066B C7s00r06           1151 	sta	(_value + 1)
+   066E B6*06              1152 	lda	*(__print_format_sloc2_1_0 + 2)
+   0670 C7s00r07           1153 	sta	(_value + 2)
+   0673 B6*07              1154 	lda	*(__print_format_sloc2_1_0 + 3)
+   0675 C7s00r08           1155 	sta	(_value + 3)
+                           1156 ;../printf_large.c:701: if (!signed_argument)
+   0678 C6s00r19           1157 	lda	__print_format_signed_argument_1_1
+   067B 26 2C              1158 	bne	00169$
+   067D                    1159 00352$:
+                           1160 ;../printf_large.c:703: value.l &= 0xFFFF;
+   067D C6s00r05           1161 	lda	_value
+   0680 B7*04              1162 	sta	*__print_format_sloc2_1_0
+   0682 C6s00r06           1163 	lda	(_value + 1)
+   0685 B7*05              1164 	sta	*(__print_format_sloc2_1_0 + 1)
+   0687 C6s00r07           1165 	lda	(_value + 2)
+   068A B7*06              1166 	sta	*(__print_format_sloc2_1_0 + 2)
+   068C C6s00r08           1167 	lda	(_value + 3)
+   068F B7*07              1168 	sta	*(__print_format_sloc2_1_0 + 3)
+   0691 3F*05              1169 	clr	*(__print_format_sloc2_1_0 + 1)
+   0693 3F*04              1170 	clr	*__print_format_sloc2_1_0
+   0695 B6*04              1171 	lda	*__print_format_sloc2_1_0
+   0697 C7s00r05           1172 	sta	_value
+   069A B6*05              1173 	lda	*(__print_format_sloc2_1_0 + 1)
+   069C C7s00r06           1174 	sta	(_value + 1)
+   069F B6*06              1175 	lda	*(__print_format_sloc2_1_0 + 2)
+   06A1 C7s00r07           1176 	sta	(_value + 2)
+   06A4 B6*07              1177 	lda	*(__print_format_sloc2_1_0 + 3)
+   06A6 C7s00r08           1178 	sta	(_value + 3)
+   06A9                    1179 00169$:
+                           1180 ;../printf_large.c:707: if ( signed_argument )
+   06A9 C6s00r19           1181 	lda	__print_format_signed_argument_1_1
+   06AC 26 03              1182 	bne	00353$
+   06AE CCs07r0D           1183 	jmp	00174$
+   06B1                    1184 00353$:
+                           1185 ;../printf_large.c:709: if (value.l < 0)
+   06B1 C6s00r05           1186 	lda	_value
+   06B4 B7*04              1187 	sta	*__print_format_sloc2_1_0
+   06B6 C6s00r06           1188 	lda	(_value + 1)
+   06B9 B7*05              1189 	sta	*(__print_format_sloc2_1_0 + 1)
+   06BB C6s00r07           1190 	lda	(_value + 2)
+   06BE B7*06              1191 	sta	*(__print_format_sloc2_1_0 + 2)
+   06C0 C6s00r08           1192 	lda	(_value + 3)
+   06C3 B7*07              1193 	sta	*(__print_format_sloc2_1_0 + 3)
+   06C5 B6*04              1194 	lda	*__print_format_sloc2_1_0
+   06C7 A0 00              1195 	sub	#0x00
+   06C9 90 3E              1196 	bge	00171$
+   06CB                    1197 00354$:
+                           1198 ;../printf_large.c:710: value.l = -value.l;
+   06CB C6s00r05           1199 	lda	_value
+   06CE B7*04              1200 	sta	*__print_format_sloc2_1_0
+   06D0 C6s00r06           1201 	lda	(_value + 1)
+   06D3 B7*05              1202 	sta	*(__print_format_sloc2_1_0 + 1)
+   06D5 C6s00r07           1203 	lda	(_value + 2)
+   06D8 B7*06              1204 	sta	*(__print_format_sloc2_1_0 + 2)
+   06DA C6s00r08           1205 	lda	(_value + 3)
+   06DD B7*07              1206 	sta	*(__print_format_sloc2_1_0 + 3)
+   06DF 4F                 1207 	clra
+   06E0 B0*07              1208 	sub	*(__print_format_sloc2_1_0 + 3)
+   06E2 B7*07              1209 	sta	*(__print_format_sloc2_1_0 + 3)
+   06E4 4F                 1210 	clra
+   06E5 B2*06              1211 	sbc	*(__print_format_sloc2_1_0 + 2)
+   06E7 B7*06              1212 	sta	*(__print_format_sloc2_1_0 + 2)
+   06E9 4F                 1213 	clra
+   06EA B2*05              1214 	sbc	*(__print_format_sloc2_1_0 + 1)
+   06EC B7*05              1215 	sta	*(__print_format_sloc2_1_0 + 1)
+   06EE 4F                 1216 	clra
+   06EF B2*04              1217 	sbc	*__print_format_sloc2_1_0
+   06F1 B7*04              1218 	sta	*__print_format_sloc2_1_0
+   06F3 B6*04              1219 	lda	*__print_format_sloc2_1_0
+   06F5 C7s00r05           1220 	sta	_value
+   06F8 B6*05              1221 	lda	*(__print_format_sloc2_1_0 + 1)
+   06FA C7s00r06           1222 	sta	(_value + 1)
+   06FD B6*06              1223 	lda	*(__print_format_sloc2_1_0 + 2)
+   06FF C7s00r07           1224 	sta	(_value + 2)
+   0702 B6*07              1225 	lda	*(__print_format_sloc2_1_0 + 3)
+   0704 C7s00r08           1226 	sta	(_value + 3)
+   0707 20 04              1227 	bra	00174$
+   0709                    1228 00171$:
+                           1229 ;../printf_large.c:712: signed_argument = 0;
+   0709 4F                 1230 	clra
+   070A C7s00r19           1231 	sta	__print_format_signed_argument_1_1
+   070D                    1232 00174$:
+                           1233 ;../printf_large.c:716: lsd = 1;
+   070D A6 01              1234 	lda	#0x01
+   070F C7s00r1D           1235 	sta	__print_format_lsd_1_1
+                           1236 ;../printf_large.c:718: do {
+   0712 C6s00r29           1237 	lda	__print_format_pstore_4_20
+   0715 B7*04              1238 	sta	*__print_format_sloc2_1_0
+   0717 C6s00r2A           1239 	lda	(__print_format_pstore_4_20 + 1)
+   071A B7*05              1240 	sta	*(__print_format_sloc2_1_0 + 1)
+   071C 3F*03              1241 	clr	*__print_format_sloc1_1_0
+   071E                    1242 00178$:
+                           1243 ;../printf_large.c:719: value.byte[4] = 0;
+   071E 4F                 1244 	clra
+   071F C7s00r09           1245 	sta	(_value + 0x0004)
+                           1246 ;../printf_large.c:723: calculate_digit(radix);
+   0722 C6s00r1E           1247 	lda	__print_format_radix_1_1
+   0725 CDs00r60           1248 	jsr	_calculate_digit
+                           1249 ;../printf_large.c:725: if (!lsd)
+   0728 C6s00r1D           1250 	lda	__print_format_lsd_1_1
+   072B 26 26              1251 	bne	00176$
+   072D                    1252 00355$:
+                           1253 ;../printf_large.c:727: *pstore = (value.byte[4] << 4) | (value.byte[4] >> 4) | *pstore;
+   072D C6s00r09           1254 	lda	(_value + 0x0004)
+   0730 62                 1255 	nsa
+   0731 B7*01              1256 	sta	*__print_format_sloc0_1_0
+   0733 55*04              1257 	ldhx	*__print_format_sloc2_1_0
+   0735 F6                 1258 	lda	,x
+   0736 BA*01              1259 	ora	*__print_format_sloc0_1_0
+   0738 55*04              1260 	ldhx	*__print_format_sloc2_1_0
+   073A F7                 1261 	sta	,x
+                           1262 ;../printf_large.c:728: pstore--;
+   073B B6*05              1263 	lda	*(__print_format_sloc2_1_0 + 1)
+   073D A0 01              1264 	sub	#0x01
+   073F B7*05              1265 	sta	*(__print_format_sloc2_1_0 + 1)
+   0741 B6*04              1266 	lda	*__print_format_sloc2_1_0
+   0743 A2 00              1267 	sbc	#0x00
+   0745 B7*04              1268 	sta	*__print_format_sloc2_1_0
+   0747 B6*04              1269 	lda	*__print_format_sloc2_1_0
+   0749 C7s00r29           1270 	sta	__print_format_pstore_4_20
+   074C B6*05              1271 	lda	*(__print_format_sloc2_1_0 + 1)
+   074E C7s00r2A           1272 	sta	(__print_format_pstore_4_20 + 1)
+   0751 20 06              1273 	bra	00177$
+   0753                    1274 00176$:
+                           1275 ;../printf_large.c:732: *pstore = value.byte[4];
+   0753 C6s00r09           1276 	lda	(_value + 0x0004)
+   0756 55*04              1277 	ldhx	*__print_format_sloc2_1_0
+   0758 F7                 1278 	sta	,x
+   0759                    1279 00177$:
+                           1280 ;../printf_large.c:734: length++;
+   0759 3C*03              1281 	inc	*__print_format_sloc1_1_0
+   075B B6*03              1282 	lda	*__print_format_sloc1_1_0
+   075D C7s00r21           1283 	sta	__print_format_length_1_1
+                           1284 ;../printf_large.c:735: lsd = !lsd;
+   0760 C6s00r1D           1285 	lda	__print_format_lsd_1_1
+   0763 27 02              1286 	beq	00356$
+   0765 A6 01              1287 	lda	#0x01
+   0767                    1288 00356$:
+   0767 A8 01              1289 	eor	#0x01
+   0769 C7s00r1D           1290 	sta	__print_format_lsd_1_1
+                           1291 ;../printf_large.c:736: } while( value.ul );
+   076C C6s00r05           1292 	lda	_value
+   076F B7*08              1293 	sta	*__print_format_sloc3_1_0
+   0771 C6s00r06           1294 	lda	(_value + 1)
+   0774 B7*09              1295 	sta	*(__print_format_sloc3_1_0 + 1)
+   0776 C6s00r07           1296 	lda	(_value + 2)
+   0779 B7*0A              1297 	sta	*(__print_format_sloc3_1_0 + 2)
+   077B C6s00r08           1298 	lda	(_value + 3)
+   077E B7*0B              1299 	sta	*(__print_format_sloc3_1_0 + 3)
+   0780 B6*0B              1300 	lda	*(__print_format_sloc3_1_0 + 3)
+   0782 BA*0A              1301 	ora	*(__print_format_sloc3_1_0 + 2)
+   0784 BA*09              1302 	ora	*(__print_format_sloc3_1_0 + 1)
+   0786 BA*08              1303 	ora	*__print_format_sloc3_1_0
+   0788 27 03              1304 	beq	00357$
+   078A CCs07r1E           1305 	jmp	00178$
+   078D                    1306 00357$:
+                           1307 ;../printf_large.c:738: if (width == 0)
+   078D B6*04              1308 	lda	*__print_format_sloc2_1_0
+   078F C7s00r29           1309 	sta	__print_format_pstore_4_20
+   0792 B6*05              1310 	lda	*(__print_format_sloc2_1_0 + 1)
+   0794 C7s00r2A           1311 	sta	(__print_format_pstore_4_20 + 1)
+   0797 B6*03              1312 	lda	*__print_format_sloc1_1_0
+   0799 C7s00r21           1313 	sta	__print_format_length_1_1
+   079C C6s00r1F           1314 	lda	__print_format_width_1_1
+   079F 26 05              1315 	bne	00182$
+   07A1                    1316 00358$:
+                           1317 ;../printf_large.c:743: width=1;
+   07A1 A6 01              1318 	lda	#0x01
+   07A3 C7s00r1F           1319 	sta	__print_format_width_1_1
+   07A6                    1320 00182$:
+                           1321 ;../printf_large.c:747: if (!zero_padding && !left_justify)
+   07A6 C6s00r16           1322 	lda	__print_format_zero_padding_1_1
+   07A9 26 25              1323 	bne	00187$
+   07AB                    1324 00359$:
+   07AB C6s00r15           1325 	lda	__print_format_left_justify_1_1
+   07AE 26 20              1326 	bne	00187$
+   07B0                    1327 00360$:
+                           1328 ;../printf_large.c:749: while ( width > (unsigned char) (length+1) )
+   07B0 C6s00r21           1329 	lda	__print_format_length_1_1
+   07B3 AB 01              1330 	add	#0x01
+   07B5 B7*08              1331 	sta	*__print_format_sloc3_1_0
+   07B7 C6s00r1F           1332 	lda	__print_format_width_1_1
+   07BA B7*04              1333 	sta	*__print_format_sloc2_1_0
+   07BC                    1334 00183$:
+   07BC B6*04              1335 	lda	*__print_format_sloc2_1_0
+   07BE B1*08              1336 	cmp	*__print_format_sloc3_1_0
+   07C0 23 09              1337 	bls	00308$
+   07C2                    1338 00361$:
+                           1339 ;../printf_large.c:751: OUTPUT_CHAR( ' ', p );
+   07C2 A6 20              1340 	lda	#0x20
+   07C4 CDs00r00           1341 	jsr	__output_char
+                           1342 ;../printf_large.c:752: width--;
+   07C7 3A*04              1343 	dec	*__print_format_sloc2_1_0
+   07C9 20 F1              1344 	bra	00183$
+   07CB                    1345 00308$:
+   07CB B6*04              1346 	lda	*__print_format_sloc2_1_0
+   07CD C7s00r1F           1347 	sta	__print_format_width_1_1
+   07D0                    1348 00187$:
+                           1349 ;../printf_large.c:756: if (signed_argument) // this now means the original value was negative
+   07D0 C6s00r19           1350 	lda	__print_format_signed_argument_1_1
+   07D3 27 0E              1351 	beq	00197$
+   07D5                    1352 00362$:
+                           1353 ;../printf_large.c:758: OUTPUT_CHAR( '-', p );
+   07D5 A6 2D              1354 	lda	#0x2D
+   07D7 CDs00r00           1355 	jsr	__output_char
+                           1356 ;../printf_large.c:760: width--;
+   07DA C6s00r1F           1357 	lda	__print_format_width_1_1
+   07DD 4A                 1358 	deca
+   07DE C7s00r1F           1359 	sta	__print_format_width_1_1
+   07E1 20 29              1360 	bra	00198$
+   07E3                    1361 00197$:
+                           1362 ;../printf_large.c:762: else if (length != 0)
+   07E3 C6s00r21           1363 	lda	__print_format_length_1_1
+   07E6 27 24              1364 	beq	00198$
+   07E8                    1365 00363$:
+                           1366 ;../printf_large.c:765: if (prefix_sign)
+   07E8 C6s00r17           1367 	lda	__print_format_prefix_sign_1_1
+   07EB 27 0E              1368 	beq	00192$
+   07ED                    1369 00364$:
+                           1370 ;../printf_large.c:767: OUTPUT_CHAR( '+', p );
+   07ED A6 2B              1371 	lda	#0x2B
+   07EF CDs00r00           1372 	jsr	__output_char
+                           1373 ;../printf_large.c:769: width--;
+   07F2 C6s00r1F           1374 	lda	__print_format_width_1_1
+   07F5 4A                 1375 	deca
+   07F6 C7s00r1F           1376 	sta	__print_format_width_1_1
+   07F9 20 11              1377 	bra	00198$
+   07FB                    1378 00192$:
+                           1379 ;../printf_large.c:771: else if (prefix_space)
+   07FB C6s00r18           1380 	lda	__print_format_prefix_space_1_1
+   07FE 27 0C              1381 	beq	00198$
+   0800                    1382 00365$:
+                           1383 ;../printf_large.c:773: OUTPUT_CHAR( ' ', p );
+   0800 A6 20              1384 	lda	#0x20
+   0802 CDs00r00           1385 	jsr	__output_char
+                           1386 ;../printf_large.c:775: width--;
+   0805 C6s00r1F           1387 	lda	__print_format_width_1_1
+   0808 4A                 1388 	deca
+   0809 C7s00r1F           1389 	sta	__print_format_width_1_1
+   080C                    1390 00198$:
+                           1391 ;../printf_large.c:780: if (!left_justify)
+   080C C6s00r15           1392 	lda	__print_format_left_justify_1_1
+   080F 26 2A              1393 	bne	00206$
+   0811                    1394 00366$:
+                           1395 ;../printf_large.c:781: while ( width-- > length )
+   0811 C6s00r1F           1396 	lda	__print_format_width_1_1
+   0814 B7*08              1397 	sta	*__print_format_sloc3_1_0
+   0816                    1398 00199$:
+   0816 4E*08*04           1399 	mov	*__print_format_sloc3_1_0,*__print_format_sloc2_1_0
+   0819 3A*08              1400 	dec	*__print_format_sloc3_1_0
+   081B B6*08              1401 	lda	*__print_format_sloc3_1_0
+   081D C7s00r1F           1402 	sta	__print_format_width_1_1
+   0820 B6*04              1403 	lda	*__print_format_sloc2_1_0
+   0822 C1s00r21           1404 	cmp	__print_format_length_1_1
+   0825 23 2D              1405 	bls	00309$
+   0827                    1406 00367$:
+                           1407 ;../printf_large.c:783: OUTPUT_CHAR( zero_padding ? '0' : ' ', p );
+   0827 C6s00r16           1408 	lda	__print_format_zero_padding_1_1
+   082A 27 05              1409 	beq	00232$
+   082C                    1410 00368$:
+   082C 6E 30*04           1411 	mov	#0x30,*__print_format_sloc2_1_0
+   082F 20 03              1412 	bra	00233$
+   0831                    1413 00232$:
+   0831 6E 20*04           1414 	mov	#0x20,*__print_format_sloc2_1_0
+   0834                    1415 00233$:
+   0834 B6*04              1416 	lda	*__print_format_sloc2_1_0
+   0836 CDs00r00           1417 	jsr	__output_char
+   0839 20 DB              1418 	bra	00199$
+   083B                    1419 00206$:
+                           1420 ;../printf_large.c:788: if (width > length)
+   083B C6s00r1F           1421 	lda	__print_format_width_1_1
+   083E C1s00r21           1422 	cmp	__print_format_length_1_1
+   0841 23 0B              1423 	bls	00203$
+   0843                    1424 00369$:
+                           1425 ;../printf_large.c:789: width -= length;
+   0843 C6s00r1F           1426 	lda	__print_format_width_1_1
+   0846 C0s00r21           1427 	sub	__print_format_length_1_1
+   0849 C7s00r1F           1428 	sta	__print_format_width_1_1
+   084C 20 0B              1429 	bra	00301$
+   084E                    1430 00203$:
+                           1431 ;../printf_large.c:791: width = 0;
+   084E 4F                 1432 	clra
+   084F C7s00r1F           1433 	sta	__print_format_width_1_1
+                           1434 ;../printf_large.c:828: return charsOutputted;
+   0852 20 05              1435 	bra	00301$
+                           1436 ;../printf_large.c:795: while( length-- )
+   0854                    1437 00309$:
+   0854 B6*08              1438 	lda	*__print_format_sloc3_1_0
+   0856 C7s00r1F           1439 	sta	__print_format_width_1_1
+   0859                    1440 00301$:
+   0859 C6s00r29           1441 	lda	__print_format_pstore_4_20
+   085C B7*08              1442 	sta	*__print_format_sloc3_1_0
+   085E C6s00r2A           1443 	lda	(__print_format_pstore_4_20 + 1)
+   0861 B7*09              1444 	sta	*(__print_format_sloc3_1_0 + 1)
+   0863 C6s00r21           1445 	lda	__print_format_length_1_1
+   0866 B7*04              1446 	sta	*__print_format_sloc2_1_0
+   0868                    1447 00211$:
+   0868 4E*04*03           1448 	mov	*__print_format_sloc2_1_0,*__print_format_sloc1_1_0
+   086B 3A*04              1449 	dec	*__print_format_sloc2_1_0
+   086D 3D*03              1450 	tst	*__print_format_sloc1_1_0
+   086F 27 32              1451 	beq	00213$
+   0871                    1452 00370$:
+                           1453 ;../printf_large.c:797: lsd = !lsd;
+   0871 C6s00r1D           1454 	lda	__print_format_lsd_1_1
+   0874 27 02              1455 	beq	00371$
+   0876 A6 01              1456 	lda	#0x01
+   0878                    1457 00371$:
+   0878 A8 01              1458 	eor	#0x01
+   087A C7s00r1D           1459 	sta	__print_format_lsd_1_1
+                           1460 ;../printf_large.c:798: if (!lsd)
+   087D C6s00r1D           1461 	lda	__print_format_lsd_1_1
+   0880 26 11              1462 	bne	00209$
+   0882                    1463 00372$:
+                           1464 ;../printf_large.c:800: pstore++;
+   0882 55*08              1465 	ldhx	*__print_format_sloc3_1_0
+   0884 AF 01              1466 	aix	#1
+   0886 35*08              1467 	sthx	*__print_format_sloc3_1_0
+                           1468 ;../printf_large.c:801: value.byte[4] = *pstore >> 4;
+   0888 55*08              1469 	ldhx	*__print_format_sloc3_1_0
+   088A F6                 1470 	lda	,x
+   088B 62                 1471 	nsa	
+   088C A4 0F              1472 	and	#0x0f
+   088E C7s00r09           1473 	sta	(_value + 0x0004)
+   0891 20 08              1474 	bra	00210$
+   0893                    1475 00209$:
+                           1476 ;../printf_large.c:805: value.byte[4] = *pstore & 0x0F;
+   0893 55*08              1477 	ldhx	*__print_format_sloc3_1_0
+   0895 F6                 1478 	lda	,x
+   0896 A4 0F              1479 	and	#0x0F
+   0898 C7s00r09           1480 	sta	(_value + 0x0004)
+   089B                    1481 00210$:
+                           1482 ;../printf_large.c:811: output_digit( value.byte[4] );
+   089B C6s00r09           1483 	lda	(_value + 0x0004)
+   089E CDs00r2E           1484 	jsr	_output_digit
+   08A1 20 C5              1485 	bra	00211$
+   08A3                    1486 00213$:
+                           1487 ;../printf_large.c:814: if (left_justify)
+   08A3 C6s00r15           1488 	lda	__print_format_left_justify_1_1
+   08A6 26 03              1489 	bne	00373$
+   08A8 CCs00rEB           1490 	jmp	00227$
+   08AB                    1491 00373$:
+                           1492 ;../printf_large.c:815: while (width-- > 0)
+   08AB C6s00r1F           1493 	lda	__print_format_width_1_1
+   08AE B7*08              1494 	sta	*__print_format_sloc3_1_0
+   08B0                    1495 00214$:
+   08B0 4E*08*04           1496 	mov	*__print_format_sloc3_1_0,*__print_format_sloc2_1_0
+   08B3 3A*08              1497 	dec	*__print_format_sloc3_1_0
+   08B5 3D*04              1498 	tst	*__print_format_sloc2_1_0
+   08B7 26 03              1499 	bne	00374$
+   08B9 CCs00rEB           1500 	jmp	00227$
+   08BC                    1501 00374$:
+                           1502 ;../printf_large.c:817: OUTPUT_CHAR(' ', p);
+   08BC A6 20              1503 	lda	#0x20
+   08BE CDs00r00           1504 	jsr	__output_char
+   08C1 20 ED              1505 	bra	00214$
+   08C3                    1506 00225$:
+                           1507 ;../printf_large.c:824: OUTPUT_CHAR( c, p );
+   08C3 C6s00r22           1508 	lda	__print_format_c_1_1
+   08C6 CDs00r00           1509 	jsr	__output_char
+   08C9 CCs00rEB           1510 	jmp	00227$
+   08CC                    1511 00229$:
+                           1512 ;../printf_large.c:828: return charsOutputted;
+   08CC CEs00r0A           1513 	ldx	_charsOutputted
+   08CF C6s00r0B           1514 	lda	(_charsOutputted + 1)
+   08D2                    1515 00230$:
+   08D2 81                 1516 	rts
+                           1517 	.area CSEG (CODE)
+                           1518 	.area CONST   (CODE)
+   0000                    1519 __str_0:
+   0000 3C 4E 4F 20 46 4C  1520 	.ascii "<NO FLOAT>"
+        4F 41 54 3E
+   000A 00                 1521 	.db 0x00
+                           1522 	.area XINIT
+                           1523 	.area CABS    (ABS,CODE)

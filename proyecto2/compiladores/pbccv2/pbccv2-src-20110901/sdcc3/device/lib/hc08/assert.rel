@@ -1,0 +1,62 @@
+XH
+H F areas 5 global symbols
+M assert
+O -mhc08
+S _printf Ref0000
+S .__.ABS. Def0000
+A _CODE size 0 flags 0 addr 0
+A HOME size 0 flags 20 addr 0
+A GSINIT0 size 0 flags 20 addr 0
+A GSINIT size 0 flags 20 addr 0
+A GSFINAL size 0 flags 20 addr 0
+A CSEG size 2B flags 20 addr 0
+S __assert Def0000
+A XINIT size 0 flags 0 addr 0
+A CONST size 2A flags 20 addr 0
+A DSEG size 0 flags 0 addr 0
+A OSEG size 0 flags 4 addr 0
+A BSEG size 0 flags 0 addr 0
+A XSEG size 6 flags 0 addr 0
+S __assert_PARM_2 Def0000
+S __assert_PARM_3 Def0002
+A XISEG size 0 flags 0 addr 0
+A XABS size 0 flags 8 addr 0
+A CABS size 0 flags 28 addr 0
+T 00 00
+R 00 00 00 0B
+T 00 00
+R 00 00 00 0B
+T 00 02
+R 00 00 00 0B
+T 00 02
+R 00 00 00 0B
+T 00 04
+R 00 00 00 0B
+T 00 04
+R 00 00 00 0B
+T 00 00
+R 00 00 00 05
+T 00 00 C7 00 05 CF 00 04 C6 00 01 87 C6
+R 00 00 00 05 00 03 00 0B 00 06 00 0B 00 09 00 0B
+T 00 0B 00 00 87 C6 00 03 87 C6 00 02 87 C6
+R 00 00 00 05 00 02 00 0B 00 06 00 0B 00 0A 00 0B
+T 00 17 00 05 87 C6 00 04 87 45 00 00 89 8B CD
+R 00 00 00 05 00 02 00 0B 00 06 00 0B 00 0A 00 07
+T 00 24 00 00 A7 08
+R 00 00 00 05 02 02 00 00
+T 00 28
+R 00 00 00 05
+T 00 28 20 FE
+R 00 00 00 05
+T 00 2A
+R 00 00 00 05
+T 00 2A 81
+R 00 00 00 05
+T 00 00
+R 00 00 00 07
+T 00 00 41 73 73 65 72 74 28 25 73 29 20 66 61 69
+R 00 00 00 07
+T 00 0E 6C 65 64 20 61 74 20 6C 69 6E 65 20 25 75
+R 00 00 00 07
+T 00 1C 20 69 6E 20 66 69 6C 65 20 25 73 2E 0A 00
+R 00 00 00 07

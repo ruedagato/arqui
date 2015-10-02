@@ -1,0 +1,198 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:25 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module acosf
+                              7 	.optsdcc -mmcs51 --model-medium
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _acosf
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 	.area RSEG    (ABS,DATA)
+   0000                      17 	.org 0x0000
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (ABS,DATA)
+   0000                      22 	.org 0x0000
+                             23 ;--------------------------------------------------------
+                             24 ; overlayable register banks
+                             25 ;--------------------------------------------------------
+                             26 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      27 	.ds 8
+                             28 ;--------------------------------------------------------
+                             29 ; internal ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG    (DATA)
+                             32 ;--------------------------------------------------------
+                             33 ; overlayable items in internal ram 
+                             34 ;--------------------------------------------------------
+                             35 	.area OSEG    (OVR,DATA)
+                             36 ;--------------------------------------------------------
+                             37 ; indirectly addressable internal ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area ISEG    (DATA)
+                             40 ;--------------------------------------------------------
+                             41 ; absolute internal ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area IABS    (ABS,DATA)
+                             44 	.area IABS    (ABS,DATA)
+                             45 ;--------------------------------------------------------
+                             46 ; bit data
+                             47 ;--------------------------------------------------------
+                             48 	.area BSEG    (BIT)
+                             49 ;--------------------------------------------------------
+                             50 ; paged external ram data
+                             51 ;--------------------------------------------------------
+                             52 	.area PSEG    (PAG,XDATA)
+                             53 ;--------------------------------------------------------
+                             54 ; external ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area XSEG    (XDATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute external ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area XABS    (ABS,XDATA)
+                             61 ;--------------------------------------------------------
+                             62 ; external initialized ram data
+                             63 ;--------------------------------------------------------
+                             64 	.area XISEG   (XDATA)
+                             65 	.area HOME    (CODE)
+                             66 	.area GSINIT0 (CODE)
+                             67 	.area GSINIT1 (CODE)
+                             68 	.area GSINIT2 (CODE)
+                             69 	.area GSINIT3 (CODE)
+                             70 	.area GSINIT4 (CODE)
+                             71 	.area GSINIT5 (CODE)
+                             72 	.area GSINIT  (CODE)
+                             73 	.area GSFINAL (CODE)
+                             74 	.area CSEG    (CODE)
+                             75 ;--------------------------------------------------------
+                             76 ; global & static initialisations
+                             77 ;--------------------------------------------------------
+                             78 	.area HOME    (CODE)
+                             79 	.area GSINIT  (CODE)
+                             80 	.area GSFINAL (CODE)
+                             81 	.area GSINIT  (CODE)
+                             82 ;--------------------------------------------------------
+                             83 ; Home
+                             84 ;--------------------------------------------------------
+                             85 	.area HOME    (CODE)
+                             86 	.area HOME    (CODE)
+                             87 ;--------------------------------------------------------
+                             88 ; code
+                             89 ;--------------------------------------------------------
+                             90 	.area CSEG    (CODE)
+                             91 ;------------------------------------------------------------
+                             92 ;Allocation info for local variables in function 'acosf'
+                             93 ;------------------------------------------------------------
+                             94 ;x                         Allocated to registers r2 r3 r4 r5 
+                             95 ;------------------------------------------------------------
+                             96 ;	acosf.c:36: float acosf(const float x) _FLOAT_FUNC_REENTRANT
+                             97 ;	-----------------------------------------
+                             98 ;	 function acosf
+                             99 ;	-----------------------------------------
+   0000                     100 _acosf:
+                    0002    101 	ar2 = 0x02
+                    0003    102 	ar3 = 0x03
+                    0004    103 	ar4 = 0x04
+                    0005    104 	ar5 = 0x05
+                    0006    105 	ar6 = 0x06
+                    0007    106 	ar7 = 0x07
+                    0000    107 	ar0 = 0x00
+                    0001    108 	ar1 = 0x01
+   0000 AA 82               109 	mov	r2,dpl
+   0002 AB 83               110 	mov	r3,dph
+   0004 AC F0               111 	mov	r4,b
+   0006 FD                  112 	mov	r5,a
+                            113 ;	acosf.c:38: if (x == 1.0) return 0.0;
+   0007 C0 02               114 	push	ar2
+   0009 C0 03               115 	push	ar3
+   000B C0 04               116 	push	ar4
+   000D C0 05               117 	push	ar5
+   000F E4                  118 	clr	a
+   0010 C0 E0               119 	push	acc
+   0012 C0 E0               120 	push	acc
+   0014 74 80               121 	mov	a,#0x80
+   0016 C0 E0               122 	push	acc
+   0018 74 3F               123 	mov	a,#0x3F
+   001A C0 E0               124 	push	acc
+   001C 8A 82               125 	mov	dpl,r2
+   001E 8B 83               126 	mov	dph,r3
+   0020 8C F0               127 	mov	b,r4
+   0022 ED                  128 	mov	a,r5
+   0023 12s00r00            129 	lcall	___fseq
+   0026 AE 82               130 	mov	r6,dpl
+   0028 E5 81               131 	mov	a,sp
+   002A 24 FC               132 	add	a,#0xfc
+   002C F5 81               133 	mov	sp,a
+   002E D0 05               134 	pop	ar5
+   0030 D0 04               135 	pop	ar4
+   0032 D0 03               136 	pop	ar3
+   0034 D0 02               137 	pop	ar2
+   0036 EE                  138 	mov	a,r6
+   0037 60 07               139 	jz	00108$
+   0039 90 00 00            140 	mov	dptr,#(0x00&0x00ff)
+   003C E4                  141 	clr	a
+   003D F5 F0               142 	mov	b,a
+   003F 22                  143 	ret
+   0040                     144 00108$:
+                            145 ;	acosf.c:39: else if (x ==-1.0) return PI;
+   0040 C0 02               146 	push	ar2
+   0042 C0 03               147 	push	ar3
+   0044 C0 04               148 	push	ar4
+   0046 C0 05               149 	push	ar5
+   0048 E4                  150 	clr	a
+   0049 C0 E0               151 	push	acc
+   004B C0 E0               152 	push	acc
+   004D 74 80               153 	mov	a,#0x80
+   004F C0 E0               154 	push	acc
+   0051 74 BF               155 	mov	a,#0xBF
+   0053 C0 E0               156 	push	acc
+   0055 8A 82               157 	mov	dpl,r2
+   0057 8B 83               158 	mov	dph,r3
+   0059 8C F0               159 	mov	b,r4
+   005B ED                  160 	mov	a,r5
+   005C 12s00r00            161 	lcall	___fseq
+   005F AE 82               162 	mov	r6,dpl
+   0061 E5 81               163 	mov	a,sp
+   0063 24 FC               164 	add	a,#0xfc
+   0065 F5 81               165 	mov	sp,a
+   0067 D0 05               166 	pop	ar5
+   0069 D0 04               167 	pop	ar4
+   006B D0 03               168 	pop	ar3
+   006D D0 02               169 	pop	ar2
+   006F EE                  170 	mov	a,r6
+   0070 60 09               171 	jz	00105$
+   0072 90 0F DB            172 	mov	dptr,#0x0FDB
+   0075 75 F0 49            173 	mov	b,#0x49
+   0078 74 40               174 	mov	a,#0x40
+   007A 22                  175 	ret
+   007B                     176 00105$:
+                            177 ;	acosf.c:40: else if (x == 0.0) return HALF_PI;
+   007B EA                  178 	mov	a,r2
+   007C 4B                  179 	orl	a,r3
+   007D 4C                  180 	orl	a,r4
+   007E 4D                  181 	orl	a,r5
+   007F 70 09               182 	jnz	00102$
+   0081 90 0F DB            183 	mov	dptr,#0x0FDB
+   0084 75 F0 C9            184 	mov	b,#0xC9
+   0087 74 3F               185 	mov	a,#0x3F
+   0089 22                  186 	ret
+   008A                     187 00102$:
+                            188 ;	acosf.c:41: else               return asincosf(x, true);
+   008A D2*00               189 	setb	_asincosf_PARM_2
+   008C 8A 82               190 	mov	dpl,r2
+   008E 8B 83               191 	mov	dph,r3
+   0090 8C F0               192 	mov	b,r4
+   0092 ED                  193 	mov	a,r5
+   0093 02s00r00            194 	ljmp	_asincosf
+                            195 	.area CSEG    (CODE)
+                            196 	.area CONST   (CODE)
+                            197 	.area XINIT   (CODE)
+                            198 	.area CABS    (ABS,CODE)

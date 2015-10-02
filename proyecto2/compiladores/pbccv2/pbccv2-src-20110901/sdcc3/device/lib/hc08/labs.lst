@@ -1,0 +1,114 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module labs
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _labs_PARM_1
+                             25 	.globl _labs
+                             26 ;--------------------------------------------------------
+                             27 ;  ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area DSEG
+                             30 ;--------------------------------------------------------
+                             31 ; overlayable items in  ram 
+                             32 ;--------------------------------------------------------
+                             33 	.area	OSEG    (OVR)
+   0000                      34 _labs_sloc0_1_0::
+   0000                      35 	.ds 4
+                             36 ;--------------------------------------------------------
+                             37 ; absolute external ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area XABS    (ABS)
+                             40 ;--------------------------------------------------------
+                             41 ; external initialized ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area XISEG
+                             44 ;--------------------------------------------------------
+                             45 ; extended address mode data
+                             46 ;--------------------------------------------------------
+                             47 	.area XSEG
+   0000                      48 _labs_PARM_1:
+   0000                      49 	.ds 4
+                             50 ;--------------------------------------------------------
+                             51 ; global & static initialisations
+                             52 ;--------------------------------------------------------
+                             53 	.area HOME (CODE)
+                             54 	.area GSINIT (CODE)
+                             55 	.area GSFINAL (CODE)
+                             56 	.area GSINIT (CODE)
+                             57 ;--------------------------------------------------------
+                             58 ; Home
+                             59 ;--------------------------------------------------------
+                             60 	.area HOME (CODE)
+                             61 	.area HOME (CODE)
+                             62 ;--------------------------------------------------------
+                             63 ; code
+                             64 ;--------------------------------------------------------
+                             65 	.area CSEG (CODE)
+                             66 ;------------------------------------------------------------
+                             67 ;Allocation info for local variables in function 'labs'
+                             68 ;------------------------------------------------------------
+                             69 ;j                         Allocated with name '_labs_PARM_1'
+                             70 ;sloc0                     Allocated with name '_labs_sloc0_1_0'
+                             71 ;------------------------------------------------------------
+                             72 ;../labs.c:63: long int labs(long int j)
+                             73 ;	-----------------------------------------
+                             74 ;	 function labs
+                             75 ;	-----------------------------------------
+   0000                      76 _labs:
+                             77 ;../labs.c:65: return (j < 0) ? -j : j;
+   0000 C6s00r00             78 	lda	_labs_PARM_1
+   0003 A0 00                79 	sub	#0x00
+   0005 90 1A                80 	bge	00103$
+   0007                      81 00106$:
+   0007 4F                   82 	clra
+   0008 C0s00r03             83 	sub	(_labs_PARM_1 + 3)
+   000B B7*03                84 	sta	*(_labs_sloc0_1_0 + 3)
+   000D 4F                   85 	clra
+   000E C2s00r02             86 	sbc	(_labs_PARM_1 + 2)
+   0011 B7*02                87 	sta	*(_labs_sloc0_1_0 + 2)
+   0013 4F                   88 	clra
+   0014 C2s00r01             89 	sbc	(_labs_PARM_1 + 1)
+   0017 B7*01                90 	sta	*(_labs_sloc0_1_0 + 1)
+   0019 4F                   91 	clra
+   001A C2s00r00             92 	sbc	_labs_PARM_1
+   001D B7*00                93 	sta	*_labs_sloc0_1_0
+   001F 20 14                94 	bra	00104$
+   0021                      95 00103$:
+   0021 C6s00r00             96 	lda	_labs_PARM_1
+   0024 B7*00                97 	sta	*_labs_sloc0_1_0
+   0026 C6s00r01             98 	lda	(_labs_PARM_1 + 1)
+   0029 B7*01                99 	sta	*(_labs_sloc0_1_0 + 1)
+   002B C6s00r02            100 	lda	(_labs_PARM_1 + 2)
+   002E B7*02               101 	sta	*(_labs_sloc0_1_0 + 2)
+   0030 C6s00r03            102 	lda	(_labs_PARM_1 + 3)
+   0033 B7*03               103 	sta	*(_labs_sloc0_1_0 + 3)
+   0035                     104 00104$:
+   0035 4E*00*00            105 	mov	*_labs_sloc0_1_0,*__ret3
+   0038 4E*01*00            106 	mov	*(_labs_sloc0_1_0 + 1),*__ret2
+   003B BE*02               107 	ldx	*(_labs_sloc0_1_0 + 2)
+   003D B6*03               108 	lda	*(_labs_sloc0_1_0 + 3)
+   003F                     109 00101$:
+   003F 81                  110 	rts
+                            111 	.area CSEG (CODE)
+                            112 	.area CONST   (CODE)
+                            113 	.area XINIT
+                            114 	.area CABS    (ABS,CODE)

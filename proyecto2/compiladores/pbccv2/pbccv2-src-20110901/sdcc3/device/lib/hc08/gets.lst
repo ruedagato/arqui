@@ -1,0 +1,188 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:22 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module gets
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _gets
+                             25 ;--------------------------------------------------------
+                             26 ;  ram data
+                             27 ;--------------------------------------------------------
+                             28 	.area DSEG
+                             29 ;--------------------------------------------------------
+                             30 ; overlayable items in  ram 
+                             31 ;--------------------------------------------------------
+                             32 	.area OSEG    (OVR)
+                             33 ;--------------------------------------------------------
+                             34 ; absolute external ram data
+                             35 ;--------------------------------------------------------
+                             36 	.area XABS    (ABS)
+                             37 ;--------------------------------------------------------
+                             38 ; external initialized ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area XISEG
+                             41 ;--------------------------------------------------------
+                             42 ; extended address mode data
+                             43 ;--------------------------------------------------------
+                             44 	.area XSEG
+   0000                      45 _gets_s_1_1:
+   0000                      46 	.ds 2
+   0002                      47 _gets_c_1_1:
+   0002                      48 	.ds 1
+   0003                      49 _gets_count_1_1:
+   0003                      50 	.ds 2
+                             51 ;--------------------------------------------------------
+                             52 ; global & static initialisations
+                             53 ;--------------------------------------------------------
+                             54 	.area HOME (CODE)
+                             55 	.area GSINIT (CODE)
+                             56 	.area GSFINAL (CODE)
+                             57 	.area GSINIT (CODE)
+                             58 ;--------------------------------------------------------
+                             59 ; Home
+                             60 ;--------------------------------------------------------
+                             61 	.area HOME (CODE)
+                             62 	.area HOME (CODE)
+                             63 ;--------------------------------------------------------
+                             64 ; code
+                             65 ;--------------------------------------------------------
+                             66 	.area CSEG (CODE)
+                             67 ;------------------------------------------------------------
+                             68 ;Allocation info for local variables in function 'gets'
+                             69 ;------------------------------------------------------------
+                             70 ;s                         Allocated with name '_gets_s_1_1'
+                             71 ;c                         Allocated with name '_gets_c_1_1'
+                             72 ;count                     Allocated with name '_gets_count_1_1'
+                             73 ;------------------------------------------------------------
+                             74 ;../gets.c:32: gets (char *s)
+                             75 ;	-----------------------------------------
+                             76 ;	 function gets
+                             77 ;	-----------------------------------------
+   0000                      78 _gets:
+   0000 C7s00r01             79 	sta	(_gets_s_1_1 + 1)
+   0003 CFs00r00             80 	stx	_gets_s_1_1
+                             81 ;../gets.c:35: unsigned int count = 0;
+   0006 4F                   82 	clra
+   0007 C7s00r03             83 	sta	_gets_count_1_1
+   000A C7s00r04             84 	sta	(_gets_count_1_1 + 1)
+                             85 ;../gets.c:37: while (1)
+   000D                      86 00109$:
+                             87 ;../gets.c:39: c = getchar ();
+   000D CDs00r00             88 	jsr	_getchar
+   0010 C7s00r02             89 	sta	_gets_c_1_1
+                             90 ;../gets.c:40: switch(c)
+   0013 C6s00r02             91 	lda	_gets_c_1_1
+   0016 A1 08                92 	cmp	#0x08
+   0018 27 10                93 	beq	00101$
+   001A                      94 00118$:
+   001A C6s00r02             95 	lda	_gets_c_1_1
+   001D A1 0A                96 	cmp	#0x0A
+   001F 27 42                97 	beq	00105$
+   0021                      98 00119$:
+   0021 C6s00r02             99 	lda	_gets_c_1_1
+   0024 A1 0D               100 	cmp	#0x0D
+   0026 27 3B               101 	beq	00105$
+   0028                     102 00120$:
+   0028 20 54               103 	bra	00106$
+                            104 ;../gets.c:42: case '\b': /* backspace */
+   002A                     105 00101$:
+                            106 ;../gets.c:43: if (count)
+   002A C6s00r04            107 	lda	(_gets_count_1_1 + 1)
+   002D CAs00r03            108 	ora	_gets_count_1_1
+   0030 27 DB               109 	beq	00109$
+   0032                     110 00121$:
+                            111 ;../gets.c:45: putchar ('\b');
+   0032 A6 08               112 	lda	#0x08
+   0034 CDs00r00            113 	jsr	_putchar
+                            114 ;../gets.c:46: putchar (' ');
+   0037 A6 20               115 	lda	#0x20
+   0039 CDs00r00            116 	jsr	_putchar
+                            117 ;../gets.c:47: putchar ('\b');
+   003C A6 08               118 	lda	#0x08
+   003E CDs00r00            119 	jsr	_putchar
+                            120 ;../gets.c:48: --s;
+   0041 C6s00r01            121 	lda	(_gets_s_1_1 + 1)
+   0044 A0 01               122 	sub	#0x01
+   0046 C7s00r01            123 	sta	(_gets_s_1_1 + 1)
+   0049 C6s00r00            124 	lda	_gets_s_1_1
+   004C A2 00               125 	sbc	#0x00
+   004E C7s00r00            126 	sta	_gets_s_1_1
+                            127 ;../gets.c:49: --count;
+   0051 C6s00r04            128 	lda	(_gets_count_1_1 + 1)
+   0054 A0 01               129 	sub	#0x01
+   0056 C7s00r04            130 	sta	(_gets_count_1_1 + 1)
+   0059 C6s00r03            131 	lda	_gets_count_1_1
+   005C A2 00               132 	sbc	#0x00
+   005E C7s00r03            133 	sta	_gets_count_1_1
+                            134 ;../gets.c:51: break;
+   0061 20 AA               135 	bra	00109$
+                            136 ;../gets.c:54: case '\r': /* CR or LF */
+   0063                     137 00105$:
+                            138 ;../gets.c:55: putchar ('\r');
+   0063 A6 0D               139 	lda	#0x0D
+   0065 CDs00r00            140 	jsr	_putchar
+                            141 ;../gets.c:56: putchar ('\n');
+   0068 A6 0A               142 	lda	#0x0A
+   006A CDs00r00            143 	jsr	_putchar
+                            144 ;../gets.c:57: *s = 0;
+   006D C6s00r00            145 	lda	_gets_s_1_1
+   0070 CEs00r01            146 	ldx	(_gets_s_1_1 + 1)
+   0073 87                  147 	psha
+   0074 8A                  148 	pulh
+   0075 4F                  149 	clra
+   0076 F7                  150 	sta	,x
+                            151 ;../gets.c:58: return s;
+   0077 CEs00r00            152 	ldx	_gets_s_1_1
+   007A C6s00r01            153 	lda	(_gets_s_1_1 + 1)
+   007D 81                  154 	rts
+                            155 ;../gets.c:60: default:
+   007E                     156 00106$:
+                            157 ;../gets.c:61: *s++ = c;
+   007E C6s00r00            158 	lda	_gets_s_1_1
+   0081 CEs00r01            159 	ldx	(_gets_s_1_1 + 1)
+   0084 87                  160 	psha
+   0085 8A                  161 	pulh
+   0086 C6s00r02            162 	lda	_gets_c_1_1
+   0089 F7                  163 	sta	,x
+   008A AF 01               164 	aix	#1
+   008C 8B                  165 	pshh
+   008D 86                  166 	pula
+   008E C7s00r00            167 	sta	_gets_s_1_1
+   0091 CFs00r01            168 	stx	(_gets_s_1_1 + 1)
+                            169 ;../gets.c:62: ++count;
+   0094 C6s00r04            170 	lda	(_gets_count_1_1 + 1)
+   0097 4C                  171 	inca
+   0098 C7s00r04            172 	sta	(_gets_count_1_1 + 1)
+   009B 26 07               173 	bne	00122$
+   009D C6s00r03            174 	lda	_gets_count_1_1
+   00A0 4C                  175 	inca
+   00A1 C7s00r03            176 	sta	_gets_count_1_1
+   00A4                     177 00122$:
+                            178 ;../gets.c:63: putchar (c);
+   00A4 C6s00r02            179 	lda	_gets_c_1_1
+   00A7 CDs00r00            180 	jsr	_putchar
+                            181 ;../gets.c:65: }
+   00AA CCs00r0D            182 	jmp	00109$
+   00AD                     183 00111$:
+   00AD 81                  184 	rts
+                            185 	.area CSEG (CODE)
+                            186 	.area CONST   (CODE)
+                            187 	.area XINIT
+                            188 	.area CABS    (ABS,CODE)

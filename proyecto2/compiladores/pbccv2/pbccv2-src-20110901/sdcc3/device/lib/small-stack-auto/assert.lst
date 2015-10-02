@@ -1,0 +1,167 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:32 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module assert
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl __assert
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 	.area RSEG    (ABS,DATA)
+   0000                      17 	.org 0x0000
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (ABS,DATA)
+   0000                      22 	.org 0x0000
+                             23 ;--------------------------------------------------------
+                             24 ; overlayable register banks
+                             25 ;--------------------------------------------------------
+                             26 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      27 	.ds 8
+                             28 ;--------------------------------------------------------
+                             29 ; internal ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG    (DATA)
+                             32 ;--------------------------------------------------------
+                             33 ; overlayable items in internal ram 
+                             34 ;--------------------------------------------------------
+                             35 	.area OSEG    (OVR,DATA)
+                             36 ;--------------------------------------------------------
+                             37 ; indirectly addressable internal ram data
+                             38 ;--------------------------------------------------------
+                             39 	.area ISEG    (DATA)
+                             40 ;--------------------------------------------------------
+                             41 ; absolute internal ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area IABS    (ABS,DATA)
+                             44 	.area IABS    (ABS,DATA)
+                             45 ;--------------------------------------------------------
+                             46 ; bit data
+                             47 ;--------------------------------------------------------
+                             48 	.area BSEG    (BIT)
+                             49 ;--------------------------------------------------------
+                             50 ; paged external ram data
+                             51 ;--------------------------------------------------------
+                             52 	.area PSEG    (PAG,XDATA)
+                             53 ;--------------------------------------------------------
+                             54 ; external ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area XSEG    (XDATA)
+                             57 ;--------------------------------------------------------
+                             58 ; absolute external ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area XABS    (ABS,XDATA)
+                             61 ;--------------------------------------------------------
+                             62 ; external initialized ram data
+                             63 ;--------------------------------------------------------
+                             64 	.area XISEG   (XDATA)
+                             65 	.area HOME    (CODE)
+                             66 	.area GSINIT0 (CODE)
+                             67 	.area GSINIT1 (CODE)
+                             68 	.area GSINIT2 (CODE)
+                             69 	.area GSINIT3 (CODE)
+                             70 	.area GSINIT4 (CODE)
+                             71 	.area GSINIT5 (CODE)
+                             72 	.area GSINIT  (CODE)
+                             73 	.area GSFINAL (CODE)
+                             74 	.area CSEG    (CODE)
+                             75 ;--------------------------------------------------------
+                             76 ; global & static initialisations
+                             77 ;--------------------------------------------------------
+                             78 	.area HOME    (CODE)
+                             79 	.area GSINIT  (CODE)
+                             80 	.area GSFINAL (CODE)
+                             81 	.area GSINIT  (CODE)
+                             82 ;--------------------------------------------------------
+                             83 ; Home
+                             84 ;--------------------------------------------------------
+                             85 	.area HOME    (CODE)
+                             86 	.area HOME    (CODE)
+                             87 ;--------------------------------------------------------
+                             88 ; code
+                             89 ;--------------------------------------------------------
+                             90 	.area CSEG    (CODE)
+                             91 ;------------------------------------------------------------
+                             92 ;Allocation info for local variables in function '_assert'
+                             93 ;------------------------------------------------------------
+                             94 ;filename                  Allocated to stack - offset -5
+                             95 ;linenumber                Allocated to stack - offset -7
+                             96 ;expr                      Allocated to registers r2 r3 r4 
+                             97 ;------------------------------------------------------------
+                             98 ;	assert.c:32: void _assert(char *expr, const char *filename, unsigned int linenumber)
+                             99 ;	-----------------------------------------
+                            100 ;	 function _assert
+                            101 ;	-----------------------------------------
+   0000                     102 __assert:
+                    0002    103 	ar2 = 0x02
+                    0003    104 	ar3 = 0x03
+                    0004    105 	ar4 = 0x04
+                    0005    106 	ar5 = 0x05
+                    0006    107 	ar6 = 0x06
+                    0007    108 	ar7 = 0x07
+                    0000    109 	ar0 = 0x00
+                    0001    110 	ar1 = 0x01
+   0000 C0*00               111 	push	_bp
+   0002 85 81*00            112 	mov	_bp,sp
+   0005 AA 82               113 	mov	r2,dpl
+   0007 AB 83               114 	mov	r3,dph
+   0009 AC F0               115 	mov	r4,b
+                            116 ;	assert.c:34: printf("Assert(%s) failed at line %u in file %s.\n",
+   000B E5*00               117 	mov	a,_bp
+   000D 24 FB               118 	add	a,#0xfb
+   000F F8                  119 	mov	r0,a
+   0010 E6                  120 	mov	a,@r0
+   0011 C0 E0               121 	push	acc
+   0013 08                  122 	inc	r0
+   0014 E6                  123 	mov	a,@r0
+   0015 C0 E0               124 	push	acc
+   0017 08                  125 	inc	r0
+   0018 E6                  126 	mov	a,@r0
+   0019 C0 E0               127 	push	acc
+   001B E5*00               128 	mov	a,_bp
+   001D 24 F9               129 	add	a,#0xf9
+   001F F8                  130 	mov	r0,a
+   0020 E6                  131 	mov	a,@r0
+   0021 C0 E0               132 	push	acc
+   0023 08                  133 	inc	r0
+   0024 E6                  134 	mov	a,@r0
+   0025 C0 E0               135 	push	acc
+   0027 C0 02               136 	push	ar2
+   0029 C0 03               137 	push	ar3
+   002B C0 04               138 	push	ar4
+   002D 74r00               139 	mov	a,#__str_0
+   002F C0 E0               140 	push	acc
+   0031 74s00               141 	mov	a,#(__str_0 >> 8)
+   0033 C0 E0               142 	push	acc
+   0035 74 80               143 	mov	a,#0x80
+   0037 C0 E0               144 	push	acc
+   0039 12s00r00            145 	lcall	_printf
+   003C E5 81               146 	mov	a,sp
+   003E 24 F5               147 	add	a,#0xf5
+   0040 F5 81               148 	mov	sp,a
+                            149 ;	assert.c:36: while(1);
+   0042                     150 00102$:
+   0042 80 FE               151 	sjmp	00102$
+   0044 D0*00               152 	pop	_bp
+   0046 22                  153 	ret
+                            154 	.area CSEG    (CODE)
+                            155 	.area CONST   (CODE)
+   0000                     156 __str_0:
+   0000 41 73 73 65 72 74   157 	.ascii "Assert(%s) failed at line %u in file %s."
+        28 25 73 29 20 66
+        61 69 6C 65 64 20
+        61 74 20 6C 69 6E
+        65 20 25 75 20 69
+        6E 20 66 69 6C 65
+        20 25 73 2E
+   0028 0A                  158 	.db 0x0A
+   0029 00                  159 	.db 0x00
+                            160 	.area XINIT   (CODE)
+                            161 	.area CABS    (ABS,CODE)

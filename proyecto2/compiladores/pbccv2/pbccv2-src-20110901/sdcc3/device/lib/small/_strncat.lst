@@ -1,0 +1,216 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:23 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _strncat
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _strncat_PARM_3
+                             13 	.globl _strncat_PARM_2
+                             14 	.globl _strncat
+                             15 ;--------------------------------------------------------
+                             16 ; special function registers
+                             17 ;--------------------------------------------------------
+                             18 	.area RSEG    (ABS,DATA)
+   0000                      19 	.org 0x0000
+                             20 ;--------------------------------------------------------
+                             21 ; special function bits
+                             22 ;--------------------------------------------------------
+                             23 	.area RSEG    (ABS,DATA)
+   0000                      24 	.org 0x0000
+                             25 ;--------------------------------------------------------
+                             26 ; overlayable register banks
+                             27 ;--------------------------------------------------------
+                             28 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      29 	.ds 8
+                             30 ;--------------------------------------------------------
+                             31 ; internal ram data
+                             32 ;--------------------------------------------------------
+                             33 	.area DSEG    (DATA)
+                             34 ;--------------------------------------------------------
+                             35 ; overlayable items in internal ram 
+                             36 ;--------------------------------------------------------
+                             37 	.area	OSEG    (OVR,DATA)
+   0000                      38 _strncat_PARM_2::
+   0000                      39 	.ds 3
+   0003                      40 _strncat_PARM_3::
+   0003                      41 	.ds 2
+   0005                      42 _strncat_front_1_1::
+   0005                      43 	.ds 3
+   0008                      44 _strncat_start_1_1::
+   0008                      45 	.ds 3
+   000B                      46 _strncat_sloc0_1_0::
+   000B                      47 	.ds 3
+                             48 ;--------------------------------------------------------
+                             49 ; indirectly addressable internal ram data
+                             50 ;--------------------------------------------------------
+                             51 	.area ISEG    (DATA)
+                             52 ;--------------------------------------------------------
+                             53 ; absolute internal ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area IABS    (ABS,DATA)
+                             56 	.area IABS    (ABS,DATA)
+                             57 ;--------------------------------------------------------
+                             58 ; bit data
+                             59 ;--------------------------------------------------------
+                             60 	.area BSEG    (BIT)
+                             61 ;--------------------------------------------------------
+                             62 ; paged external ram data
+                             63 ;--------------------------------------------------------
+                             64 	.area PSEG    (PAG,XDATA)
+                             65 ;--------------------------------------------------------
+                             66 ; external ram data
+                             67 ;--------------------------------------------------------
+                             68 	.area XSEG    (XDATA)
+                             69 ;--------------------------------------------------------
+                             70 ; absolute external ram data
+                             71 ;--------------------------------------------------------
+                             72 	.area XABS    (ABS,XDATA)
+                             73 ;--------------------------------------------------------
+                             74 ; external initialized ram data
+                             75 ;--------------------------------------------------------
+                             76 	.area XISEG   (XDATA)
+                             77 	.area HOME    (CODE)
+                             78 	.area GSINIT0 (CODE)
+                             79 	.area GSINIT1 (CODE)
+                             80 	.area GSINIT2 (CODE)
+                             81 	.area GSINIT3 (CODE)
+                             82 	.area GSINIT4 (CODE)
+                             83 	.area GSINIT5 (CODE)
+                             84 	.area GSINIT  (CODE)
+                             85 	.area GSFINAL (CODE)
+                             86 	.area CSEG    (CODE)
+                             87 ;--------------------------------------------------------
+                             88 ; global & static initialisations
+                             89 ;--------------------------------------------------------
+                             90 	.area HOME    (CODE)
+                             91 	.area GSINIT  (CODE)
+                             92 	.area GSFINAL (CODE)
+                             93 	.area GSINIT  (CODE)
+                             94 ;--------------------------------------------------------
+                             95 ; Home
+                             96 ;--------------------------------------------------------
+                             97 	.area HOME    (CODE)
+                             98 	.area HOME    (CODE)
+                             99 ;--------------------------------------------------------
+                            100 ; code
+                            101 ;--------------------------------------------------------
+                            102 	.area CSEG    (CODE)
+                            103 ;------------------------------------------------------------
+                            104 ;Allocation info for local variables in function 'strncat'
+                            105 ;------------------------------------------------------------
+                            106 ;back                      Allocated with name '_strncat_PARM_2'
+                            107 ;count                     Allocated with name '_strncat_PARM_3'
+                            108 ;front                     Allocated with name '_strncat_front_1_1'
+                            109 ;start                     Allocated with name '_strncat_start_1_1'
+                            110 ;sloc0                     Allocated with name '_strncat_sloc0_1_0'
+                            111 ;------------------------------------------------------------
+                            112 ;	_strncat.c:31: char * strncat (
+                            113 ;	-----------------------------------------
+                            114 ;	 function strncat
+                            115 ;	-----------------------------------------
+   0000                     116 _strncat:
+                    0002    117 	ar2 = 0x02
+                    0003    118 	ar3 = 0x03
+                    0004    119 	ar4 = 0x04
+                    0005    120 	ar5 = 0x05
+                    0006    121 	ar6 = 0x06
+                    0007    122 	ar7 = 0x07
+                    0000    123 	ar0 = 0x00
+                    0001    124 	ar1 = 0x01
+   0000 85 82*05            125 	mov	_strncat_front_1_1,dpl
+   0003 85 83*06            126 	mov	(_strncat_front_1_1 + 1),dph
+   0006 85 F0*07            127 	mov	(_strncat_front_1_1 + 2),b
+                            128 ;	_strncat.c:37: char *start = front;
+   0009 85*05*08            129 	mov	_strncat_start_1_1,_strncat_front_1_1
+   000C 85*06*09            130 	mov	(_strncat_start_1_1 + 1),(_strncat_front_1_1 + 1)
+   000F 85*07*0A            131 	mov	(_strncat_start_1_1 + 2),(_strncat_front_1_1 + 2)
+                            132 ;	_strncat.c:39: while (*front++);
+   0012 A8*05               133 	mov	r0,_strncat_front_1_1
+   0014 A9*06               134 	mov	r1,(_strncat_front_1_1 + 1)
+   0016 AD*07               135 	mov	r5,(_strncat_front_1_1 + 2)
+   0018                     136 00101$:
+   0018 88 82               137 	mov	dpl,r0
+   001A 89 83               138 	mov	dph,r1
+   001C 8D F0               139 	mov	b,r5
+   001E 12s00r00            140 	lcall	__gptrget
+   0021 FE                  141 	mov	r6,a
+   0022 A3                  142 	inc	dptr
+   0023 A8 82               143 	mov	r0,dpl
+   0025 A9 83               144 	mov	r1,dph
+   0027 EE                  145 	mov	a,r6
+   0028 70 EE               146 	jnz	00101$
+                            147 ;	_strncat.c:41: front--;
+   002A E8                  148 	mov	a,r0
+   002B 24 FF               149 	add	a,#0xff
+   002D F5*05               150 	mov	_strncat_front_1_1,a
+   002F E9                  151 	mov	a,r1
+   0030 34 FF               152 	addc	a,#0xff
+   0032 F5*06               153 	mov	(_strncat_front_1_1 + 1),a
+   0034 8D*07               154 	mov	(_strncat_front_1_1 + 2),r5
+                            155 ;	_strncat.c:43: while (count--)
+   0036 AD*00               156 	mov	r5,_strncat_PARM_2
+   0038 AE*01               157 	mov	r6,(_strncat_PARM_2 + 1)
+   003A AF*02               158 	mov	r7,(_strncat_PARM_2 + 2)
+   003C 85*05*0B            159 	mov	_strncat_sloc0_1_0,_strncat_front_1_1
+   003F 85*06*0C            160 	mov	(_strncat_sloc0_1_0 + 1),(_strncat_front_1_1 + 1)
+   0042 85*07*0D            161 	mov	(_strncat_sloc0_1_0 + 2),(_strncat_front_1_1 + 2)
+   0045 A8*03               162 	mov	r0,_strncat_PARM_3
+   0047 A9*04               163 	mov	r1,(_strncat_PARM_3 + 1)
+   0049                     164 00106$:
+   0049 88 02               165 	mov	ar2,r0
+   004B 89 03               166 	mov	ar3,r1
+   004D 18                  167 	dec	r0
+   004E B8 FF 01            168 	cjne	r0,#0xff,00118$
+   0051 19                  169 	dec	r1
+   0052                     170 00118$:
+   0052 EA                  171 	mov	a,r2
+   0053 4B                  172 	orl	a,r3
+   0054 60 39               173 	jz	00108$
+                            174 ;	_strncat.c:44: if (!(*front++ = *back++))
+   0056 8D 82               175 	mov	dpl,r5
+   0058 8E 83               176 	mov	dph,r6
+   005A 8F F0               177 	mov	b,r7
+   005C 12s00r00            178 	lcall	__gptrget
+   005F FA                  179 	mov	r2,a
+   0060 A3                  180 	inc	dptr
+   0061 AD 82               181 	mov	r5,dpl
+   0063 AE 83               182 	mov	r6,dph
+   0065 85*0B 82            183 	mov	dpl,_strncat_sloc0_1_0
+   0068 85*0C 83            184 	mov	dph,(_strncat_sloc0_1_0 + 1)
+   006B 85*0D F0            185 	mov	b,(_strncat_sloc0_1_0 + 2)
+   006E EA                  186 	mov	a,r2
+   006F 12s00r00            187 	lcall	__gptrput
+   0072 A3                  188 	inc	dptr
+   0073 85 82*0B            189 	mov	_strncat_sloc0_1_0,dpl
+   0076 85 83*0C            190 	mov	(_strncat_sloc0_1_0 + 1),dph
+   0079 85*0B*05            191 	mov	_strncat_front_1_1,_strncat_sloc0_1_0
+   007C 85*0C*06            192 	mov	(_strncat_front_1_1 + 1),(_strncat_sloc0_1_0 + 1)
+   007F 85*0D*07            193 	mov	(_strncat_front_1_1 + 2),(_strncat_sloc0_1_0 + 2)
+   0082 EA                  194 	mov	a,r2
+   0083 70 C4               195 	jnz	00106$
+                            196 ;	_strncat.c:45: return(start);
+   0085 85*08 82            197 	mov	dpl,_strncat_start_1_1
+   0088 85*09 83            198 	mov	dph,(_strncat_start_1_1 + 1)
+   008B 85*0A F0            199 	mov	b,(_strncat_start_1_1 + 2)
+   008E 22                  200 	ret
+   008F                     201 00108$:
+                            202 ;	_strncat.c:47: *front = '\0';
+   008F 85*05 82            203 	mov	dpl,_strncat_front_1_1
+   0092 85*06 83            204 	mov	dph,(_strncat_front_1_1 + 1)
+   0095 85*07 F0            205 	mov	b,(_strncat_front_1_1 + 2)
+   0098 E4                  206 	clr	a
+   0099 12s00r00            207 	lcall	__gptrput
+                            208 ;	_strncat.c:48: return(start);
+   009C 85*08 82            209 	mov	dpl,_strncat_start_1_1
+   009F 85*09 83            210 	mov	dph,(_strncat_start_1_1 + 1)
+   00A2 85*0A F0            211 	mov	b,(_strncat_start_1_1 + 2)
+   00A5 22                  212 	ret
+                            213 	.area CSEG    (CODE)
+                            214 	.area CONST   (CODE)
+                            215 	.area XINIT   (CODE)
+                            216 	.area CABS    (ABS,CODE)

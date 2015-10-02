@@ -1,0 +1,178 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:21 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module fabsf
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _fabsf
+                             25 ;--------------------------------------------------------
+                             26 ;  ram data
+                             27 ;--------------------------------------------------------
+                             28 	.area DSEG
+                             29 ;--------------------------------------------------------
+                             30 ; overlayable items in  ram 
+                             31 ;--------------------------------------------------------
+                             32 	.area OSEG    (OVR)
+                             33 ;--------------------------------------------------------
+                             34 ; absolute external ram data
+                             35 ;--------------------------------------------------------
+                             36 	.area XABS    (ABS)
+                             37 ;--------------------------------------------------------
+                             38 ; external initialized ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area XISEG
+                             41 ;--------------------------------------------------------
+                             42 ; extended address mode data
+                             43 ;--------------------------------------------------------
+                             44 	.area XSEG
+                             45 ;--------------------------------------------------------
+                             46 ; global & static initialisations
+                             47 ;--------------------------------------------------------
+                             48 	.area HOME (CODE)
+                             49 	.area GSINIT (CODE)
+                             50 	.area GSFINAL (CODE)
+                             51 	.area GSINIT (CODE)
+                             52 ;--------------------------------------------------------
+                             53 ; Home
+                             54 ;--------------------------------------------------------
+                             55 	.area HOME (CODE)
+                             56 	.area HOME (CODE)
+                             57 ;--------------------------------------------------------
+                             58 ; code
+                             59 ;--------------------------------------------------------
+                             60 	.area CSEG (CODE)
+                             61 ;------------------------------------------------------------
+                             62 ;Allocation info for local variables in function 'fabsf'
+                             63 ;------------------------------------------------------------
+                             64 ;x                         Allocated to stack - offset 2
+                             65 ;fl                        Allocated to stack - offset -4
+                             66 ;sloc0                     Allocated to stack - offset -6
+                             67 ;sloc1                     Allocated to stack - offset -8
+                             68 ;sloc2                     Allocated to stack - offset -12
+                             69 ;------------------------------------------------------------
+                             70 ;../fabsf.c:34: float fabsf(const float x) _FLOAT_FUNC_REENTRANT
+                             71 ;	-----------------------------------------
+                             72 ;	 function fabsf
+                             73 ;	-----------------------------------------
+   0000                      74 _fabsf:
+   0000 A7 F4                75 	ais	#-12
+                             76 ;../fabsf.c:38: fl.f = x;
+   0002 95                   77 	tsx
+   0003 AF 08                78 	aix	#8
+   0005 8B                   79 	pshh
+   0006 86                   80 	pula
+   0007 9E E7 07             81 	sta	7,s
+   000A 9E EF 08             82 	stx	8,s
+   000D 9E E6 07             83 	lda	7,s
+   0010 9E EE 08             84 	ldx	8,s
+   0013 87                   85 	psha
+   0014 8A                   86 	pulh
+   0015 9E E6 0F             87 	lda	15,s
+   0018 F7                   88 	sta	,x
+   0019 AF 01                89 	aix	#1
+   001B 9E E6 10             90 	lda	16,s
+   001E F7                   91 	sta	,x
+   001F AF 01                92 	aix	#1
+   0021 9E E6 11             93 	lda	17,s
+   0024 F7                   94 	sta	,x
+   0025 AF 01                95 	aix	#1
+   0027 9E E6 12             96 	lda	18,s
+   002A F7                   97 	sta	,x
+                             98 ;../fabsf.c:39: fl.l &= 0x7fffffff;
+   002B 95                   99 	tsx
+   002C AF 08               100 	aix	#8
+   002E 8B                  101 	pshh
+   002F 86                  102 	pula
+   0030 9E E7 07            103 	sta	7,s
+   0033 9E EF 08            104 	stx	8,s
+   0036 95                  105 	tsx
+   0037 AF 08               106 	aix	#8
+   0039 8B                  107 	pshh
+   003A 86                  108 	pula
+   003B 9E E7 05            109 	sta	5,s
+   003E 9E EF 06            110 	stx	6,s
+   0041 9E E6 05            111 	lda	5,s
+   0044 9E EE 06            112 	ldx	6,s
+   0047 87                  113 	psha
+   0048 8A                  114 	pulh
+   0049 F6                  115 	lda	,x
+   004A AF 01               116 	aix	#1
+   004C 9E E7 01            117 	sta	1,s
+   004F F6                  118 	lda	,x
+   0050 AF 01               119 	aix	#1
+   0052 9E E7 02            120 	sta	2,s
+   0055 F6                  121 	lda	,x
+   0056 AF 01               122 	aix	#1
+   0058 9E E7 03            123 	sta	3,s
+   005B F6                  124 	lda	,x
+   005C 9E E7 04            125 	sta	4,s
+   005F 9E E6 01            126 	lda	1,s
+   0062 A4 7F               127 	and	#0x7F
+   0064 9E E7 01            128 	sta	1,s
+   0067 9E E6 07            129 	lda	7,s
+   006A 9E EE 08            130 	ldx	8,s
+   006D 87                  131 	psha
+   006E 8A                  132 	pulh
+   006F 9E E6 01            133 	lda	1,s
+   0072 F7                  134 	sta	,x
+   0073 AF 01               135 	aix	#1
+   0075 9E E6 02            136 	lda	2,s
+   0078 F7                  137 	sta	,x
+   0079 AF 01               138 	aix	#1
+   007B 9E E6 03            139 	lda	3,s
+   007E F7                  140 	sta	,x
+   007F AF 01               141 	aix	#1
+   0081 9E E6 04            142 	lda	4,s
+   0084 F7                  143 	sta	,x
+                            144 ;../fabsf.c:40: return fl.f;
+   0085 95                  145 	tsx
+   0086 AF 08               146 	aix	#8
+   0088 8B                  147 	pshh
+   0089 86                  148 	pula
+   008A 9E E7 01            149 	sta	1,s
+   008D 9E EF 02            150 	stx	2,s
+   0090 9E E6 01            151 	lda	1,s
+   0093 9E EE 02            152 	ldx	2,s
+   0096 87                  153 	psha
+   0097 8A                  154 	pulh
+   0098 F6                  155 	lda	,x
+   0099 AF 01               156 	aix	#1
+   009B 9E E7 01            157 	sta	1,s
+   009E F6                  158 	lda	,x
+   009F AF 01               159 	aix	#1
+   00A1 9E E7 02            160 	sta	2,s
+   00A4 F6                  161 	lda	,x
+   00A5 AF 01               162 	aix	#1
+   00A7 9E E7 03            163 	sta	3,s
+   00AA F6                  164 	lda	,x
+   00AB 9E E7 04            165 	sta	4,s
+   00AE 9E E6 01            166 	lda	1,s
+   00B1 B7*00               167 	sta	*__ret3
+   00B3 9E E6 02            168 	lda	2,s
+   00B6 B7*00               169 	sta	*__ret2
+   00B8 9E EE 03            170 	ldx	3,s
+   00BB 9E E6 04            171 	lda	4,s
+   00BE                     172 00101$:
+   00BE A7 0C               173 	ais	#12
+   00C0 81                  174 	rts
+                            175 	.area CSEG (CODE)
+                            176 	.area CONST   (CODE)
+                            177 	.area XINIT
+                            178 	.area CABS    (ABS,CODE)

@@ -1,0 +1,67 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24  (Motorola 68HC08), page 1.
+
+Symbol Table
+
+    .__.ABS.                                                    =  0000 G
+  5 __output_char                                                  0000 R
+  B __output_char_c_1_1                                            000C R
+  5 __print_format                                                 00D2 GR
+  B __print_format_PARM_2                                          000F GR
+  B __print_format_PARM_3                                          0011 GR
+  B __print_format_PARM_4                                          0013 GR
+  B __print_format_c_1_1                                           0022 R
+  B __print_format_char_argument_1_1                               001A R
+  B __print_format_decimals_1_1                                    0020 R
+  B __print_format_float_argument_1_1                              001C R
+  B __print_format_left_justify_1_1                                0015 R
+  B __print_format_length_1_1                                      0021 R
+  B __print_format_long_argument_1_1                               001B R
+  B __print_format_lsd_1_1                                         001D R
+  B __print_format_prefix_sign_1_1                                 0017 R
+  B __print_format_prefix_space_1_1                                0018 R
+  B __print_format_pstore_4_20                                     0029 R
+  B __print_format_radix_1_1                                       001E R
+  B __print_format_signed_argument_1_1                             0019 R
+  8 __print_format_sloc0_1_0                                       0001 R
+  8 __print_format_sloc1_1_0                                       0003 R
+  8 __print_format_sloc2_1_0                                       0004 R
+  8 __print_format_sloc3_1_0                                       0008 R
+  B __print_format_store_4_20                                      0023 R
+  B __print_format_width_1_1                                       001F R
+  B __print_format_zero_padding_1_1                                0016 R
+  7 __str_0                                                        0000 R
+  5 _calculate_digit                                               0060 R
+  9 _calculate_digit_b4_1_1                                        0004 GR
+  9 _calculate_digit_i_1_1                                         0005 GR
+  B _calculate_digit_radix_1_1                                     000E R
+  9 _calculate_digit_ul_1_1                                        0000 GR
+  B _charsOutputted                                                000A R
+  B _lower_case                                                    0000 R
+  5 _output_2digits                                                004B R
+  B _output_2digits_b_1_1                                          000D R
+  B _output_char                                                   0001 R
+  5 _output_digit                                                  002E R
+  8 _output_digit_c_1_1                                            0000 R
+  B _p                                                             0003 R
+    _strlen                                                        **** GX
+  B _value                                                         0005 R
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24  (Motorola 68HC08), page 2.
+
+Area Table
+
+   0 _CODE                                      size    0   flags 0
+   1 HOME                                       size    0   flags 20
+   2 GSINIT0                                    size    0   flags 20
+   3 GSINIT                                     size    0   flags 20
+   4 GSFINAL                                    size    0   flags 20
+   5 CSEG                                       size  8D3   flags 20
+   6 XINIT                                      size    0   flags 0
+   7 CONST                                      size    B   flags 20
+   8 DSEG                                       size    C   flags 0
+   9 OSEG                                       size    6   flags 4
+   A BSEG                                       size    0   flags 0
+   B XSEG                                       size   2B   flags 0
+   C XISEG                                      size    0   flags 0
+   D XABS                                       size    0   flags 8
+   E CABS                                       size    0   flags 28

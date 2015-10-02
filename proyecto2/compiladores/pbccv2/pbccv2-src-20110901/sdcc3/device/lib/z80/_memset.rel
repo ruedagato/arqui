@@ -1,0 +1,33 @@
+XL
+H 7 areas 4 global symbols
+M _memset
+O -mz80
+S .__.ABS. Def0000
+A _CODE size 2B flags 0 addr 0
+S _memset_end Def002B
+S _memset Def0000
+S _memset_start Def0000
+A _DATA size 0 flags 0 addr 0
+A _OVERLAY size 0 flags 0 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _CABS size 0 flags 0 addr 0
+T 00 00
+R 00 00 00 00
+T 00 00
+R 00 00 00 00
+T 00 00 DD E5 DD 21 00 00 DD 39 DD 5E 04 DD 56 05
+R 00 00 00 00
+T 0E 00 DD 4E 07 DD 46 08
+R 00 00 00 00
+T 14 00
+R 00 00 00 00
+T 14 00 69 60 0B 7D B4 28 07 DD 7E 06 12 13 18 F2
+R 00 00 00 00
+T 22 00
+R 00 00 00 00
+T 22 00 DD 6E 04 DD 66 05 DD E1 C9
+R 00 00 00 00
+T 2B 00
+R 00 00 00 00

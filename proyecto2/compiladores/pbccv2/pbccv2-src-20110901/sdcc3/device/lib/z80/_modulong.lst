@@ -1,0 +1,180 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:17 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _modulong
+                              7 	.optsdcc -mz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl __modulong
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 ;--------------------------------------------------------
+                             17 ;  ram data
+                             18 ;--------------------------------------------------------
+                             19 	.area _DATA
+                             20 ;--------------------------------------------------------
+                             21 ; overlayable items in  ram 
+                             22 ;--------------------------------------------------------
+                             23 	.area _OVERLAY
+                             24 ;--------------------------------------------------------
+                             25 ; external initialized ram data
+                             26 ;--------------------------------------------------------
+                             27 ;--------------------------------------------------------
+                             28 ; global & static initialisations
+                             29 ;--------------------------------------------------------
+                             30 	.area _HOME
+                             31 	.area _GSINIT
+                             32 	.area _GSFINAL
+                             33 	.area _GSINIT
+                             34 ;--------------------------------------------------------
+                             35 ; Home
+                             36 ;--------------------------------------------------------
+                             37 	.area _HOME
+                             38 	.area _HOME
+                             39 ;--------------------------------------------------------
+                             40 ; code
+                             41 ;--------------------------------------------------------
+                             42 	.area _CODE
+                             43 ;../_modulong.c:340: _modulong (unsigned long a, unsigned long b)
+                             44 ;	---------------------------------
+                             45 ; Function _modulong
+                             46 ; ---------------------------------
+   0000                      47 __modulong_start::
+   0000                      48 __modulong:
+   0000 DD E5                49 	push	ix
+   0002 DD 21 00 00          50 	ld	ix,#0
+   0006 DD 39                51 	add	ix,sp
+   0008 F5                   52 	push	af
+                             53 ;../_modulong.c:342: unsigned char count = 0;
+   0009 DD 36 FE 00          54 	ld	-2 (ix),#0x00
+                             55 ;../_modulong.c:344: while (!MSB_SET(b))
+   000D DD 36 FF 00          56 	ld	-1 (ix),#0x00
+   0011                      57 00103$:
+   0011 DD 7E 0B             58 	ld	a,11 (ix)
+   0014 07                   59 	rlca
+   0015 38 71                60 	jr	C,00117$
+                             61 ;../_modulong.c:346: b <<= 1;
+   0017 3E 01                62 	ld	a,#0x01
+   0019 F5                   63 	push	af
+   001A 33                   64 	inc	sp
+   001B DD 6E 0A             65 	ld	l,10 (ix)
+   001E DD 66 0B             66 	ld	h,11 (ix)
+   0021 E5                   67 	push	hl
+   0022 DD 6E 08             68 	ld	l,8 (ix)
+   0025 DD 66 09             69 	ld	h,9 (ix)
+   0028 E5                   70 	push	hl
+   0029 CDr00s00             71 	call	__rlulong_rrx_s
+   002C F1                   72 	pop	af
+   002D F1                   73 	pop	af
+   002E 33                   74 	inc	sp
+   002F 4A                   75 	ld	c,d
+   0030 43                   76 	ld	b,e
+   0031 DD 75 08             77 	ld	8 (ix), l
+   0034 DD 74 09             78 	ld	9 (ix), h
+   0037 DD 70 0A             79 	ld	10 (ix),b
+   003A DD 71 0B             80 	ld	11 (ix),c
+                             81 ;../_modulong.c:347: if (b > a)
+   003D DD 7E 04             82 	ld	a,4 (ix)
+   0040 DD 96 08             83 	sub	a, 8 (ix)
+   0043 DD 7E 05             84 	ld	a,5 (ix)
+   0046 DD 9E 09             85 	sbc	a, 9 (ix)
+   0049 DD 7E 06             86 	ld	a,6 (ix)
+   004C DD 9E 0A             87 	sbc	a, 10 (ix)
+   004F DD 7E 07             88 	ld	a,7 (ix)
+   0052 DD 9E 0B             89 	sbc	a, 11 (ix)
+   0055 30 26                90 	jr	NC,00102$
+                             91 ;../_modulong.c:349: b >>=1;
+   0057 3E 01                92 	ld	a,#0x01
+   0059 F5                   93 	push	af
+   005A 33                   94 	inc	sp
+   005B DD 6E 0A             95 	ld	l,10 (ix)
+   005E DD 66 0B             96 	ld	h,11 (ix)
+   0061 E5                   97 	push	hl
+   0062 DD 6E 08             98 	ld	l,8 (ix)
+   0065 DD 66 09             99 	ld	h,9 (ix)
+   0068 E5                  100 	push	hl
+   0069 CDr00s00            101 	call	__rrulong_rrx_s
+   006C F1                  102 	pop	af
+   006D F1                  103 	pop	af
+   006E 33                  104 	inc	sp
+   006F DD 75 08            105 	ld	8 (ix), l
+   0072 DD 74 09            106 	ld	9 (ix), h
+   0075 DD 73 0A            107 	ld	10 (ix),e
+   0078 DD 72 0B            108 	ld	11 (ix),d
+                            109 ;../_modulong.c:350: break;
+   007B 18 0B               110 	jr	00117$
+   007D                     111 00102$:
+                            112 ;../_modulong.c:352: count++;
+   007D DD 34 FF            113 	inc	-1 (ix)
+   0080 DD 7E FF            114 	ld	a,-1 (ix)
+   0083 DD 77 FE            115 	ld	-2 (ix),a
+   0086 18 89               116 	jr	00103$
+                            117 ;../_modulong.c:354: do
+   0088                     118 00117$:
+   0088                     119 00108$:
+                            120 ;../_modulong.c:356: if (a >= b)
+   0088 DD 7E 04            121 	ld	a,4 (ix)
+   008B DD 96 08            122 	sub	a, 8 (ix)
+   008E DD 7E 05            123 	ld	a,5 (ix)
+   0091 DD 9E 09            124 	sbc	a, 9 (ix)
+   0094 DD 7E 06            125 	ld	a,6 (ix)
+   0097 DD 9E 0A            126 	sbc	a, 10 (ix)
+   009A DD 7E 07            127 	ld	a,7 (ix)
+   009D DD 9E 0B            128 	sbc	a, 11 (ix)
+   00A0 38 24               129 	jr	C,00107$
+                            130 ;../_modulong.c:357: a -= b;
+   00A2 DD 7E 04            131 	ld	a,4 (ix)
+   00A5 DD 96 08            132 	sub	a,8 (ix)
+   00A8 DD 77 04            133 	ld	4 (ix),a
+   00AB DD 7E 05            134 	ld	a,5 (ix)
+   00AE DD 9E 09            135 	sbc	a,9 (ix)
+   00B1 DD 77 05            136 	ld	5 (ix),a
+   00B4 DD 7E 06            137 	ld	a,6 (ix)
+   00B7 DD 9E 0A            138 	sbc	a,10 (ix)
+   00BA DD 77 06            139 	ld	6 (ix),a
+   00BD DD 7E 07            140 	ld	a,7 (ix)
+   00C0 DD 9E 0B            141 	sbc	a,11 (ix)
+   00C3 DD 77 07            142 	ld	7 (ix),a
+   00C6                     143 00107$:
+                            144 ;../_modulong.c:358: b >>= 1;
+   00C6 3E 01               145 	ld	a,#0x01
+   00C8 F5                  146 	push	af
+   00C9 33                  147 	inc	sp
+   00CA DD 6E 0A            148 	ld	l,10 (ix)
+   00CD DD 66 0B            149 	ld	h,11 (ix)
+   00D0 E5                  150 	push	hl
+   00D1 DD 6E 08            151 	ld	l,8 (ix)
+   00D4 DD 66 09            152 	ld	h,9 (ix)
+   00D7 E5                  153 	push	hl
+   00D8 CDr00s00            154 	call	__rrulong_rrx_s
+   00DB F1                  155 	pop	af
+   00DC F1                  156 	pop	af
+   00DD 33                  157 	inc	sp
+   00DE 4A                  158 	ld	c,d
+   00DF 53                  159 	ld	d,e
+   00E0 DD 75 08            160 	ld	8 (ix), l
+   00E3 DD 74 09            161 	ld	9 (ix), h
+   00E6 DD 72 0A            162 	ld	10 (ix),d
+   00E9 DD 71 0B            163 	ld	11 (ix),c
+                            164 ;../_modulong.c:360: while (count--);
+   00EC DD 6E FE            165 	ld	l,-2 (ix)
+   00EF DD 35 FE            166 	dec	-2 (ix)
+   00F2 AF                  167 	xor	a,a
+   00F3 B5                  168 	or	a,l
+   00F4 20 92               169 	jr	NZ,00108$
+                            170 ;../_modulong.c:362: return a;
+   00F6 DD 6E 04            171 	ld	l,4 (ix)
+   00F9 DD 66 05            172 	ld	h,5 (ix)
+   00FC DD 5E 06            173 	ld	e,6 (ix)
+   00FF DD 56 07            174 	ld	d,7 (ix)
+   0102 DD F9               175 	ld	sp,ix
+   0104 DD E1               176 	pop	ix
+   0106 C9                  177 	ret
+   0107                     178 __modulong_end::
+                            179 	.area _CODE
+                            180 	.area _CABS

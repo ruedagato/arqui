@@ -1,0 +1,327 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:17 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _strncpy
+                              7 	.optsdcc -mds390 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _strncpy_PARM_3
+                             31 	.globl _strncpy_PARM_2
+                             32 	.globl _strncpy
+                             33 ;--------------------------------------------------------
+                             34 ; special function registers
+                             35 ;--------------------------------------------------------
+                             36 ;--------------------------------------------------------
+                             37 ; special function bits
+                             38 ;--------------------------------------------------------
+                             39 ;--------------------------------------------------------
+                             40 ; overlayable register banks
+                             41 ;--------------------------------------------------------
+                             42 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      43 	.ds 8
+                             44 ;--------------------------------------------------------
+                             45 ; internal ram data
+                             46 ;--------------------------------------------------------
+                             47 	.area DSEG    (DATA)
+                             48 ;--------------------------------------------------------
+                             49 ; overlayable items in internal ram 
+                             50 ;--------------------------------------------------------
+                             51 	.area OSEG    (OVR,DATA)
+                             52 ;--------------------------------------------------------
+                             53 ; indirectly addressable internal ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area ISEG    (DATA)
+                             56 ;--------------------------------------------------------
+                             57 ; absolute internal ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area IABS    (ABS,DATA)
+                             60 	.area IABS    (ABS,DATA)
+                             61 ;--------------------------------------------------------
+                             62 ; bit data
+                             63 ;--------------------------------------------------------
+                             64 	.area BSEG    (BIT)
+                             65 ;--------------------------------------------------------
+                             66 ; paged external ram data
+                             67 ;--------------------------------------------------------
+                             68 	.area PSEG    (PAG,XDATA)
+                             69 ;--------------------------------------------------------
+                             70 ; external ram data
+                             71 ;--------------------------------------------------------
+                             72 	.area XSEG    (XDATA)
+   0000                      73 _strncpy_PARM_2:
+   0000                      74 	.ds 4
+   0004                      75 _strncpy_PARM_3:
+   0004                      76 	.ds 2
+   0006                      77 _strncpy_d_1_1:
+   0006                      78 	.ds 4
+   000A                      79 _strncpy_sloc0_1_0:
+   000A                      80 	.ds 4
+   000E                      81 _strncpy_sloc1_1_0:
+   000E                      82 	.ds 4
+                             83 ;--------------------------------------------------------
+                             84 ; absolute external ram data
+                             85 ;--------------------------------------------------------
+                             86 	.area XABS    (ABS,XDATA)
+                             87 ;--------------------------------------------------------
+                             88 ; external initialized ram data
+                             89 ;--------------------------------------------------------
+                             90 	.area XISEG   (XDATA)
+                             91 ;--------------------------------------------------------
+                             92 ; global & static initialisations
+                             93 ;--------------------------------------------------------
+                             94 	.area HOME    (CODE)
+                             95 	.area GSINIT  (CODE)
+                             96 	.area GSFINAL (CODE)
+                             97 	.area GSINIT  (CODE)
+                             98 ;--------------------------------------------------------
+                             99 ; Home
+                            100 ;--------------------------------------------------------
+                            101 	.area HOME    (CODE)
+                            102 	.area HOME    (CODE)
+                            103 ;--------------------------------------------------------
+                            104 ; code
+                            105 ;--------------------------------------------------------
+                            106 	.area CSEG    (CODE)
+                            107 ;------------------------------------------------------------
+                            108 ;Allocation info for local variables in function 'strncpy'
+                            109 ;------------------------------------------------------------
+                            110 ;s                         Allocated with name '_strncpy_PARM_2'
+                            111 ;n                         Allocated with name '_strncpy_PARM_3'
+                            112 ;d                         Allocated with name '_strncpy_d_1_1'
+                            113 ;d1                        Allocated to registers r6 r7 r0 r1 
+                            114 ;sloc0                     Allocated with name '_strncpy_sloc0_1_0'
+                            115 ;sloc1                     Allocated with name '_strncpy_sloc1_1_0'
+                            116 ;------------------------------------------------------------
+                            117 ;	_strncpy.c:31: char *strncpy (
+                            118 ;	-----------------------------------------
+                            119 ;	 function strncpy
+                            120 ;	-----------------------------------------
+   0000                     121 _strncpy:
+                    0002    122 	ar2 = 0x02
+                    0003    123 	ar3 = 0x03
+                    0004    124 	ar4 = 0x04
+                    0005    125 	ar5 = 0x05
+                    0006    126 	ar6 = 0x06
+                    0007    127 	ar7 = 0x07
+                    0000    128 	ar0 = 0x00
+                    0001    129 	ar1 = 0x01
+   0000 75 86 01            130 	mov     dps, #1
+   0003 90s00r00r06         131 	mov     dptr, #_strncpy_d_1_1
+   0007 E5 82               132 	mov	a,dpl
+   0009 F0                  133 	movx	@dptr,a
+   000A A3                  134 	inc	dptr
+   000B E5 83               135 	mov	a,dph
+   000D F0                  136 	movx	@dptr,a
+   000E A3                  137 	inc	dptr
+   000F E5 93               138 	mov	a,dpx
+   0011 F0                  139 	movx	@dptr,a
+   0012 A3                  140 	inc	dptr
+   0013 E5 F0               141 	mov	a,b
+   0015 F0                  142 	movx	@dptr,a
+   0016 75 86 00            143 	mov	dps,#0
+                            144 ;	_strncpy.c:36: register char * d1 =  d;
+   0019 90s00r00r06         145 	mov	dptr,#_strncpy_d_1_1
+                            146 ;	genAssign: resultIsFar = TRUE
+   001D E0                  147 	movx	a,@dptr
+   001E FE                  148 	mov	r6,a
+   001F A3                  149 	inc	dptr
+   0020 E0                  150 	movx	a,@dptr
+   0021 FF                  151 	mov	r7,a
+   0022 A3                  152 	inc	dptr
+   0023 E0                  153 	movx	a,@dptr
+   0024 F8                  154 	mov	r0,a
+   0025 A3                  155 	inc	dptr
+   0026 E0                  156 	movx	a,@dptr
+   0027 F9                  157 	mov	r1,a
+                            158 ;	_strncpy.c:38: while ( n && *s )
+   0028 90s00r00r04         159 	mov	dptr,#_strncpy_PARM_3
+                            160 ;	genAssign: resultIsFar = FALSE
+   002C E0                  161 	movx	a,@dptr
+   002D FA                  162 	mov	r2,a
+   002E A3                  163 	inc	dptr
+   002F E0                  164 	movx	a,@dptr
+   0030 FB                  165 	mov	r3,a
+   0031 90s00r00r00         166 	mov	dptr,#_strncpy_PARM_2
+                            167 ;	genAssign: resultIsFar = TRUE
+   0035 75 86 21            168 	mov	dps,#0x21
+   0038 90s00r00r0A         169 	mov	dptr,#_strncpy_sloc0_1_0
+   003C E0                  170 	movx	a,@dptr
+   003D F0                  171 	movx	@dptr,a
+   003E A3                  172 	inc	dptr
+   003F A3                  173 	inc	dptr
+   0040 E0                  174 	movx	a,@dptr
+   0041 F0                  175 	movx	@dptr,a
+   0042 A3                  176 	inc	dptr
+   0043 A3                  177 	inc	dptr
+   0044 E0                  178 	movx	a,@dptr
+   0045 F0                  179 	movx	@dptr,a
+   0046 A3                  180 	inc	dptr
+   0047 A3                  181 	inc	dptr
+   0048 E0                  182 	movx	a,@dptr
+   0049 F0                  183 	movx	@dptr,a
+   004A 75 86 00            184 	mov	dps,#0
+   004D 90s00r00r06         185 	mov	dptr,#_strncpy_d_1_1
+                            186 ;	genAssign: resultIsFar = TRUE
+   0051 75 86 21            187 	mov	dps,#0x21
+   0054 90s00r00r0E         188 	mov	dptr,#_strncpy_sloc1_1_0
+   0058 E0                  189 	movx	a,@dptr
+   0059 F0                  190 	movx	@dptr,a
+   005A A3                  191 	inc	dptr
+   005B A3                  192 	inc	dptr
+   005C E0                  193 	movx	a,@dptr
+   005D F0                  194 	movx	@dptr,a
+   005E A3                  195 	inc	dptr
+   005F A3                  196 	inc	dptr
+   0060 E0                  197 	movx	a,@dptr
+   0061 F0                  198 	movx	@dptr,a
+   0062 A3                  199 	inc	dptr
+   0063 A3                  200 	inc	dptr
+   0064 E0                  201 	movx	a,@dptr
+   0065 F0                  202 	movx	@dptr,a
+   0066 75 86 00            203 	mov	dps,#0
+   0069                     204 00102$:
+   0069 EA                  205 	mov	a,r2
+   006A 4B                  206 	orl	a,r3
+   006B 70 04               207 	jnz	00117$
+   006D 02s00r00rEE         208 	ljmp	00114$
+   0071                     209 00117$:
+   0071 75 86 01            210 	mov     dps, #1
+   0074 90s00r00r0A         211 	mov     dptr, #_strncpy_sloc0_1_0
+   0078 E0                  212 	movx	a,@dptr
+   0079 F5 82               213 	mov	dpl,a
+   007B A3                  214 	inc	dptr
+   007C E0                  215 	movx	a,@dptr
+   007D F5 83               216 	mov	dph,a
+   007F A3                  217 	inc	dptr
+   0080 E0                  218 	movx	a,@dptr
+   0081 F5 93               219 	mov	dpx,a
+   0083 A3                  220 	inc	dptr
+   0084 E0                  221 	movx	a,@dptr
+   0085 F5 F0               222 	mov	b,a
+   0087 75 86 00            223 	mov	dps,#0
+   008A 12s00r00r00         224 	lcall	__gptrget
+   008E FC                  225 	mov  r4,a
+   008F 60 5D               226 	jz  00114$
+   0091                     227 00118$:
+                            228 ;	_strncpy.c:40: n-- ;
+   0091 1A                  229 	dec	r2
+   0092 BA FF 01            230 	cjne	r2,#0xFF,00119$
+   0095 1B                  231 	dec	r3
+   0096                     232 00119$:
+                            233 ;	_strncpy.c:41: *d++ = *s++ ;
+   0096 90s00r00r0A         234 	mov	dptr,#_strncpy_sloc0_1_0
+   009A E0                  235 	movx	a,@dptr
+   009B 24 01               236 	add	a,#0x01
+   009D F0                  237 	movx	@dptr,a
+   009E A3                  238 	inc	dptr
+   009F E0                  239 	movx	a,@dptr
+   00A0 34 00               240 	addc	a,#0x00
+   00A2 F0                  241 	movx	@dptr,a
+   00A3 A3                  242 	inc	dptr
+   00A4 E0                  243 	movx	a,@dptr
+   00A5 34 00               244 	addc	a,#0x00
+   00A7 F0                  245 	movx	@dptr,a
+   00A8 A3                  246 	inc	dptr
+   00A9 E0                  247 	movx	a,@dptr
+   00AA F0                  248 	movx	@dptr,a
+   00AB 75 86 01            249 	mov     dps, #1
+   00AE 90s00r00r0E         250 	mov     dptr, #_strncpy_sloc1_1_0
+   00B2 E0                  251 	movx	a,@dptr
+   00B3 F5 82               252 	mov	dpl,a
+   00B5 A3                  253 	inc	dptr
+   00B6 E0                  254 	movx	a,@dptr
+   00B7 F5 83               255 	mov	dph,a
+   00B9 A3                  256 	inc	dptr
+   00BA E0                  257 	movx	a,@dptr
+   00BB F5 93               258 	mov	dpx,a
+   00BD A3                  259 	inc	dptr
+   00BE E0                  260 	movx	a,@dptr
+   00BF F5 F0               261 	mov	b,a
+   00C1 75 86 00            262 	mov	dps,#0
+   00C4 EC                  263 	mov	a,r4
+   00C5 12s00r00r00         264 	lcall	__gptrput
+   00C9 A3                  265 	inc	dptr
+   00CA 05 86               266 	inc	dps
+   00CC 12s00r00r00         267 	lcall	__decdptr
+   00D0 12s00r00r00         268 	lcall	__decdptr
+   00D4 12s00r00r00         269 	lcall	__decdptr
+   00D8 E5 82               270 	mov	a,dpl
+   00DA F0                  271 	movx	@dptr,a
+   00DB A3                  272 	inc	dptr
+   00DC E5 83               273 	mov	a,dph
+   00DE F0                  274 	movx	@dptr,a
+   00DF A3                  275 	inc	dptr
+   00E0 E5 93               276 	mov	a,dpx
+   00E2 F0                  277 	movx	@dptr,a
+   00E3 A3                  278 	inc	dptr
+   00E4 E5 F0               279 	mov	a,b
+   00E6 F0                  280 	movx	@dptr,a
+   00E7 75 86 00            281 	mov	dps,#0
+   00EA 02s00r00r69         282 	ljmp	00102$
+                            283 ;	_strncpy.c:43: while ( n-- )
+   00EE                     284 00114$:
+   00EE 90s00r00r0E         285 	mov	dptr,#_strncpy_sloc1_1_0
+                            286 ;	genAssign: resultIsFar = FALSE
+   00F2 E0                  287 	movx	a,@dptr
+   00F3 F5 82               288 	mov	dpl,a
+   00F5 A3                  289 	inc	dptr
+   00F6 E0                  290 	movx	a,@dptr
+   00F7 F5 83               291 	mov	dph,a
+   00F9 A3                  292 	inc	dptr
+   00FA E0                  293 	movx	a,@dptr
+   00FB F5 93               294 	mov	dpx,a
+   00FD A3                  295 	inc	dptr
+   00FE E0                  296 	movx	a,@dptr
+   00FF F5 F0               297 	mov	b,a
+                            298 ;	genAssign: resultIsFar = FALSE
+   0101                     299 00105$:
+                            300 ;	genAssign: resultIsFar = FALSE
+   0101 8A 04               301 	mov	ar4,r2
+   0103 8B 05               302 	mov	ar5,r3
+   0105 1A                  303 	dec	r2
+   0106 BA FF 01            304 	cjne	r2,#0xFF,00120$
+   0109 1B                  305 	dec	r3
+   010A                     306 00120$:
+   010A EC                  307 	mov	a,r4
+   010B 4D                  308 	orl	a,r5
+   010C 60 08               309 	jz  00107$
+   010E                     310 00121$:
+                            311 ;	_strncpy.c:45: *d++ = '\0' ;
+   010E E4                  312 	clr  a
+   010F 12s00r00r00         313 	lcall	__gptrput
+   0113 A3                  314 	inc	dptr
+   0114 80 EB               315 	sjmp 00105$
+   0116                     316 00107$:
+                            317 ;	_strncpy.c:47: return d1;
+   0116 8E 82               318 	mov	dpl,r6
+   0118 8F 83               319 	mov	dph,r7
+   011A 88 93               320 	mov	dpx,r0
+   011C 89 F0               321 	mov	b,r1
+   011E                     322 00108$:
+   011E 22                  323 	ret
+                            324 	.area CSEG    (CODE)
+                            325 	.area CONST   (CODE)
+                            326 	.area XINIT   (CODE)
+                            327 	.area CABS    (ABS,CODE)

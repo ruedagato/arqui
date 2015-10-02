@@ -1,0 +1,114 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:22 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _strlen
+                              7 	.optsdcc -mhc08
+                              8 	
+                              9 	.area HOME (CODE)
+                             10 	.area GSINIT0 (CODE)
+                             11 	.area GSINIT (CODE)
+                             12 	.area GSFINAL (CODE)
+                             13 	.area CSEG (CODE)
+                             14 	.area XINIT
+                             15 	.area CONST   (CODE)
+                             16 	.area DSEG
+                             17 	.area OSEG    (OVR)
+                             18 	.area BSEG
+                             19 	.area XSEG
+                             20 	.area XISEG
+                             21 ;--------------------------------------------------------
+                             22 ; Public variables in this module
+                             23 ;--------------------------------------------------------
+                             24 	.globl _strlen
+                             25 ;--------------------------------------------------------
+                             26 ;  ram data
+                             27 ;--------------------------------------------------------
+                             28 	.area DSEG
+                             29 ;--------------------------------------------------------
+                             30 ; overlayable items in  ram 
+                             31 ;--------------------------------------------------------
+                             32 	.area	OSEG    (OVR)
+   0000                      33 _strlen_i_1_1::
+   0000                      34 	.ds 2
+   0002                      35 _strlen_sloc0_1_0::
+   0002                      36 	.ds 2
+   0004                      37 _strlen_sloc1_1_0::
+   0004                      38 	.ds 1
+                             39 ;--------------------------------------------------------
+                             40 ; absolute external ram data
+                             41 ;--------------------------------------------------------
+                             42 	.area XABS    (ABS)
+                             43 ;--------------------------------------------------------
+                             44 ; external initialized ram data
+                             45 ;--------------------------------------------------------
+                             46 	.area XISEG
+                             47 ;--------------------------------------------------------
+                             48 ; extended address mode data
+                             49 ;--------------------------------------------------------
+                             50 	.area XSEG
+   0000                      51 _strlen_str_1_1:
+   0000                      52 	.ds 2
+                             53 ;--------------------------------------------------------
+                             54 ; global & static initialisations
+                             55 ;--------------------------------------------------------
+                             56 	.area HOME (CODE)
+                             57 	.area GSINIT (CODE)
+                             58 	.area GSFINAL (CODE)
+                             59 	.area GSINIT (CODE)
+                             60 ;--------------------------------------------------------
+                             61 ; Home
+                             62 ;--------------------------------------------------------
+                             63 	.area HOME (CODE)
+                             64 	.area HOME (CODE)
+                             65 ;--------------------------------------------------------
+                             66 ; code
+                             67 ;--------------------------------------------------------
+                             68 	.area CSEG (CODE)
+                             69 ;------------------------------------------------------------
+                             70 ;Allocation info for local variables in function 'strlen'
+                             71 ;------------------------------------------------------------
+                             72 ;str                       Allocated with name '_strlen_str_1_1'
+                             73 ;i                         Allocated with name '_strlen_i_1_1'
+                             74 ;sloc0                     Allocated with name '_strlen_sloc0_1_0'
+                             75 ;sloc1                     Allocated with name '_strlen_sloc1_1_0'
+                             76 ;------------------------------------------------------------
+                             77 ;../_strlen.c:35: size_t strlen ( const char * str )
+                             78 ;	-----------------------------------------
+                             79 ;	 function strlen
+                             80 ;	-----------------------------------------
+   0000                      81 _strlen:
+   0000 C7s00r01             82 	sta	(_strlen_str_1_1 + 1)
+   0003 CFs00r00             83 	stx	_strlen_str_1_1
+                             84 ;../_strlen.c:39: while (*str++)
+   0006 3F*00                85 	clr	*_strlen_i_1_1
+   0008 3F*01                86 	clr	*(_strlen_i_1_1 + 1)
+   000A C6s00r00             87 	lda	_strlen_str_1_1
+   000D B7*02                88 	sta	*_strlen_sloc0_1_0
+   000F C6s00r01             89 	lda	(_strlen_str_1_1 + 1)
+   0012 B7*03                90 	sta	*(_strlen_sloc0_1_0 + 1)
+   0014                      91 00101$:
+   0014 55*02                92 	ldhx	*_strlen_sloc0_1_0
+   0016 F6                   93 	lda	,x
+   0017 AF 01                94 	aix	#1
+   0019 B7*04                95 	sta	*_strlen_sloc1_1_0
+   001B 35*02                96 	sthx	*_strlen_sloc0_1_0
+   001D 3D*04                97 	tst	*_strlen_sloc1_1_0
+   001F 27 08                98 	beq	00103$
+   0021                      99 00109$:
+                            100 ;../_strlen.c:40: i++ ;
+   0021 55*00               101 	ldhx	*_strlen_i_1_1
+   0023 AF 01               102 	aix	#1
+   0025 35*00               103 	sthx	*_strlen_i_1_1
+   0027 20 EB               104 	bra	00101$
+   0029                     105 00103$:
+                            106 ;../_strlen.c:42: return i;
+   0029 BE*00               107 	ldx	*_strlen_i_1_1
+   002B B6*01               108 	lda	*(_strlen_i_1_1 + 1)
+   002D                     109 00104$:
+   002D 81                  110 	rts
+                            111 	.area CSEG (CODE)
+                            112 	.area CONST   (CODE)
+                            113 	.area XINIT
+                            114 	.area CABS    (ABS,CODE)

@@ -1,0 +1,265 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:27 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _fsmul
+                              7 	.optsdcc -mmcs51 --model-large
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 ;--------------------------------------------------------
+                             13 ; special function registers
+                             14 ;--------------------------------------------------------
+                             15 	.area RSEG    (ABS,DATA)
+   0000                      16 	.org 0x0000
+                             17 ;--------------------------------------------------------
+                             18 ; special function bits
+                             19 ;--------------------------------------------------------
+                             20 	.area RSEG    (ABS,DATA)
+   0000                      21 	.org 0x0000
+                             22 ;--------------------------------------------------------
+                             23 ; overlayable register banks
+                             24 ;--------------------------------------------------------
+                             25 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      26 	.ds 8
+                             27 ;--------------------------------------------------------
+                             28 ; internal ram data
+                             29 ;--------------------------------------------------------
+                             30 	.area DSEG    (DATA)
+                             31 ;--------------------------------------------------------
+                             32 ; overlayable items in internal ram 
+                             33 ;--------------------------------------------------------
+                             34 	.area OSEG    (OVR,DATA)
+                             35 ;--------------------------------------------------------
+                             36 ; indirectly addressable internal ram data
+                             37 ;--------------------------------------------------------
+                             38 	.area ISEG    (DATA)
+                             39 ;--------------------------------------------------------
+                             40 ; absolute internal ram data
+                             41 ;--------------------------------------------------------
+                             42 	.area IABS    (ABS,DATA)
+                             43 	.area IABS    (ABS,DATA)
+                             44 ;--------------------------------------------------------
+                             45 ; bit data
+                             46 ;--------------------------------------------------------
+                             47 	.area BSEG    (BIT)
+                             48 ;--------------------------------------------------------
+                             49 ; paged external ram data
+                             50 ;--------------------------------------------------------
+                             51 	.area PSEG    (PAG,XDATA)
+                             52 ;--------------------------------------------------------
+                             53 ; external ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area XSEG    (XDATA)
+                             56 ;--------------------------------------------------------
+                             57 ; absolute external ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area XABS    (ABS,XDATA)
+                             60 ;--------------------------------------------------------
+                             61 ; external initialized ram data
+                             62 ;--------------------------------------------------------
+                             63 	.area XISEG   (XDATA)
+                             64 	.area HOME    (CODE)
+                             65 	.area GSINIT0 (CODE)
+                             66 	.area GSINIT1 (CODE)
+                             67 	.area GSINIT2 (CODE)
+                             68 	.area GSINIT3 (CODE)
+                             69 	.area GSINIT4 (CODE)
+                             70 	.area GSINIT5 (CODE)
+                             71 	.area GSINIT  (CODE)
+                             72 	.area GSFINAL (CODE)
+                             73 	.area CSEG    (CODE)
+                             74 ;--------------------------------------------------------
+                             75 ; global & static initialisations
+                             76 ;--------------------------------------------------------
+                             77 	.area HOME    (CODE)
+                             78 	.area GSINIT  (CODE)
+                             79 	.area GSFINAL (CODE)
+                             80 	.area GSINIT  (CODE)
+                             81 ;--------------------------------------------------------
+                             82 ; Home
+                             83 ;--------------------------------------------------------
+                             84 	.area HOME    (CODE)
+                             85 	.area HOME    (CODE)
+                             86 ;--------------------------------------------------------
+                             87 ; code
+                             88 ;--------------------------------------------------------
+                             89 	.area CSEG    (CODE)
+                             90 ;------------------------------------------------------------
+                             91 ;Allocation info for local variables in function 'dummy'
+                             92 ;------------------------------------------------------------
+                             93 ;------------------------------------------------------------
+                             94 ;	_fsmul.c:37: static void dummy(void) __naked
+                             95 ;	-----------------------------------------
+                             96 ;	 function dummy
+                             97 ;	-----------------------------------------
+   0000                      98 _dummy:
+                             99 ;	naked function: no prologue.
+                            100 ;	_fsmul.c:198: mul	ab			// r4 * r7
+                            101 	
+                            102 	 .globl ___fsmul
+   0000                     103 	___fsmul:
+                            104 	
+                            105 	
+                            106 	
+                            107 	
+                            108 	
+                            109 	
+   0000 12s00r00            110 	 lcall fsgetargs
+                            111 	
+                            112 	
+   0003 BC 00 03            113 	 cjne r4, #0, 00002$
+   0006                     114 	00001$:
+   0006 02s00r00            115 	 ljmp fs_return_zero
+                            116 	
+   0009                     117 	00002$:
+   0009 EF                  118 	 mov a, r7
+   000A 60 FA               119 	 jz 00001$
+                            120 	
+                            121 	
+   000C 30 D5 02            122 	 jnb psw.5, 00003$
+   000F B2 D1               123 	 cpl psw.1
+   0011                     124 	00003$:
+                            125 	
+                            126 	
+   0011 E5 83               127 	 mov a, dph
+   0013 B4 FF 03            128 	 cjne a, #0xFF, 00004$
+   0016 02s00r00            129 	 ljmp fs_return_inf
+   0019                     130 	00004$:
+   0019 E5 82               131 	 mov a, dpl
+   001B B4 FF 03            132 	 cjne a, #0xFF, 00005$
+   001E 02s00r00            133 	 ljmp fs_return_inf
+   0021                     134 	00005$:
+                            135 	
+                            136 	
+   0021 25 83               137 	 add a, dph
+                            138 	
+   0023 40 07               139 	 jc 00006$
+   0025 24 82               140 	 add a, #130
+   0027 40 0B               141 	 jc 00007$
+   0029 02s00r00            142 	 ljmp fs_return_zero
+                            143 	
+   002C                     144 	00006$:
+   002C 24 83               145 	 add a, #131
+   002E 14                  146 	 dec a
+   002F 50 03               147 	 jnc 00007$
+   0031 02s00r00            148 	 ljmp fs_return_inf
+                            149 	
+   0034                     150 	00007$:
+   0034 F5 82               151 	 mov dpl, a
+                            152 ;	# 104 "_fsmul.c"
+   0036 EA                  153 	 mov a, r2
+   0037 8D F0               154 	 mov b, r5
+   0039 A4                  155 	 mul ab
+                            156 	
+   003A A8 F0               157 	 mov r0, b
+                            158 	
+                            159 	
+   003C EA                  160 	 mov a, r2
+   003D 8E F0               161 	 mov b, r6
+   003F A4                  162 	 mul ab
+   0040 28                  163 	 add a, r0
+   0041 F8                  164 	 mov r0, a
+   0042 E4                  165 	 clr a
+   0043 35 F0               166 	 addc a, b
+   0045 F9                  167 	 mov r1, a
+                            168 	
+                            169 	
+   0046 EB                  170 	 mov a, r3
+   0047 8D F0               171 	 mov b, r5
+   0049 A4                  172 	 mul ab
+   004A 28                  173 	 add a, r0
+                            174 	
+   004B E9                  175 	 mov a, r1
+   004C 35 F0               176 	 addc a, b
+   004E F9                  177 	 mov r1, a
+   004F E4                  178 	 clr a
+   0050 33                  179 	 rlc a
+   0051 CA                  180 	 xch a, r2
+                            181 	
+                            182 	
+   0052 8F F0               183 	 mov b, r7
+   0054 A4                  184 	 mul ab
+   0055 29                  185 	 add a, r1
+   0056 F9                  186 	 mov r1, a
+   0057 EA                  187 	 mov a, r2
+   0058 35 F0               188 	 addc a, b
+   005A FA                  189 	 mov r2, a
+                            190 	
+                            191 	
+   005B EB                  192 	 mov a, r3
+   005C F8                  193 	 mov r0, a
+   005D 8E F0               194 	 mov b, r6
+   005F A4                  195 	 mul ab
+   0060 29                  196 	 add a, r1
+   0061 F9                  197 	 mov r1, a
+   0062 EA                  198 	 mov a, r2
+   0063 35 F0               199 	 addc a, b
+   0065 FA                  200 	 mov r2, a
+   0066 E4                  201 	 clr a
+   0067 33                  202 	 rlc a
+   0068 FB                  203 	 mov r3, a
+                            204 	
+                            205 	
+   0069 EC                  206 	 mov a, r4
+   006A 8D F0               207 	 mov b, r5
+   006C A4                  208 	 mul ab
+   006D 29                  209 	 add a, r1
+   006E F9                  210 	 mov r1, a
+   006F EA                  211 	 mov a, r2
+   0070 35 F0               212 	 addc a, b
+   0072 FA                  213 	 mov r2, a
+   0073 E4                  214 	 clr a
+   0074 3B                  215 	 addc a, r3
+   0075 FB                  216 	 mov r3, a
+                            217 	
+                            218 	
+   0076 E8                  219 	 mov a, r0
+   0077 8F F0               220 	 mov b, r7
+   0079 A4                  221 	 mul ab
+   007A 2A                  222 	 add a, r2
+   007B FA                  223 	 mov r2, a
+   007C EB                  224 	 mov a, r3
+   007D 35 F0               225 	 addc a, b
+   007F FB                  226 	 mov r3, a
+   0080 E4                  227 	 clr a
+   0081 33                  228 	 rlc a
+   0082 CC                  229 	 xch a, r4
+                            230 	
+                            231 	
+   0083 FD                  232 	 mov r5, a
+   0084 8E F0               233 	 mov b, r6
+   0086 A4                  234 	 mul ab
+   0087 2A                  235 	 add a, r2
+   0088 FA                  236 	 mov r2, a
+   0089 EB                  237 	 mov a, r3
+   008A 35 F0               238 	 addc a, b
+   008C FB                  239 	 mov r3, a
+   008D E4                  240 	 clr a
+   008E 3C                  241 	 addc a, r4
+   008F FC                  242 	 mov r4, a
+                            243 	
+                            244 	
+   0090 ED                  245 	 mov a, r5
+   0091 8F F0               246 	 mov b, r7
+   0093 A4                  247 	 mul ab
+   0094 2B                  248 	 add a, r3
+   0095 FB                  249 	 mov r3, a
+   0096 EC                  250 	 mov a, r4
+   0097 35 F0               251 	 addc a, b
+   0099 FC                  252 	 mov r4, a
+                            253 	
+                            254 	
+   009A 20 E7 03            255 	 jb acc.7, 00010$
+   009D 12s00r00            256 	 lcall fs_normalize_a
+                            257 	
+   00A0                     258 	00010$:
+   00A0 02s00r00            259 	 ljmp fs_round_and_return
+                            260 	 
+                            261 ;	naked function: no epilogue.
+                            262 	.area CSEG    (CODE)
+                            263 	.area CONST   (CODE)
+                            264 	.area XINIT   (CODE)
+                            265 	.area CABS    (ABS,CODE)

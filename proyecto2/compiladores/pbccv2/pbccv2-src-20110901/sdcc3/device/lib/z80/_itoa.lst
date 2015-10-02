@@ -1,0 +1,226 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:18 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _itoa
+                              7 	.optsdcc -mz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl __itoa
+                             13 	.globl __uitoa
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 ;--------------------------------------------------------
+                             18 ;  ram data
+                             19 ;--------------------------------------------------------
+                             20 	.area _DATA
+                             21 ;--------------------------------------------------------
+                             22 ; overlayable items in  ram 
+                             23 ;--------------------------------------------------------
+                             24 	.area _OVERLAY
+                             25 ;--------------------------------------------------------
+                             26 ; external initialized ram data
+                             27 ;--------------------------------------------------------
+                             28 ;--------------------------------------------------------
+                             29 ; global & static initialisations
+                             30 ;--------------------------------------------------------
+                             31 	.area _HOME
+                             32 	.area _GSINIT
+                             33 	.area _GSFINAL
+                             34 	.area _GSINIT
+                             35 ;--------------------------------------------------------
+                             36 ; Home
+                             37 ;--------------------------------------------------------
+                             38 	.area _HOME
+                             39 	.area _HOME
+                             40 ;--------------------------------------------------------
+                             41 ; code
+                             42 ;--------------------------------------------------------
+                             43 	.area _CODE
+                             44 ;../_itoa.c:40: void _uitoa(unsigned int value, char* string, unsigned char radix)
+                             45 ;	---------------------------------
+                             46 ; Function _uitoa
+                             47 ; ---------------------------------
+   0000                      48 __uitoa_start::
+   0000                      49 __uitoa:
+   0000 DD E5                50 	push	ix
+   0002 DD 21 00 00          51 	ld	ix,#0
+   0006 DD 39                52 	add	ix,sp
+   0008 F5                   53 	push	af
+   0009 F5                   54 	push	af
+                             55 ;../_itoa.c:45: do {
+   000A DD 36 FF 00          56 	ld	-1 (ix),#0x00
+   000E                      57 00103$:
+                             58 ;../_itoa.c:46: string[index] = '0' + (value % radix);
+   000E DD 7E 06             59 	ld	a,6 (ix)
+   0011 DD 86 FF             60 	add	a,-1 (ix)
+   0014 5F                   61 	ld	e,a
+   0015 DD 7E 07             62 	ld	a,7 (ix)
+   0018 CE 00                63 	adc	a,#0x00
+   001A 57                   64 	ld	d,a
+   001B DD 7E 08             65 	ld	a,8 (ix)
+   001E DD 77 FC             66 	ld	-4 (ix),a
+   0021 DD 36 FD 00          67 	ld	-3 (ix),#0x00
+   0025 D5                   68 	push	de
+   0026 DD 6E FC             69 	ld	l,-4 (ix)
+   0029 DD 66 FD             70 	ld	h,-3 (ix)
+   002C E5                   71 	push	hl
+   002D DD 6E 04             72 	ld	l,4 (ix)
+   0030 DD 66 05             73 	ld	h,5 (ix)
+   0033 E5                   74 	push	hl
+   0034 CDr00s00             75 	call	__moduint_rrx_s
+   0037 F1                   76 	pop	af
+   0038 F1                   77 	pop	af
+   0039 44                   78 	ld	b,h
+   003A 4D                   79 	ld	c,l
+   003B D1                   80 	pop	de
+   003C 69                   81 	ld	l,c
+   003D 7D                   82 	ld	a,l
+   003E C6 30                83 	add	a,#0x30
+   0040 4F                   84 	ld	c,a
+   0041 12                   85 	ld	(de),a
+                             86 ;../_itoa.c:47: if (string[index] > '9')
+   0042 3E 39                87 	ld	a,#0x39
+   0044 91                   88 	sub	a, c
+   0045 E2r4As00             89 	jp	PO, 00118$
+   0048 EE 80                90 	xor	a, #0x80
+   004A                      91 00118$:
+   004A F2r51s00             92 	jp	P,00102$
+                             93 ;../_itoa.c:48: string[index] += 'A' - '9' - 1;
+   004D 1A                   94 	ld	a,(de)
+   004E C6 07                95 	add	a,#0x07
+   0050 12                   96 	ld	(de),a
+   0051                      97 00102$:
+                             98 ;../_itoa.c:49: value /= radix;
+   0051 DD 6E FC             99 	ld	l,-4 (ix)
+   0054 DD 66 FD            100 	ld	h,-3 (ix)
+   0057 E5                  101 	push	hl
+   0058 DD 6E 04            102 	ld	l,4 (ix)
+   005B DD 66 05            103 	ld	h,5 (ix)
+   005E E5                  104 	push	hl
+   005F CDr00s00            105 	call	__divuint_rrx_s
+   0062 F1                  106 	pop	af
+   0063 F1                  107 	pop	af
+   0064 44                  108 	ld	b,h
+   0065 DD 75 04            109 	ld	4 (ix), l
+   0068 DD 70 05            110 	ld	5 (ix),b
+                            111 ;../_itoa.c:50: ++index;
+   006B DD 34 FF            112 	inc	-1 (ix)
+                            113 ;../_itoa.c:51: } while (value != 0);
+   006E DD 7E 04            114 	ld	a,4 (ix)
+   0071 DD B6 05            115 	or	a,5 (ix)
+   0074 20 98               116 	jr	NZ,00103$
+                            117 ;../_itoa.c:54: string[index--] = '\0';
+   0076 DD 7E FF            118 	ld	a,-1 (ix)
+   0079 3D                  119 	dec	a
+   007A 4F                  120 	ld	c,a
+   007B DD 7E 06            121 	ld	a,6 (ix)
+   007E DD 86 FF            122 	add	a,-1 (ix)
+   0081 5F                  123 	ld	e,a
+   0082 DD 7E 07            124 	ld	a,7 (ix)
+   0085 CE 00               125 	adc	a,#0x00
+   0087 57                  126 	ld	d,a
+   0088 3E 00               127 	ld	a,#0x00
+   008A 12                  128 	ld	(de),a
+                            129 ;../_itoa.c:57: while (index > i) {
+   008B DD 36 FE 00         130 	ld	-2 (ix),#0x00
+   008F                     131 00106$:
+   008F DD 7E FE            132 	ld	a,-2 (ix)
+   0092 91                  133 	sub	a, c
+   0093 E2r98s00            134 	jp	PO, 00119$
+   0096 EE 80               135 	xor	a, #0x80
+   0098                     136 00119$:
+   0098 F2rD1s00            137 	jp	P,00109$
+                            138 ;../_itoa.c:58: char tmp = string[i];
+   009B DD 7E 06            139 	ld	a,6 (ix)
+   009E DD 86 FE            140 	add	a,-2 (ix)
+   00A1 DD 77 FC            141 	ld	-4 (ix),a
+   00A4 DD 7E 07            142 	ld	a,7 (ix)
+   00A7 CE 00               143 	adc	a,#0x00
+   00A9 DD 77 FD            144 	ld	-3 (ix),a
+   00AC DD 6E FC            145 	ld	l,-4 (ix)
+   00AF DD 66 FD            146 	ld	h,-3 (ix)
+   00B2 56                  147 	ld	d, (hl)
+                            148 ;../_itoa.c:59: string[i] = string[index];
+   00B3 DD 7E 06            149 	ld	a,6 (ix)
+   00B6 81                  150 	add	a,c
+   00B7 47                  151 	ld	b,a
+   00B8 DD 7E 07            152 	ld	a,7 (ix)
+   00BB CE 00               153 	adc	a,#0x00
+   00BD 5F                  154 	ld	e, a
+   00BE 68                  155 	ld	l, b
+   00BF 67                  156 	ld	h, a
+   00C0 7E                  157 	ld	a,(hl)
+   00C1 DD 6E FC            158 	ld	l,-4 (ix)
+   00C4 DD 66 FD            159 	ld	h,-3 (ix)
+   00C7 77                  160 	ld	(hl),a
+                            161 ;../_itoa.c:60: string[index] = tmp;
+   00C8 68                  162 	ld	l,b
+   00C9 63                  163 	ld	h,e
+   00CA 72                  164 	ld	(hl),d
+                            165 ;../_itoa.c:61: ++i;
+   00CB DD 34 FE            166 	inc	-2 (ix)
+                            167 ;../_itoa.c:62: --index;
+   00CE 0D                  168 	dec	c
+   00CF 18 BE               169 	jr	00106$
+   00D1                     170 00109$:
+   00D1 DD F9               171 	ld	sp,ix
+   00D3 DD E1               172 	pop	ix
+   00D5 C9                  173 	ret
+   00D6                     174 __uitoa_end::
+                            175 ;../_itoa.c:66: void _itoa(int value, char* string, unsigned char radix)
+                            176 ;	---------------------------------
+                            177 ; Function _itoa
+                            178 ; ---------------------------------
+   00D6                     179 __itoa_start::
+   00D6                     180 __itoa:
+   00D6 DD E5               181 	push	ix
+   00D8 DD 21 00 00         182 	ld	ix,#0
+   00DC DD 39               183 	add	ix,sp
+                            184 ;../_itoa.c:68: if (value < 0 && radix == 10) {
+   00DE DD CB 05 7E         185 	bit	7,5 (ix)
+   00E2 28 2A               186 	jr	Z,00102$
+   00E4 DD 7E 08            187 	ld	a,8 (ix)
+   00E7 D6 0A               188 	sub	a,#0x0A
+   00E9 20 23               189 	jr	NZ,00102$
+                            190 ;../_itoa.c:69: *string++ = '-';
+   00EB DD 6E 06            191 	ld	l,6 (ix)
+   00EE DD 66 07            192 	ld	h,7 (ix)
+   00F1 36 2D               193 	ld	(hl),#0x2D
+   00F3 7D                  194 	ld	a,l
+   00F4 C6 01               195 	add	a,#0x01
+   00F6 DD 77 06            196 	ld	6 (ix),a
+   00F9 7C                  197 	ld	a,h
+   00FA CE 00               198 	adc	a,#0x00
+   00FC DD 77 07            199 	ld	7 (ix),a
+                            200 ;../_itoa.c:70: value = -value;
+   00FF AF                  201 	xor	a,a
+   0100 DD 9E 04            202 	sbc	a,4 (ix)
+   0103 DD 77 04            203 	ld	4 (ix),a
+   0106 3E 00               204 	ld	a,#0x00
+   0108 DD 9E 05            205 	sbc	a,5 (ix)
+   010B DD 77 05            206 	ld	5 (ix),a
+   010E                     207 00102$:
+                            208 ;../_itoa.c:72: _uitoa(value, string, radix);
+   010E DD 4E 04            209 	ld	c,4 (ix)
+   0111 DD 46 05            210 	ld	b,5 (ix)
+   0114 DD 7E 08            211 	ld	a,8 (ix)
+   0117 F5                  212 	push	af
+   0118 33                  213 	inc	sp
+   0119 DD 6E 06            214 	ld	l,6 (ix)
+   011C DD 66 07            215 	ld	h,7 (ix)
+   011F E5                  216 	push	hl
+   0120 C5                  217 	push	bc
+   0121 CDr00s00            218 	call	__uitoa
+   0124 F1                  219 	pop	af
+   0125 F1                  220 	pop	af
+   0126 33                  221 	inc	sp
+   0127 DD E1               222 	pop	ix
+   0129 C9                  223 	ret
+   012A                     224 __itoa_end::
+                            225 	.area _CODE
+                            226 	.area _CABS

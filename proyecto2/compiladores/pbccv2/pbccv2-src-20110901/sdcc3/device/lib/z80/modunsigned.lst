@@ -1,0 +1,62 @@
+                              1 ;--------------------------------------------------------------------------
+                              2 ;  modunsigned.s
+                              3 ;
+                              4 ;  Copyright (C) 2009-2010, Philipp Klaus Krause
+                              5 ;
+                              6 ;  This library is free software; you can redistribute it and/or modify it
+                              7 ;  under the terms of the GNU General Public License as published by the
+                              8 ;  Free Software Foundation; either version 2.1, or (at your option) any
+                              9 ;  later version.
+                             10 ;
+                             11 ;  This library is distributed in the hope that it will be useful,
+                             12 ;  but WITHOUT ANY WARRANTY; without even the implied warranty of
+                             13 ;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+                             14 ;  GNU General Public License for more details.
+                             15 ;
+                             16 ;  You should have received a copy of the GNU General Public License 
+                             17 ;  along with this library; see the file COPYING. If not, write to the
+                             18 ;  Free Software Foundation, 51 Franklin Street, Fifth Floor, Boston,
+                             19 ;   MA 02110-1301, USA.
+                             20 ;
+                             21 ;  As a special exception, if you link this library with other files,
+                             22 ;  some of which are compiled with SDCC, to produce an executable,
+                             23 ;  this library does not by itself cause the resulting executable to
+                             24 ;  be covered by the GNU General Public License. This exception does
+                             25 ;  not however invalidate any other reasons why the executable file
+                             26 ;   might be covered by the GNU General Public License.
+                             27 ;--------------------------------------------------------------------------
+                             28 
+                             29         .area   _CODE
+                             30 
+   0000                      31 __moduchar_rrx_s::
+   0000 21 03 00             32         ld      hl,#2+1
+   0003 39                   33         add     hl,sp
+                             34 
+   0004 5E                   35         ld      e,(hl)
+   0005 2B                   36         dec     hl
+   0006 6E                   37         ld      l,(hl)
+                             38 
+                             39         ;; Fall through
+   0007                      40 __moduchar_rrx_hds::
+   0007 CDr00s00             41         call    __divu8
+                             42 
+   000A EB                   43 	ex	de,hl
+                             44 
+   000B C9                   45         ret
+                             46 
+   000C                      47 __moduint_rrx_s::
+   000C F1                   48         pop     af
+   000D E1                   49         pop     hl
+   000E D1                   50         pop     de
+   000F D5                   51         push    de
+   0010 E5                   52         push    hl
+   0011 F5                   53         push    af
+                             54 
+                             55         ;; Fall through
+   0012                      56 __moduint_rrx_hds::
+   0012 CDr00s00             57         call    __divu16
+                             58 
+   0015 EB                   59         ex      de,hl
+                             60 
+   0016 C9                   61         ret
+                             62 

@@ -1,0 +1,62 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24  (Motorola 68HC08), page 1.
+
+Symbol Table
+
+    .__.ABS.                                                    =  0000 G
+    ___fsadd                                                       **** GX
+    ___fsadd_PARM_1                                                **** GX
+    ___fsadd_PARM_2                                                **** GX
+    ___fsdiv                                                       **** GX
+    ___fsdiv_PARM_1                                                **** GX
+    ___fsdiv_PARM_2                                                **** GX
+    ___fsgt                                                        **** GX
+    ___fsgt_PARM_1                                                 **** GX
+    ___fsgt_PARM_2                                                 **** GX
+    ___fslt                                                        **** GX
+    ___fslt_PARM_1                                                 **** GX
+    ___fslt_PARM_2                                                 **** GX
+    ___fsmul                                                       **** GX
+    ___fsmul_PARM_1                                                **** GX
+    ___fsmul_PARM_2                                                **** GX
+    ___fssub                                                       **** GX
+    ___fssub_PARM_1                                                **** GX
+    ___fssub_PARM_2                                                **** GX
+    __ret2                                                         **** GX
+    __ret3                                                         **** GX
+  5 _asincosf                                                      0000 GR
+  B _asincosf_PARM_1                                               0000 GR
+  B _asincosf_PARM_2                                               0004 GR
+  B _asincosf_a_1_1                                                0012 R
+  B _asincosf_b_1_1                                                001A R
+  B _asincosf_g_1_1                                                0009 R
+  B _asincosf_quartPI_1_1                                          0011 R
+  B _asincosf_r_1_1                                                000D R
+  8 _asincosf_sloc0_1_0                                            0000 R
+  8 _asincosf_sloc1_1_0                                            0001 R
+  B _asincosf_y_1_1                                                0005 R
+    _errno                                                         **** GX
+    _fabsf                                                         **** GX
+    _ldexpf                                                        **** GX
+    _ldexpf_PARM_1                                                 **** GX
+    _ldexpf_PARM_2                                                 **** GX
+    _sqrtf                                                         **** GX
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods + Flat24  (Motorola 68HC08), page 2.
+
+Area Table
+
+   0 _CODE                                      size    0   flags 0
+   1 HOME                                       size    0   flags 20
+   2 GSINIT0                                    size    0   flags 20
+   3 GSINIT                                     size   49   flags 20
+   4 GSFINAL                                    size    0   flags 20
+   5 CSEG                                       size  5AA   flags 20
+   6 XINIT                                      size    0   flags 0
+   7 CONST                                      size    0   flags 20
+   8 DSEG                                       size    5   flags 0
+   9 OSEG                                       size    0   flags 4
+   A BSEG                                       size    0   flags 0
+   B XSEG                                       size   22   flags 0
+   C XISEG                                      size    0   flags 0
+   D XABS                                       size    0   flags 8
+   E CABS                                       size    0   flags 28

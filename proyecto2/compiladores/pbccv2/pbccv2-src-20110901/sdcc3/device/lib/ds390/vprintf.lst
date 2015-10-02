@@ -1,0 +1,462 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:18 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module vprintf
+                              7 	.optsdcc -mds390 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _vprintf_PARM_2
+                             31 	.globl _vprintf
+                             32 	.globl _printf
+                             33 ;--------------------------------------------------------
+                             34 ; special function registers
+                             35 ;--------------------------------------------------------
+                    0080     36 _P4	=	0x0080
+                    0081     37 _SP	=	0x0081
+                    0082     38 _DPL	=	0x0082
+                    0083     39 _DPH	=	0x0083
+                    0084     40 _DPL1	=	0x0084
+                    0085     41 _DPH1	=	0x0085
+                    0086     42 _DPS	=	0x0086
+                    0087     43 _PCON	=	0x0087
+                    0088     44 _TCON	=	0x0088
+                    0089     45 _TMOD	=	0x0089
+                    008A     46 _TL0	=	0x008a
+                    008B     47 _TL1	=	0x008b
+                    008C     48 _TH0	=	0x008c
+                    008D     49 _TH1	=	0x008d
+                    008E     50 _CKCON	=	0x008e
+                    0090     51 _P1	=	0x0090
+                    0091     52 _EXIF	=	0x0091
+                    0092     53 _P4CNT	=	0x0092
+                    0093     54 _DPX	=	0x0093
+                    0095     55 _DPX1	=	0x0095
+                    0098     56 _SCON0	=	0x0098
+                    0099     57 _SBUF0	=	0x0099
+                    009B     58 _ESP	=	0x009b
+                    009C     59 _AP	=	0x009c
+                    009D     60 _ACON	=	0x009d
+                    00A0     61 _P2	=	0x00a0
+                    00A1     62 _P5	=	0x00a1
+                    00A2     63 _P5CNT	=	0x00a2
+                    00A8     64 _IE	=	0x00a8
+                    00B0     65 _P3	=	0x00b0
+                    00B8     66 _IP	=	0x00b8
+                    00C0     67 _SCON1	=	0x00c0
+                    00C1     68 _SBUF1	=	0x00c1
+                    00C4     69 _PMR	=	0x00c4
+                    00C6     70 _MCON	=	0x00c6
+                    00C7     71 _TA	=	0x00c7
+                    00C8     72 _T2CON	=	0x00c8
+                    00C9     73 _T2MOD	=	0x00c9
+                    00CA     74 _RCAP2L	=	0x00ca
+                    00CA     75 _RTL2	=	0x00ca
+                    00CB     76 _RCAP2H	=	0x00cb
+                    00CB     77 _RTH2	=	0x00cb
+                    00CC     78 _TL2	=	0x00cc
+                    00CD     79 _TH2	=	0x00cd
+                    00D0     80 _PSW	=	0x00d0
+                    00D1     81 _MCNT0	=	0x00d1
+                    00D2     82 _MCNT1	=	0x00d2
+                    00D3     83 _MA	=	0x00d3
+                    00D4     84 _MB	=	0x00d4
+                    00D5     85 _MC	=	0x00d5
+                    00D8     86 _WDCON	=	0x00d8
+                    00E0     87 _ACC	=	0x00e0
+                    00E8     88 _EIE	=	0x00e8
+                    00EA     89 _MXAX	=	0x00ea
+                    00F0     90 _B	=	0x00f0
+                    00F8     91 _EIP	=	0x00f8
+                    8C8A     92 _TMR0	=	0x8c8a
+                    8D8B     93 _TMR1	=	0x8d8b
+                    CDCC     94 _TMR2	=	0xcdcc
+                    CBCA     95 _RCAP2	=	0xcbca
+                             96 ;--------------------------------------------------------
+                             97 ; special function bits
+                             98 ;--------------------------------------------------------
+                    0088     99 _IT0	=	0x0088
+                    0089    100 _IE0	=	0x0089
+                    008A    101 _IT1	=	0x008a
+                    008B    102 _IE1	=	0x008b
+                    008C    103 _TR0	=	0x008c
+                    008D    104 _TF0	=	0x008d
+                    008E    105 _TR1	=	0x008e
+                    008F    106 _TF1	=	0x008f
+                    0090    107 _T2	=	0x0090
+                    0091    108 _T2EX	=	0x0091
+                    0092    109 _RXD1	=	0x0092
+                    0093    110 _TXD1	=	0x0093
+                    0094    111 _INT2	=	0x0094
+                    0095    112 _INT3	=	0x0095
+                    0096    113 _INT4	=	0x0096
+                    0097    114 _INT5	=	0x0097
+                    0098    115 _RI_0	=	0x0098
+                    0099    116 _TI_0	=	0x0099
+                    009A    117 _RB8_0	=	0x009a
+                    009B    118 _TB8_0	=	0x009b
+                    009C    119 _REN_0	=	0x009c
+                    009D    120 _SM2_0	=	0x009d
+                    009E    121 _SM1_0	=	0x009e
+                    009F    122 _SM0_0	=	0x009f
+                    009F    123 _FE_0	=	0x009f
+                    00A8    124 _EX0	=	0x00a8
+                    00A9    125 _ET0	=	0x00a9
+                    00AA    126 _EX1	=	0x00aa
+                    00AB    127 _ET1	=	0x00ab
+                    00AC    128 _ES0	=	0x00ac
+                    00AD    129 _ET2	=	0x00ad
+                    00AE    130 _ES1	=	0x00ae
+                    00AF    131 _EA	=	0x00af
+                    00B0    132 _RXD0	=	0x00b0
+                    00B1    133 _TXD0	=	0x00b1
+                    00B2    134 _INT0	=	0x00b2
+                    00B3    135 _INT1	=	0x00b3
+                    00B4    136 _T0	=	0x00b4
+                    00B5    137 _T1	=	0x00b5
+                    00B6    138 _WR	=	0x00b6
+                    00B7    139 _RD	=	0x00b7
+                    00B8    140 _PX0	=	0x00b8
+                    00B9    141 _PT0	=	0x00b9
+                    00BA    142 _PX1	=	0x00ba
+                    00BB    143 _PT1	=	0x00bb
+                    00BC    144 _PS0	=	0x00bc
+                    00BD    145 _PT2	=	0x00bd
+                    00BE    146 _PS1	=	0x00be
+                    00C0    147 _RI_1	=	0x00c0
+                    00C1    148 _TI_1	=	0x00c1
+                    00C2    149 _RB8_1	=	0x00c2
+                    00C3    150 _TB8_1	=	0x00c3
+                    00C4    151 _REN_1	=	0x00c4
+                    00C5    152 _SM2_1	=	0x00c5
+                    00C6    153 _SM1_1	=	0x00c6
+                    00C7    154 _SM0_1	=	0x00c7
+                    00C7    155 _FE_1	=	0x00c7
+                    00C8    156 _CP_RL	=	0x00c8
+                    00C9    157 _C_T	=	0x00c9
+                    00CA    158 _TR2	=	0x00ca
+                    00CB    159 _EXEN2	=	0x00cb
+                    00CC    160 _TCLK	=	0x00cc
+                    00CD    161 _RCLK	=	0x00cd
+                    00CE    162 _EXF2	=	0x00ce
+                    00CF    163 _TF2	=	0x00cf
+                    00D0    164 _P	=	0x00d0
+                    00D1    165 _F1	=	0x00d1
+                    00D2    166 _OV	=	0x00d2
+                    00D3    167 _RS0	=	0x00d3
+                    00D4    168 _RS1	=	0x00d4
+                    00D5    169 _F0	=	0x00d5
+                    00D6    170 _AC	=	0x00d6
+                    00D7    171 _CY	=	0x00d7
+                    00D8    172 _RWT	=	0x00d8
+                    00D9    173 _EWT	=	0x00d9
+                    00DA    174 _WDRF	=	0x00da
+                    00DB    175 _WDIF	=	0x00db
+                    00DC    176 _PFI	=	0x00dc
+                    00DD    177 _EPFI	=	0x00dd
+                    00DE    178 _POR	=	0x00de
+                    00DF    179 _SMOD_1	=	0x00df
+                    00E8    180 _EX2	=	0x00e8
+                    00E9    181 _EX3	=	0x00e9
+                    00EA    182 _EX4	=	0x00ea
+                    00EB    183 _EX5	=	0x00eb
+                    00EC    184 _EWDI	=	0x00ec
+                    00ED    185 _C1IE	=	0x00ed
+                    00EE    186 _C0IE	=	0x00ee
+                    00EF    187 _CANBIE	=	0x00ef
+                    00F8    188 _PX2	=	0x00f8
+                    00F9    189 _PX3	=	0x00f9
+                    00FA    190 _PX4	=	0x00fa
+                    00FB    191 _PX5	=	0x00fb
+                    00FC    192 _PWDI	=	0x00fc
+                    00FD    193 _C1IP	=	0x00fd
+                    00FE    194 _C0IP	=	0x00fe
+                    00FF    195 _CANBIP	=	0x00ff
+                            196 ;--------------------------------------------------------
+                            197 ; overlayable register banks
+                            198 ;--------------------------------------------------------
+                            199 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     200 	.ds 8
+                            201 ;--------------------------------------------------------
+                            202 ; internal ram data
+                            203 ;--------------------------------------------------------
+                            204 	.area DSEG    (DATA)
+                            205 ;--------------------------------------------------------
+                            206 ; overlayable items in internal ram 
+                            207 ;--------------------------------------------------------
+                            208 	.area OSEG    (OVR,DATA)
+                            209 ;--------------------------------------------------------
+                            210 ; indirectly addressable internal ram data
+                            211 ;--------------------------------------------------------
+                            212 	.area ISEG    (DATA)
+                            213 ;--------------------------------------------------------
+                            214 ; absolute internal ram data
+                            215 ;--------------------------------------------------------
+                            216 	.area IABS    (ABS,DATA)
+                            217 	.area IABS    (ABS,DATA)
+                            218 ;--------------------------------------------------------
+                            219 ; bit data
+                            220 ;--------------------------------------------------------
+                            221 	.area BSEG    (BIT)
+                            222 ;--------------------------------------------------------
+                            223 ; paged external ram data
+                            224 ;--------------------------------------------------------
+                            225 	.area PSEG    (PAG,XDATA)
+                            226 ;--------------------------------------------------------
+                            227 ; external ram data
+                            228 ;--------------------------------------------------------
+                            229 	.area XSEG    (XDATA)
+   0000                     230 _vprintf_PARM_2:
+   0000                     231 	.ds 4
+                            232 ;--------------------------------------------------------
+                            233 ; absolute external ram data
+                            234 ;--------------------------------------------------------
+                            235 	.area XABS    (ABS,XDATA)
+                            236 ;--------------------------------------------------------
+                            237 ; external initialized ram data
+                            238 ;--------------------------------------------------------
+                            239 	.area XISEG   (XDATA)
+                            240 ;--------------------------------------------------------
+                            241 ; global & static initialisations
+                            242 ;--------------------------------------------------------
+                            243 	.area HOME    (CODE)
+                            244 	.area GSINIT  (CODE)
+                            245 	.area GSFINAL (CODE)
+                            246 	.area GSINIT  (CODE)
+                            247 ;--------------------------------------------------------
+                            248 ; Home
+                            249 ;--------------------------------------------------------
+                            250 	.area HOME    (CODE)
+                            251 	.area HOME    (CODE)
+                            252 ;--------------------------------------------------------
+                            253 ; code
+                            254 ;--------------------------------------------------------
+                            255 	.area CSEG    (CODE)
+                            256 ;------------------------------------------------------------
+                            257 ;Allocation info for local variables in function 'put_char_to_stdout'
+                            258 ;------------------------------------------------------------
+                            259 ;p                         Allocated to stack - offset -8
+                            260 ;c                         Allocated to registers r2 
+                            261 ;------------------------------------------------------------
+                            262 ;	vprintf.c:34: put_char_to_stdout (char c, void* p) _REENTRANT
+                            263 ;	-----------------------------------------
+                            264 ;	 function put_char_to_stdout
+                            265 ;	-----------------------------------------
+   0000                     266 _put_char_to_stdout:
+                    0002    267 	ar2 = 0x02
+                    0003    268 	ar3 = 0x03
+                    0004    269 	ar4 = 0x04
+                    0005    270 	ar5 = 0x05
+                    0006    271 	ar6 = 0x06
+                    0007    272 	ar7 = 0x07
+                    0000    273 	ar0 = 0x00
+                    0001    274 	ar1 = 0x01
+   0000 C0*00               275 	push	_bpx
+   0002 C0*01               276 	push	_bpx+1
+   0004 85 81*00            277 	mov	_bpx,sp
+   0007 85 9B*01            278 	mov	_bpx+1,esp
+   000A 53*01 03            279 	anl	_bpx+1,#3
+   000D AA 82               280 	mov	r2,dpl
+                            281 ;	vprintf.c:37: putchar (c);
+   000F 8A 82               282 	mov	dpl,r2
+   0011 12s00r00r00         283 	lcall	_putchar
+   0015                     284 00101$:
+   0015 85*00 81            285 	mov	sp,_bpx
+   0018 85*01 9B            286 	mov	esp,_bpx+1
+   001B D0*01               287 	pop	_bpx+1
+   001D D0*00               288 	pop	_bpx
+   001F 22                  289 	ret
+                            290 ;------------------------------------------------------------
+                            291 ;Allocation info for local variables in function 'vprintf'
+                            292 ;------------------------------------------------------------
+                            293 ;ap                        Allocated with name '_vprintf_PARM_2'
+                            294 ;format                    Allocated to registers r2 r3 r4 r5 
+                            295 ;------------------------------------------------------------
+                            296 ;	vprintf.c:41: vprintf (const char *format, va_list ap)
+                            297 ;	-----------------------------------------
+                            298 ;	 function vprintf
+                            299 ;	-----------------------------------------
+   0020                     300 _vprintf:
+   0020 AA 82               301 	mov	r2,dpl
+   0022 AB 83               302 	mov	r3,dph
+   0024 AC 93               303 	mov	r4,dpx
+   0026 AD F0               304 	mov	r5,b
+                            305 ;	vprintf.c:43: return _print_format (put_char_to_stdout, NULL, format, ap);
+   0028 90s00r00r00         306 	mov	dptr,#_vprintf_PARM_2
+                            307 ;	genAssign: resultIsFar = FALSE
+   002C E0                  308 	movx	a,@dptr
+   002D FE                  309 	mov	r6,a
+   002E A3                  310 	inc	dptr
+   002F E0                  311 	movx	a,@dptr
+   0030 FF                  312 	mov	r7,a
+   0031 A3                  313 	inc	dptr
+   0032 E0                  314 	movx	a,@dptr
+   0033 F8                  315 	mov	r0,a
+   0034 A3                  316 	inc	dptr
+   0035 E0                  317 	movx	a,@dptr
+   0036 F9                  318 	mov	r1,a
+                            319 ;	genAssign: resultIsFar = TRUE
+   0037 90s00r00r00         320 	mov	dptr,#__print_format_PARM_2
+   003B E4                  321 	clr	a
+   003C F0                  322 	movx	@dptr,a
+   003D A3                  323 	inc	dptr
+   003E F0                  324 	movx	@dptr,a
+   003F A3                  325 	inc	dptr
+   0040 F0                  326 	movx	@dptr,a
+   0041 A3                  327 	inc	dptr
+   0042 E4                  328 	clr  a
+   0043 F0                  329 	movx	@dptr,a
+                            330 ;	genAssign: resultIsFar = TRUE
+   0044 90s00r00r00         331 	mov	dptr,#__print_format_PARM_3
+   0048 EA                  332 	mov	a,r2
+   0049 F0                  333 	movx	@dptr,a
+   004A A3                  334 	inc	dptr
+   004B EB                  335 	mov	a,r3
+   004C F0                  336 	movx	@dptr,a
+   004D A3                  337 	inc	dptr
+   004E EC                  338 	mov	a,r4
+   004F F0                  339 	movx	@dptr,a
+   0050 A3                  340 	inc	dptr
+   0051 ED                  341 	mov	a,r5
+   0052 F0                  342 	movx	@dptr,a
+                            343 ;	genAssign: resultIsFar = TRUE
+   0053 90s00r00r00         344 	mov	dptr,#__print_format_PARM_4
+   0057 EE                  345 	mov	a,r6
+   0058 F0                  346 	movx	@dptr,a
+   0059 A3                  347 	inc	dptr
+   005A EF                  348 	mov	a,r7
+   005B F0                  349 	movx	@dptr,a
+   005C A3                  350 	inc	dptr
+   005D E8                  351 	mov	a,r0
+   005E F0                  352 	movx	@dptr,a
+   005F A3                  353 	inc	dptr
+   0060 E9                  354 	mov	a,r1
+   0061 F0                  355 	movx	@dptr,a
+   0062 90s00r00r00         356 	mov dptr,#_put_char_to_stdout
+   0066 12s00r00r00         357 	lcall	__print_format
+   006A                     358 00101$:
+   006A 22                  359 	ret
+                            360 ;------------------------------------------------------------
+                            361 ;Allocation info for local variables in function 'printf'
+                            362 ;------------------------------------------------------------
+                            363 ;format                    Allocated to stack - offset -8
+                            364 ;arg                       Allocated to registers r2 r3 r4 r5 
+                            365 ;i                         Allocated to registers r2 r3 
+                            366 ;------------------------------------------------------------
+                            367 ;	vprintf.c:47: printf (const char *format, ...)
+                            368 ;	-----------------------------------------
+                            369 ;	 function printf
+                            370 ;	-----------------------------------------
+   006B                     371 _printf:
+   006B C0*00               372 	push	_bpx
+   006D C0*01               373 	push	_bpx+1
+   006F 85 81*00            374 	mov	_bpx,sp
+   0072 85 9B*01            375 	mov	_bpx+1,esp
+   0075 53*01 03            376 	anl	_bpx+1,#3
+                            377 ;	vprintf.c:52: va_start (arg, format);
+   0078 E5*00               378 	mov	a,_bpx
+   007A 24 F8               379 	add	a,#0xF8
+   007C F5 F0               380 	mov	b,a
+   007E E5*01               381 	mov	a,_bpx+1
+   0080 34 FF               382 	addc	a,#0xFF
+   0082 AA F0               383 	mov	r2,b
+   0084 FB                  384 	mov	r3,a
+   0085 7C 40               385 	mov	r4,#0x40
+   0087 7D 00               386 	mov	r5,#0x00
+                            387 ;	vprintf.c:53: i = _print_format (put_char_to_stdout, NULL, format, arg);
+   0089 E5*00               388 	mov	a,_bpx
+   008B C3                  389 	clr	c
+   008C 94 08               390 	subb	a,#0x08
+   008E F5 82               391 	mov	dpl,a
+   0090 E5*01               392 	mov	a,_bpx+1
+   0092 94 00               393 	subb	a,#0x00
+   0094 F5 83               394 	mov	dph,a
+   0096 75 93 40            395 	mov	dpx,#0x40
+                            396 ;	genAssign: resultIsFar = FALSE
+   0099 E0                  397 	movx	a,@dptr
+   009A FE                  398 	mov	r6,a
+   009B A3                  399 	inc	dptr
+   009C E0                  400 	movx	a,@dptr
+   009D FF                  401 	mov	r7,a
+   009E A3                  402 	inc	dptr
+   009F E0                  403 	movx	a,@dptr
+   00A0 F8                  404 	mov	r0,a
+   00A1 A3                  405 	inc	dptr
+   00A2 E0                  406 	movx	a,@dptr
+   00A3 F9                  407 	mov	r1,a
+                            408 ;	genAssign: resultIsFar = TRUE
+   00A4 90s00r00r00         409 	mov	dptr,#__print_format_PARM_2
+   00A8 E4                  410 	clr	a
+   00A9 F0                  411 	movx	@dptr,a
+   00AA A3                  412 	inc	dptr
+   00AB F0                  413 	movx	@dptr,a
+   00AC A3                  414 	inc	dptr
+   00AD F0                  415 	movx	@dptr,a
+   00AE A3                  416 	inc	dptr
+   00AF E4                  417 	clr  a
+   00B0 F0                  418 	movx	@dptr,a
+                            419 ;	genAssign: resultIsFar = TRUE
+   00B1 90s00r00r00         420 	mov	dptr,#__print_format_PARM_3
+   00B5 EE                  421 	mov	a,r6
+   00B6 F0                  422 	movx	@dptr,a
+   00B7 A3                  423 	inc	dptr
+   00B8 EF                  424 	mov	a,r7
+   00B9 F0                  425 	movx	@dptr,a
+   00BA A3                  426 	inc	dptr
+   00BB E8                  427 	mov	a,r0
+   00BC F0                  428 	movx	@dptr,a
+   00BD A3                  429 	inc	dptr
+   00BE E9                  430 	mov	a,r1
+   00BF F0                  431 	movx	@dptr,a
+                            432 ;	genAssign: resultIsFar = TRUE
+   00C0 90s00r00r00         433 	mov	dptr,#__print_format_PARM_4
+   00C4 EA                  434 	mov	a,r2
+   00C5 F0                  435 	movx	@dptr,a
+   00C6 A3                  436 	inc	dptr
+   00C7 EB                  437 	mov	a,r3
+   00C8 F0                  438 	movx	@dptr,a
+   00C9 A3                  439 	inc	dptr
+   00CA EC                  440 	mov	a,r4
+   00CB F0                  441 	movx	@dptr,a
+   00CC A3                  442 	inc	dptr
+   00CD ED                  443 	mov	a,r5
+   00CE F0                  444 	movx	@dptr,a
+   00CF 90s00r00r00         445 	mov dptr,#_put_char_to_stdout
+   00D3 12s00r00r00         446 	lcall	__print_format
+   00D7 AA 82               447 	mov	r2,dpl
+   00D9 AB 83               448 	mov	r3,dph
+                            449 ;	genAssign: resultIsFar = FALSE
+   00DB 8A 82               450 	mov	dpl,r2
+   00DD 8B 83               451 	mov	dph,r3
+                            452 ;	vprintf.c:56: return i;
+   00DF                     453 00101$:
+   00DF 85*00 81            454 	mov	sp,_bpx
+   00E2 85*01 9B            455 	mov	esp,_bpx+1
+   00E5 D0*01               456 	pop	_bpx+1
+   00E7 D0*00               457 	pop	_bpx
+   00E9 22                  458 	ret
+                            459 	.area CSEG    (CODE)
+                            460 	.area CONST   (CODE)
+                            461 	.area XINIT   (CODE)
+                            462 	.area CABS    (ABS,CODE)

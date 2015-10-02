@@ -1,0 +1,278 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:16 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module ldexpf
+                              7 	.optsdcc -mds390 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _ldexpf_PARM_2
+                             31 	.globl _ldexpf
+                             32 ;--------------------------------------------------------
+                             33 ; special function registers
+                             34 ;--------------------------------------------------------
+                             35 ;--------------------------------------------------------
+                             36 ; special function bits
+                             37 ;--------------------------------------------------------
+                             38 ;--------------------------------------------------------
+                             39 ; overlayable register banks
+                             40 ;--------------------------------------------------------
+                             41 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      42 	.ds 8
+                             43 ;--------------------------------------------------------
+                             44 ; internal ram data
+                             45 ;--------------------------------------------------------
+                             46 	.area DSEG    (DATA)
+                             47 ;--------------------------------------------------------
+                             48 ; overlayable items in internal ram 
+                             49 ;--------------------------------------------------------
+                             50 	.area OSEG    (OVR,DATA)
+                             51 ;--------------------------------------------------------
+                             52 ; indirectly addressable internal ram data
+                             53 ;--------------------------------------------------------
+                             54 	.area ISEG    (DATA)
+                             55 ;--------------------------------------------------------
+                             56 ; absolute internal ram data
+                             57 ;--------------------------------------------------------
+                             58 	.area IABS    (ABS,DATA)
+                             59 	.area IABS    (ABS,DATA)
+                             60 ;--------------------------------------------------------
+                             61 ; bit data
+                             62 ;--------------------------------------------------------
+                             63 	.area BSEG    (BIT)
+                             64 ;--------------------------------------------------------
+                             65 ; paged external ram data
+                             66 ;--------------------------------------------------------
+                             67 	.area PSEG    (PAG,XDATA)
+                             68 ;--------------------------------------------------------
+                             69 ; external ram data
+                             70 ;--------------------------------------------------------
+                             71 	.area XSEG    (XDATA)
+   0000                      72 _ldexpf_PARM_2:
+   0000                      73 	.ds 2
+   0002                      74 _ldexpf_fl_1_1:
+   0002                      75 	.ds 4
+   0006                      76 _ldexpf_e_1_1:
+   0006                      77 	.ds 4
+                             78 ;--------------------------------------------------------
+                             79 ; absolute external ram data
+                             80 ;--------------------------------------------------------
+                             81 	.area XABS    (ABS,XDATA)
+                             82 ;--------------------------------------------------------
+                             83 ; external initialized ram data
+                             84 ;--------------------------------------------------------
+                             85 	.area XISEG   (XDATA)
+                             86 ;--------------------------------------------------------
+                             87 ; global & static initialisations
+                             88 ;--------------------------------------------------------
+                             89 	.area HOME    (CODE)
+                             90 	.area GSINIT  (CODE)
+                             91 	.area GSFINAL (CODE)
+                             92 	.area GSINIT  (CODE)
+                             93 ;--------------------------------------------------------
+                             94 ; Home
+                             95 ;--------------------------------------------------------
+                             96 	.area HOME    (CODE)
+                             97 	.area HOME    (CODE)
+                             98 ;--------------------------------------------------------
+                             99 ; code
+                            100 ;--------------------------------------------------------
+                            101 	.area CSEG    (CODE)
+                            102 ;------------------------------------------------------------
+                            103 ;Allocation info for local variables in function 'ldexpf'
+                            104 ;------------------------------------------------------------
+                            105 ;pw2                       Allocated with name '_ldexpf_PARM_2'
+                            106 ;x                         Allocated to registers r2 r3 r4 r5 
+                            107 ;fl                        Allocated with name '_ldexpf_fl_1_1'
+                            108 ;e                         Allocated with name '_ldexpf_e_1_1'
+                            109 ;------------------------------------------------------------
+                            110 ;	ldexpf.c:34: float ldexpf(const float x, const int pw2)
+                            111 ;	-----------------------------------------
+                            112 ;	 function ldexpf
+                            113 ;	-----------------------------------------
+   0000                     114 _ldexpf:
+                    0002    115 	ar2 = 0x02
+                    0003    116 	ar3 = 0x03
+                    0004    117 	ar4 = 0x04
+                    0005    118 	ar5 = 0x05
+                    0006    119 	ar6 = 0x06
+                    0007    120 	ar7 = 0x07
+                    0000    121 	ar0 = 0x00
+                    0001    122 	ar1 = 0x01
+   0000 AA 82               123 	mov	r2,dpl
+   0002 AB 83               124 	mov	r3,dph
+   0004 AC 93               125 	mov	r4,dpx
+   0006 AD F0               126 	mov	r5,b
+                            127 ;	ldexpf.c:39: fl.f = x;
+   0008 90s00r00r02         128 	mov	dptr,#_ldexpf_fl_1_1
+   000C EA                  129 	mov	a,r2
+   000D F0                  130 	movx	@dptr,a
+   000E A3                  131 	inc	dptr
+   000F EB                  132 	mov	a,r3
+   0010 F0                  133 	movx	@dptr,a
+   0011 A3                  134 	inc	dptr
+   0012 EC                  135 	mov	a,r4
+   0013 F0                  136 	movx	@dptr,a
+   0014 A3                  137 	inc	dptr
+   0015 ED                  138 	mov	a,r5
+   0016 F0                  139 	movx	@dptr,a
+                            140 ;	ldexpf.c:41: e=(fl.l >> 23) & 0x000000ff;
+   0017 90s00r00r02         141 	mov	dptr,#_ldexpf_fl_1_1
+   001B E0                  142 	movx	a,@dptr
+   001C A3                  143 	inc	dptr
+   001D FA                  144 	mov	r2,a
+   001E E0                  145 	movx	a,@dptr
+   001F A3                  146 	inc	dptr
+   0020 FB                  147 	mov	r3,a
+   0021 E0                  148 	movx	a,@dptr
+   0022 A3                  149 	inc	dptr
+   0023 FC                  150 	mov	r4,a
+   0024 E0                  151 	movx	a,@dptr
+   0025 FD                  152 	mov	r5,a
+   0026 8C 06               153 	mov	ar6,r4
+   0028 ED                  154 	mov	a,r5
+   0029 A2 E7               155 	mov	c,acc.7
+   002B CE                  156 	xch	a,r6
+   002C 33                  157 	rlc	a
+   002D CE                  158 	xch	a,r6
+   002E 33                  159 	rlc	a
+   002F CE                  160 	xch	a,r6
+   0030 54 01               161 	anl	a,#0x01
+   0032 30 E0 02            162 	jnb	acc.0,00103$
+   0035 44 FE               163 	orl	a,#0xFE
+   0037                     164 00103$:
+   0037 FF                  165 	mov	r7,a
+   0038 33                  166 	rlc	a
+   0039 95 E0               167 	subb	a,acc
+   003B F8                  168 	mov	r0,a
+   003C F9                  169 	mov	r1,a
+   003D 90s00r00r06         170 	mov	dptr,#_ldexpf_e_1_1
+   0041 EE                  171 	mov	a,r6
+   0042 F0                  172 	movx	@dptr,a
+   0043 A3                  173 	inc	dptr
+   0044 E4                  174 	clr	a
+   0045 F0                  175 	movx	@dptr,a
+   0046 A3                  176 	inc	dptr
+   0047 E4                  177 	clr	a
+   0048 F0                  178 	movx	@dptr,a
+   0049 A3                  179 	inc	dptr
+   004A E4                  180 	clr	a
+   004B F0                  181 	movx	@dptr,a
+                            182 ;	ldexpf.c:42: e+=pw2;
+   004C 90s00r00r00         183 	mov	dptr,#_ldexpf_PARM_2
+   0050 E0                  184 	movx	a,@dptr
+   0051 FE                  185 	mov	r6,a
+   0052 A3                  186 	inc	dptr
+   0053 E0                  187 	movx	a,@dptr
+   0054 FF                  188 	mov	r7,a
+   0055 E0                  189 	movx	a,@dptr
+   0056 33                  190 	rlc	a
+   0057 95 E0               191 	subb	a,acc
+   0059 F8                  192 	mov	r0,a
+   005A F9                  193 	mov	r1,a
+   005B 90s00r00r06         194 	mov	dptr,#_ldexpf_e_1_1
+   005F E0                  195 	movx	a,@dptr
+   0060 2E                  196 	add	a,r6
+   0061 F0                  197 	movx	@dptr,a
+   0062 A3                  198 	inc	dptr
+   0063 E0                  199 	movx	a,@dptr
+   0064 3F                  200 	addc	a,r7
+   0065 F0                  201 	movx	@dptr,a
+   0066 A3                  202 	inc	dptr
+   0067 E0                  203 	movx	a,@dptr
+   0068 38                  204 	addc	a,r0
+   0069 F0                  205 	movx	@dptr,a
+   006A A3                  206 	inc	dptr
+   006B E0                  207 	movx	a,@dptr
+   006C 39                  208 	addc	a,r1
+   006D F0                  209 	movx	@dptr,a
+                            210 ;	ldexpf.c:43: fl.l= ((e & 0xff) << 23) | (fl.l & 0x807fffff);
+   006E 90s00r00r06         211 	mov	dptr,#_ldexpf_e_1_1
+   0072 E0                  212 	movx	a,@dptr
+   0073 FE                  213 	mov	r6,a
+   0074 7F 00               214 	mov	r7,#0
+   0076 78 00               215 	mov	r0,#0
+   0078 79 00               216 	mov	r1,#0
+   007A 75 F0 18            217 	mov	b,#0x18
+   007D 80 0D               218 	sjmp	00105$
+   007F                     219 00104$:
+   007F EE                  220 	mov	a,r6
+   0080 25 E0               221 	add	a,acc
+   0082 FE                  222 	mov	r6,a
+   0083 EF                  223 	mov	a,r7
+   0084 33                  224 	rlc	a
+   0085 FF                  225 	mov	r7,a
+   0086 E8                  226 	mov	a,r0
+   0087 33                  227 	rlc	a
+   0088 F8                  228 	mov	r0,a
+   0089 E9                  229 	mov	a,r1
+   008A 33                  230 	rlc	a
+   008B F9                  231 	mov	r1,a
+   008C                     232 00105$:
+   008C D5 F0 F0            233 	djnz	b,00104$
+   008F 53 04 7F            234 	anl	ar4,#0x7F
+   0092 53 05 80            235 	anl	ar5,#0x80
+   0095 EA                  236 	mov	a,r2
+   0096 42 06               237 	orl	ar6,a
+   0098 EB                  238 	mov	a,r3
+   0099 42 07               239 	orl	ar7,a
+   009B EC                  240 	mov	a,r4
+   009C 42 00               241 	orl	ar0,a
+   009E ED                  242 	mov	a,r5
+   009F 42 01               243 	orl	ar1,a
+   00A1 90s00r00r02         244 	mov	dptr,#_ldexpf_fl_1_1
+   00A5 EE                  245 	mov	a,r6
+   00A6 F0                  246 	movx	@dptr,a
+   00A7 A3                  247 	inc	dptr
+   00A8 EF                  248 	mov	a,r7
+   00A9 F0                  249 	movx	@dptr,a
+   00AA A3                  250 	inc	dptr
+   00AB E8                  251 	mov	a,r0
+   00AC F0                  252 	movx	@dptr,a
+   00AD A3                  253 	inc	dptr
+   00AE E9                  254 	mov	a,r1
+   00AF F0                  255 	movx	@dptr,a
+                            256 ;	ldexpf.c:45: return(fl.f);
+   00B0 90s00r00r02         257 	mov	dptr,#_ldexpf_fl_1_1
+   00B4 E0                  258 	movx	a,@dptr
+   00B5 A3                  259 	inc	dptr
+   00B6 FA                  260 	mov	r2,a
+   00B7 E0                  261 	movx	a,@dptr
+   00B8 A3                  262 	inc	dptr
+   00B9 FB                  263 	mov	r3,a
+   00BA E0                  264 	movx	a,@dptr
+   00BB A3                  265 	inc	dptr
+   00BC FC                  266 	mov	r4,a
+   00BD E0                  267 	movx	a,@dptr
+   00BE FD                  268 	mov	r5,a
+   00BF 8A 82               269 	mov	dpl,r2
+   00C1 8B 83               270 	mov	dph,r3
+   00C3 8C 93               271 	mov	dpx,r4
+   00C5 8D F0               272 	mov	b,r5
+   00C7                     273 00101$:
+   00C7 22                  274 	ret
+                            275 	.area CSEG    (CODE)
+                            276 	.area CONST   (CODE)
+                            277 	.area XINIT   (CODE)
+                            278 	.area CABS    (ABS,CODE)

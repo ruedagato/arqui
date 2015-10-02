@@ -1,0 +1,401 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:18 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _ulong2fs
+                              7 	.optsdcc -mds400 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl ___ulong2fs
+                             31 ;--------------------------------------------------------
+                             32 ; special function registers
+                             33 ;--------------------------------------------------------
+                             34 ;--------------------------------------------------------
+                             35 ; special function bits
+                             36 ;--------------------------------------------------------
+                             37 ;--------------------------------------------------------
+                             38 ; overlayable register banks
+                             39 ;--------------------------------------------------------
+                             40 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      41 	.ds 8
+                             42 	.area REG_BANK_3	(REL,OVR,DATA)
+   0000                      43 	.ds 8
+                             44 ;--------------------------------------------------------
+                             45 ; internal ram data
+                             46 ;--------------------------------------------------------
+                             47 	.area DSEG    (DATA)
+                             48 ;--------------------------------------------------------
+                             49 ; overlayable items in internal ram 
+                             50 ;--------------------------------------------------------
+                             51 	.area OSEG    (OVR,DATA)
+                             52 ;--------------------------------------------------------
+                             53 ; indirectly addressable internal ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area ISEG    (DATA)
+                             56 ;--------------------------------------------------------
+                             57 ; absolute internal ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area IABS    (ABS,DATA)
+                             60 	.area IABS    (ABS,DATA)
+                             61 ;--------------------------------------------------------
+                             62 ; bit data
+                             63 ;--------------------------------------------------------
+                             64 	.area BSEG    (BIT)
+                             65 ;--------------------------------------------------------
+                             66 ; paged external ram data
+                             67 ;--------------------------------------------------------
+                             68 	.area PSEG    (PAG,XDATA)
+                             69 ;--------------------------------------------------------
+                             70 ; external ram data
+                             71 ;--------------------------------------------------------
+                             72 	.area XSEG    (XDATA)
+   0000                      73 ___ulong2fs_a_1_1:
+   0000                      74 	.ds 4
+   0004                      75 ___ulong2fs_fl_1_1:
+   0004                      76 	.ds 4
+                             77 ;--------------------------------------------------------
+                             78 ; absolute external ram data
+                             79 ;--------------------------------------------------------
+                             80 	.area XABS    (ABS,XDATA)
+                             81 ;--------------------------------------------------------
+                             82 ; external initialized ram data
+                             83 ;--------------------------------------------------------
+                             84 	.area XISEG   (XDATA)
+                             85 ;--------------------------------------------------------
+                             86 ; global & static initialisations
+                             87 ;--------------------------------------------------------
+                             88 	.area HOME    (CODE)
+                             89 	.area GSINIT  (CODE)
+                             90 	.area GSFINAL (CODE)
+                             91 	.area GSINIT  (CODE)
+                             92 ;--------------------------------------------------------
+                             93 ; Home
+                             94 ;--------------------------------------------------------
+                             95 	.area HOME    (CODE)
+                             96 	.area HOME    (CODE)
+                             97 ;--------------------------------------------------------
+                             98 ; code
+                             99 ;--------------------------------------------------------
+                            100 	.area CSEG    (CODE)
+                            101 ;------------------------------------------------------------
+                            102 ;Allocation info for local variables in function '__ulong2fs'
+                            103 ;------------------------------------------------------------
+                            104 ;a                         Allocated with name '___ulong2fs_a_1_1'
+                            105 ;exp                       Allocated to registers r4 r5 
+                            106 ;fl                        Allocated with name '___ulong2fs_fl_1_1'
+                            107 ;------------------------------------------------------------
+                            108 ;	_ulong2fs.c:83: float __ulong2fs (unsigned long a )
+                            109 ;	-----------------------------------------
+                            110 ;	 function __ulong2fs
+                            111 ;	-----------------------------------------
+   0000                     112 ___ulong2fs:
+                    0002    113 	ar2 = 0x02
+                    0003    114 	ar3 = 0x03
+                    0004    115 	ar4 = 0x04
+                    0005    116 	ar5 = 0x05
+                    0006    117 	ar6 = 0x06
+                    0007    118 	ar7 = 0x07
+                    0000    119 	ar0 = 0x00
+                    0001    120 	ar1 = 0x01
+   0000 75 86 01            121 	mov     dps, #1
+   0003 90s00r00r00         122 	mov     dptr, #___ulong2fs_a_1_1
+   0007 E5 82               123 	mov	a,dpl
+   0009 F0                  124 	movx	@dptr,a
+   000A A3                  125 	inc	dptr
+   000B E5 83               126 	mov	a,dph
+   000D F0                  127 	movx	@dptr,a
+   000E A3                  128 	inc	dptr
+   000F E5 93               129 	mov	a,dpx
+   0011 F0                  130 	movx	@dptr,a
+   0012 A3                  131 	inc	dptr
+   0013 E5 F0               132 	mov	a,b
+   0015 F0                  133 	movx	@dptr,a
+   0016 75 86 00            134 	mov	dps,#0
+                            135 ;	_ulong2fs.c:88: if (!a)
+   0019 90s00r00r00         136 	mov	dptr,#___ulong2fs_a_1_1
+   001D E0                  137 	movx	a,@dptr
+   001E F5 F0               138 	mov	b,a
+   0020 A3                  139 	inc	dptr
+   0021 E0                  140 	movx	a,@dptr
+   0022 42 F0               141 	orl	b,a
+   0024 A3                  142 	inc	dptr
+   0025 E0                  143 	movx	a,@dptr
+   0026 42 F0               144 	orl	b,a
+   0028 A3                  145 	inc	dptr
+   0029 E0                  146 	movx	a,@dptr
+   002A 45 F0               147 	orl	a,b
+   002C 70 0B               148 	jnz  00115$
+   002E                     149 00121$:
+                            150 ;	_ulong2fs.c:90: return 0.0;
+   002E 90 00 00 00         151 	mov  dptr,#0x0000
+   0032 75 F0 00            152 	mov	b,#0x00
+   0035 02s00r01r6C         153 	ljmp	00111$
+                            154 ;	_ulong2fs.c:93: while (a & NORM) 
+   0039                     155 00115$:
+                            156 ;	genAssign: resultIsFar = FALSE
+   0039 7E 96               157 	mov	r6,#0x96
+   003B 7F 00               158 	mov	r7,#0x00
+   003D                     159 00103$:
+   003D 90s00r00r00         160 	mov	dptr,#___ulong2fs_a_1_1
+   0041 A3                  161 	inc	dptr
+   0042 A3                  162 	inc	dptr
+   0043 A3                  163 	inc	dptr
+   0044 E0                  164 	movx	a,@dptr
+   0045 60 35               165 	jz  00117$
+   0047                     166 00122$:
+                            167 ;	_ulong2fs.c:96: a >>= 1;
+   0047 90s00r00r00         168 	mov	dptr,#___ulong2fs_a_1_1
+   004B A3                  169 	inc	dptr
+   004C A3                  170 	inc	dptr
+   004D A3                  171 	inc	dptr
+   004E E0                  172 	movx	a,@dptr
+   004F C3                  173 	clr	c
+   0050 13                  174 	rrc	a
+   0051 FB                  175 	mov	r3,a
+   0052 12s00r00r00         176 	lcall	__decdptr
+   0056 E0                  177 	movx	a,@dptr
+   0057 13                  178 	rrc	a
+   0058 FA                  179 	mov	r2,a
+   0059 12s00r00r00         180 	lcall	__decdptr
+   005D E0                  181 	movx	a,@dptr
+   005E 13                  182 	rrc	a
+   005F F9                  183 	mov	r1,a
+   0060 12s00r00r00         184 	lcall	__decdptr
+   0064 E0                  185 	movx	a,@dptr
+   0065 13                  186 	rrc	a
+                            187 ;	genAssign: resultIsFar = TRUE
+   0066 F8                  188 	mov  r0,a
+   0067 90s00r00r00         189 	mov  dptr,#___ulong2fs_a_1_1
+   006B F0                  190 	movx @dptr,a
+   006C A3                  191 	inc	dptr
+   006D E9                  192 	mov	a,r1
+   006E F0                  193 	movx	@dptr,a
+   006F A3                  194 	inc	dptr
+   0070 EA                  195 	mov	a,r2
+   0071 F0                  196 	movx	@dptr,a
+   0072 A3                  197 	inc	dptr
+   0073 EB                  198 	mov	a,r3
+   0074 F0                  199 	movx	@dptr,a
+                            200 ;	_ulong2fs.c:97: exp++;
+   0075 0E                  201 	inc	r6
+   0076 BE 00 C4            202 	cjne	r6,#0,00103$
+   0079 0F                  203 	inc	r7
+                            204 ;	_ulong2fs.c:100: while (a < HIDDEN)
+   007A 80 C1               205 	sjmp 00103$
+   007C                     206 00117$:
+                            207 ;	genAssign: resultIsFar = FALSE
+   007C 8E 02               208 	mov	ar2,r6
+   007E 8F 03               209 	mov	ar3,r7
+   0080                     210 00106$:
+   0080 90s00r00r00         211 	mov	dptr,#___ulong2fs_a_1_1
+   0084 C3                  212 	clr	c
+   0085 E0                  213 	movx	a,@dptr
+   0086 94 00               214 	subb	a,#0x00
+   0088 A3                  215 	inc	dptr
+   0089 E0                  216 	movx	a,@dptr
+   008A 94 00               217 	subb	a,#0x00
+   008C A3                  218 	inc	dptr
+   008D E0                  219 	movx	a,@dptr
+   008E 94 80               220 	subb	a,#0x80
+   0090 A3                  221 	inc	dptr
+   0091 E0                  222 	movx	a,@dptr
+   0092 94 00               223 	subb	a,#0x00
+   0094 50 3A               224 	jnc  00120$
+   0096                     225 00123$:
+                            226 ;	_ulong2fs.c:102: a <<= 1;
+   0096 75 F0 02            227 	mov	b,#0x02
+   0099 90s00r00r00         228 	mov	dptr,#___ulong2fs_a_1_1
+   009D E0                  229 	movx	a,@dptr
+   009E FC                  230 	mov     r4,a
+   009F A3                  231 	inc	dptr
+   00A0 E0                  232 	movx	a,@dptr
+   00A1 FD                  233 	mov     r5,a
+   00A2 A3                  234 	inc	dptr
+   00A3 E0                  235 	movx	a,@dptr
+   00A4 FE                  236 	mov     r6,a
+   00A5 A3                  237 	inc	dptr
+   00A6 E0                  238 	movx	a,@dptr
+   00A7 FF                  239 	mov     r7,a
+   00A8 80 0D               240 	sjmp	00125$
+   00AA                     241 00124$:
+   00AA EC                  242 	mov	a,r4
+   00AB 25 E0               243 	add	a,acc
+   00AD FC                  244 	mov	r4,a
+   00AE ED                  245 	mov	a,r5
+   00AF 33                  246 	rlc	a
+   00B0 FD                  247 	mov	r5,a
+   00B1 EE                  248 	mov	a,r6
+   00B2 33                  249 	rlc	a
+   00B3 FE                  250 	mov	r6,a
+   00B4 EF                  251 	mov	a,r7
+   00B5 33                  252 	rlc	a
+   00B6 FF                  253 	mov	r7,a
+   00B7                     254 00125$:
+   00B7 D5 F0 F0            255 	djnz	b,00124$
+                            256 ;	genAssign: resultIsFar = TRUE
+   00BA 90s00r00r00         257 	mov	dptr,#___ulong2fs_a_1_1
+   00BE EC                  258 	mov	a,r4
+   00BF F0                  259 	movx	@dptr,a
+   00C0 A3                  260 	inc	dptr
+   00C1 ED                  261 	mov	a,r5
+   00C2 F0                  262 	movx	@dptr,a
+   00C3 A3                  263 	inc	dptr
+   00C4 EE                  264 	mov	a,r6
+   00C5 F0                  265 	movx	@dptr,a
+   00C6 A3                  266 	inc	dptr
+   00C7 EF                  267 	mov	a,r7
+   00C8 F0                  268 	movx	@dptr,a
+                            269 ;	_ulong2fs.c:103: exp--;
+   00C9 1A                  270 	dec	r2
+   00CA BA FF B3            271 	cjne	r2,#0xFF,00106$
+   00CD 1B                  272 	dec	r3
+   00CE 80 B0               273 	sjmp 00106$
+   00D0                     274 00120$:
+                            275 ;	genAssign: resultIsFar = TRUE
+   00D0 8A 04               276 	mov	ar4,r2
+   00D2 8B 05               277 	mov	ar5,r3
+                            278 ;	_ulong2fs.c:107: if ((a&0x7fffff)==0x7fffff) {
+   00D4 90s00r00r00         279 	mov	dptr,#___ulong2fs_a_1_1
+   00D8 E0                  280 	movx	a,@dptr
+   00D9 FE                  281 	mov	r6,a
+   00DA A3                  282 	inc	dptr
+   00DB E0                  283 	movx	a,@dptr
+   00DC FF                  284 	mov	r7,a
+   00DD A3                  285 	inc	dptr
+   00DE E0                  286 	movx	a,@dptr
+   00DF 54 7F               287 	anl	a,#0x7F
+   00E1 F8                  288 	mov	r0,a
+   00E2 79 00               289 	mov	r1,#0
+   00E4 EE                  290 	mov	a,r6
+   00E5 B4 FF 1F            291 	cjne a,#0xFF,00110$
+   00E8 EF                  292 	mov  a,r7
+   00E9 B4 FF 1B            293 	cjne a,#0xFF,00110$
+   00EC E8                  294 	mov  a,r0
+   00ED B4 7F 17            295 	cjne a,#0x7F,00110$
+   00F0 E9                  296 	mov  a,r1
+   00F1 B4 00 13            297 	cjne a,#0x00,00110$
+   00F4                     298 00127$:
+                            299 ;	_ulong2fs.c:108: a=0;
+                            300 ;	genAssign: resultIsFar = TRUE
+   00F4 90s00r00r00         301 	mov	dptr,#___ulong2fs_a_1_1
+   00F8 E4                  302 	clr	a
+   00F9 F0                  303 	movx	@dptr,a
+   00FA A3                  304 	inc	dptr
+   00FB F0                  305 	movx	@dptr,a
+   00FC A3                  306 	inc	dptr
+   00FD F0                  307 	movx	@dptr,a
+   00FE A3                  308 	inc	dptr
+   00FF F0                  309 	movx	@dptr,a
+                            310 ;	_ulong2fs.c:109: exp++;
+   0100 74 01               311 	mov	a,#0x01
+   0102 2A                  312 	add	a,r2
+   0103 FC                  313 	mov	r4,a
+   0104 E4                  314 	clr  a
+   0105 3B                  315 	addc	a,r3
+   0106 FD                  316 	mov	r5,a
+   0107                     317 00110$:
+                            318 ;	_ulong2fs.c:113: a &= ~HIDDEN ;
+   0107 90s00r00r00         319 	mov	dptr,#___ulong2fs_a_1_1
+   010B E0                  320 	movx	a,@dptr
+   010C F0                  321 	movx	@dptr,a
+   010D A3                  322 	inc	dptr
+   010E E0                  323 	movx	a,@dptr
+   010F F0                  324 	movx	@dptr,a
+   0110 A3                  325 	inc	dptr
+   0111 E0                  326 	movx	a,@dptr
+   0112 54 7F               327 	anl	a,#0x7F
+   0114 F0                  328 	movx	@dptr,a
+   0115 A3                  329 	inc	dptr
+   0116 E0                  330 	movx	a,@dptr
+   0117 F0                  331 	movx	@dptr,a
+                            332 ;	_ulong2fs.c:115: fl.l = PACK(0,(unsigned long)exp, a);
+   0118 ED                  333 	mov	a,r5
+   0119 33                  334 	rlc	a
+   011A 95 E0               335 	subb	a,acc
+   011C FA                  336 	mov	r2,a
+   011D FB                  337 	mov	r3,a
+   011E 75 F0 18            338 	mov	b,#0x18
+   0121 80 0D               339 	sjmp	00129$
+   0123                     340 00128$:
+   0123 EC                  341 	mov	a,r4
+   0124 25 E0               342 	add	a,acc
+   0126 FC                  343 	mov	r4,a
+   0127 ED                  344 	mov	a,r5
+   0128 33                  345 	rlc	a
+   0129 FD                  346 	mov	r5,a
+   012A EA                  347 	mov	a,r2
+   012B 33                  348 	rlc	a
+   012C FA                  349 	mov	r2,a
+   012D EB                  350 	mov	a,r3
+   012E 33                  351 	rlc	a
+   012F FB                  352 	mov	r3,a
+   0130                     353 00129$:
+   0130 D5 F0 F0            354 	djnz	b,00128$
+   0133 90s00r00r00         355 	mov	dptr,#___ulong2fs_a_1_1
+   0137 E0                  356 	movx	a,@dptr
+   0138 42 04               357 	orl	ar4,a
+   013A A3                  358 	inc	dptr
+   013B E0                  359 	movx	a,@dptr
+   013C 42 05               360 	orl	ar5,a
+   013E A3                  361 	inc	dptr
+   013F E0                  362 	movx	a,@dptr
+   0140 42 02               363 	orl	ar2,a
+   0142 A3                  364 	inc	dptr
+   0143 E0                  365 	movx	a,@dptr
+   0144 42 03               366 	orl	ar3,a
+   0146 90s00r00r04         367 	mov	dptr,#___ulong2fs_fl_1_1
+   014A EC                  368 	mov	a,r4
+   014B F0                  369 	movx	@dptr,a
+   014C A3                  370 	inc	dptr
+   014D ED                  371 	mov	a,r5
+   014E F0                  372 	movx	@dptr,a
+   014F A3                  373 	inc	dptr
+   0150 EA                  374 	mov	a,r2
+   0151 F0                  375 	movx	@dptr,a
+   0152 A3                  376 	inc	dptr
+   0153 EB                  377 	mov	a,r3
+   0154 F0                  378 	movx	@dptr,a
+                            379 ;	_ulong2fs.c:117: return (fl.f);
+   0155 90s00r00r04         380 	mov	dptr,#___ulong2fs_fl_1_1
+   0159 E0                  381 	movx	a,@dptr
+   015A A3                  382 	inc	dptr
+   015B FA                  383 	mov	r2,a
+   015C E0                  384 	movx	a,@dptr
+   015D A3                  385 	inc	dptr
+   015E FB                  386 	mov	r3,a
+   015F E0                  387 	movx	a,@dptr
+   0160 A3                  388 	inc	dptr
+   0161 FC                  389 	mov	r4,a
+   0162 E0                  390 	movx	a,@dptr
+   0163 FD                  391 	mov	r5,a
+   0164 8A 82               392 	mov	dpl,r2
+   0166 8B 83               393 	mov	dph,r3
+   0168 8C 93               394 	mov	dpx,r4
+   016A 8D F0               395 	mov	b,r5
+   016C                     396 00111$:
+   016C 22                  397 	ret
+                            398 	.area CSEG    (CODE)
+                            399 	.area CONST   (CODE)
+                            400 	.area XINIT   (CODE)
+                            401 	.area CABS    (ABS,CODE)

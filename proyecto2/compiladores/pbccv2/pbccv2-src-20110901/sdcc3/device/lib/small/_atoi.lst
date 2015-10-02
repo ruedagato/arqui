@@ -1,0 +1,272 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:23 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module _atoi
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _atoi
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 	.area RSEG    (ABS,DATA)
+   0000                      17 	.org 0x0000
+                             18 ;--------------------------------------------------------
+                             19 ; special function bits
+                             20 ;--------------------------------------------------------
+                             21 	.area RSEG    (ABS,DATA)
+   0000                      22 	.org 0x0000
+                             23 ;--------------------------------------------------------
+                             24 ; overlayable register banks
+                             25 ;--------------------------------------------------------
+                             26 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      27 	.ds 8
+                             28 ;--------------------------------------------------------
+                             29 ; internal ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area DSEG    (DATA)
+   0000                      32 _atoi_sloc0_1_0:
+   0000                      33 	.ds 1
+   0001                      34 _atoi_sloc1_1_0:
+   0001                      35 	.ds 2
+                             36 ;--------------------------------------------------------
+                             37 ; overlayable items in internal ram 
+                             38 ;--------------------------------------------------------
+                             39 	.area OSEG    (OVR,DATA)
+                             40 ;--------------------------------------------------------
+                             41 ; indirectly addressable internal ram data
+                             42 ;--------------------------------------------------------
+                             43 	.area ISEG    (DATA)
+                             44 ;--------------------------------------------------------
+                             45 ; absolute internal ram data
+                             46 ;--------------------------------------------------------
+                             47 	.area IABS    (ABS,DATA)
+                             48 	.area IABS    (ABS,DATA)
+                             49 ;--------------------------------------------------------
+                             50 ; bit data
+                             51 ;--------------------------------------------------------
+                             52 	.area BSEG    (BIT)
+                             53 ;--------------------------------------------------------
+                             54 ; paged external ram data
+                             55 ;--------------------------------------------------------
+                             56 	.area PSEG    (PAG,XDATA)
+                             57 ;--------------------------------------------------------
+                             58 ; external ram data
+                             59 ;--------------------------------------------------------
+                             60 	.area XSEG    (XDATA)
+                             61 ;--------------------------------------------------------
+                             62 ; absolute external ram data
+                             63 ;--------------------------------------------------------
+                             64 	.area XABS    (ABS,XDATA)
+                             65 ;--------------------------------------------------------
+                             66 ; external initialized ram data
+                             67 ;--------------------------------------------------------
+                             68 	.area XISEG   (XDATA)
+                             69 	.area HOME    (CODE)
+                             70 	.area GSINIT0 (CODE)
+                             71 	.area GSINIT1 (CODE)
+                             72 	.area GSINIT2 (CODE)
+                             73 	.area GSINIT3 (CODE)
+                             74 	.area GSINIT4 (CODE)
+                             75 	.area GSINIT5 (CODE)
+                             76 	.area GSINIT  (CODE)
+                             77 	.area GSFINAL (CODE)
+                             78 	.area CSEG    (CODE)
+                             79 ;--------------------------------------------------------
+                             80 ; global & static initialisations
+                             81 ;--------------------------------------------------------
+                             82 	.area HOME    (CODE)
+                             83 	.area GSINIT  (CODE)
+                             84 	.area GSFINAL (CODE)
+                             85 	.area GSINIT  (CODE)
+                             86 ;--------------------------------------------------------
+                             87 ; Home
+                             88 ;--------------------------------------------------------
+                             89 	.area HOME    (CODE)
+                             90 	.area HOME    (CODE)
+                             91 ;--------------------------------------------------------
+                             92 ; code
+                             93 ;--------------------------------------------------------
+                             94 	.area CSEG    (CODE)
+                             95 ;------------------------------------------------------------
+                             96 ;Allocation info for local variables in function 'atoi'
+                             97 ;------------------------------------------------------------
+                             98 ;s                         Allocated to registers r2 r3 r4 
+                             99 ;rv                        Allocated to registers r5 r6 
+                            100 ;sign                      Allocated to registers r1 
+                            101 ;sloc0                     Allocated with name '_atoi_sloc0_1_0'
+                            102 ;sloc1                     Allocated with name '_atoi_sloc1_1_0'
+                            103 ;------------------------------------------------------------
+                            104 ;	_atoi.c:29: int atoi(const char * s)
+                            105 ;	-----------------------------------------
+                            106 ;	 function atoi
+                            107 ;	-----------------------------------------
+   0000                     108 _atoi:
+                    0002    109 	ar2 = 0x02
+                    0003    110 	ar3 = 0x03
+                    0004    111 	ar4 = 0x04
+                    0005    112 	ar5 = 0x05
+                    0006    113 	ar6 = 0x06
+                    0007    114 	ar7 = 0x07
+                    0000    115 	ar0 = 0x00
+                    0001    116 	ar1 = 0x01
+   0000 AA 82               117 	mov	r2,dpl
+   0002 AB 83               118 	mov	r3,dph
+   0004 AC F0               119 	mov	r4,b
+                            120 ;	_atoi.c:31: register int rv=0; 
+   0006 7D 00               121 	mov	r5,#0x00
+   0008 7E 00               122 	mov	r6,#0x00
+                            123 ;	_atoi.c:35: while (*s) {
+   000A 8A 07               124 	mov	ar7,r2
+   000C 8B 00               125 	mov	ar0,r3
+   000E 8C 01               126 	mov	ar1,r4
+   0010                     127 00107$:
+   0010 8F 82               128 	mov	dpl,r7
+   0012 88 83               129 	mov	dph,r0
+   0014 89 F0               130 	mov	b,r1
+   0016 12s00r00            131 	lcall	__gptrget
+   0019 F5*00               132 	mov	_atoi_sloc0_1_0,a
+   001B 60 35               133 	jz	00133$
+                            134 ;	_atoi.c:36: if (*s <= '9' && *s >= '0')
+   001D C3                  135 	clr	c
+   001E 74 B9               136 	mov	a,#(0x39 ^ 0x80)
+   0020 85*00 F0            137 	mov	b,_atoi_sloc0_1_0
+   0023 63 F0 80            138 	xrl	b,#0x80
+   0026 95 F0               139 	subb	a,b
+   0028 40 08               140 	jc	00102$
+   002A E5*00               141 	mov	a,_atoi_sloc0_1_0
+   002C 64 80               142 	xrl	a,#0x80
+   002E 94 B0               143 	subb	a,#0xb0
+   0030 50 20               144 	jnc	00133$
+                            145 ;	_atoi.c:37: break;
+   0032                     146 00102$:
+                            147 ;	_atoi.c:38: if (*s == '-' || *s == '+') 
+   0032 8F 82               148 	mov	dpl,r7
+   0034 88 83               149 	mov	dph,r0
+   0036 89 F0               150 	mov	b,r1
+   0038 12s00r00            151 	lcall	__gptrget
+   003B F5*00               152 	mov	_atoi_sloc0_1_0,a
+   003D 74 2D               153 	mov	a,#0x2D
+   003F B5*00 02            154 	cjne	a,_atoi_sloc0_1_0,00138$
+   0042 80 0E               155 	sjmp	00133$
+   0044                     156 00138$:
+   0044 74 2B               157 	mov	a,#0x2B
+   0046 B5*00 02            158 	cjne	a,_atoi_sloc0_1_0,00139$
+   0049 80 07               159 	sjmp	00133$
+   004B                     160 00139$:
+                            161 ;	_atoi.c:40: s++;
+   004B 0F                  162 	inc	r7
+   004C BF 00 C1            163 	cjne	r7,#0x00,00107$
+   004F 08                  164 	inc	r0
+   0050 80 BE               165 	sjmp	00107$
+   0052                     166 00133$:
+   0052 8F 02               167 	mov	ar2,r7
+   0054 88 03               168 	mov	ar3,r0
+   0056 89 04               169 	mov	ar4,r1
+                            170 ;	_atoi.c:43: sign = (*s == '-');
+   0058 8F 82               171 	mov	dpl,r7
+   005A 88 83               172 	mov	dph,r0
+   005C 89 F0               173 	mov	b,r1
+   005E 12s00r00            174 	lcall	__gptrget
+   0061 FF                  175 	mov	r7,a
+   0062 E4                  176 	clr	a
+   0063 BF 2D 01            177 	cjne	r7,#0x2D,00141$
+   0066 04                  178 	inc	a
+   0067                     179 00141$:
+                            180 ;	_atoi.c:44: if (*s == '-' || *s == '+') s++;
+   0067 F8                  181 	mov	r0,a
+   0068 F9                  182 	mov	r1,a
+   0069 70 03               183 	jnz	00110$
+   006B BF 2B 05            184 	cjne	r7,#0x2B,00131$
+   006E                     185 00110$:
+   006E 0A                  186 	inc	r2
+   006F BA 00 01            187 	cjne	r2,#0x00,00146$
+   0072 0B                  188 	inc	r3
+   0073                     189 00146$:
+                            190 ;	_atoi.c:46: while (*s && *s >= '0' && *s <= '9') {
+   0073                     191 00131$:
+   0073                     192 00115$:
+   0073 8A 82               193 	mov	dpl,r2
+   0075 8B 83               194 	mov	dph,r3
+   0077 8C F0               195 	mov	b,r4
+   0079 12s00r00            196 	lcall	__gptrget
+   007C FF                  197 	mov	r7,a
+   007D 60 57               198 	jz	00117$
+   007F C3                  199 	clr	c
+   0080 EF                  200 	mov	a,r7
+   0081 64 80               201 	xrl	a,#0x80
+   0083 94 B0               202 	subb	a,#0xb0
+   0085 40 4F               203 	jc	00117$
+   0087 74 B9               204 	mov	a,#(0x39 ^ 0x80)
+   0089 8F F0               205 	mov	b,r7
+   008B 63 F0 80            206 	xrl	b,#0x80
+   008E 95 F0               207 	subb	a,b
+   0090 40 44               208 	jc	00117$
+                            209 ;	_atoi.c:47: rv = (rv * 10) + (*s - '0');
+   0092 C0 01               210 	push	ar1
+   0094 8D*00               211 	mov	__mulint_PARM_2,r5
+   0096 8E*01               212 	mov	(__mulint_PARM_2 + 1),r6
+   0098 90 00 0A            213 	mov	dptr,#0x000A
+   009B C0 02               214 	push	ar2
+   009D C0 03               215 	push	ar3
+   009F C0 04               216 	push	ar4
+   00A1 C0 07               217 	push	ar7
+   00A3 C0 01               218 	push	ar1
+   00A5 12s00r00            219 	lcall	__mulint
+   00A8 85 82*01            220 	mov	_atoi_sloc1_1_0,dpl
+   00AB 85 83*02            221 	mov	(_atoi_sloc1_1_0 + 1),dph
+   00AE D0 01               222 	pop	ar1
+   00B0 D0 07               223 	pop	ar7
+   00B2 D0 04               224 	pop	ar4
+   00B4 D0 03               225 	pop	ar3
+   00B6 D0 02               226 	pop	ar2
+   00B8 EF                  227 	mov	a,r7
+   00B9 33                  228 	rlc	a
+   00BA 95 E0               229 	subb	a,acc
+   00BC F8                  230 	mov	r0,a
+   00BD EF                  231 	mov	a,r7
+   00BE 24 D0               232 	add	a,#0xd0
+   00C0 FF                  233 	mov	r7,a
+   00C1 E8                  234 	mov	a,r0
+   00C2 34 FF               235 	addc	a,#0xff
+   00C4 F8                  236 	mov	r0,a
+   00C5 EF                  237 	mov	a,r7
+   00C6 25*01               238 	add	a,_atoi_sloc1_1_0
+   00C8 FD                  239 	mov	r5,a
+   00C9 E8                  240 	mov	a,r0
+   00CA 35*02               241 	addc	a,(_atoi_sloc1_1_0 + 1)
+   00CC FE                  242 	mov	r6,a
+                            243 ;	_atoi.c:48: s++;
+   00CD 0A                  244 	inc	r2
+   00CE BA 00 01            245 	cjne	r2,#0x00,00150$
+   00D1 0B                  246 	inc	r3
+   00D2                     247 00150$:
+   00D2 D0 01               248 	pop	ar1
+   00D4 80 9D               249 	sjmp	00115$
+   00D6                     250 00117$:
+                            251 ;	_atoi.c:51: return (sign ? -rv : rv);
+   00D6 E9                  252 	mov	a,r1
+   00D7 60 09               253 	jz	00120$
+   00D9 C3                  254 	clr	c
+   00DA E4                  255 	clr	a
+   00DB 9D                  256 	subb	a,r5
+   00DC FA                  257 	mov	r2,a
+   00DD E4                  258 	clr	a
+   00DE 9E                  259 	subb	a,r6
+   00DF FB                  260 	mov	r3,a
+   00E0 80 04               261 	sjmp	00121$
+   00E2                     262 00120$:
+   00E2 8D 02               263 	mov	ar2,r5
+   00E4 8E 03               264 	mov	ar3,r6
+   00E6                     265 00121$:
+   00E6 8A 82               266 	mov	dpl,r2
+   00E8 8B 83               267 	mov	dph,r3
+   00EA 22                  268 	ret
+                            269 	.area CSEG    (CODE)
+                            270 	.area CONST   (CODE)
+                            271 	.area XINIT   (CODE)
+                            272 	.area CABS    (ABS,CODE)

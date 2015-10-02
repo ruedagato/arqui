@@ -1,0 +1,225 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:22 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module powf
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _powf_PARM_2
+                             13 	.globl _powf
+                             14 ;--------------------------------------------------------
+                             15 ; special function registers
+                             16 ;--------------------------------------------------------
+                             17 	.area RSEG    (ABS,DATA)
+   0000                      18 	.org 0x0000
+                             19 ;--------------------------------------------------------
+                             20 ; special function bits
+                             21 ;--------------------------------------------------------
+                             22 	.area RSEG    (ABS,DATA)
+   0000                      23 	.org 0x0000
+                             24 ;--------------------------------------------------------
+                             25 ; overlayable register banks
+                             26 ;--------------------------------------------------------
+                             27 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      28 	.ds 8
+                             29 ;--------------------------------------------------------
+                             30 ; internal ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area DSEG    (DATA)
+   0000                      33 _powf_PARM_2:
+   0000                      34 	.ds 4
+                             35 ;--------------------------------------------------------
+                             36 ; overlayable items in internal ram 
+                             37 ;--------------------------------------------------------
+                             38 	.area OSEG    (OVR,DATA)
+                             39 ;--------------------------------------------------------
+                             40 ; indirectly addressable internal ram data
+                             41 ;--------------------------------------------------------
+                             42 	.area ISEG    (DATA)
+                             43 ;--------------------------------------------------------
+                             44 ; absolute internal ram data
+                             45 ;--------------------------------------------------------
+                             46 	.area IABS    (ABS,DATA)
+                             47 	.area IABS    (ABS,DATA)
+                             48 ;--------------------------------------------------------
+                             49 ; bit data
+                             50 ;--------------------------------------------------------
+                             51 	.area BSEG    (BIT)
+                             52 ;--------------------------------------------------------
+                             53 ; paged external ram data
+                             54 ;--------------------------------------------------------
+                             55 	.area PSEG    (PAG,XDATA)
+                             56 ;--------------------------------------------------------
+                             57 ; external ram data
+                             58 ;--------------------------------------------------------
+                             59 	.area XSEG    (XDATA)
+                             60 ;--------------------------------------------------------
+                             61 ; absolute external ram data
+                             62 ;--------------------------------------------------------
+                             63 	.area XABS    (ABS,XDATA)
+                             64 ;--------------------------------------------------------
+                             65 ; external initialized ram data
+                             66 ;--------------------------------------------------------
+                             67 	.area XISEG   (XDATA)
+                             68 	.area HOME    (CODE)
+                             69 	.area GSINIT0 (CODE)
+                             70 	.area GSINIT1 (CODE)
+                             71 	.area GSINIT2 (CODE)
+                             72 	.area GSINIT3 (CODE)
+                             73 	.area GSINIT4 (CODE)
+                             74 	.area GSINIT5 (CODE)
+                             75 	.area GSINIT  (CODE)
+                             76 	.area GSFINAL (CODE)
+                             77 	.area CSEG    (CODE)
+                             78 ;--------------------------------------------------------
+                             79 ; global & static initialisations
+                             80 ;--------------------------------------------------------
+                             81 	.area HOME    (CODE)
+                             82 	.area GSINIT  (CODE)
+                             83 	.area GSFINAL (CODE)
+                             84 	.area GSINIT  (CODE)
+                             85 ;--------------------------------------------------------
+                             86 ; Home
+                             87 ;--------------------------------------------------------
+                             88 	.area HOME    (CODE)
+                             89 	.area HOME    (CODE)
+                             90 ;--------------------------------------------------------
+                             91 ; code
+                             92 ;--------------------------------------------------------
+                             93 	.area CSEG    (CODE)
+                             94 ;------------------------------------------------------------
+                             95 ;Allocation info for local variables in function 'powf'
+                             96 ;------------------------------------------------------------
+                             97 ;y                         Allocated with name '_powf_PARM_2'
+                             98 ;x                         Allocated to registers r2 r3 r4 r5 
+                             99 ;------------------------------------------------------------
+                            100 ;	powf.c:35: float powf(const float x, const float y)
+                            101 ;	-----------------------------------------
+                            102 ;	 function powf
+                            103 ;	-----------------------------------------
+   0000                     104 _powf:
+                    0002    105 	ar2 = 0x02
+                    0003    106 	ar3 = 0x03
+                    0004    107 	ar4 = 0x04
+                    0005    108 	ar5 = 0x05
+                    0006    109 	ar6 = 0x06
+                    0007    110 	ar7 = 0x07
+                    0000    111 	ar0 = 0x00
+                    0001    112 	ar1 = 0x01
+   0000 AA 82               113 	mov	r2,dpl
+   0002 AB 83               114 	mov	r3,dph
+   0004 AC F0               115 	mov	r4,b
+   0006 FD                  116 	mov	r5,a
+                            117 ;	powf.c:37: if(y == 0.0) return 1.0;
+   0007 E5*00               118 	mov	a,_powf_PARM_2
+   0009 45*01               119 	orl	a,(_powf_PARM_2 + 1)
+   000B 45*02               120 	orl	a,(_powf_PARM_2 + 2)
+   000D 45*03               121 	orl	a,(_powf_PARM_2 + 3)
+   000F 70 09               122 	jnz	00102$
+   0011 90 00 00            123 	mov	dptr,#0x0000
+   0014 75 F0 80            124 	mov	b,#0x80
+   0017 74 3F               125 	mov	a,#0x3F
+   0019 22                  126 	ret
+   001A                     127 00102$:
+                            128 ;	powf.c:38: if(y==1.0) return x;
+   001A C0 02               129 	push	ar2
+   001C C0 03               130 	push	ar3
+   001E C0 04               131 	push	ar4
+   0020 C0 05               132 	push	ar5
+   0022 E4                  133 	clr	a
+   0023 C0 E0               134 	push	acc
+   0025 C0 E0               135 	push	acc
+   0027 74 80               136 	mov	a,#0x80
+   0029 C0 E0               137 	push	acc
+   002B 74 3F               138 	mov	a,#0x3F
+   002D C0 E0               139 	push	acc
+   002F 85*00 82            140 	mov	dpl,_powf_PARM_2
+   0032 85*01 83            141 	mov	dph,(_powf_PARM_2 + 1)
+   0035 85*02 F0            142 	mov	b,(_powf_PARM_2 + 2)
+   0038 E5*03               143 	mov	a,(_powf_PARM_2 + 3)
+   003A 12s00r00            144 	lcall	___fseq
+   003D AE 82               145 	mov	r6,dpl
+   003F E5 81               146 	mov	a,sp
+   0041 24 FC               147 	add	a,#0xfc
+   0043 F5 81               148 	mov	sp,a
+   0045 D0 05               149 	pop	ar5
+   0047 D0 04               150 	pop	ar4
+   0049 D0 03               151 	pop	ar3
+   004B D0 02               152 	pop	ar2
+   004D EE                  153 	mov	a,r6
+   004E 60 08               154 	jz	00104$
+   0050 8A 82               155 	mov	dpl,r2
+   0052 8B 83               156 	mov	dph,r3
+   0054 8C F0               157 	mov	b,r4
+   0056 ED                  158 	mov	a,r5
+   0057 22                  159 	ret
+   0058                     160 00104$:
+                            161 ;	powf.c:39: if(x <= 0.0) return 0.0;
+   0058 C0 02               162 	push	ar2
+   005A C0 03               163 	push	ar3
+   005C C0 04               164 	push	ar4
+   005E C0 05               165 	push	ar5
+   0060 E4                  166 	clr	a
+   0061 C0 E0               167 	push	acc
+   0063 C0 E0               168 	push	acc
+   0065 C0 E0               169 	push	acc
+   0067 C0 E0               170 	push	acc
+   0069 8A 82               171 	mov	dpl,r2
+   006B 8B 83               172 	mov	dph,r3
+   006D 8C F0               173 	mov	b,r4
+   006F ED                  174 	mov	a,r5
+   0070 12s00r00            175 	lcall	___fsgt
+   0073 AE 82               176 	mov	r6,dpl
+   0075 E5 81               177 	mov	a,sp
+   0077 24 FC               178 	add	a,#0xfc
+   0079 F5 81               179 	mov	sp,a
+   007B D0 05               180 	pop	ar5
+   007D D0 04               181 	pop	ar4
+   007F D0 03               182 	pop	ar3
+   0081 D0 02               183 	pop	ar2
+   0083 EE                  184 	mov	a,r6
+   0084 70 07               185 	jnz	00106$
+   0086 90 00 00            186 	mov	dptr,#(0x00&0x00ff)
+   0089 E4                  187 	clr	a
+   008A F5 F0               188 	mov	b,a
+   008C 22                  189 	ret
+   008D                     190 00106$:
+                            191 ;	powf.c:40: return expf(logf(x) * y);
+   008D 8A 82               192 	mov	dpl,r2
+   008F 8B 83               193 	mov	dph,r3
+   0091 8C F0               194 	mov	b,r4
+   0093 ED                  195 	mov	a,r5
+   0094 12s00r00            196 	lcall	_logf
+   0097 AA 82               197 	mov	r2,dpl
+   0099 AB 83               198 	mov	r3,dph
+   009B AC F0               199 	mov	r4,b
+   009D FD                  200 	mov	r5,a
+   009E C0*00               201 	push	_powf_PARM_2
+   00A0 C0*01               202 	push	(_powf_PARM_2 + 1)
+   00A2 C0*02               203 	push	(_powf_PARM_2 + 2)
+   00A4 C0*03               204 	push	(_powf_PARM_2 + 3)
+   00A6 8A 82               205 	mov	dpl,r2
+   00A8 8B 83               206 	mov	dph,r3
+   00AA 8C F0               207 	mov	b,r4
+   00AC ED                  208 	mov	a,r5
+   00AD 12s00r00            209 	lcall	___fsmul
+   00B0 AA 82               210 	mov	r2,dpl
+   00B2 AB 83               211 	mov	r3,dph
+   00B4 AC F0               212 	mov	r4,b
+   00B6 FD                  213 	mov	r5,a
+   00B7 E5 81               214 	mov	a,sp
+   00B9 24 FC               215 	add	a,#0xfc
+   00BB F5 81               216 	mov	sp,a
+   00BD 8A 82               217 	mov	dpl,r2
+   00BF 8B 83               218 	mov	dph,r3
+   00C1 8C F0               219 	mov	b,r4
+   00C3 ED                  220 	mov	a,r5
+   00C4 02s00r00            221 	ljmp	_expf
+                            222 	.area CSEG    (CODE)
+                            223 	.area CONST   (CODE)
+                            224 	.area XINIT   (CODE)
+                            225 	.area CABS    (ABS,CODE)

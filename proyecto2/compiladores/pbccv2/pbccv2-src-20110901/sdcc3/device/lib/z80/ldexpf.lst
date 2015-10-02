@@ -1,0 +1,185 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:16 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module ldexpf
+                              7 	.optsdcc -mz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _ldexpf
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 ;--------------------------------------------------------
+                             17 ;  ram data
+                             18 ;--------------------------------------------------------
+                             19 	.area _DATA
+                             20 ;--------------------------------------------------------
+                             21 ; overlayable items in  ram 
+                             22 ;--------------------------------------------------------
+                             23 	.area _OVERLAY
+                             24 ;--------------------------------------------------------
+                             25 ; external initialized ram data
+                             26 ;--------------------------------------------------------
+                             27 ;--------------------------------------------------------
+                             28 ; global & static initialisations
+                             29 ;--------------------------------------------------------
+                             30 	.area _HOME
+                             31 	.area _GSINIT
+                             32 	.area _GSFINAL
+                             33 	.area _GSINIT
+                             34 ;--------------------------------------------------------
+                             35 ; Home
+                             36 ;--------------------------------------------------------
+                             37 	.area _HOME
+                             38 	.area _HOME
+                             39 ;--------------------------------------------------------
+                             40 ; code
+                             41 ;--------------------------------------------------------
+                             42 	.area _CODE
+                             43 ;../ldexpf.c:34: float ldexpf(const float x, const int pw2)
+                             44 ;	---------------------------------
+                             45 ; Function ldexpf
+                             46 ; ---------------------------------
+   0000                      47 _ldexpf_start::
+   0000                      48 _ldexpf:
+   0000 DD E5                49 	push	ix
+   0002 DD 21 00 00          50 	ld	ix,#0
+   0006 DD 39                51 	add	ix,sp
+   0008 21 EE FF             52 	ld	hl,#-18
+   000B 39                   53 	add	hl,sp
+   000C F9                   54 	ld	sp,hl
+                             55 ;../ldexpf.c:39: fl.f = x;
+   000D 21 0E 00             56 	ld	hl,#0x000E
+   0010 39                   57 	add	hl,sp
+   0011 DD 7E 04             58 	ld	a,4 (ix)
+   0014 77                   59 	ld	(hl),a
+   0015 23                   60 	inc	hl
+   0016 DD 7E 05             61 	ld	a,5 (ix)
+   0019 77                   62 	ld	(hl),a
+   001A 23                   63 	inc	hl
+   001B DD 7E 06             64 	ld	a,6 (ix)
+   001E 77                   65 	ld	(hl),a
+   001F 23                   66 	inc	hl
+   0020 DD 7E 07             67 	ld	a,7 (ix)
+   0023 77                   68 	ld	(hl),a
+                             69 ;../ldexpf.c:41: e=(fl.l >> 23) & 0x000000ff;
+   0024 21 0E 00             70 	ld	hl,#0x000E
+   0027 39                   71 	add	hl,sp
+   0028 DD 75 F6             72 	ld	-10 (ix),l
+   002B DD 74 F7             73 	ld	-9 (ix),h
+   002E 7E                   74 	ld	a,(hl)
+   002F DD 77 F2             75 	ld	-14 (ix),a
+   0032 23                   76 	inc	hl
+   0033 7E                   77 	ld	a,(hl)
+   0034 DD 77 F3             78 	ld	-13 (ix),a
+   0037 23                   79 	inc	hl
+   0038 7E                   80 	ld	a,(hl)
+   0039 DD 77 F4             81 	ld	-12 (ix),a
+   003C 23                   82 	inc	hl
+   003D 7E                   83 	ld	a,(hl)
+   003E DD 77 F5             84 	ld	-11 (ix),a
+   0041 3E 17                85 	ld	a,#0x17
+   0043 F5                   86 	push	af
+   0044 33                   87 	inc	sp
+   0045 DD 6E F4             88 	ld	l,-12 (ix)
+   0048 DD 66 F5             89 	ld	h,-11 (ix)
+   004B E5                   90 	push	hl
+   004C DD 6E F2             91 	ld	l,-14 (ix)
+   004F DD 66 F3             92 	ld	h,-13 (ix)
+   0052 E5                   93 	push	hl
+   0053 CDr00s00             94 	call	__rrslong_rrx_s
+   0056 F1                   95 	pop	af
+   0057 F1                   96 	pop	af
+   0058 33                   97 	inc	sp
+   0059 DD 75 F8             98 	ld	-8 (ix), l
+   005C DD 36 F9 00          99 	ld	-7 (ix),#0x00
+   0060 DD 36 FA 00         100 	ld	-6 (ix),#0x00
+   0064 DD 36 FB 00         101 	ld	-5 (ix),#0x00
+                            102 ;../ldexpf.c:42: e+=pw2;
+   0068 DD 4E 08            103 	ld	c,8 (ix)
+   006B DD 46 09            104 	ld	b,9 (ix)
+   006E DD 7E 09            105 	ld	a,9 (ix)
+   0071 17                  106 	rla	
+   0072 9F                  107 	sbc	a,a
+   0073 5F                  108 	ld	e,a
+   0074 57                  109 	ld	d,a
+   0075 DD 7E F8            110 	ld	a,-8 (ix)
+   0078 81                  111 	add	a,c
+   0079 DD 77 F8            112 	ld	-8 (ix),a
+   007C DD 7E F9            113 	ld	a,-7 (ix)
+   007F 88                  114 	adc	a,b
+   0080 DD 77 F9            115 	ld	-7 (ix),a
+   0083 DD 7E FA            116 	ld	a,-6 (ix)
+   0086 8B                  117 	adc	a,e
+   0087 DD 77 FA            118 	ld	-6 (ix),a
+   008A DD 7E FB            119 	ld	a,-5 (ix)
+   008D 8A                  120 	adc	a,d
+   008E DD 77 FB            121 	ld	-5 (ix),a
+                            122 ;../ldexpf.c:43: fl.l= ((e & 0xff) << 23) | (fl.l & 0x807fffff);
+   0091 DD 4E F8            123 	ld	c,-8 (ix)
+   0094 06 00               124 	ld	b,#0x00
+   0096 11 00 00            125 	ld	de,#0x0000
+   0099 3E 17               126 	ld	a,#0x17
+   009B F5                  127 	push	af
+   009C 33                  128 	inc	sp
+   009D D5                  129 	push	de
+   009E C5                  130 	push	bc
+   009F CDr00s00            131 	call	__rlslong_rrx_s
+   00A2 F1                  132 	pop	af
+   00A3 F1                  133 	pop	af
+   00A4 33                  134 	inc	sp
+   00A5 DD 72 F1            135 	ld	-15 (ix),d
+   00A8 DD 73 F0            136 	ld	-16 (ix),e
+   00AB DD 74 EF            137 	ld	-17 (ix),h
+   00AE DD 75 EE            138 	ld	-18 (ix),l
+   00B1 DD 4E F2            139 	ld	c,-14 (ix)
+   00B4 DD 46 F3            140 	ld	b,-13 (ix)
+   00B7 DD 7E F4            141 	ld	a,-12 (ix)
+   00BA E6 7F               142 	and	a,#0x7F
+   00BC 5F                  143 	ld	e,a
+   00BD DD 7E F5            144 	ld	a,-11 (ix)
+   00C0 E6 80               145 	and	a,#0x80
+   00C2 57                  146 	ld	d,a
+   00C3 79                  147 	ld	a,c
+   00C4 DD B6 EE            148 	or	a, -18 (ix)
+   00C7 4F                  149 	ld	c,a
+   00C8 78                  150 	ld	a,b
+   00C9 DD B6 EF            151 	or	a, -17 (ix)
+   00CC 47                  152 	ld	b,a
+   00CD 7B                  153 	ld	a,e
+   00CE DD B6 F0            154 	or	a, -16 (ix)
+   00D1 5F                  155 	ld	e,a
+   00D2 7A                  156 	ld	a,d
+   00D3 DD B6 F1            157 	or	a, -15 (ix)
+   00D6 57                  158 	ld	d,a
+   00D7 DD 6E F6            159 	ld	l,-10 (ix)
+   00DA DD 66 F7            160 	ld	h,-9 (ix)
+   00DD 71                  161 	ld	(hl),c
+   00DE 23                  162 	inc	hl
+   00DF 70                  163 	ld	(hl),b
+   00E0 23                  164 	inc	hl
+   00E1 73                  165 	ld	(hl),e
+   00E2 23                  166 	inc	hl
+   00E3 72                  167 	ld	(hl),d
+                            168 ;../ldexpf.c:45: return(fl.f);
+   00E4 21 0E 00            169 	ld	hl,#0x000E
+   00E7 39                  170 	add	hl,sp
+   00E8 4E                  171 	ld	c,(hl)
+   00E9 23                  172 	inc	hl
+   00EA 46                  173 	ld	b,(hl)
+   00EB 23                  174 	inc	hl
+   00EC 5E                  175 	ld	e,(hl)
+   00ED 23                  176 	inc	hl
+   00EE 56                  177 	ld	d,(hl)
+   00EF 69                  178 	ld	l,c
+   00F0 60                  179 	ld	h,b
+   00F1 DD F9               180 	ld	sp,ix
+   00F3 DD E1               181 	pop	ix
+   00F5 C9                  182 	ret
+   00F6                     183 _ldexpf_end::
+                            184 	.area _CODE
+                            185 	.area _CABS

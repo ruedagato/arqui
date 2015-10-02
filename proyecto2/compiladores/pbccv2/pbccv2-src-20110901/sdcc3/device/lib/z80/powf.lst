@@ -1,0 +1,148 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:16 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module powf
+                              7 	.optsdcc -mz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _powf
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 ;--------------------------------------------------------
+                             17 ;  ram data
+                             18 ;--------------------------------------------------------
+                             19 	.area _DATA
+                             20 ;--------------------------------------------------------
+                             21 ; overlayable items in  ram 
+                             22 ;--------------------------------------------------------
+                             23 	.area _OVERLAY
+                             24 ;--------------------------------------------------------
+                             25 ; external initialized ram data
+                             26 ;--------------------------------------------------------
+                             27 ;--------------------------------------------------------
+                             28 ; global & static initialisations
+                             29 ;--------------------------------------------------------
+                             30 	.area _HOME
+                             31 	.area _GSINIT
+                             32 	.area _GSFINAL
+                             33 	.area _GSINIT
+                             34 ;--------------------------------------------------------
+                             35 ; Home
+                             36 ;--------------------------------------------------------
+                             37 	.area _HOME
+                             38 	.area _HOME
+                             39 ;--------------------------------------------------------
+                             40 ; code
+                             41 ;--------------------------------------------------------
+                             42 	.area _CODE
+                             43 ;../powf.c:35: float powf(const float x, const float y)
+                             44 ;	---------------------------------
+                             45 ; Function powf
+                             46 ; ---------------------------------
+   0000                      47 _powf_start::
+   0000                      48 _powf:
+   0000 DD E5                49 	push	ix
+   0002 DD 21 00 00          50 	ld	ix,#0
+   0006 DD 39                51 	add	ix,sp
+                             52 ;../powf.c:37: if(y == 0.0) return 1.0;
+   0008 DD 7E 08             53 	ld	a,8 (ix)
+   000B DD B6 09             54 	or	a,9 (ix)
+   000E DD B6 0A             55 	or	a,10 (ix)
+   0011 DD B6 0B             56 	or	a,11 (ix)
+   0014 20 09                57 	jr	NZ,00102$
+   0016 21 00 00             58 	ld	hl,#0x0000
+   0019 11 80 3F             59 	ld	de,#0x3F80
+   001C C3rABs00             60 	jp	00107$
+   001F                      61 00102$:
+                             62 ;../powf.c:38: if(y==1.0) return x;
+   001F 21 80 3F             63 	ld	hl,#0x3F80
+   0022 E5                   64 	push	hl
+   0023 21 00 00             65 	ld	hl,#0x0000
+   0026 E5                   66 	push	hl
+   0027 DD 6E 0A             67 	ld	l,10 (ix)
+   002A DD 66 0B             68 	ld	h,11 (ix)
+   002D E5                   69 	push	hl
+   002E DD 6E 08             70 	ld	l,8 (ix)
+   0031 DD 66 09             71 	ld	h,9 (ix)
+   0034 E5                   72 	push	hl
+   0035 CDr00s00             73 	call	___fseq
+   0038 F1                   74 	pop	af
+   0039 F1                   75 	pop	af
+   003A F1                   76 	pop	af
+   003B F1                   77 	pop	af
+   003C AF                   78 	xor	a,a
+   003D B5                   79 	or	a,l
+   003E 28 0E                80 	jr	Z,00104$
+   0040 DD 6E 04             81 	ld	l,4 (ix)
+   0043 DD 66 05             82 	ld	h,5 (ix)
+   0046 DD 5E 06             83 	ld	e,6 (ix)
+   0049 DD 56 07             84 	ld	d,7 (ix)
+   004C 18 5D                85 	jr	00107$
+   004E                      86 00104$:
+                             87 ;../powf.c:39: if(x <= 0.0) return 0.0;
+   004E 21 00 00             88 	ld	hl,#0x0000
+   0051 E5                   89 	push	hl
+   0052 21 00 00             90 	ld	hl,#0x0000
+   0055 E5                   91 	push	hl
+   0056 DD 6E 06             92 	ld	l,6 (ix)
+   0059 DD 66 07             93 	ld	h,7 (ix)
+   005C E5                   94 	push	hl
+   005D DD 6E 04             95 	ld	l,4 (ix)
+   0060 DD 66 05             96 	ld	h,5 (ix)
+   0063 E5                   97 	push	hl
+   0064 CDr00s00             98 	call	___fsgt
+   0067 F1                   99 	pop	af
+   0068 F1                  100 	pop	af
+   0069 F1                  101 	pop	af
+   006A F1                  102 	pop	af
+   006B AF                  103 	xor	a,a
+   006C B5                  104 	or	a,l
+   006D 20 07               105 	jr	NZ,00106$
+   006F 21 00 00            106 	ld	hl,#0x0000
+   0072 5D                  107 	ld	e,l
+   0073 54                  108 	ld	d,h
+   0074 18 35               109 	jr	00107$
+   0076                     110 00106$:
+                            111 ;../powf.c:40: return expf(logf(x) * y);
+   0076 DD 6E 06            112 	ld	l,6 (ix)
+   0079 DD 66 07            113 	ld	h,7 (ix)
+   007C E5                  114 	push	hl
+   007D DD 6E 04            115 	ld	l,4 (ix)
+   0080 DD 66 05            116 	ld	h,5 (ix)
+   0083 E5                  117 	push	hl
+   0084 CDr00s00            118 	call	_logf
+   0087 F1                  119 	pop	af
+   0088 F1                  120 	pop	af
+   0089 44                  121 	ld	b,h
+   008A 4D                  122 	ld	c,l
+   008B DD 6E 0A            123 	ld	l,10 (ix)
+   008E DD 66 0B            124 	ld	h,11 (ix)
+   0091 E5                  125 	push	hl
+   0092 DD 6E 08            126 	ld	l,8 (ix)
+   0095 DD 66 09            127 	ld	h,9 (ix)
+   0098 E5                  128 	push	hl
+   0099 D5                  129 	push	de
+   009A C5                  130 	push	bc
+   009B CDr00s00            131 	call	___fsmul
+   009E F1                  132 	pop	af
+   009F F1                  133 	pop	af
+   00A0 F1                  134 	pop	af
+   00A1 F1                  135 	pop	af
+   00A2 44                  136 	ld	b,h
+   00A3 4D                  137 	ld	c,l
+   00A4 D5                  138 	push	de
+   00A5 C5                  139 	push	bc
+   00A6 CDr00s00            140 	call	_expf
+   00A9 F1                  141 	pop	af
+   00AA F1                  142 	pop	af
+   00AB                     143 00107$:
+   00AB DD E1               144 	pop	ix
+   00AD C9                  145 	ret
+   00AE                     146 _powf_end::
+                            147 	.area _CODE
+                            148 	.area _CABS

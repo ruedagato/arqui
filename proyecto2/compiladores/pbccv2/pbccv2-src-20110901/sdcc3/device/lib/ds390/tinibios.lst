@@ -1,0 +1,1953 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:15:18 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module tinibios
+                              7 	.optsdcc -mds390 --model-flat24
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; CPU specific extensions
+                             11 ;--------------------------------------------------------
+                             12 .flat24 on		; 24 bit flat addressing
+                    0084     13 dpl1	=	0x84
+                    0085     14 dph1	=	0x85
+                    0086     15 dps	=	0x86
+                    0093     16 dpx	=	0x93
+                    0095     17 dpx1	=	0x95
+                    009B     18 esp	=	0x9B
+                    009C     19 ap	=	0x9C
+                    009C     20 _ap	=	0x9C
+                    00D1     21 mcnt0	=	0xD1
+                    00D2     22 mcnt1	=	0xD2
+                    00D3     23 ma	=	0xD3
+                    00D4     24 mb	=	0xD4
+                    00D5     25 mc	=	0xD5
+                    00D1     26 F1	=	0xD1	; user flag
+                             27 ;--------------------------------------------------------
+                             28 ; Public variables in this module
+                             29 ;--------------------------------------------------------
+                             30 	.globl _Serial1Init_PARM_2
+                             31 	.globl _Serial0Init_PARM_2
+                             32 	.globl _cpuSpeed
+                             33 	.globl __sdcc_external_startup
+                             34 	.globl _CpuSpeed
+                             35 	.globl _Serial0Init
+                             36 	.globl _Serial0Baud
+                             37 	.globl _Serial0IrqHandler
+                             38 	.globl _Serial0CharArrived
+                             39 	.globl _Serial0PutChar
+                             40 	.globl _Serial0GetChar
+                             41 	.globl _Serial0SendBreak
+                             42 	.globl _Serial0Flush
+                             43 	.globl _Serial1Init
+                             44 	.globl _Serial1Baud
+                             45 	.globl _Serial1IrqHandler
+                             46 	.globl _Serial1CharArrived
+                             47 	.globl _Serial1PutChar
+                             48 	.globl _Serial1GetChar
+                             49 	.globl _Serial1SendBreak
+                             50 	.globl _Serial1Flush
+                             51 	.globl _ClockInit
+                             52 	.globl _ClockIrqHandler
+                             53 	.globl _ClockTicks
+                             54 	.globl _ClockMilliSecondsDelay
+                             55 	.globl _ClockMicroSecondsDelay
+                             56 ;--------------------------------------------------------
+                             57 ; special function registers
+                             58 ;--------------------------------------------------------
+                    0080     59 _P4	=	0x0080
+                    0081     60 _SP	=	0x0081
+                    0082     61 _DPL	=	0x0082
+                    0083     62 _DPH	=	0x0083
+                    0084     63 _DPL1	=	0x0084
+                    0085     64 _DPH1	=	0x0085
+                    0086     65 _DPS	=	0x0086
+                    0087     66 _PCON	=	0x0087
+                    0088     67 _TCON	=	0x0088
+                    0089     68 _TMOD	=	0x0089
+                    008A     69 _TL0	=	0x008a
+                    008B     70 _TL1	=	0x008b
+                    008C     71 _TH0	=	0x008c
+                    008D     72 _TH1	=	0x008d
+                    008E     73 _CKCON	=	0x008e
+                    0090     74 _P1	=	0x0090
+                    0091     75 _EXIF	=	0x0091
+                    0092     76 _P4CNT	=	0x0092
+                    0093     77 _DPX	=	0x0093
+                    0095     78 _DPX1	=	0x0095
+                    0098     79 _SCON0	=	0x0098
+                    0099     80 _SBUF0	=	0x0099
+                    009B     81 _ESP	=	0x009b
+                    009C     82 _AP	=	0x009c
+                    009D     83 _ACON	=	0x009d
+                    00A0     84 _P2	=	0x00a0
+                    00A1     85 _P5	=	0x00a1
+                    00A2     86 _P5CNT	=	0x00a2
+                    00A8     87 _IE	=	0x00a8
+                    00B0     88 _P3	=	0x00b0
+                    00B8     89 _IP	=	0x00b8
+                    00C0     90 _SCON1	=	0x00c0
+                    00C1     91 _SBUF1	=	0x00c1
+                    00C4     92 _PMR	=	0x00c4
+                    00C6     93 _MCON	=	0x00c6
+                    00C7     94 _TA	=	0x00c7
+                    00C8     95 _T2CON	=	0x00c8
+                    00C9     96 _T2MOD	=	0x00c9
+                    00CA     97 _RCAP2L	=	0x00ca
+                    00CA     98 _RTL2	=	0x00ca
+                    00CB     99 _RCAP2H	=	0x00cb
+                    00CB    100 _RTH2	=	0x00cb
+                    00CC    101 _TL2	=	0x00cc
+                    00CD    102 _TH2	=	0x00cd
+                    00D0    103 _PSW	=	0x00d0
+                    00D1    104 _MCNT0	=	0x00d1
+                    00D2    105 _MCNT1	=	0x00d2
+                    00D3    106 _MA	=	0x00d3
+                    00D4    107 _MB	=	0x00d4
+                    00D5    108 _MC	=	0x00d5
+                    00D8    109 _WDCON	=	0x00d8
+                    00E0    110 _ACC	=	0x00e0
+                    00E8    111 _EIE	=	0x00e8
+                    00EA    112 _MXAX	=	0x00ea
+                    00F0    113 _B	=	0x00f0
+                    00F8    114 _EIP	=	0x00f8
+                    8C8A    115 _TMR0	=	0x8c8a
+                    8D8B    116 _TMR1	=	0x8d8b
+                    CDCC    117 _TMR2	=	0xcdcc
+                    CBCA    118 _RCAP2	=	0xcbca
+                            119 ;--------------------------------------------------------
+                            120 ; special function bits
+                            121 ;--------------------------------------------------------
+                    0088    122 _IT0	=	0x0088
+                    0089    123 _IE0	=	0x0089
+                    008A    124 _IT1	=	0x008a
+                    008B    125 _IE1	=	0x008b
+                    008C    126 _TR0	=	0x008c
+                    008D    127 _TF0	=	0x008d
+                    008E    128 _TR1	=	0x008e
+                    008F    129 _TF1	=	0x008f
+                    0090    130 _T2	=	0x0090
+                    0091    131 _T2EX	=	0x0091
+                    0092    132 _RXD1	=	0x0092
+                    0093    133 _TXD1	=	0x0093
+                    0094    134 _INT2	=	0x0094
+                    0095    135 _INT3	=	0x0095
+                    0096    136 _INT4	=	0x0096
+                    0097    137 _INT5	=	0x0097
+                    0098    138 _RI_0	=	0x0098
+                    0099    139 _TI_0	=	0x0099
+                    009A    140 _RB8_0	=	0x009a
+                    009B    141 _TB8_0	=	0x009b
+                    009C    142 _REN_0	=	0x009c
+                    009D    143 _SM2_0	=	0x009d
+                    009E    144 _SM1_0	=	0x009e
+                    009F    145 _SM0_0	=	0x009f
+                    009F    146 _FE_0	=	0x009f
+                    00A8    147 _EX0	=	0x00a8
+                    00A9    148 _ET0	=	0x00a9
+                    00AA    149 _EX1	=	0x00aa
+                    00AB    150 _ET1	=	0x00ab
+                    00AC    151 _ES0	=	0x00ac
+                    00AD    152 _ET2	=	0x00ad
+                    00AE    153 _ES1	=	0x00ae
+                    00AF    154 _EA	=	0x00af
+                    00B0    155 _RXD0	=	0x00b0
+                    00B1    156 _TXD0	=	0x00b1
+                    00B2    157 _INT0	=	0x00b2
+                    00B3    158 _INT1	=	0x00b3
+                    00B4    159 _T0	=	0x00b4
+                    00B5    160 _T1	=	0x00b5
+                    00B6    161 _WR	=	0x00b6
+                    00B7    162 _RD	=	0x00b7
+                    00B8    163 _PX0	=	0x00b8
+                    00B9    164 _PT0	=	0x00b9
+                    00BA    165 _PX1	=	0x00ba
+                    00BB    166 _PT1	=	0x00bb
+                    00BC    167 _PS0	=	0x00bc
+                    00BD    168 _PT2	=	0x00bd
+                    00BE    169 _PS1	=	0x00be
+                    00C0    170 _RI_1	=	0x00c0
+                    00C1    171 _TI_1	=	0x00c1
+                    00C2    172 _RB8_1	=	0x00c2
+                    00C3    173 _TB8_1	=	0x00c3
+                    00C4    174 _REN_1	=	0x00c4
+                    00C5    175 _SM2_1	=	0x00c5
+                    00C6    176 _SM1_1	=	0x00c6
+                    00C7    177 _SM0_1	=	0x00c7
+                    00C7    178 _FE_1	=	0x00c7
+                    00C8    179 _CP_RL	=	0x00c8
+                    00C9    180 _C_T	=	0x00c9
+                    00CA    181 _TR2	=	0x00ca
+                    00CB    182 _EXEN2	=	0x00cb
+                    00CC    183 _TCLK	=	0x00cc
+                    00CD    184 _RCLK	=	0x00cd
+                    00CE    185 _EXF2	=	0x00ce
+                    00CF    186 _TF2	=	0x00cf
+                    00D0    187 _P	=	0x00d0
+                    00D1    188 _F1	=	0x00d1
+                    00D2    189 _OV	=	0x00d2
+                    00D3    190 _RS0	=	0x00d3
+                    00D4    191 _RS1	=	0x00d4
+                    00D5    192 _F0	=	0x00d5
+                    00D6    193 _AC	=	0x00d6
+                    00D7    194 _CY	=	0x00d7
+                    00D8    195 _RWT	=	0x00d8
+                    00D9    196 _EWT	=	0x00d9
+                    00DA    197 _WDRF	=	0x00da
+                    00DB    198 _WDIF	=	0x00db
+                    00DC    199 _PFI	=	0x00dc
+                    00DD    200 _EPFI	=	0x00dd
+                    00DE    201 _POR	=	0x00de
+                    00DF    202 _SMOD_1	=	0x00df
+                    00E8    203 _EX2	=	0x00e8
+                    00E9    204 _EX3	=	0x00e9
+                    00EA    205 _EX4	=	0x00ea
+                    00EB    206 _EX5	=	0x00eb
+                    00EC    207 _EWDI	=	0x00ec
+                    00ED    208 _C1IE	=	0x00ed
+                    00EE    209 _C0IE	=	0x00ee
+                    00EF    210 _CANBIE	=	0x00ef
+                    00F8    211 _PX2	=	0x00f8
+                    00F9    212 _PX3	=	0x00f9
+                    00FA    213 _PX4	=	0x00fa
+                    00FB    214 _PX5	=	0x00fb
+                    00FC    215 _PWDI	=	0x00fc
+                    00FD    216 _C1IP	=	0x00fd
+                    00FE    217 _C0IP	=	0x00fe
+                    00FF    218 _CANBIP	=	0x00ff
+                            219 ;--------------------------------------------------------
+                            220 ; overlayable register banks
+                            221 ;--------------------------------------------------------
+                            222 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                     223 	.ds 8
+                            224 ;--------------------------------------------------------
+                            225 ; internal ram data
+                            226 ;--------------------------------------------------------
+                            227 	.area DSEG    (DATA)
+   0000                     228 _serial0Buffered:
+   0000                     229 	.ds 1
+   0001                     230 _serial1Buffered:
+   0001                     231 	.ds 1
+   0002                     232 _milliSeconds:
+   0002                     233 	.ds 4
+   0006                     234 _timer0ReloadValue:
+   0006                     235 	.ds 2
+                            236 ;--------------------------------------------------------
+                            237 ; overlayable items in internal ram 
+                            238 ;--------------------------------------------------------
+                            239 	.area OSEG    (OVR,DATA)
+                            240 ;--------------------------------------------------------
+                            241 ; indirectly addressable internal ram data
+                            242 ;--------------------------------------------------------
+                            243 	.area ISEG    (DATA)
+                            244 ;--------------------------------------------------------
+                            245 ; absolute internal ram data
+                            246 ;--------------------------------------------------------
+                            247 	.area IABS    (ABS,DATA)
+                            248 	.area IABS    (ABS,DATA)
+                            249 ;--------------------------------------------------------
+                            250 ; bit data
+                            251 ;--------------------------------------------------------
+                            252 	.area BSEG    (BIT)
+                            253 ;--------------------------------------------------------
+                            254 ; paged external ram data
+                            255 ;--------------------------------------------------------
+                            256 	.area PSEG    (PAG,XDATA)
+                            257 ;--------------------------------------------------------
+                            258 ; external ram data
+                            259 ;--------------------------------------------------------
+                            260 	.area XSEG    (XDATA)
+   0000                     261 _cpuSpeed::
+   0000                     262 	.ds 2
+   0002                     263 _receive0Buffer:
+   0002                     264 	.ds 1024
+   0402                     265 _Serial0Init_PARM_2:
+   0402                     266 	.ds 1
+   0403                     267 _receive1Buffer:
+   0403                     268 	.ds 64
+   0443                     269 _Serial1Init_PARM_2:
+   0443                     270 	.ds 1
+                            271 ;--------------------------------------------------------
+                            272 ; absolute external ram data
+                            273 ;--------------------------------------------------------
+                            274 	.area XABS    (ABS,XDATA)
+                            275 ;--------------------------------------------------------
+                            276 ; external initialized ram data
+                            277 ;--------------------------------------------------------
+                            278 	.area XISEG   (XDATA)
+   0000                     279 _receive0BufferHead:
+   0000                     280 	.ds 2
+   0002                     281 _receive0BufferTail:
+   0002                     282 	.ds 2
+   0004                     283 _transmit0IsBusy:
+   0004                     284 	.ds 1
+   0005                     285 _receive1BufferHead:
+   0005                     286 	.ds 2
+   0007                     287 _receive1BufferTail:
+   0007                     288 	.ds 2
+   0009                     289 _transmit1IsBusy:
+   0009                     290 	.ds 1
+                            291 ;--------------------------------------------------------
+                            292 ; global & static initialisations
+                            293 ;--------------------------------------------------------
+                            294 	.area HOME    (CODE)
+                            295 	.area GSINIT  (CODE)
+                            296 	.area GSFINAL (CODE)
+                            297 	.area GSINIT  (CODE)
+                            298 ;	tinibios.c:478: static __data unsigned long milliSeconds=0;
+                            299 ;	genAssign: resultIsFar = FALSE
+   0000 E4                  300 	clr	a
+   0001 F5*02               301 	mov	_milliSeconds,a
+   0003 F5*03               302 	mov	(_milliSeconds + 1),a
+   0005 F5*04               303 	mov	(_milliSeconds + 2),a
+   0007 F5*05               304 	mov	(_milliSeconds + 3),a
+                            305 ;--------------------------------------------------------
+                            306 ; Home
+                            307 ;--------------------------------------------------------
+                            308 	.area HOME    (CODE)
+                            309 	.area HOME    (CODE)
+                            310 ;--------------------------------------------------------
+                            311 ; code
+                            312 ;--------------------------------------------------------
+                            313 	.area CSEG    (CODE)
+                            314 ;------------------------------------------------------------
+                            315 ;Allocation info for local variables in function '_sdcc_external_startup'
+                            316 ;------------------------------------------------------------
+                            317 ;------------------------------------------------------------
+                            318 ;	tinibios.c:34: unsigned char _sdcc_external_startup(void)
+                            319 ;	-----------------------------------------
+                            320 ;	 function _sdcc_external_startup
+                            321 ;	-----------------------------------------
+   0000                     322 __sdcc_external_startup:
+                    0002    323 	ar2 = 0x02
+                    0003    324 	ar3 = 0x03
+                    0004    325 	ar4 = 0x04
+                    0005    326 	ar5 = 0x05
+                    0006    327 	ar6 = 0x06
+                    0007    328 	ar7 = 0x07
+                    0000    329 	ar0 = 0x00
+                    0001    330 	ar1 = 0x01
+                            331 ;	tinibios.c:36: IE=0; // disable ALL interrupts
+                            332 ;	genAssign: resultIsFar = FALSE
+   0000 75 A8 00            333 	mov	_IE,#0x00
+                            334 ;	tinibios.c:39: TIMED_ACCESS(P4CNT,0x3f);
+                            335 ;	genAssign: resultIsFar = FALSE
+   0003 75 C7 AA            336 	mov	_TA,#0xAA
+                            337 ;	genAssign: resultIsFar = FALSE
+   0006 75 C7 55            338 	mov	_TA,#0x55
+                            339 ;	genAssign: resultIsFar = FALSE
+   0009 75 92 3F            340 	mov	_P4CNT,#0x3F
+                            341 ;	tinibios.c:42: TIMED_ACCESS(P5CNT,0x27);
+                            342 ;	genAssign: resultIsFar = FALSE
+   000C 75 C7 AA            343 	mov	_TA,#0xAA
+                            344 ;	genAssign: resultIsFar = FALSE
+   000F 75 C7 55            345 	mov	_TA,#0x55
+                            346 ;	genAssign: resultIsFar = FALSE
+   0012 75 A2 27            347 	mov	_P5CNT,#0x27
+                            348 ;	tinibios.c:45: EWT=0;
+                            349 ;	genAssign: resultIsFar = FALSE
+   0015 C2 D9               350 	clr	_EWT
+                            351 ;	tinibios.c:52: CKCON=0xf9;
+                            352 ;	genAssign: resultIsFar = FALSE
+   0017 75 8E F9            353 	mov	_CKCON,#0xF9
+                            354 ;	tinibios.c:57: TIMED_ACCESS(MCON,0xaf);
+                            355 ;	genAssign: resultIsFar = FALSE
+   001A 75 C7 AA            356 	mov	_TA,#0xAA
+                            357 ;	genAssign: resultIsFar = FALSE
+   001D 75 C7 55            358 	mov	_TA,#0x55
+                            359 ;	genAssign: resultIsFar = FALSE
+   0020 75 C6 AF            360 	mov	_MCON,#0xAF
+                            361 ;	tinibios.c:78: __endasm;
+                            362 	
+                            363     ; save the 24-bit return address
+                            364 ; pop ar2; msb
+   0023 7A 00               365 	    mov r2, #0x00
+   0025 D0 01               366 	    pop ar1
+   0027 D0 00               367 	    pop ar0; lsb
+                            368 	
+                            369 	
+   0029 75 C7 AA            370 	    mov _TA,#0xaa; timed access
+   002C 75 C7 55            371 	    mov _TA,#0x55
+   002F 75 9D 06            372 	    mov _ACON,#0x06; 24 bit addresses, 10 bit stack at 0x400000
+                            373 	
+   0032 75 9B 00            374 	    mov _ESP,#0x00; reinitialize the stack
+   0035 75 81 00            375 	    mov _SP,#0x00
+                            376 	
+                            377     ; restore the 24-bit return address
+   0038 C0 00               378 	    push ar0; lsb
+   003A C0 01               379 	    push ar1
+   003C C0 02               380 	    push ar2; msb
+                            381 	  
+                            382 ;	tinibios.c:81: CpuSpeed(CPU_SPEED);
+   003E 90 00 00 02         383 	mov  dptr,#0x0002
+   0042 12s00r00r96         384 	lcall	_CpuSpeed
+                            385 ;	tinibios.c:113: __endasm;
+                            386 	
+   0046 C0 93               387 	    push dpx
+   0048 C0 83               388 	    push dph
+   004A C0 82               389 	    push dpl
+   004C C0 86               390 	    push dps
+   004E C0 F0               391 	    push b
+   0050 C0 E0               392 	    push acc
+   0052 75 86 00            393 	    mov dps,#0x00 ; make sure no autoincrement in progress
+   0055 90 01 00 00         394 	    mov dptr,#0x10000 ; from
+   0059 05 86               395 	    inc dps ; switch to alternate dptr
+   005B 90 10 00 00         396 	    mov dptr,#0x100000 ; to
+   005F 75 F0 80            397 	    mov b,#0x80 ; count
+                            398 	
+   0062                     399 	_Startup390CopyIVT:
+   0062 05 86               400 	    inc dps
+   0064 E0                  401 	    movx a,@dptr
+   0065 A3                  402 	    inc dptr
+   0066 05 86               403 	    inc dps
+   0068 F0                  404 	    movx @dptr,a
+   0069 A3                  405 	    inc dptr
+   006A D5 F0 F5            406 	    djnz b,_Startup390CopyIVT
+                            407 	
+   006D D0 E0               408 	    pop acc
+   006F D0 F0               409 	    pop b
+   0071 D0 86               410 	    pop dps
+   0073 D0 82               411 	    pop dpl
+   0075 D0 83               412 	    pop dph
+   0077 D0 93               413 	    pop dpx
+                            414 	  
+                            415 ;	tinibios.c:117: IE = 0x80; 
+                            416 ;	genAssign: resultIsFar = FALSE
+   0079 75 A8 80            417 	mov	_IE,#0x80
+                            418 ;	tinibios.c:119: Serial0Init(SERIAL_0_BAUD,1);
+                            419 ;	genAssign: resultIsFar = TRUE
+   007C 90s00r04r02         420 	mov	dptr,#_Serial0Init_PARM_2
+   0080 74 01               421 	mov	a,#0x01
+   0082 F0                  422 	movx	@dptr,a
+   0083 90 01 C2 00         423 	mov	dptr,#0x01C200
+   0087 75 F0 00            424 	mov	b,#0x00
+   008A 12s00r01r1E         425 	lcall	_Serial0Init
+                            426 ;	tinibios.c:121: ClockInit();
+   008E 12s00r06r24         427 	lcall	_ClockInit
+                            428 ;	tinibios.c:126: return 0; 
+   0092 75 82 00            429 	mov	dpl,#0x00
+   0095                     430 00101$:
+   0095 22                  431 	ret
+                            432 ;------------------------------------------------------------
+                            433 ;Allocation info for local variables in function 'CpuSpeed'
+                            434 ;------------------------------------------------------------
+                            435 ;speed                     Allocated to registers r2 r3 
+                            436 ;------------------------------------------------------------
+                            437 ;	tinibios.c:140: void CpuSpeed(unsigned int speed)
+                            438 ;	-----------------------------------------
+                            439 ;	 function CpuSpeed
+                            440 ;	-----------------------------------------
+   0096                     441 _CpuSpeed:
+   0096 85 82 84            442 	mov	dpl1,dpl
+   0099 85 83 85            443 	mov	dph1,dph
+                            444 ;	tinibios.c:146: PMR = 0x80; // div4, CTM off, multiplier 2x
+                            445 ;	genAssign: resultIsFar = FALSE
+   009C 75 C4 80            446 	mov	_PMR,#0x80
+                            447 ;	tinibios.c:147: switch (speed) 
+   009F E5 84               448 	mov	a,dpl1
+   00A1 B4 01 07            449 	cjne	a,#0x01,00122$
+   00A4 E5 85               450 	mov	a,dph1
+   00A6 B4 00 02            451 	cjne	a,#0x00,00122$
+   00A9 80 24               452 	sjmp 00101$
+   00AB                     453 00122$:
+   00AB E5 84               454 	mov	a,dpl1
+   00AD B4 02 07            455 	cjne	a,#0x02,00123$
+   00B0 E5 85               456 	mov	a,dph1
+   00B2 B4 00 02            457 	cjne	a,#0x00,00123$
+   00B5 80 33               458 	sjmp 00105$
+   00B7                     459 00123$:
+   00B7 E5 84               460 	mov	a,dpl1
+   00B9 B4 04 07            461 	cjne	a,#0x04,00124$
+   00BC E5 85               462 	mov	a,dph1
+   00BE B4 00 02            463 	cjne	a,#0x00,00124$
+   00C1 80 3F               464 	sjmp 00109$
+   00C3                     465 00124$:
+   00C3 E5 84               466 	mov	a,dpl1
+                            467 ;	tinibios.c:149: case 1:
+   00C5 B4 00 55            468 	cjne a,#0x00,00112$
+   00C8 E5 85               469 	mov  a,dph1
+   00CA B4 04 50            470 	cjne a,#0x04,00112$
+   00CD 80 40               471 	sjmp 00110$
+   00CF                     472 00101$:
+                            473 ;	tinibios.c:150: PMR=0x88; // div4, CTM off, multiplier 4x
+                            474 ;	genAssign: resultIsFar = FALSE
+   00CF 75 C4 88            475 	mov	_PMR,#0x88
+                            476 ;	tinibios.c:151: PMR=0x98; // div4, CTM on, multiplier 4x
+                            477 ;	genAssign: resultIsFar = FALSE
+   00D2 75 C4 98            478 	mov	_PMR,#0x98
+                            479 ;	tinibios.c:152: while ((EXIF&0x08)==0) {
+   00D5                     480 00102$:
+   00D5 E5 91               481 	mov	a,_EXIF
+   00D7 30 E3 FB            482 	jnb  acc.3,00102$
+   00DA                     483 00126$:
+                            484 ;	tinibios.c:155: PMR = 0x18; // use multiplier
+                            485 ;	genAssign: resultIsFar = FALSE
+   00DA 75 C4 18            486 	mov	_PMR,#0x18
+                            487 ;	tinibios.c:156: cpuSpeed=speed;
+                            488 ;	genAssign: resultIsFar = TRUE
+   00DD 90s00r00r00         489 	mov	dptr,#_cpuSpeed
+   00E1 E5 84               490 	mov	a,dpl1
+   00E3 F0                  491 	movx	@dptr,a
+   00E4 A3                  492 	inc	dptr
+   00E5 E5 85               493 	mov	a,dph1
+   00E7 F0                  494 	movx	@dptr,a
+                            495 ;	tinibios.c:157: break;
+                            496 ;	tinibios.c:158: case 2:
+   00E8 80 33               497 	sjmp 00112$
+   00EA                     498 00105$:
+                            499 ;	tinibios.c:159: PMR=0x90; // div4, CTM on, multilier 2x
+                            500 ;	genAssign: resultIsFar = FALSE
+   00EA 75 C4 90            501 	mov	_PMR,#0x90
+                            502 ;	tinibios.c:160: while ((EXIF&0x08)==0) {
+   00ED                     503 00106$:
+   00ED E5 91               504 	mov	a,_EXIF
+   00EF 30 E3 FB            505 	jnb  acc.3,00106$
+   00F2                     506 00127$:
+                            507 ;	tinibios.c:163: PMR = 0x10; // use multiplier
+                            508 ;	genAssign: resultIsFar = FALSE
+   00F2 75 C4 10            509 	mov	_PMR,#0x10
+                            510 ;	tinibios.c:164: cpuSpeed=speed;
+                            511 ;	genAssign: resultIsFar = TRUE
+   00F5 90s00r00r00         512 	mov	dptr,#_cpuSpeed
+   00F9 E5 84               513 	mov	a,dpl1
+   00FB F0                  514 	movx	@dptr,a
+   00FC A3                  515 	inc	dptr
+   00FD E5 85               516 	mov	a,dph1
+   00FF F0                  517 	movx	@dptr,a
+                            518 ;	tinibios.c:165: break;
+                            519 ;	tinibios.c:166: case 4:
+   0100 80 1B               520 	sjmp 00112$
+   0102                     521 00109$:
+                            522 ;	tinibios.c:168: cpuSpeed=speed;
+                            523 ;	genAssign: resultIsFar = TRUE
+   0102 90s00r00r00         524 	mov	dptr,#_cpuSpeed
+   0106 E5 84               525 	mov	a,dpl1
+   0108 F0                  526 	movx	@dptr,a
+   0109 A3                  527 	inc	dptr
+   010A E5 85               528 	mov	a,dph1
+   010C F0                  529 	movx	@dptr,a
+                            530 ;	tinibios.c:169: break;
+                            531 ;	tinibios.c:170: case 1024:
+   010D 80 0E               532 	sjmp 00112$
+   010F                     533 00110$:
+                            534 ;	tinibios.c:171: PMR = 0xc0; // div1024, CTM off
+                            535 ;	genAssign: resultIsFar = FALSE
+   010F 75 C4 C0            536 	mov	_PMR,#0xC0
+                            537 ;	tinibios.c:172: cpuSpeed=speed;
+                            538 ;	genAssign: resultIsFar = TRUE
+   0112 90s00r00r00         539 	mov	dptr,#_cpuSpeed
+   0116 E5 84               540 	mov	a,dpl1
+   0118 F0                  541 	movx	@dptr,a
+   0119 A3                  542 	inc	dptr
+   011A E5 85               543 	mov	a,dph1
+   011C F0                  544 	movx	@dptr,a
+                            545 ;	tinibios.c:174: }
+   011D                     546 00112$:
+   011D 22                  547 	ret
+                            548 ;------------------------------------------------------------
+                            549 ;Allocation info for local variables in function 'Serial0Init'
+                            550 ;------------------------------------------------------------
+                            551 ;buffered                  Allocated with name '_Serial0Init_PARM_2'
+                            552 ;baud                      Allocated to registers r2 r3 r4 r5 
+                            553 ;------------------------------------------------------------
+                            554 ;	tinibios.c:199: void Serial0Init (unsigned long baud, unsigned char buffered)
+                            555 ;	-----------------------------------------
+                            556 ;	 function Serial0Init
+                            557 ;	-----------------------------------------
+   011E                     558 _Serial0Init:
+   011E AA 82               559 	mov	r2,dpl
+   0120 AB 83               560 	mov	r3,dph
+   0122 AC 93               561 	mov	r4,dpx
+   0124 AD F0               562 	mov	r5,b
+                            563 ;	tinibios.c:201: if (baud==0) {
+   0126 EA                  564 	mov	a,r2
+   0127 4B                  565 	orl	a,r3
+   0128 4C                  566 	orl	a,r4
+   0129 4D                  567 	orl	a,r5
+   012A 70 07               568 	jnz  00102$
+   012C                     569 00110$:
+                            570 ;	tinibios.c:202: ES0=0; // disable interrupts
+                            571 ;	genAssign: resultIsFar = FALSE
+   012C C2 AC               572 	clr	_ES0
+                            573 ;	tinibios.c:203: SCON0 &= 0xef; // disable receiver
+   012E 53 98 EF            574 	anl	_SCON0,#0xEF
+                            575 ;	tinibios.c:204: return;
+   0131 80 35               576 	sjmp 00106$
+   0133                     577 00102$:
+                            578 ;	tinibios.c:207: ES0 = 0; // disable serial channel 0 interrupt
+                            579 ;	genAssign: resultIsFar = FALSE
+   0133 C2 AC               580 	clr	_ES0
+                            581 ;	tinibios.c:208: TR2 = 0; // stop timer 2
+                            582 ;	genAssign: resultIsFar = FALSE
+   0135 C2 CA               583 	clr	_TR2
+                            584 ;	tinibios.c:212: SCON0 = 0x50;
+                            585 ;	genAssign: resultIsFar = FALSE
+   0137 75 98 50            586 	mov	_SCON0,#0x50
+                            587 ;	tinibios.c:214: PCON |= 0x80; // clock is 16x bitrate
+   013A 43 87 80            588 	orl	_PCON,#0x80
+                            589 ;	tinibios.c:215: CKCON|=0x20; // timer uses xtal/4
+   013D 43 8E 20            590 	orl	_CKCON,#0x20
+                            591 ;	tinibios.c:217: T2MOD=0; // no fancy functions
+                            592 ;	genAssign: resultIsFar = FALSE
+   0140 75 C9 00            593 	mov	_T2MOD,#0x00
+                            594 ;	tinibios.c:218: T2CON=0x34; // start timer as a baudrate generator for serial0
+                            595 ;	genAssign: resultIsFar = FALSE
+   0143 75 C8 34            596 	mov	_T2CON,#0x34
+                            597 ;	tinibios.c:221: Serial0Baud(baud);
+   0146 8A 82               598 	mov	dpl,r2
+   0148 8B 83               599 	mov	dph,r3
+   014A 8C 93               600 	mov	dpx,r4
+   014C 8D F0               601 	mov	b,r5
+   014E 12s00r01r69         602 	lcall	_Serial0Baud
+                            603 ;	tinibios.c:223: serial0Buffered=buffered;
+   0152 90s00r04r02         604 	mov	dptr,#_Serial0Init_PARM_2
+                            605 ;	genAssign: resultIsFar = TRUE
+   0156 E0                  606 	movx	a,@dptr
+                            607 ;	genAssign: resultIsFar = FALSE
+                            608 ;	tinibios.c:225: if (buffered) {
+   0157 FA                  609 	mov  r2,a
+   0158 8A*00               610 	mov  _serial0Buffered,r2 
+   015A 60 08               611 	jz  00104$
+   015C                     612 00111$:
+                            613 ;	tinibios.c:226: RI_0=TI_0=0; // clear "pending" interrupts
+                            614 ;	genAssign: resultIsFar = FALSE
+   015C C2 99               615 	clr	_TI_0
+                            616 ;	genAssign: resultIsFar = FALSE
+   015E C2 98               617 	clr	_RI_0
+                            618 ;	tinibios.c:227: ES0 = 1; // enable serial channel 0 interrupt
+                            619 ;	genAssign: resultIsFar = FALSE
+   0160 D2 AC               620 	setb	_ES0
+   0162 80 04               621 	sjmp 00106$
+   0164                     622 00104$:
+                            623 ;	tinibios.c:229: RI_0=0; // receive buffer empty
+                            624 ;	genAssign: resultIsFar = FALSE
+   0164 C2 98               625 	clr	_RI_0
+                            626 ;	tinibios.c:230: TI_0=1; // transmit buffer empty
+                            627 ;	genAssign: resultIsFar = FALSE
+   0166 D2 99               628 	setb	_TI_0
+   0168                     629 00106$:
+   0168 22                  630 	ret
+                            631 ;------------------------------------------------------------
+                            632 ;Allocation info for local variables in function 'Serial0Baud'
+                            633 ;------------------------------------------------------------
+                            634 ;baud                      Allocated to registers r2 r3 r4 r5 
+                            635 ;------------------------------------------------------------
+                            636 ;	tinibios.c:234: void Serial0Baud(unsigned long baud)
+                            637 ;	-----------------------------------------
+                            638 ;	 function Serial0Baud
+                            639 ;	-----------------------------------------
+   0169                     640 _Serial0Baud:
+   0169 AA 82               641 	mov	r2,dpl
+   016B AB 83               642 	mov	r3,dph
+   016D AC 93               643 	mov	r4,dpx
+   016F AD F0               644 	mov	r5,b
+                            645 ;	tinibios.c:236: TR2=0; // stop timer
+                            646 ;	genAssign: resultIsFar = FALSE
+   0171 C2 CA               647 	clr	_TR2
+                            648 ;	tinibios.c:237: baud=-((long)OSCILLATOR/(32*baud));
+   0173 75 F0 06            649 	mov	b,#0x06
+   0176 AE 02               650 	mov	r6,ar2
+   0178 AF 03               651 	mov	r7,ar3
+   017A A8 04               652 	mov	r0,ar4
+   017C A9 05               653 	mov	r1,ar5
+   017E 80 0D               654 	sjmp	00104$
+   0180                     655 00103$:
+   0180 EE                  656 	mov	a,r6
+   0181 25 E0               657 	add	a,acc
+   0183 FE                  658 	mov	r6,a
+   0184 EF                  659 	mov	a,r7
+   0185 33                  660 	rlc	a
+   0186 FF                  661 	mov	r7,a
+   0187 E8                  662 	mov	a,r0
+   0188 33                  663 	rlc	a
+   0189 F8                  664 	mov	r0,a
+   018A E9                  665 	mov	a,r1
+   018B 33                  666 	rlc	a
+   018C F9                  667 	mov	r1,a
+   018D                     668 00104$:
+   018D D5 F0 F0            669 	djnz	b,00103$
+                            670 ;	genAssign: resultIsFar = TRUE
+   0190 90s00r00r00         671 	mov	dptr,#__divulong_PARM_2
+   0194 EE                  672 	mov	a,r6
+   0195 F0                  673 	movx	@dptr,a
+   0196 A3                  674 	inc	dptr
+   0197 EF                  675 	mov	a,r7
+   0198 F0                  676 	movx	@dptr,a
+   0199 A3                  677 	inc	dptr
+   019A E8                  678 	mov	a,r0
+   019B F0                  679 	movx	@dptr,a
+   019C A3                  680 	inc	dptr
+   019D E9                  681 	mov	a,r1
+   019E F0                  682 	movx	@dptr,a
+   019F 90 19 40 00         683 	mov	dptr,#0x194000
+   01A3 75 F0 01            684 	mov	b,#0x01
+   01A6 12s00r00r00         685 	lcall	__divulong
+   01AA AE 82               686 	mov	r6,dpl
+   01AC AF 83               687 	mov	r7,dph
+   01AE A8 93               688 	mov	r0,dpx
+   01B0 A9 F0               689 	mov	r1,b
+   01B2 C3                  690 	clr	c
+   01B3 E4                  691 	clr	a
+   01B4 9E                  692 	subb	a,r6
+   01B5 FA                  693 	mov	r2,a
+   01B6 E4                  694 	clr	a
+   01B7 9F                  695 	subb	a,r7
+   01B8 FB                  696 	mov	r3,a
+   01B9 E4                  697 	clr	a
+   01BA 98                  698 	subb	a,r0
+   01BB FC                  699 	mov	r4,a
+   01BC E4                  700 	clr	a
+   01BD 99                  701 	subb	a,r1
+   01BE FD                  702 	mov	r5,a
+                            703 ;	tinibios.c:238: TL2=RCAP2L= baud;
+   01BF 8A 06               704 	mov	ar6,r2
+                            705 ;	genAssign: resultIsFar = FALSE
+   01C1 8E CA               706 	mov	_RCAP2L,r6
+                            707 ;	genAssign: resultIsFar = FALSE
+   01C3 8E CC               708 	mov	_TL2,r6
+                            709 ;	tinibios.c:239: TH2=RCAP2H= baud>>8;
+   01C5 8B 02               710 	mov	ar2,r3
+   01C7 8C 03               711 	mov	ar3,r4
+   01C9 8D 04               712 	mov	ar4,r5
+   01CB 7D 00               713 	mov	r5,#0
+                            714 ;	genAssign: resultIsFar = FALSE
+   01CD 8A CB               715 	mov	_RCAP2H,r2
+                            716 ;	genAssign: resultIsFar = FALSE
+   01CF 8A CD               717 	mov	_TH2,r2
+                            718 ;	tinibios.c:240: TF2=0; // clear overflow flag
+                            719 ;	genAssign: resultIsFar = FALSE
+   01D1 C2 CF               720 	clr	_TF2
+                            721 ;	tinibios.c:241: TR2=1; // start timer
+                            722 ;	genAssign: resultIsFar = FALSE
+   01D3 D2 CA               723 	setb	_TR2
+   01D5                     724 00101$:
+   01D5 22                  725 	ret
+                            726 ;------------------------------------------------------------
+                            727 ;Allocation info for local variables in function 'Serial0IrqHandler'
+                            728 ;------------------------------------------------------------
+                            729 ;------------------------------------------------------------
+                            730 ;	tinibios.c:244: void Serial0IrqHandler (void) __interrupt 4
+                            731 ;	-----------------------------------------
+                            732 ;	 function Serial0IrqHandler
+                            733 ;	-----------------------------------------
+   01D6                     734 _Serial0IrqHandler:
+   01D6 C0 E0               735 	push	acc
+   01D8 C0 F0               736 	push	b
+   01DA C0 82               737 	push	dpl
+   01DC C0 83               738 	push	dph
+   01DE C0 93               739 	push	dpx
+   01E0 C0 86               740 	push	dps
+   01E2 75 86 00            741 	mov	dps,#0
+   01E5 C0 84               742 	push	dpl1
+   01E7 C0 85               743 	push	dph1
+   01E9 C0 95               744 	push	dpx1
+   01EB C0 02               745 	push	ar2
+   01ED C0 03               746 	push	ar3
+   01EF C0 D0               747 	push	psw
+   01F1 75 D0 00            748 	mov	psw,#0x00
+                            749 ;	tinibios.c:246: if (RI_0) {
+   01F4 30 98 76            750 	jnb  _RI_0,00104$
+   01F7                     751 00112$:
+                            752 ;	tinibios.c:247: receive0Buffer[receive0BufferHead]=SBUF0;
+   01F7 90s00r00r00         753 	mov	dptr,#_receive0BufferHead
+   01FB E0                  754 	movx	a,@dptr
+   01FC 24r02               755 	add	a,#_receive0Buffer
+   01FE F5 84               756 	mov	dpl1,a
+   0200 A3                  757 	inc	dptr
+   0201 E0                  758 	movx	a,@dptr
+   0202 34s00               759 	addc	a,#(_receive0Buffer >> 8)
+   0204 F5 85               760 	mov	dph1,a
+   0206 E4                  761 	clr	a
+   0207 34s00               762 	addc	a,#(_receive0Buffer >> 16)
+   0209 F5 95               763 	mov	dpx1,a
+   020B E5 99               764 	mov	a,_SBUF0
+   020D 05 86               765 	inc	dps
+   020F F0                  766 	movx	@dptr,a
+   0210 75 86 00            767 	mov	dps,#0
+                            768 ;	tinibios.c:248: receive0BufferHead=(receive0BufferHead+1)&(S0RBS-1);
+   0213 90s00r00r00         769 	mov	dptr,#_receive0BufferHead
+   0217 E0                  770 	movx	a,@dptr
+   0218 24 01               771 	add	a,#0x01
+   021A FA                  772 	mov	r2,a
+   021B A3                  773 	inc	dptr
+   021C E0                  774 	movx	a,@dptr
+   021D 34 00               775 	addc	a,#0x00
+   021F FB                  776 	mov	r3,a
+   0220 90s00r00r00         777 	mov	dptr,#_receive0BufferHead
+   0224 EA                  778 	mov	a,r2
+   0225 F0                  779 	movx	@dptr,a
+   0226 74 03               780 	mov	a,#0x03
+   0228 5B                  781 	anl	a,r3
+   0229 A3                  782 	inc	dptr
+   022A F0                  783 	movx	@dptr,a
+                            784 ;	tinibios.c:249: if (receive0BufferHead==receive0BufferTail) {
+   022B 90s00r00r02         785 	mov	dptr,#_receive0BufferTail
+   022F 75 86 01            786 	mov     dps, #1
+   0232 90s00r00r00         787 	mov     dptr, #_receive0BufferHead
+   0236 E0                  788 	movx	a,@dptr
+   0237 75 86 00            789 	mov	dps,#0
+   023A F5 F0               790 	mov	b,a
+   023C E0                  791 	movx	a,@dptr
+   023D B5 F0 11            792 	cjne	a,b,00113$
+   0240 75 86 01            793 	mov	dps,#1
+   0243 A3                  794 	inc	dptr
+   0244 E0                  795 	movx	a,@dptr
+   0245 75 86 00            796 	mov	dps,#0
+   0248 F5 F0               797 	mov	b,a
+   024A A3                  798 	inc	dptr
+   024B E0                  799 	movx	a,@dptr
+   024C B5 F0 02            800 	cjne	a,b,00113$
+   024F 80 02               801 	sjmp	00114$
+   0251                     802 00113$:
+   0251 80 18               803 	sjmp 00102$
+   0253                     804 00114$:
+                            805 ;	tinibios.c:251: receive0BufferTail=(receive0BufferTail+1)&(S0RBS-1);
+   0253 90s00r00r02         806 	mov	dptr,#_receive0BufferTail
+   0257 E0                  807 	movx	a,@dptr
+   0258 24 01               808 	add	a,#0x01
+   025A FA                  809 	mov	r2,a
+   025B A3                  810 	inc	dptr
+   025C E0                  811 	movx	a,@dptr
+   025D 34 00               812 	addc	a,#0x00
+   025F FB                  813 	mov	r3,a
+   0260 90s00r00r02         814 	mov	dptr,#_receive0BufferTail
+   0264 EA                  815 	mov	a,r2
+   0265 F0                  816 	movx	@dptr,a
+   0266 74 03               817 	mov	a,#0x03
+   0268 5B                  818 	anl	a,r3
+   0269 A3                  819 	inc	dptr
+   026A F0                  820 	movx	@dptr,a
+   026B                     821 00102$:
+                            822 ;	tinibios.c:253: RI_0=0;
+                            823 ;	genAssign: resultIsFar = FALSE
+   026B C2 98               824 	clr	_RI_0
+   026D                     825 00104$:
+                            826 ;	tinibios.c:255: if (TI_0) {
+                            827 ;	tinibios.c:256: TI_0=0;
+                            828 ;	genAssign: resultIsFar = FALSE
+   026D 10 99 02            829 	jbc     _TI_0,00115$
+   0270 80 06               830 	sjmp    00107$
+   0272                     831 00115$:
+                            832 ;	tinibios.c:257: transmit0IsBusy=0;
+                            833 ;	genAssign: resultIsFar = TRUE
+   0272 90s00r00r04         834 	mov	dptr,#_transmit0IsBusy
+   0276 E4                  835 	clr  a
+   0277 F0                  836 	movx	@dptr,a
+   0278                     837 00107$:
+   0278 D0 D0               838 	pop	psw
+   027A D0 03               839 	pop	ar3
+   027C D0 02               840 	pop	ar2
+   027E D0 95               841 	pop	dpx1
+   0280 D0 85               842 	pop	dph1
+   0282 D0 84               843 	pop	dpl1
+   0284 D0 86               844 	pop	dps
+   0286 D0 93               845 	pop	dpx
+   0288 D0 83               846 	pop	dph
+   028A D0 82               847 	pop	dpl
+   028C D0 F0               848 	pop	b
+   028E D0 E0               849 	pop	acc
+   0290 32                  850 	reti
+                            851 ;	eliminated unneeded push/pop ar4
+                            852 ;	eliminated unneeded push/pop ap
+                            853 ;------------------------------------------------------------
+                            854 ;Allocation info for local variables in function 'Serial0CharArrived'
+                            855 ;------------------------------------------------------------
+                            856 ;------------------------------------------------------------
+                            857 ;	tinibios.c:261: char Serial0CharArrived(void)
+                            858 ;	-----------------------------------------
+                            859 ;	 function Serial0CharArrived
+                            860 ;	-----------------------------------------
+   0291                     861 _Serial0CharArrived:
+                            862 ;	tinibios.c:263: if (serial0Buffered) {
+   0291 E5*00               863 	mov	a,_serial0Buffered
+   0293 60 45               864 	jz  00106$
+   0295                     865 00113$:
+                            866 ;	tinibios.c:264: if (receive0BufferHead!=receive0BufferTail)
+   0295 90s00r00r02         867 	mov	dptr,#_receive0BufferTail
+   0299 75 86 01            868 	mov     dps, #1
+   029C 90s00r00r00         869 	mov     dptr, #_receive0BufferHead
+   02A0 E0                  870 	movx	a,@dptr
+   02A1 75 86 00            871 	mov	dps,#0
+   02A4 F5 F0               872 	mov	b,a
+   02A6 E0                  873 	movx	a,@dptr
+   02A7 B5 F0 11            874 	cjne	a,b,00114$
+   02AA 75 86 01            875 	mov	dps,#1
+   02AD A3                  876 	inc	dptr
+   02AE E0                  877 	movx	a,@dptr
+   02AF 75 86 00            878 	mov	dps,#0
+   02B2 F5 F0               879 	mov	b,a
+   02B4 A3                  880 	inc	dptr
+   02B5 E0                  881 	movx	a,@dptr
+   02B6 B5 F0 02            882 	cjne	a,b,00114$
+   02B9 80 27               883 	sjmp 00107$
+   02BB                     884 00114$:
+                            885 ;	tinibios.c:265: return receive0Buffer[receive0BufferTail];
+   02BB 90s00r00r02         886 	mov	dptr,#_receive0BufferTail
+   02BF E0                  887 	movx	a,@dptr
+   02C0 24r02               888 	add	a,#_receive0Buffer
+   02C2 F5 84               889 	mov	dpl1,a
+   02C4 A3                  890 	inc	dptr
+   02C5 E0                  891 	movx	a,@dptr
+   02C6 34s00               892 	addc	a,#(_receive0Buffer >> 8)
+   02C8 F5 85               893 	mov	dph1,a
+   02CA E4                  894 	clr	a
+   02CB 34s00               895 	addc	a,#(_receive0Buffer >> 16)
+   02CD F5 95               896 	mov	dpx1,a
+   02CF 05 86               897 	inc	dps
+   02D1 E0                  898 	movx	a,@dptr
+   02D2 FA                  899 	mov	r2,a
+   02D3 75 86 00            900 	mov	dps,#0
+   02D6 8A 82               901 	mov	dpl,r2
+   02D8 80 0B               902 	sjmp 00108$
+   02DA                     903 00106$:
+                            904 ;	tinibios.c:267: if (RI_0)
+   02DA 30 98 05            905 	jnb  _RI_0,00107$
+   02DD                     906 00115$:
+                            907 ;	tinibios.c:268: return SBUF0;
+                            908 ;	genAssign: resultIsFar = FALSE
+   02DD AA 99               909 	mov	r2,_SBUF0
+   02DF 8A 82               910 	mov	dpl,r2
+                            911 ;	tinibios.c:270: return 0;
+   02E1 22                  912 	ret
+   02E2                     913 00107$:
+   02E2 75 82 00            914 	mov     dpl,#0x00
+   02E5                     915 00108$:
+   02E5 22                  916 	ret
+                            917 ;------------------------------------------------------------
+                            918 ;Allocation info for local variables in function 'Serial0PutChar'
+                            919 ;------------------------------------------------------------
+                            920 ;c                         Allocated to registers r2 
+                            921 ;------------------------------------------------------------
+                            922 ;	tinibios.c:273: void Serial0PutChar (char c)
+                            923 ;	-----------------------------------------
+                            924 ;	 function Serial0PutChar
+                            925 ;	-----------------------------------------
+   02E6                     926 _Serial0PutChar:
+   02E6 AA 82               927 	mov	r2,dpl
+                            928 ;	tinibios.c:275: if (serial0Buffered) {
+   02E8 E5*00               929 	mov	a,_serial0Buffered
+   02EA 60 12               930 	jz  00104$
+   02EC                     931 00116$:
+                            932 ;	tinibios.c:276: while (transmit0IsBusy)
+   02EC                     933 00101$:
+   02EC 90s00r00r04         934 	mov	dptr,#_transmit0IsBusy
+   02F0 E0                  935 	movx	a,@dptr
+   02F1 70 F9               936 	jnz  00101$
+   02F3                     937 00117$:
+                            938 ;	tinibios.c:278: transmit0IsBusy=1;
+                            939 ;	genAssign: resultIsFar = TRUE
+   02F3 90s00r00r04         940 	mov	dptr,#_transmit0IsBusy
+   02F7 74 01               941 	mov	a,#0x01
+   02F9 F0                  942 	movx	@dptr,a
+                            943 ;	tinibios.c:279: SBUF0=c;
+                            944 ;	genAssign: resultIsFar = FALSE
+   02FA 8A 99               945 	mov	_SBUF0,r2
+                            946 ;	tinibios.c:281: while (!TI_0)
+   02FC 80 07               947 	sjmp 00110$
+   02FE                     948 00104$:
+   02FE 30 99 FD            949 	jnb  _TI_0,00104$
+   0301                     950 00118$:
+                            951 ;	tinibios.c:283: SBUF0=c;
+                            952 ;	genAssign: resultIsFar = FALSE
+   0301 8A 99               953 	mov	_SBUF0,r2
+                            954 ;	tinibios.c:284: TI_0=0;
+                            955 ;	genAssign: resultIsFar = FALSE
+   0303 C2 99               956 	clr	_TI_0
+   0305                     957 00110$:
+   0305 22                  958 	ret
+                            959 ;------------------------------------------------------------
+                            960 ;Allocation info for local variables in function 'Serial0GetChar'
+                            961 ;------------------------------------------------------------
+                            962 ;c                         Allocated to registers r2 
+                            963 ;------------------------------------------------------------
+                            964 ;	tinibios.c:288: char Serial0GetChar (void)
+                            965 ;	-----------------------------------------
+                            966 ;	 function Serial0GetChar
+                            967 ;	-----------------------------------------
+   0306                     968 _Serial0GetChar:
+                            969 ;	tinibios.c:291: if (serial0Buffered) {
+   0306 E5*00               970 	mov	a,_serial0Buffered
+   0308 60 5F               971 	jz  00104$
+   030A                     972 00116$:
+                            973 ;	tinibios.c:292: while (receive0BufferHead==receive0BufferTail)
+   030A                     974 00101$:
+   030A 90s00r00r02         975 	mov	dptr,#_receive0BufferTail
+   030E 75 86 01            976 	mov     dps, #1
+   0311 90s00r00r00         977 	mov     dptr, #_receive0BufferHead
+   0315 E0                  978 	movx	a,@dptr
+   0316 75 86 00            979 	mov	dps,#0
+   0319 F5 F0               980 	mov	b,a
+   031B E0                  981 	movx	a,@dptr
+   031C B5 F0 11            982 	cjne	a,b,00117$
+   031F 75 86 01            983 	mov	dps,#1
+   0322 A3                  984 	inc	dptr
+   0323 E0                  985 	movx	a,@dptr
+   0324 75 86 00            986 	mov	dps,#0
+   0327 F5 F0               987 	mov	b,a
+   0329 A3                  988 	inc	dptr
+   032A E0                  989 	movx	a,@dptr
+   032B B5 F0 02            990 	cjne	a,b,00117$
+   032E 80 DA               991 	sjmp 00101$
+   0330                     992 00117$:
+                            993 ;	tinibios.c:294: c=receive0Buffer[receive0BufferTail];
+   0330 90s00r00r02         994 	mov	dptr,#_receive0BufferTail
+   0334 E0                  995 	movx	a,@dptr
+   0335 24r02               996 	add	a,#_receive0Buffer
+   0337 F5 84               997 	mov	dpl1,a
+   0339 A3                  998 	inc	dptr
+   033A E0                  999 	movx	a,@dptr
+   033B 34s00              1000 	addc	a,#(_receive0Buffer >> 8)
+   033D F5 85              1001 	mov	dph1,a
+   033F E4                 1002 	clr	a
+   0340 34s00              1003 	addc	a,#(_receive0Buffer >> 16)
+   0342 F5 95              1004 	mov	dpx1,a
+   0344 05 86              1005 	inc	dps
+   0346 E0                 1006 	movx	a,@dptr
+   0347 FA                 1007 	mov	r2,a
+   0348 75 86 00           1008 	mov	dps,#0
+                           1009 ;	genAssign: resultIsFar = TRUE
+                           1010 ;	tinibios.c:295: ES0=0; // disable serial interrupts
+                           1011 ;	genAssign: resultIsFar = FALSE
+   034B C2 AC              1012 	clr	_ES0
+                           1013 ;	tinibios.c:296: receive0BufferTail=(receive0BufferTail+1)&(S0RBS-1);
+   034D 90s00r00r02        1014 	mov	dptr,#_receive0BufferTail
+   0351 E0                 1015 	movx	a,@dptr
+   0352 24 01              1016 	add	a,#0x01
+   0354 FB                 1017 	mov	r3,a
+   0355 A3                 1018 	inc	dptr
+   0356 E0                 1019 	movx	a,@dptr
+   0357 34 00              1020 	addc	a,#0x00
+   0359 FC                 1021 	mov	r4,a
+   035A 90s00r00r02        1022 	mov	dptr,#_receive0BufferTail
+   035E EB                 1023 	mov	a,r3
+   035F F0                 1024 	movx	@dptr,a
+   0360 74 03              1025 	mov	a,#0x03
+   0362 5C                 1026 	anl	a,r4
+   0363 A3                 1027 	inc	dptr
+   0364 F0                 1028 	movx	@dptr,a
+                           1029 ;	tinibios.c:297: ES0=1; // enable serial interrupts
+                           1030 ;	genAssign: resultIsFar = FALSE
+   0365 D2 AC              1031 	setb	_ES0
+                           1032 ;	tinibios.c:299: while (!RI_0)
+   0367 80 07              1033 	sjmp 00109$
+   0369                    1034 00104$:
+   0369 30 98 FD           1035 	jnb  _RI_0,00104$
+   036C                    1036 00118$:
+                           1037 ;	tinibios.c:301: c=SBUF0;
+                           1038 ;	genAssign: resultIsFar = TRUE
+   036C AA 99              1039 	mov	r2,_SBUF0
+                           1040 ;	tinibios.c:302: RI_0=0;
+                           1041 ;	genAssign: resultIsFar = FALSE
+   036E C2 98              1042 	clr	_RI_0
+   0370                    1043 00109$:
+                           1044 ;	tinibios.c:304: return c;
+   0370 8A 82              1045 	mov	dpl,r2
+   0372                    1046 00110$:
+   0372 22                 1047 	ret
+                           1048 ;------------------------------------------------------------
+                           1049 ;Allocation info for local variables in function 'Serial0SendBreak'
+                           1050 ;------------------------------------------------------------
+                           1051 ;------------------------------------------------------------
+                           1052 ;	tinibios.c:307: void Serial0SendBreak()
+                           1053 ;	-----------------------------------------
+                           1054 ;	 function Serial0SendBreak
+                           1055 ;	-----------------------------------------
+   0373                    1056 _Serial0SendBreak:
+                           1057 ;	tinibios.c:309: P3 &= ~0x02;
+   0373 53 B0 FD           1058 	anl	_P3,#0xFD
+                           1059 ;	tinibios.c:310: ClockMilliSecondsDelay(2);
+   0376 90 00 00 02        1060 	mov	dptr,#0x000002
+   037A 75 F0 00           1061 	mov	b,#0x00
+   037D 12s00r06rCE        1062 	lcall	_ClockMilliSecondsDelay
+                           1063 ;	tinibios.c:311: P3 |= 0x02;
+   0381 43 B0 02           1064 	orl	_P3,#0x02
+   0384                    1065 00101$:
+   0384 22                 1066 	ret
+                           1067 ;------------------------------------------------------------
+                           1068 ;Allocation info for local variables in function 'Serial0Flush'
+                           1069 ;------------------------------------------------------------
+                           1070 ;------------------------------------------------------------
+                           1071 ;	tinibios.c:314: void Serial0Flush()
+                           1072 ;	-----------------------------------------
+                           1073 ;	 function Serial0Flush
+                           1074 ;	-----------------------------------------
+   0385                    1075 _Serial0Flush:
+                           1076 ;	tinibios.c:316: ES0=0; // disable interrupts
+                           1077 ;	genAssign: resultIsFar = FALSE
+   0385 C2 AC              1078 	clr	_ES0
+                           1079 ;	tinibios.c:317: receive0BufferHead=receive0BufferTail=0;
+                           1080 ;	genAssign: resultIsFar = TRUE
+   0387 90s00r00r02        1081 	mov	dptr,#_receive0BufferTail
+   038B E4                 1082 	clr	a
+   038C F0                 1083 	movx	@dptr,a
+   038D A3                 1084 	inc	dptr
+   038E F0                 1085 	movx	@dptr,a
+                           1086 ;	genAssign: resultIsFar = TRUE
+   038F 90s00r00r00        1087 	mov	dptr,#_receive0BufferHead
+   0393 E4                 1088 	clr	a
+   0394 F0                 1089 	movx	@dptr,a
+   0395 A3                 1090 	inc	dptr
+   0396 F0                 1091 	movx	@dptr,a
+                           1092 ;	tinibios.c:318: RI_0=0;
+                           1093 ;	genAssign: resultIsFar = FALSE
+   0397 C2 98              1094 	clr	_RI_0
+                           1095 ;	tinibios.c:319: if (serial0Buffered) {
+   0399 E5*00              1096 	mov	a,_serial0Buffered
+   039B 60 06              1097 	jz  00102$
+   039D                    1098 00107$:
+                           1099 ;	tinibios.c:320: TI_0=0;
+                           1100 ;	genAssign: resultIsFar = FALSE
+   039D C2 99              1101 	clr	_TI_0
+                           1102 ;	tinibios.c:321: ES0=1; // enable interrupts
+                           1103 ;	genAssign: resultIsFar = FALSE
+   039F D2 AC              1104 	setb	_ES0
+   03A1 80 02              1105 	sjmp 00104$
+   03A3                    1106 00102$:
+                           1107 ;	tinibios.c:323: TI_0=1;
+                           1108 ;	genAssign: resultIsFar = FALSE
+   03A3 D2 99              1109 	setb	_TI_0
+   03A5                    1110 00104$:
+   03A5 22                 1111 	ret
+                           1112 ;------------------------------------------------------------
+                           1113 ;Allocation info for local variables in function 'Serial1Init'
+                           1114 ;------------------------------------------------------------
+                           1115 ;buffered                  Allocated with name '_Serial1Init_PARM_2'
+                           1116 ;baud                      Allocated to registers r2 r3 r4 r5 
+                           1117 ;------------------------------------------------------------
+                           1118 ;	tinibios.c:351: void Serial1Init (unsigned long baud, unsigned char buffered)
+                           1119 ;	-----------------------------------------
+                           1120 ;	 function Serial1Init
+                           1121 ;	-----------------------------------------
+   03A6                    1122 _Serial1Init:
+   03A6 AA 82              1123 	mov	r2,dpl
+   03A8 AB 83              1124 	mov	r3,dph
+   03AA AC 93              1125 	mov	r4,dpx
+   03AC AD F0              1126 	mov	r5,b
+                           1127 ;	tinibios.c:353: if (baud==0) {
+   03AE EA                 1128 	mov	a,r2
+   03AF 4B                 1129 	orl	a,r3
+   03B0 4C                 1130 	orl	a,r4
+   03B1 4D                 1131 	orl	a,r5
+   03B2 70 07              1132 	jnz  00102$
+   03B4                    1133 00110$:
+                           1134 ;	tinibios.c:354: ES1=0; // disable interrupt
+                           1135 ;	genAssign: resultIsFar = FALSE
+   03B4 C2 AE              1136 	clr	_ES1
+                           1137 ;	tinibios.c:355: SCON1 &= 0xef; // disable receiver
+   03B6 53 C0 EF           1138 	anl	_SCON1,#0xEF
+                           1139 ;	tinibios.c:356: return; // and don't touch it
+   03B9 80 39              1140 	sjmp 00106$
+   03BB                    1141 00102$:
+                           1142 ;	tinibios.c:359: ES1 = 0; // disable channel 1 interrupt
+                           1143 ;	genAssign: resultIsFar = FALSE
+   03BB C2 AE              1144 	clr	_ES1
+                           1145 ;	tinibios.c:360: TR1 = 0; // stop timer 1
+                           1146 ;	genAssign: resultIsFar = FALSE
+   03BD C2 8E              1147 	clr	_TR1
+                           1148 ;	tinibios.c:364: SCON1 = 0x50;
+                           1149 ;	genAssign: resultIsFar = FALSE
+   03BF 75 C0 50           1150 	mov	_SCON1,#0x50
+                           1151 ;	tinibios.c:366: WDCON |= 0x80; // clock is 16x bitrate
+   03C2 43 D8 80           1152 	orl	_WDCON,#0x80
+                           1153 ;	tinibios.c:367: CKCON|=0x10; // timer uses xtal/4
+   03C5 43 8E 10           1154 	orl	_CKCON,#0x10
+                           1155 ;	tinibios.c:369: TMOD = (TMOD&0x0f) | 0x20; // timer 1 is an 8bit auto-reload counter
+   03C8 74 0F              1156 	mov	a,#0x0F
+   03CA 55 89              1157 	anl	a,_TMOD
+   03CC FE                 1158 	mov	r6,a
+   03CD 74 20              1159 	mov	a,#0x20
+   03CF 4E                 1160 	orl	a,r6
+   03D0 F5 89              1161 	mov	_TMOD,a
+                           1162 ;	tinibios.c:372: Serial1Baud(baud);
+   03D2 8A 82              1163 	mov	dpl,r2
+   03D4 8B 83              1164 	mov	dph,r3
+   03D6 8C 93              1165 	mov	dpx,r4
+   03D8 8D F0              1166 	mov	b,r5
+   03DA 12s00r03rF5        1167 	lcall	_Serial1Baud
+                           1168 ;	tinibios.c:374: serial1Buffered=buffered;
+   03DE 90s00r04r43        1169 	mov	dptr,#_Serial1Init_PARM_2
+                           1170 ;	genAssign: resultIsFar = TRUE
+   03E2 E0                 1171 	movx	a,@dptr
+                           1172 ;	genAssign: resultIsFar = FALSE
+                           1173 ;	tinibios.c:376: if (buffered) {
+   03E3 FA                 1174 	mov  r2,a
+   03E4 8A*01              1175 	mov  _serial1Buffered,r2 
+   03E6 60 08              1176 	jz  00104$
+   03E8                    1177 00111$:
+                           1178 ;	tinibios.c:377: RI_1=TI_1=0; // clear "pending" interrupts
+                           1179 ;	genAssign: resultIsFar = FALSE
+   03E8 C2 C1              1180 	clr	_TI_1
+                           1181 ;	genAssign: resultIsFar = FALSE
+   03EA C2 C0              1182 	clr	_RI_1
+                           1183 ;	tinibios.c:378: ES1 = 1; // enable serial channel 1 interrupt
+                           1184 ;	genAssign: resultIsFar = FALSE
+   03EC D2 AE              1185 	setb	_ES1
+   03EE 80 04              1186 	sjmp 00106$
+   03F0                    1187 00104$:
+                           1188 ;	tinibios.c:380: RI_1=0; // receive buffer empty
+                           1189 ;	genAssign: resultIsFar = FALSE
+   03F0 C2 C0              1190 	clr	_RI_1
+                           1191 ;	tinibios.c:381: TI_1=1; // transmit buffer empty
+                           1192 ;	genAssign: resultIsFar = FALSE
+   03F2 D2 C1              1193 	setb	_TI_1
+   03F4                    1194 00106$:
+   03F4 22                 1195 	ret
+                           1196 ;------------------------------------------------------------
+                           1197 ;Allocation info for local variables in function 'Serial1Baud'
+                           1198 ;------------------------------------------------------------
+                           1199 ;baud                      Allocated to registers r2 r3 r4 r5 
+                           1200 ;------------------------------------------------------------
+                           1201 ;	tinibios.c:385: void Serial1Baud(unsigned long baud)
+                           1202 ;	-----------------------------------------
+                           1203 ;	 function Serial1Baud
+                           1204 ;	-----------------------------------------
+   03F5                    1205 _Serial1Baud:
+   03F5 AA 82              1206 	mov	r2,dpl
+   03F7 AB 83              1207 	mov	r3,dph
+   03F9 AC 93              1208 	mov	r4,dpx
+   03FB AD F0              1209 	mov	r5,b
+                           1210 ;	tinibios.c:387: TR1=0; // stop timer
+                           1211 ;	genAssign: resultIsFar = FALSE
+   03FD C2 8E              1212 	clr	_TR1
+                           1213 ;	tinibios.c:388: baud=-((long)OSCILLATOR/(32*baud));
+   03FF 75 F0 06           1214 	mov	b,#0x06
+   0402 AE 02              1215 	mov	r6,ar2
+   0404 AF 03              1216 	mov	r7,ar3
+   0406 A8 04              1217 	mov	r0,ar4
+   0408 A9 05              1218 	mov	r1,ar5
+   040A 80 0D              1219 	sjmp	00104$
+   040C                    1220 00103$:
+   040C EE                 1221 	mov	a,r6
+   040D 25 E0              1222 	add	a,acc
+   040F FE                 1223 	mov	r6,a
+   0410 EF                 1224 	mov	a,r7
+   0411 33                 1225 	rlc	a
+   0412 FF                 1226 	mov	r7,a
+   0413 E8                 1227 	mov	a,r0
+   0414 33                 1228 	rlc	a
+   0415 F8                 1229 	mov	r0,a
+   0416 E9                 1230 	mov	a,r1
+   0417 33                 1231 	rlc	a
+   0418 F9                 1232 	mov	r1,a
+   0419                    1233 00104$:
+   0419 D5 F0 F0           1234 	djnz	b,00103$
+                           1235 ;	genAssign: resultIsFar = TRUE
+   041C 90s00r00r00        1236 	mov	dptr,#__divulong_PARM_2
+   0420 EE                 1237 	mov	a,r6
+   0421 F0                 1238 	movx	@dptr,a
+   0422 A3                 1239 	inc	dptr
+   0423 EF                 1240 	mov	a,r7
+   0424 F0                 1241 	movx	@dptr,a
+   0425 A3                 1242 	inc	dptr
+   0426 E8                 1243 	mov	a,r0
+   0427 F0                 1244 	movx	@dptr,a
+   0428 A3                 1245 	inc	dptr
+   0429 E9                 1246 	mov	a,r1
+   042A F0                 1247 	movx	@dptr,a
+   042B 90 19 40 00        1248 	mov	dptr,#0x194000
+   042F 75 F0 01           1249 	mov	b,#0x01
+   0432 12s00r00r00        1250 	lcall	__divulong
+   0436 AE 82              1251 	mov	r6,dpl
+   0438 AF 83              1252 	mov	r7,dph
+   043A A8 93              1253 	mov	r0,dpx
+   043C A9 F0              1254 	mov	r1,b
+   043E C3                 1255 	clr	c
+   043F E4                 1256 	clr	a
+   0440 9E                 1257 	subb	a,r6
+   0441 FA                 1258 	mov	r2,a
+   0442 E4                 1259 	clr	a
+   0443 9F                 1260 	subb	a,r7
+   0444 FB                 1261 	mov	r3,a
+   0445 E4                 1262 	clr	a
+   0446 98                 1263 	subb	a,r0
+   0447 FC                 1264 	mov	r4,a
+   0448 E4                 1265 	clr	a
+   0449 99                 1266 	subb	a,r1
+   044A FD                 1267 	mov	r5,a
+                           1268 ;	tinibios.c:389: TL1=TH1 = baud;
+                           1269 ;	genAssign: resultIsFar = FALSE
+   044B 8A 8D              1270 	mov	_TH1,r2
+                           1271 ;	genAssign: resultIsFar = FALSE
+   044D 8A 8B              1272 	mov	_TL1,r2
+                           1273 ;	tinibios.c:390: TF1=0; // clear overflow flag
+                           1274 ;	genAssign: resultIsFar = FALSE
+   044F C2 8F              1275 	clr	_TF1
+                           1276 ;	tinibios.c:391: TR1=1; // start timer
+                           1277 ;	genAssign: resultIsFar = FALSE
+   0451 D2 8E              1278 	setb	_TR1
+   0453                    1279 00101$:
+   0453 22                 1280 	ret
+                           1281 ;------------------------------------------------------------
+                           1282 ;Allocation info for local variables in function 'Serial1IrqHandler'
+                           1283 ;------------------------------------------------------------
+                           1284 ;------------------------------------------------------------
+                           1285 ;	tinibios.c:394: void Serial1IrqHandler (void) __interrupt 7
+                           1286 ;	-----------------------------------------
+                           1287 ;	 function Serial1IrqHandler
+                           1288 ;	-----------------------------------------
+   0454                    1289 _Serial1IrqHandler:
+   0454 C0 E0              1290 	push	acc
+   0456 C0 F0              1291 	push	b
+   0458 C0 82              1292 	push	dpl
+   045A C0 83              1293 	push	dph
+   045C C0 93              1294 	push	dpx
+   045E C0 86              1295 	push	dps
+   0460 75 86 00           1296 	mov	dps,#0
+   0463 C0 84              1297 	push	dpl1
+   0465 C0 85              1298 	push	dph1
+   0467 C0 95              1299 	push	dpx1
+   0469 C0 02              1300 	push	ar2
+   046B C0 03              1301 	push	ar3
+   046D C0 D0              1302 	push	psw
+   046F 75 D0 00           1303 	mov	psw,#0x00
+                           1304 ;	tinibios.c:396: if (RI_1) {
+   0472 30 C0 76           1305 	jnb  _RI_1,00104$
+   0475                    1306 00112$:
+                           1307 ;	tinibios.c:397: receive1Buffer[receive1BufferHead]=SBUF1;
+   0475 90s00r00r05        1308 	mov	dptr,#_receive1BufferHead
+   0479 E0                 1309 	movx	a,@dptr
+   047A 24r03              1310 	add	a,#_receive1Buffer
+   047C F5 84              1311 	mov	dpl1,a
+   047E A3                 1312 	inc	dptr
+   047F E0                 1313 	movx	a,@dptr
+   0480 34s04              1314 	addc	a,#(_receive1Buffer >> 8)
+   0482 F5 85              1315 	mov	dph1,a
+   0484 E4                 1316 	clr	a
+   0485 34s00              1317 	addc	a,#(_receive1Buffer >> 16)
+   0487 F5 95              1318 	mov	dpx1,a
+   0489 E5 C1              1319 	mov	a,_SBUF1
+   048B 05 86              1320 	inc	dps
+   048D F0                 1321 	movx	@dptr,a
+   048E 75 86 00           1322 	mov	dps,#0
+                           1323 ;	tinibios.c:398: receive1BufferHead=(receive1BufferHead+1)&(S1RBS-1);
+   0491 90s00r00r05        1324 	mov	dptr,#_receive1BufferHead
+   0495 E0                 1325 	movx	a,@dptr
+   0496 24 01              1326 	add	a,#0x01
+   0498 FA                 1327 	mov	r2,a
+   0499 A3                 1328 	inc	dptr
+   049A E0                 1329 	movx	a,@dptr
+   049B 34 00              1330 	addc	a,#0x00
+   049D FB                 1331 	mov	r3,a
+   049E 90s00r00r05        1332 	mov	dptr,#_receive1BufferHead
+   04A2 74 3F              1333 	mov	a,#0x3F
+   04A4 5A                 1334 	anl	a,r2
+   04A5 F0                 1335 	movx	@dptr,a
+   04A6 A3                 1336 	inc	dptr
+   04A7 E4                 1337 	clr	a
+   04A8 F0                 1338 	movx	@dptr,a
+                           1339 ;	tinibios.c:399: if (receive1BufferHead==receive1BufferTail) /* buffer overrun, sorry :) */
+   04A9 90s00r00r07        1340 	mov	dptr,#_receive1BufferTail
+   04AD 75 86 01           1341 	mov     dps, #1
+   04B0 90s00r00r05        1342 	mov     dptr, #_receive1BufferHead
+   04B4 E0                 1343 	movx	a,@dptr
+   04B5 75 86 00           1344 	mov	dps,#0
+   04B8 F5 F0              1345 	mov	b,a
+   04BA E0                 1346 	movx	a,@dptr
+   04BB B5 F0 11           1347 	cjne	a,b,00113$
+   04BE 75 86 01           1348 	mov	dps,#1
+   04C1 A3                 1349 	inc	dptr
+   04C2 E0                 1350 	movx	a,@dptr
+   04C3 75 86 00           1351 	mov	dps,#0
+   04C6 F5 F0              1352 	mov	b,a
+   04C8 A3                 1353 	inc	dptr
+   04C9 E0                 1354 	movx	a,@dptr
+   04CA B5 F0 02           1355 	cjne	a,b,00113$
+   04CD 80 02              1356 	sjmp	00114$
+   04CF                    1357 00113$:
+   04CF 80 18              1358 	sjmp 00102$
+   04D1                    1359 00114$:
+                           1360 ;	tinibios.c:400: receive1BufferTail=(receive1BufferTail+1)&(S1RBS-1);
+   04D1 90s00r00r07        1361 	mov	dptr,#_receive1BufferTail
+   04D5 E0                 1362 	movx	a,@dptr
+   04D6 24 01              1363 	add	a,#0x01
+   04D8 FA                 1364 	mov	r2,a
+   04D9 A3                 1365 	inc	dptr
+   04DA E0                 1366 	movx	a,@dptr
+   04DB 34 00              1367 	addc	a,#0x00
+   04DD FB                 1368 	mov	r3,a
+   04DE 90s00r00r07        1369 	mov	dptr,#_receive1BufferTail
+   04E2 74 3F              1370 	mov	a,#0x3F
+   04E4 5A                 1371 	anl	a,r2
+   04E5 F0                 1372 	movx	@dptr,a
+   04E6 A3                 1373 	inc	dptr
+   04E7 E4                 1374 	clr	a
+   04E8 F0                 1375 	movx	@dptr,a
+   04E9                    1376 00102$:
+                           1377 ;	tinibios.c:401: RI_1=0;
+                           1378 ;	genAssign: resultIsFar = FALSE
+   04E9 C2 C0              1379 	clr	_RI_1
+   04EB                    1380 00104$:
+                           1381 ;	tinibios.c:403: if (TI_1) {
+                           1382 ;	tinibios.c:404: TI_1=0;
+                           1383 ;	genAssign: resultIsFar = FALSE
+   04EB 10 C1 02           1384 	jbc     _TI_1,00115$
+   04EE 80 06              1385 	sjmp    00107$
+   04F0                    1386 00115$:
+                           1387 ;	tinibios.c:405: transmit1IsBusy=0;
+                           1388 ;	genAssign: resultIsFar = TRUE
+   04F0 90s00r00r09        1389 	mov	dptr,#_transmit1IsBusy
+   04F4 E4                 1390 	clr  a
+   04F5 F0                 1391 	movx	@dptr,a
+   04F6                    1392 00107$:
+   04F6 D0 D0              1393 	pop	psw
+   04F8 D0 03              1394 	pop	ar3
+   04FA D0 02              1395 	pop	ar2
+   04FC D0 95              1396 	pop	dpx1
+   04FE D0 85              1397 	pop	dph1
+   0500 D0 84              1398 	pop	dpl1
+   0502 D0 86              1399 	pop	dps
+   0504 D0 93              1400 	pop	dpx
+   0506 D0 83              1401 	pop	dph
+   0508 D0 82              1402 	pop	dpl
+   050A D0 F0              1403 	pop	b
+   050C D0 E0              1404 	pop	acc
+   050E 32                 1405 	reti
+                           1406 ;	eliminated unneeded push/pop ar4
+                           1407 ;	eliminated unneeded push/pop ap
+                           1408 ;------------------------------------------------------------
+                           1409 ;Allocation info for local variables in function 'Serial1CharArrived'
+                           1410 ;------------------------------------------------------------
+                           1411 ;------------------------------------------------------------
+                           1412 ;	tinibios.c:409: char Serial1CharArrived(void)
+                           1413 ;	-----------------------------------------
+                           1414 ;	 function Serial1CharArrived
+                           1415 ;	-----------------------------------------
+   050F                    1416 _Serial1CharArrived:
+                           1417 ;	tinibios.c:411: if (serial1Buffered) {
+   050F E5*01              1418 	mov	a,_serial1Buffered
+   0511 60 45              1419 	jz  00106$
+   0513                    1420 00113$:
+                           1421 ;	tinibios.c:412: if (receive1BufferHead!=receive1BufferTail)
+   0513 90s00r00r07        1422 	mov	dptr,#_receive1BufferTail
+   0517 75 86 01           1423 	mov     dps, #1
+   051A 90s00r00r05        1424 	mov     dptr, #_receive1BufferHead
+   051E E0                 1425 	movx	a,@dptr
+   051F 75 86 00           1426 	mov	dps,#0
+   0522 F5 F0              1427 	mov	b,a
+   0524 E0                 1428 	movx	a,@dptr
+   0525 B5 F0 11           1429 	cjne	a,b,00114$
+   0528 75 86 01           1430 	mov	dps,#1
+   052B A3                 1431 	inc	dptr
+   052C E0                 1432 	movx	a,@dptr
+   052D 75 86 00           1433 	mov	dps,#0
+   0530 F5 F0              1434 	mov	b,a
+   0532 A3                 1435 	inc	dptr
+   0533 E0                 1436 	movx	a,@dptr
+   0534 B5 F0 02           1437 	cjne	a,b,00114$
+   0537 80 27              1438 	sjmp 00107$
+   0539                    1439 00114$:
+                           1440 ;	tinibios.c:413: return receive1Buffer[receive1BufferTail];
+   0539 90s00r00r07        1441 	mov	dptr,#_receive1BufferTail
+   053D E0                 1442 	movx	a,@dptr
+   053E 24r03              1443 	add	a,#_receive1Buffer
+   0540 F5 84              1444 	mov	dpl1,a
+   0542 A3                 1445 	inc	dptr
+   0543 E0                 1446 	movx	a,@dptr
+   0544 34s04              1447 	addc	a,#(_receive1Buffer >> 8)
+   0546 F5 85              1448 	mov	dph1,a
+   0548 E4                 1449 	clr	a
+   0549 34s00              1450 	addc	a,#(_receive1Buffer >> 16)
+   054B F5 95              1451 	mov	dpx1,a
+   054D 05 86              1452 	inc	dps
+   054F E0                 1453 	movx	a,@dptr
+   0550 FA                 1454 	mov	r2,a
+   0551 75 86 00           1455 	mov	dps,#0
+   0554 8A 82              1456 	mov	dpl,r2
+   0556 80 0B              1457 	sjmp 00108$
+   0558                    1458 00106$:
+                           1459 ;	tinibios.c:415: if (RI_1)
+   0558 30 C0 05           1460 	jnb  _RI_1,00107$
+   055B                    1461 00115$:
+                           1462 ;	tinibios.c:416: return SBUF1;
+                           1463 ;	genAssign: resultIsFar = FALSE
+   055B AA C1              1464 	mov	r2,_SBUF1
+   055D 8A 82              1465 	mov	dpl,r2
+                           1466 ;	tinibios.c:418: return 0;
+   055F 22                 1467 	ret
+   0560                    1468 00107$:
+   0560 75 82 00           1469 	mov     dpl,#0x00
+   0563                    1470 00108$:
+   0563 22                 1471 	ret
+                           1472 ;------------------------------------------------------------
+                           1473 ;Allocation info for local variables in function 'Serial1PutChar'
+                           1474 ;------------------------------------------------------------
+                           1475 ;c                         Allocated to registers r2 
+                           1476 ;------------------------------------------------------------
+                           1477 ;	tinibios.c:421: void Serial1PutChar (char c)
+                           1478 ;	-----------------------------------------
+                           1479 ;	 function Serial1PutChar
+                           1480 ;	-----------------------------------------
+   0564                    1481 _Serial1PutChar:
+   0564 AA 82              1482 	mov	r2,dpl
+                           1483 ;	tinibios.c:423: if (serial1Buffered) {
+   0566 E5*01              1484 	mov	a,_serial1Buffered
+   0568 60 12              1485 	jz  00104$
+   056A                    1486 00116$:
+                           1487 ;	tinibios.c:424: while (transmit1IsBusy)
+   056A                    1488 00101$:
+   056A 90s00r00r09        1489 	mov	dptr,#_transmit1IsBusy
+   056E E0                 1490 	movx	a,@dptr
+   056F 70 F9              1491 	jnz  00101$
+   0571                    1492 00117$:
+                           1493 ;	tinibios.c:426: transmit1IsBusy=1;
+                           1494 ;	genAssign: resultIsFar = TRUE
+   0571 90s00r00r09        1495 	mov	dptr,#_transmit1IsBusy
+   0575 74 01              1496 	mov	a,#0x01
+   0577 F0                 1497 	movx	@dptr,a
+                           1498 ;	tinibios.c:427: SBUF1=c;
+                           1499 ;	genAssign: resultIsFar = FALSE
+   0578 8A C1              1500 	mov	_SBUF1,r2
+                           1501 ;	tinibios.c:429: while (!TI_1)
+   057A 80 07              1502 	sjmp 00110$
+   057C                    1503 00104$:
+   057C 30 C1 FD           1504 	jnb  _TI_1,00104$
+   057F                    1505 00118$:
+                           1506 ;	tinibios.c:431: SBUF1=c;
+                           1507 ;	genAssign: resultIsFar = FALSE
+   057F 8A C1              1508 	mov	_SBUF1,r2
+                           1509 ;	tinibios.c:432: TI_1=0;
+                           1510 ;	genAssign: resultIsFar = FALSE
+   0581 C2 C1              1511 	clr	_TI_1
+   0583                    1512 00110$:
+   0583 22                 1513 	ret
+                           1514 ;------------------------------------------------------------
+                           1515 ;Allocation info for local variables in function 'Serial1GetChar'
+                           1516 ;------------------------------------------------------------
+                           1517 ;c                         Allocated to registers r2 
+                           1518 ;------------------------------------------------------------
+                           1519 ;	tinibios.c:436: char Serial1GetChar (void)
+                           1520 ;	-----------------------------------------
+                           1521 ;	 function Serial1GetChar
+                           1522 ;	-----------------------------------------
+   0584                    1523 _Serial1GetChar:
+                           1524 ;	tinibios.c:439: if (serial1Buffered) {
+   0584 E5*01              1525 	mov	a,_serial1Buffered
+   0586 60 5F              1526 	jz  00104$
+   0588                    1527 00116$:
+                           1528 ;	tinibios.c:440: while (receive1BufferHead==receive1BufferTail)
+   0588                    1529 00101$:
+   0588 90s00r00r07        1530 	mov	dptr,#_receive1BufferTail
+   058C 75 86 01           1531 	mov     dps, #1
+   058F 90s00r00r05        1532 	mov     dptr, #_receive1BufferHead
+   0593 E0                 1533 	movx	a,@dptr
+   0594 75 86 00           1534 	mov	dps,#0
+   0597 F5 F0              1535 	mov	b,a
+   0599 E0                 1536 	movx	a,@dptr
+   059A B5 F0 11           1537 	cjne	a,b,00117$
+   059D 75 86 01           1538 	mov	dps,#1
+   05A0 A3                 1539 	inc	dptr
+   05A1 E0                 1540 	movx	a,@dptr
+   05A2 75 86 00           1541 	mov	dps,#0
+   05A5 F5 F0              1542 	mov	b,a
+   05A7 A3                 1543 	inc	dptr
+   05A8 E0                 1544 	movx	a,@dptr
+   05A9 B5 F0 02           1545 	cjne	a,b,00117$
+   05AC 80 DA              1546 	sjmp 00101$
+   05AE                    1547 00117$:
+                           1548 ;	tinibios.c:442: c=receive1Buffer[receive1BufferTail];
+   05AE 90s00r00r07        1549 	mov	dptr,#_receive1BufferTail
+   05B2 E0                 1550 	movx	a,@dptr
+   05B3 24r03              1551 	add	a,#_receive1Buffer
+   05B5 F5 84              1552 	mov	dpl1,a
+   05B7 A3                 1553 	inc	dptr
+   05B8 E0                 1554 	movx	a,@dptr
+   05B9 34s04              1555 	addc	a,#(_receive1Buffer >> 8)
+   05BB F5 85              1556 	mov	dph1,a
+   05BD E4                 1557 	clr	a
+   05BE 34s00              1558 	addc	a,#(_receive1Buffer >> 16)
+   05C0 F5 95              1559 	mov	dpx1,a
+   05C2 05 86              1560 	inc	dps
+   05C4 E0                 1561 	movx	a,@dptr
+   05C5 FA                 1562 	mov	r2,a
+   05C6 75 86 00           1563 	mov	dps,#0
+                           1564 ;	genAssign: resultIsFar = TRUE
+                           1565 ;	tinibios.c:443: ES1=0; // disable serial interrupts
+                           1566 ;	genAssign: resultIsFar = FALSE
+   05C9 C2 AE              1567 	clr	_ES1
+                           1568 ;	tinibios.c:444: receive1BufferTail=(receive1BufferTail+1)&(S1RBS-1);
+   05CB 90s00r00r07        1569 	mov	dptr,#_receive1BufferTail
+   05CF E0                 1570 	movx	a,@dptr
+   05D0 24 01              1571 	add	a,#0x01
+   05D2 FB                 1572 	mov	r3,a
+   05D3 A3                 1573 	inc	dptr
+   05D4 E0                 1574 	movx	a,@dptr
+   05D5 34 00              1575 	addc	a,#0x00
+   05D7 FC                 1576 	mov	r4,a
+   05D8 90s00r00r07        1577 	mov	dptr,#_receive1BufferTail
+   05DC 74 3F              1578 	mov	a,#0x3F
+   05DE 5B                 1579 	anl	a,r3
+   05DF F0                 1580 	movx	@dptr,a
+   05E0 A3                 1581 	inc	dptr
+   05E1 E4                 1582 	clr	a
+   05E2 F0                 1583 	movx	@dptr,a
+                           1584 ;	tinibios.c:445: ES1=1; // enable serial interrupts
+                           1585 ;	genAssign: resultIsFar = FALSE
+   05E3 D2 AE              1586 	setb	_ES1
+                           1587 ;	tinibios.c:447: while (!RI_1)
+   05E5 80 07              1588 	sjmp 00109$
+   05E7                    1589 00104$:
+   05E7 30 C0 FD           1590 	jnb  _RI_1,00104$
+   05EA                    1591 00118$:
+                           1592 ;	tinibios.c:449: c=SBUF1;
+                           1593 ;	genAssign: resultIsFar = TRUE
+   05EA AA C1              1594 	mov	r2,_SBUF1
+                           1595 ;	tinibios.c:450: RI_1=0;
+                           1596 ;	genAssign: resultIsFar = FALSE
+   05EC C2 C0              1597 	clr	_RI_1
+   05EE                    1598 00109$:
+                           1599 ;	tinibios.c:452: return c;
+   05EE 8A 82              1600 	mov	dpl,r2
+   05F0                    1601 00110$:
+   05F0 22                 1602 	ret
+                           1603 ;------------------------------------------------------------
+                           1604 ;Allocation info for local variables in function 'Serial1SendBreak'
+                           1605 ;------------------------------------------------------------
+                           1606 ;------------------------------------------------------------
+                           1607 ;	tinibios.c:455: void Serial1SendBreak()
+                           1608 ;	-----------------------------------------
+                           1609 ;	 function Serial1SendBreak
+                           1610 ;	-----------------------------------------
+   05F1                    1611 _Serial1SendBreak:
+                           1612 ;	tinibios.c:457: P5 &= ~0x08;
+   05F1 53 A1 F7           1613 	anl	_P5,#0xF7
+                           1614 ;	tinibios.c:458: ClockMilliSecondsDelay(2);
+   05F4 90 00 00 02        1615 	mov	dptr,#0x000002
+   05F8 75 F0 00           1616 	mov	b,#0x00
+   05FB 12s00r06rCE        1617 	lcall	_ClockMilliSecondsDelay
+                           1618 ;	tinibios.c:459: P5 |= 0x08;
+   05FF 43 A1 08           1619 	orl	_P5,#0x08
+   0602                    1620 00101$:
+   0602 22                 1621 	ret
+                           1622 ;------------------------------------------------------------
+                           1623 ;Allocation info for local variables in function 'Serial1Flush'
+                           1624 ;------------------------------------------------------------
+                           1625 ;------------------------------------------------------------
+                           1626 ;	tinibios.c:462: void Serial1Flush()
+                           1627 ;	-----------------------------------------
+                           1628 ;	 function Serial1Flush
+                           1629 ;	-----------------------------------------
+   0603                    1630 _Serial1Flush:
+                           1631 ;	tinibios.c:464: ES1=0; // disable interrupts
+                           1632 ;	genAssign: resultIsFar = FALSE
+   0603 C2 AE              1633 	clr	_ES1
+                           1634 ;	tinibios.c:465: receive1BufferHead=receive1BufferTail=0;
+                           1635 ;	genAssign: resultIsFar = TRUE
+   0605 90s00r00r07        1636 	mov	dptr,#_receive1BufferTail
+   0609 E4                 1637 	clr	a
+   060A F0                 1638 	movx	@dptr,a
+   060B A3                 1639 	inc	dptr
+   060C F0                 1640 	movx	@dptr,a
+                           1641 ;	genAssign: resultIsFar = TRUE
+   060D 90s00r00r05        1642 	mov	dptr,#_receive1BufferHead
+   0611 E4                 1643 	clr	a
+   0612 F0                 1644 	movx	@dptr,a
+   0613 A3                 1645 	inc	dptr
+   0614 F0                 1646 	movx	@dptr,a
+                           1647 ;	tinibios.c:466: RI_1=0;
+                           1648 ;	genAssign: resultIsFar = FALSE
+   0615 C2 C0              1649 	clr	_RI_1
+                           1650 ;	tinibios.c:467: if (serial1Buffered) {
+   0617 E5*01              1651 	mov	a,_serial1Buffered
+   0619 60 06              1652 	jz  00102$
+   061B                    1653 00107$:
+                           1654 ;	tinibios.c:468: TI_1=0;
+                           1655 ;	genAssign: resultIsFar = FALSE
+   061B C2 C1              1656 	clr	_TI_1
+                           1657 ;	tinibios.c:469: ES1=1; // enable interrupts
+                           1658 ;	genAssign: resultIsFar = FALSE
+   061D D2 AE              1659 	setb	_ES1
+   061F 80 02              1660 	sjmp 00104$
+   0621                    1661 00102$:
+                           1662 ;	tinibios.c:471: TI_1=1;
+                           1663 ;	genAssign: resultIsFar = FALSE
+   0621 D2 C1              1664 	setb	_TI_1
+   0623                    1665 00104$:
+   0623 22                 1666 	ret
+                           1667 ;------------------------------------------------------------
+                           1668 ;Allocation info for local variables in function 'ClockInit'
+                           1669 ;------------------------------------------------------------
+                           1670 ;timerReloadValue          Allocated to registers r2 r3 r4 r5 
+                           1671 ;------------------------------------------------------------
+                           1672 ;	tinibios.c:481: void ClockInit()
+                           1673 ;	-----------------------------------------
+                           1674 ;	 function ClockInit
+                           1675 ;	-----------------------------------------
+   0624                    1676 _ClockInit:
+                           1677 ;	tinibios.c:485: switch (cpuSpeed) {
+   0624 90s00r00r00        1678 	mov	dptr,#_cpuSpeed
+   0628 E0                 1679 	movx	a,@dptr
+   0629 B4 01 07           1680 	cjne	a,#0x01,00111$
+   062C A3                 1681 	inc	dptr
+   062D E0                 1682 	movx	a,@dptr
+   062E B4 00 02           1683 	cjne	a,#0x00,00111$
+   0631 80 2A              1684 	sjmp 00104$
+   0633                    1685 00111$:
+   0633 90s00r00r00        1686 	mov	dptr,#_cpuSpeed
+   0637 E0                 1687 	movx	a,@dptr
+   0638 B4 02 07           1688 	cjne	a,#0x02,00112$
+   063B A3                 1689 	inc	dptr
+   063C E0                 1690 	movx	a,@dptr
+   063D B4 00 02           1691 	cjne	a,#0x00,00112$
+   0640 80 1B              1692 	sjmp 00104$
+   0642                    1693 00112$:
+   0642 90s00r00r00        1694 	mov	dptr,#_cpuSpeed
+   0646 E0                 1695 	movx	a,@dptr
+   0647 B4 04 07           1696 	cjne	a,#0x04,00113$
+   064A A3                 1697 	inc	dptr
+   064B E0                 1698 	movx	a,@dptr
+   064C B4 00 02           1699 	cjne	a,#0x00,00113$
+   064F 80 02              1700 	sjmp	00114$
+   0651                    1701 00113$:
+   0651 80 0A              1702 	sjmp 00104$
+   0653                    1703 00114$:
+                           1704 ;	tinibios.c:486: case 4: timerReloadValue/=4; break;
+                           1705 ;	genAssign: resultIsFar = TRUE
+   0653 7A 00              1706 	mov	r2,#0x00
+   0655 7B 12              1707 	mov	r3,#0x12
+   0657 7C 00              1708 	mov	r4,#0x00
+   0659 7D 00              1709 	mov	r5,#0x00
+                           1710 ;	tinibios.c:489: default: timerReloadValue/=2; break;
+   065B 80 08              1711 	sjmp 00105$
+   065D                    1712 00104$:
+                           1713 ;	genAssign: resultIsFar = TRUE
+   065D 7A 00              1714 	mov	r2,#0x00
+   065F 7B 24              1715 	mov	r3,#0x24
+   0661 7C 00              1716 	mov	r4,#0x00
+   0663 7D 00              1717 	mov	r5,#0x00
+                           1718 ;	tinibios.c:490: }
+   0665                    1719 00105$:
+                           1720 ;	tinibios.c:491: timer0ReloadValue=~timerReloadValue;
+   0665 EA                 1721 	mov	a,r2
+   0666 F4                 1722 	cpl	a
+   0667 FA                 1723 	mov	r2,a
+   0668 EB                 1724 	mov	a,r3
+   0669 F4                 1725 	cpl	a
+   066A FB                 1726 	mov	r3,a
+   066B EC                 1727 	mov	a,r4
+   066C F4                 1728 	cpl	a
+   066D FC                 1729 	mov	r4,a
+   066E ED                 1730 	mov	a,r5
+   066F F4                 1731 	cpl	a
+   0670 FD                 1732 	mov	r5,a
+   0671 8A*06              1733 	mov	_timer0ReloadValue,r2
+   0673 8B*07              1734 	mov	(_timer0ReloadValue + 1),r3
+                           1735 ;	tinibios.c:493: ET0=0; // disable timer interrupts initially
+                           1736 ;	genAssign: resultIsFar = FALSE
+   0675 C2 A9              1737 	clr	_ET0
+                           1738 ;	tinibios.c:494: TCON = (TCON&0xcc)|0x00; // stop timer, clear overflow
+   0677 53 88 CC           1739 	anl	_TCON,#0xCC
+                           1740 ;	tinibios.c:495: TMOD = (TMOD&0xf0)|0x01; // 16 bit counter
+   067A 74 F0              1741 	mov	a,#0xF0
+   067C 55 89              1742 	anl	a,_TMOD
+   067E FA                 1743 	mov	r2,a
+   067F 74 01              1744 	mov	a,#0x01
+   0681 4A                 1745 	orl	a,r2
+   0682 F5 89              1746 	mov	_TMOD,a
+                           1747 ;	tinibios.c:496: CKCON|=0x08; // timer uses xtal/4
+   0684 43 8E 08           1748 	orl	_CKCON,#0x08
+                           1749 ;	tinibios.c:498: TL0=timer0ReloadValue&0xff;
+   0687 AA*06              1750 	mov	r2,_timer0ReloadValue
+   0689 7B 00              1751 	mov	r3,#0
+   068B 8A 8A              1752 	mov	_TL0,r2
+                           1753 ;	tinibios.c:499: TH0=timer0ReloadValue>>8;
+   068D AA*07              1754 	mov	r2,(_timer0ReloadValue + 1)
+   068F 7B 00              1755 	mov	r3,#0
+   0691 8A 8C              1756 	mov	_TH0,r2
+                           1757 ;	tinibios.c:501: ET0=1; // enable timer interrupts
+                           1758 ;	genAssign: resultIsFar = FALSE
+   0693 D2 A9              1759 	setb	_ET0
+                           1760 ;	tinibios.c:502: TR0=1; // start timer
+                           1761 ;	genAssign: resultIsFar = FALSE
+   0695 D2 8C              1762 	setb	_TR0
+   0697                    1763 00106$:
+   0697 22                 1764 	ret
+                           1765 ;------------------------------------------------------------
+                           1766 ;Allocation info for local variables in function 'ClockIrqHandler'
+                           1767 ;------------------------------------------------------------
+                           1768 ;------------------------------------------------------------
+                           1769 ;	tinibios.c:516: void ClockIrqHandler (void) __interrupt 1 __naked
+                           1770 ;	-----------------------------------------
+                           1771 ;	 function ClockIrqHandler
+                           1772 ;	-----------------------------------------
+   0698                    1773 _ClockIrqHandler:
+                           1774 ;	naked function: no prologue.
+                           1775 ;	tinibios.c:535: __endasm;
+                           1776 	
+   0698 C0 E0              1777 	    push acc
+   069A C0 D0              1778 	    push psw
+   069C 85*06 8A           1779 	    mov _TL0,_timer0ReloadValue
+   069F 85*07 8C           1780 	    mov _TH0,_timer0ReloadValue+1
+   06A2 E4                 1781 	    clr a
+   06A3 05*02              1782 	    inc _milliSeconds+0
+   06A5 B5*02 0C           1783 	    cjne a,_milliSeconds+0,_ClockIrqHandlerDone
+   06A8 05*03              1784 	    inc _milliSeconds+1
+   06AA B5*03 07           1785 	    cjne a,_milliSeconds+1,_ClockIrqHandlerDone
+   06AD 05*04              1786 	    inc _milliSeconds+2
+   06AF B5*04 02           1787 	    cjne a,_milliSeconds+2,_ClockIrqHandlerDone
+   06B2 05*05              1788 	    inc _milliSeconds+3
+   06B4                    1789 	  _ClockIrqHandlerDone:
+   06B4 D0 D0              1790 	    pop psw
+   06B6 D0 E0              1791 	    pop acc
+   06B8 32                 1792 	    reti
+                           1793 	  
+   06B9                    1794 00101$:
+                           1795 ;	naked function: no epilogue.
+                           1796 ;------------------------------------------------------------
+                           1797 ;Allocation info for local variables in function 'ClockTicks'
+                           1798 ;------------------------------------------------------------
+                           1799 ;ms                        Allocated to registers r2 r3 r4 r5 
+                           1800 ;------------------------------------------------------------
+                           1801 ;	tinibios.c:540: unsigned long ClockTicks(void)
+                           1802 ;	-----------------------------------------
+                           1803 ;	 function ClockTicks
+                           1804 ;	-----------------------------------------
+   06B9                    1805 _ClockTicks:
+                           1806 ;	tinibios.c:543: ET0=0;
+                           1807 ;	genAssign: resultIsFar = FALSE
+   06B9 C2 A9              1808 	clr	_ET0
+                           1809 ;	tinibios.c:544: ms=milliSeconds;
+                           1810 ;	genAssign: resultIsFar = TRUE
+   06BB AA*02              1811 	mov	r2,_milliSeconds
+   06BD AB*03              1812 	mov	r3,(_milliSeconds + 1)
+   06BF AC*04              1813 	mov	r4,(_milliSeconds + 2)
+   06C1 AD*05              1814 	mov	r5,(_milliSeconds + 3)
+                           1815 ;	tinibios.c:545: ET0=1;
+                           1816 ;	genAssign: resultIsFar = FALSE
+   06C3 D2 A9              1817 	setb	_ET0
+                           1818 ;	tinibios.c:546: return ms;
+   06C5 8A 82              1819 	mov	dpl,r2
+   06C7 8B 83              1820 	mov	dph,r3
+   06C9 8C 93              1821 	mov	dpx,r4
+   06CB 8D F0              1822 	mov	b,r5
+   06CD                    1823 00101$:
+   06CD 22                 1824 	ret
+                           1825 ;------------------------------------------------------------
+                           1826 ;Allocation info for local variables in function 'ClockMilliSecondsDelay'
+                           1827 ;------------------------------------------------------------
+                           1828 ;delay                     Allocated to registers r2 r3 r4 r5 
+                           1829 ;ms                        Allocated to registers r2 r3 r4 r5 
+                           1830 ;------------------------------------------------------------
+                           1831 ;	tinibios.c:549: void ClockMilliSecondsDelay(unsigned long delay)
+                           1832 ;	-----------------------------------------
+                           1833 ;	 function ClockMilliSecondsDelay
+                           1834 ;	-----------------------------------------
+   06CE                    1835 _ClockMilliSecondsDelay:
+   06CE AA 82              1836 	mov	r2,dpl
+   06D0 AB 83              1837 	mov	r3,dph
+   06D2 AC 93              1838 	mov	r4,dpx
+   06D4 AD F0              1839 	mov	r5,b
+                           1840 ;	tinibios.c:551: long ms=ClockTicks()+delay;
+   06D6 C0 02              1841 	push	ar2
+   06D8 C0 03              1842 	push	ar3
+   06DA C0 04              1843 	push	ar4
+   06DC C0 05              1844 	push	ar5
+   06DE 12s00r06rB9        1845 	lcall	_ClockTicks
+   06E2 AE 82              1846 	mov	r6,dpl
+   06E4 AF 83              1847 	mov	r7,dph
+   06E6 A8 93              1848 	mov	r0,dpx
+   06E8 A9 F0              1849 	mov	r1,b
+   06EA D0 05              1850 	pop	ar5
+   06EC D0 04              1851 	pop	ar4
+   06EE D0 03              1852 	pop	ar3
+   06F0 D0 02              1853 	pop	ar2
+   06F2 EA                 1854 	mov	a,r2
+   06F3 2E                 1855 	add	a,r6
+   06F4 FA                 1856 	mov	r2,a
+   06F5 EB                 1857 	mov	a,r3
+   06F6 3F                 1858 	addc	a,r7
+   06F7 FB                 1859 	mov	r3,a
+   06F8 EC                 1860 	mov	a,r4
+   06F9 38                 1861 	addc	a,r0
+   06FA FC                 1862 	mov	r4,a
+   06FB ED                 1863 	mov	a,r5
+   06FC 39                 1864 	addc	a,r1
+   06FD FD                 1865 	mov	r5,a
+                           1866 ;	tinibios.c:553: while (ms>ClockTicks())
+                           1867 ;	genAssign: resultIsFar = FALSE
+   06FE                    1868 00101$:
+   06FE C0 02              1869 	push	ar2
+   0700 C0 03              1870 	push	ar3
+   0702 C0 04              1871 	push	ar4
+   0704 C0 05              1872 	push	ar5
+   0706 12s00r06rB9        1873 	lcall	_ClockTicks
+   070A AE 82              1874 	mov	r6,dpl
+   070C AF 83              1875 	mov	r7,dph
+   070E A8 93              1876 	mov	r0,dpx
+   0710 A9 F0              1877 	mov	r1,b
+   0712 D0 05              1878 	pop	ar5
+   0714 D0 04              1879 	pop	ar4
+   0716 D0 03              1880 	pop	ar3
+   0718 D0 02              1881 	pop	ar2
+   071A C3                 1882 	clr	c
+   071B EE                 1883 	mov	a,r6
+   071C 9A                 1884 	subb	a,r2
+   071D EF                 1885 	mov	a,r7
+   071E 9B                 1886 	subb	a,r3
+   071F E8                 1887 	mov	a,r0
+   0720 9C                 1888 	subb	a,r4
+   0721 E9                 1889 	mov	a,r1
+   0722 9D                 1890 	subb	a,r5
+   0723 40 D9              1891 	jc   00101$
+   0725                    1892 00107$:
+   0725                    1893 00104$:
+   0725 22                 1894 	ret
+                           1895 ;------------------------------------------------------------
+                           1896 ;Allocation info for local variables in function 'ClockMicroSecondsDelay'
+                           1897 ;------------------------------------------------------------
+                           1898 ;delay                     Allocated to registers 
+                           1899 ;------------------------------------------------------------
+                           1900 ;	tinibios.c:558: void ClockMicroSecondsDelay(unsigned int delay)
+                           1901 ;	-----------------------------------------
+                           1902 ;	 function ClockMicroSecondsDelay
+                           1903 ;	-----------------------------------------
+   0726                    1904 _ClockMicroSecondsDelay:
+                           1905 ;	tinibios.c:591: __endasm;
+                           1906 	
+                           1907 	
+                           1908     ; delay is in dpl/dph
+   0726 A8 82              1909 	    mov r0, dpl
+   0728 A9 83              1910 	    mov r1, dph
+                           1911 	
+   072A E8                 1912 	    mov a, r0
+   072B 49                 1913 	    orl a, r1 ; quick out for zero case.
+   072C 60 10              1914 	    jz _usDelayDone
+                           1915 	
+   072E 09                 1916 	    inc r1
+   072F B8 00 01           1917 	    cjne r0, #0, _usDelayLoop
+   0732 19                 1918 	    dec r1
+                           1919 	
+   0733                    1920 	  _usDelayLoop:
+   0733 00                 1921 	    nop
+   0734 00                 1922 	    nop
+   0735 00                 1923 	    nop
+   0736 00                 1924 	    nop
+   0737 00                 1925 	    nop
+   0738 00                 1926 	    nop
+   0739 00                 1927 	    nop ; 7 nops
+   073A D8 F7              1928 	    djnz r0, _usDelayLoop ; 3 cycles x 1 = 3 cycles
+                           1929     ; 10 cycles per iter
+                           1930     ; we want 9.216, but more is better
+                           1931     ; than less.
+   073C D9 F5              1932 	    djnz r1, _usDelayLoop
+   073E                    1933 	  _usDelayDone:
+                           1934 	
+                           1935 	  
+   073E                    1936 00101$:
+   073E 22                 1937 	ret
+                           1938 	.area CSEG    (CODE)
+                           1939 	.area CONST   (CODE)
+                           1940 	.area XINIT   (CODE)
+   0000                    1941 __xinit__receive0BufferHead:
+   0000 00 00              1942 	.byte #0x00,#0x00	;  0
+   0002                    1943 __xinit__receive0BufferTail:
+   0002 00 00              1944 	.byte #0x00,#0x00	;  0
+   0004                    1945 __xinit__transmit0IsBusy:
+   0004 00                 1946 	.db #0x00	;  0
+   0005                    1947 __xinit__receive1BufferHead:
+   0005 00 00              1948 	.byte #0x00,#0x00	;  0
+   0007                    1949 __xinit__receive1BufferTail:
+   0007 00 00              1950 	.byte #0x00,#0x00	;  0
+   0009                    1951 __xinit__transmit1IsBusy:
+   0009 00                 1952 	.db #0x00	;  0
+                           1953 	.area CABS    (ABS,CODE)

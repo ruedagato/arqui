@@ -1,0 +1,131 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+                              4 ; This file was generated Fri Oct  2 17:18:17 2015
+                              5 ;--------------------------------------------------------
+                              6 	.module cotf
+                              7 	.optsdcc -mz80
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _cotf
+                             13 ;--------------------------------------------------------
+                             14 ; special function registers
+                             15 ;--------------------------------------------------------
+                             16 ;--------------------------------------------------------
+                             17 ;  ram data
+                             18 ;--------------------------------------------------------
+                             19 	.area _DATA
+                             20 ;--------------------------------------------------------
+                             21 ; overlayable items in  ram 
+                             22 ;--------------------------------------------------------
+                             23 	.area _OVERLAY
+                             24 ;--------------------------------------------------------
+                             25 ; external initialized ram data
+                             26 ;--------------------------------------------------------
+                             27 ;--------------------------------------------------------
+                             28 ; global & static initialisations
+                             29 ;--------------------------------------------------------
+                             30 	.area _HOME
+                             31 	.area _GSINIT
+                             32 	.area _GSFINAL
+                             33 	.area _GSINIT
+                             34 ;--------------------------------------------------------
+                             35 ; Home
+                             36 ;--------------------------------------------------------
+                             37 	.area _HOME
+                             38 	.area _HOME
+                             39 ;--------------------------------------------------------
+                             40 ; code
+                             41 ;--------------------------------------------------------
+                             42 	.area _CODE
+                             43 ;../cotf.c:37: float cotf(const float x) _FLOAT_FUNC_REENTRANT
+                             44 ;	---------------------------------
+                             45 ; Function cotf
+                             46 ; ---------------------------------
+   0000                      47 _cotf_start::
+   0000                      48 _cotf:
+   0000 DD E5                49 	push	ix
+   0002 DD 21 00 00          50 	ld	ix,#0
+   0006 DD 39                51 	add	ix,sp
+                             52 ;../cotf.c:41: y=fabsf(x);
+   0008 DD 6E 06             53 	ld	l,6 (ix)
+   000B DD 66 07             54 	ld	h,7 (ix)
+   000E E5                   55 	push	hl
+   000F DD 6E 04             56 	ld	l,4 (ix)
+   0012 DD 66 05             57 	ld	h,5 (ix)
+   0015 E5                   58 	push	hl
+   0016 CDr00s00             59 	call	_fabsf
+   0019 F1                   60 	pop	af
+   001A F1                   61 	pop	af
+   001B 44                   62 	ld	b,h
+   001C 4D                   63 	ld	c,l
+                             64 ;../cotf.c:42: if (y<1.0E-30) //This one requires more thinking...
+   001D 21 A2 0D             65 	ld	hl,#0x0DA2
+   0020 E5                   66 	push	hl
+   0021 21 60 42             67 	ld	hl,#0x4260
+   0024 E5                   68 	push	hl
+   0025 D5                   69 	push	de
+   0026 C5                   70 	push	bc
+   0027 CDr00s00             71 	call	___fslt
+   002A F1                   72 	pop	af
+   002B F1                   73 	pop	af
+   002C F1                   74 	pop	af
+   002D F1                   75 	pop	af
+   002E AF                   76 	xor	a,a
+   002F B5                   77 	or	a,l
+   0030 28 3D                78 	jr	Z,00105$
+                             79 ;../cotf.c:44: errno = ERANGE;
+   0032 FD 21r00s00          80 	ld	iy,#_errno
+   0036 FD 36 00 22          81 	ld	0 (iy),#0x22
+   003A FD 36 01 00          82 	ld	1 (iy),#0x00
+                             83 ;../cotf.c:45: if (x<0.0)
+   003E 21 00 00             84 	ld	hl,#0x0000
+   0041 E5                   85 	push	hl
+   0042 21 00 00             86 	ld	hl,#0x0000
+   0045 E5                   87 	push	hl
+   0046 DD 6E 06             88 	ld	l,6 (ix)
+   0049 DD 66 07             89 	ld	h,7 (ix)
+   004C E5                   90 	push	hl
+   004D DD 6E 04             91 	ld	l,4 (ix)
+   0050 DD 66 05             92 	ld	h,5 (ix)
+   0053 E5                   93 	push	hl
+   0054 CDr00s00             94 	call	___fslt
+   0057 F1                   95 	pop	af
+   0058 F1                   96 	pop	af
+   0059 F1                   97 	pop	af
+   005A F1                   98 	pop	af
+   005B AF                   99 	xor	a,a
+   005C B5                  100 	or	a,l
+   005D 28 08               101 	jr	Z,00102$
+                            102 ;../cotf.c:46: return -HUGE_VALF;
+   005F 21 FF FF            103 	ld	hl,#0xFFFF
+   0062 11 7F FF            104 	ld	de,#0xFF7F
+   0065 18 20               105 	jr	00106$
+   0067                     106 00102$:
+                            107 ;../cotf.c:48: return +HUGE_VALF;
+   0067 21 FF FF            108 	ld	hl,#0xFFFF
+   006A 11 7F 7F            109 	ld	de,#0x7F7F
+   006D 18 18               110 	jr	00106$
+   006F                     111 00105$:
+                            112 ;../cotf.c:50: return tancotf(x, 1);
+   006F 3E 01               113 	ld	a,#0x01
+   0071 F5                  114 	push	af
+   0072 33                  115 	inc	sp
+   0073 DD 6E 06            116 	ld	l,6 (ix)
+   0076 DD 66 07            117 	ld	h,7 (ix)
+   0079 E5                  118 	push	hl
+   007A DD 6E 04            119 	ld	l,4 (ix)
+   007D DD 66 05            120 	ld	h,5 (ix)
+   0080 E5                  121 	push	hl
+   0081 CDr00s00            122 	call	_tancotf
+   0084 F1                  123 	pop	af
+   0085 F1                  124 	pop	af
+   0086 33                  125 	inc	sp
+   0087                     126 00106$:
+   0087 DD E1               127 	pop	ix
+   0089 C9                  128 	ret
+   008A                     129 _cotf_end::
+                            130 	.area _CODE
+                            131 	.area _CABS
