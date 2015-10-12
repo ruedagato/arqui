@@ -1,0 +1,33 @@
+instalar dependencias:
+sudo apt-get install bison
+sudo apt-get install flex
+sudo apt-get install g++
+sudo apt-get install gputils
+
+dar permisos de super usuario a la carpeta sdcc3:
+sudo chmod 777 -R sdcc3/
+cd sdcc3/
+
+configurar e instalar el compilador:
+./configure
+make
+sudo make install
+
+si todo se instalo adecuadamente correr el comando:
+sdcc --version
+
+dara una respuesta parecida a esta:
+SDCC : mcs51/gbz80/z80/ds390/pic16/pic14/TININative/ds400/hc08/pblaze 3.0.1 #6227 (Oct 11 2015) (Linux)
+
+si hay un problema ejecutando el comando anterior por alguna dependencia ejecutar:
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt-get dist-upgrade
+
+Compilacion de prueba:
+cd ..
+cd demos_tests/
+sdcc -c - /usr/local/share/sdcc/include/pblaze/ -mpblaze test1.c
+
+se crea un archivo test1.psm el cual tiene las instrucciones en assembler 
+

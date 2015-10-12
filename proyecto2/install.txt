@@ -1,6 +1,0 @@
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-sudo apt-get update
-sudo apt-get dist-upgrade
-
-compile:
-sdcc -c - ~/Documentos/arqui/proyecto2/compiladores/pbccv2/pbccv2-src-20110901/sdcc3/device/include/pblaze/ -mpblaze test1.c
