@@ -1,0 +1,243 @@
+                        ; *
+                        ; * picocode.psm -  LED Control
+                        ; *
+                        ; *      ___       _         _   _       _ ___ _ _ ___
+                        ; * | __._ _ _| |_ ___ _| |_| |___ _| | . | \ |_ _|
+                        ; * | _>| ' ' | . / ._/ . / . / ._/ . |   |   || |
+                        ; * |___|_|_|_|___\___\___\___\___\___|_|_|_\_||_|
+                        ; *
+                        ; *
+                        ; *  Created on : 20/07/2015
+                        ; *      Author : Ernesto Andres Rincon Cruz
+                        ; *      Web  : www.embeddedant.org
+                        ; *    Device : XC3S700AN - 4FGG484
+                        ; *    Board  : Spartan-3AN Starter Kit.
+                        ; *
+                        ; *  Based on Ken Chapman code v1.00 - 4th January 2006
+                        ; *      Revision History:
+                        ; *   Rev 1.0.0 - (ErnestoARC) First release 16/08/2015.
+                        ; *
+                        ;//////////////////////////////////////////////////////////////////////////////////
+                        ; Use CONSTANT declarations to define output port addresses
+                        CONSTANT PORT_A, 00         ;
+                        ;;============================================================================
+                        ;;
+                        ;;============================================================================
+                        ADDRESS 000                 ; Programs always start at reset vector 0
+                        DISABLE INTERRUPT           ; If using interrupts, be sure to enable the INTERRUPT input
+                        ;;============================================================================
+                        ;;
+                        ;;============================================================================
+                        LOAD sF, 3F
+                        JUMP __sdcc_program_startup
+                        ;--------------------------------------------------------
+                        ; Home
+                        ;--------------------------------------------------------
+__sdcc_program_startup: 
+                        CALL _main
+                        ; return from main will lock up
+           __sdcc_loop: 
+                        JUMP __sdcc_loop
+                        ;--------------------------------------------------------
+                        ; code
+                        ;--------------------------------------------------------
+                        ; programa.c:20: void main()
+                 _main: 
+                        ; programa.c:22: char cont_sato = 20;
+                        LOAD s0, 14
+                        ; programa.c:24: char cont_led = 100;
+                        LOAD s1, 64
+                        ; programa.c:25: led_on();
+                        STORE s0, (sF)
+                        SUB sF, 01
+                        STORE s1, (sF)
+                        SUB sF, 01
+                        CALL _led_on
+                        ADD sF, 01
+                        FETCH s1, (sF)
+                        ADD sF, 01
+                        FETCH s0, (sF)
+                        ; programa.c:26: while(1)
+               _L00111: 
+                        ; programa.c:28: if (cont_sato == 0)
+                        COMPARE s0, 00
+                        JUMP Z, _LC00135
+                        JUMP _L00102
+              _LC00135: 
+                        ; programa.c:30: cont_sato = 20;
+                        LOAD s0, 14
+                        ; programa.c:31: saltar();
+                        STORE s0, (sF)
+                        SUB sF, 01
+                        STORE s1, (sF)
+                        SUB sF, 01
+                        CALL _saltar
+                        ADD sF, 01
+                        FETCH s1, (sF)
+                        ADD sF, 01
+                        FETCH s0, (sF)
+                        JUMP _L00103
+               _L00102: 
+                        ; programa.c:34: cont_sato --;
+                        SUB s0, 01
+               _L00103: 
+                        ; programa.c:36: if (cont_led == 50)
+                        COMPARE s1, 32
+                        JUMP NZ, _L00105
+                        ; programa.c:37: led_on();
+                        STORE s0, (sF)
+                        SUB sF, 01
+                        STORE s1, (sF)
+                        SUB sF, 01
+                        CALL _led_on
+                        ADD sF, 01
+                        FETCH s1, (sF)
+                        ADD sF, 01
+                        FETCH s0, (sF)
+                        JUMP _L00106
+               _L00105: 
+                        ; programa.c:39: cont_led --;
+                        SUB s1, 01
+               _L00106: 
+                        ; programa.c:40: if (cont_led == 0)
+                        COMPARE s1, 00
+                        JUMP Z, _LC00136
+                        JUMP _L00108
+              _LC00136: 
+                        ; programa.c:42: led_off();
+                        STORE s0, (sF)
+                        SUB sF, 01
+                        STORE s1, (sF)
+                        SUB sF, 01
+                        CALL _led_off
+                        ADD sF, 01
+                        FETCH s1, (sF)
+                        ADD sF, 01
+                        FETCH s0, (sF)
+                        ; programa.c:43: cont_led = 100;
+                        LOAD s1, 64
+                        JUMP _L00109
+               _L00108: 
+                        ; programa.c:46: cont_led --;
+                        SUB s1, 01
+               _L00109: 
+                        ; programa.c:47: delay_ms(10);
+                        STORE s0, (sF)
+                        SUB sF, 01
+                        STORE s1, (sF)
+                        SUB sF, 01
+                        LOAD sB, 0A
+                        LOAD sC, 00
+                        CALL _delay_ms
+                        ADD sF, 01
+                        FETCH s1, (sF)
+                        ADD sF, 01
+                        FETCH s0, (sF)
+                        JUMP _L00111
+                        ; programa.c:51: void saltar()
+               _saltar: 
+                        ; programa.c:56: __endasm;
+                        XOR s7, 02
+                        OUTPUT s7, 00
+                        ; programa.c:57: delay();
+                        CALL _delay
+                        ; programa.c:61: __endasm;
+                        XOR s7, 02
+                        OUTPUT s7, 00
+                        RETURN
+                        ; programa.c:64: void led_on()
+               _led_on: 
+                        ; programa.c:69: __endasm;
+                        LOAD s7, 01
+                        OUTPUT s7, 00
+                        RETURN
+                        ; programa.c:72: void led_off()
+              _led_off: 
+                        ; programa.c:77: __endasm;
+                        LOAD s7, 00
+                        OUTPUT s7, 00
+                        RETURN
+                        ; programa.c:80: void delay()
+                _delay: 
+                        ; programa.c:94: __endasm;
+                        CONSTANT DELAY_LOOP2, 30    ; Loop delay
+                        LOAD s1, 00
+                 _rpt2: 
+                        ADD s1, 01
+                        LOAD s0, 00
+                 _rpt1: 
+                        ADD s0, 01
+                        JUMP NZ, _rpt1
+                        COMPARE s1, DELAY_LOOP2
+                        JUMP NZ, _rpt2
+                        RETURN
+                        ; programa.c:97: void delay_ms(int n)
+             _delay_ms: 
+                        LOAD s0, sB
+                        LOAD s1, sC
+                        ; programa.c:100: while(valor!=0)
+               _L00127: 
+                        LOAD s2, s0
+                        OR s2, s1
+                        COMPARE s2, 00
+                        JUMP NZ, _LC00137
+                        JUMP _L00134
+              _LC00137: 
+                        ; programa.c:102: valor = valor - 1;
+                        SUB s0, 01
+                        SUBCY s1, 00
+                        ; programa.c:103: delay();
+                        STORE s0, (sF)
+                        SUB sF, 01
+                        STORE s1, (sF)
+                        SUB sF, 01
+                        CALL _delay
+                        ADD sF, 01
+                        FETCH s1, (sF)
+                        ADD sF, 01
+                        FETCH s0, (sF)
+                        JUMP _L00127
+               _L00134: 
+                        RETURN
+                        ;;============================================================================
+                        ; Delay routine (~0.5s.)
+                        ;;============================================================================
+                        ; PicoBlaze requires 2 clocks per instruction
+                        ; 2 + (4 + (4 + 4*256 + 4) * 256 + 4)*DELAY_LOOP + 2 =
+                        ; 500ms = (4 + 264200*DELAY_LOOP )*(1/50MHz)
+                        ; DELAY_LOOP = 0x5E
+                        ; Use CONSTANT declarations to time delay refinition
+                        CONSTANT DELAY_LOOP, 5E     ; Loop delay
+                 delay: 
+                        LOAD s2, 00                 ; 2
+                  rpt3: ADD s2, 01                  ; 2---------------------------------------------|
+                        ;  ---------------------------------------------|
+                        LOAD s1, 00                 ; 2---------------------------------------------|
+                  rpt2: ADD s1, 01                  ; 2-------------------------------------|
+                        ;  -------------------------------------|
+                        LOAD s0, 00                 ; 2-------------------------------------|
+                  rpt1: ADD s0, 01                  ; 2 ---------------|
+                        JUMP NZ, rpt1               ; 2 ----------4*256|
+                        ;  -------------------------------------|
+                        COMPARE s1, 00              ; 2-------------------------------------|
+                        JUMP NZ, rpt2               ; 2----------------(4 + 4*256 + 4) * DELAY_LOOP|
+                        COMPARE s2, DELAY_LOOP      ; 2---------------------------------------------|
+                        JUMP NZ, rpt3               ; 2---(4 + (4 + 4*256 + 4) * 256 + 4)*DELAY_LOOP|
+                        RETURN                      ; 2
+                        ;;============================================================================
+                        ;; An Interrupt Service Routine (ISR) is required if using interrupts
+                        ;; Interrupts are automatically disabled when an interrupt is recognized
+                        ;; Never re-enable interrupts during the ISR
+                        ;; Use RETURNI DISABLE to leave interrupts disabled
+                        ;;============================================================================
+                   ISR: 
+                        ; <<< your interrupt code here >>>
+                        RETURNI ENABLE              ; Return from interrupt service routine
+                        ;;============================================================================
+                        ;; Interrupt service routine vector.
+                        ;;============================================================================
+                        ADDRESS 3FF                 ; Interrupt vector is located at highest instruction address
+                        JUMP ISR                    ; Jump to interrupt service routine, ISR
+                        ;;============================================================================
+                        ;;
+                        ;;============================================================================

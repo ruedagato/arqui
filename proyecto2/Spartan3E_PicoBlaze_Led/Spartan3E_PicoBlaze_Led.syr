@@ -1,0 +1,1383 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.04 secs
+ 
+--> 
+Reading design: Spartan3E_PicoBlaze_Led.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "Spartan3E_PicoBlaze_Led.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "Spartan3E_PicoBlaze_Led"
+Output Format                      : NGC
+Target Device                      : xc3s100e-4-vq100
+
+---- Source Options
+Top Module Name                    : Spartan3E_PicoBlaze_Led
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "picouser/vga_sync.v" in library work
+Compiling verilog file "picouser/PicoBlaze_OutReg.v" in library work
+Module <vga_sync> compiled
+Compiling verilog file "picouser/nivel.v" in library work
+Module <PicoBlaze_OutReg> compiled
+Compiling verilog file "picouser/imagen.v" in library work
+Module <nivel> compiled
+Compiling verilog file "picouser/ficha.v" in library work
+Module <imagen> compiled
+Compiling verilog file "picouser/display.v" in library work
+Module <ficha> compiled
+Compiling verilog file "picocode/PICOCODE.V" in library work
+Module <display> compiled
+Compiling verilog file "picoblze/kcpsm3.v" in library work
+Module <picocode> compiled
+Compiling verilog file "Spartan3E_PicoBlaze_Led.v" in library work
+Module <kcpsm3> compiled
+Module <Spartan3E_PicoBlaze_Led> compiled
+No errors in compilation
+Analysis of file <"Spartan3E_PicoBlaze_Led.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <Spartan3E_PicoBlaze_Led> in library <work> with parameters.
+	PORTA_ID = "00000000"
+
+Analyzing hierarchy for module <kcpsm3> in library <work>.
+
+Analyzing hierarchy for module <picocode> in library <work>.
+
+Analyzing hierarchy for module <PicoBlaze_OutReg> in library <work> with parameters.
+	LOCAL_PORT_ID = "00000000"
+
+Analyzing hierarchy for module <vga_sync> in library <work> with parameters.
+	HB = "00000000000000000000000000010000"
+	HD = "00000000000000000000001011010000"
+	HF = "00000000000000000000000000110000"
+	HR = "00000000000000000000000001100000"
+	VB = "00000000000000000000000000100001"
+	VD = "00000000000000000000000111100000"
+	VF = "00000000000000000000000000001010"
+	VR = "00000000000000000000000000000010"
+
+Analyzing hierarchy for module <display> in library <work>.
+
+Analyzing hierarchy for module <ficha> in library <work> with parameters.
+	origen_x = "0011001000"
+	tamano = "0001000000"
+	y_tamano = "0001000000"
+
+Analyzing hierarchy for module <nivel> in library <work> with parameters.
+	origen_y = "0011001000"
+	tamano = "0001000000"
+	y_tamano = "0001000000"
+
+Analyzing hierarchy for module <imagen> in library <work>.
+
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 402: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2268: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 564: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 595: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 718: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 726: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1285: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 493: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 535: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 637: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 709: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 785: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 794: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 833: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 842: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 881: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 890: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 929: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 938: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 977: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 986: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1025: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1034: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1073: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1082: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1121: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1130: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1169: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1178: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1217: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1226: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1313: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1340: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1367: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1394: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1421: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1448: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1475: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1502: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1877: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1886: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1903: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1919: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1934: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1949: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1964: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1979: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1994: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2009: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2024: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2049: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2060: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2086: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2112: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2138: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2164: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2190: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2216: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2242: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2280: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2324: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2333: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2348: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2357: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2372: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2381: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2396: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2405: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2420: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2429: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2444: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2453: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2468: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2477: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2492: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2501: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 444: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 483: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 515: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 525: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 544: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 554: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 580: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 605: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 615: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 666: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 676: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 699: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1270: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1525: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1540: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1722: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1734: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1750: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1766: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1782: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1798: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1814: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1830: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1846: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2307: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2522: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2532: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2548: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2779: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2807: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2835: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2863: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2891: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1295: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1322: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1349: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1376: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1403: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1430: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1457: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1484: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2581: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2600: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2619: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2638: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2657: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2676: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2695: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2714: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2733: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2752: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1552: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1572: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1592: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1612: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1632: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1652: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1672: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 1692: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INITP_00> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INITP_01> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INITP_02> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INITP_03> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INITP_04> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INITP_05> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INITP_06> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INITP_07> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_00> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_01> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_02> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_03> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_04> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_05> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_06> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_07> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_08> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_09> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_0A> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_0B> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_0C> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_0D> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_0E> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_0F> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_10> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_11> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_12> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_13> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_14> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_15> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_16> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_17> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_18> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_19> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_1A> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_1B> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_1C> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_1D> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_1E> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_1F> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_20> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_21> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_22> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_23> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_24> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_25> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_26> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_27> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_28> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_29> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_2A> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_2B> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_2C> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_2D> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_2E> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_2F> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_30> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_31> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_32> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_33> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_34> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_35> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_36> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_37> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_38> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_39> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_3A> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_3B> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_3C> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_3D> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_3E> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_3F> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <Spartan3E_PicoBlaze_Led>.
+	PORTA_ID = 8'b00000000
+WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 126: Unconnected input port 'rst' of instance 'ficha' is tied to GND.
+WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 126: Unconnected input port 'salto' of instance 'ficha' is tied to GND.
+WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 135: Unconnected input port 'rst' of instance 'nivel1' is tied to GND.
+WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 135: Unconnected input port 'salto' of instance 'nivel1' is tied to GND.
+Module <Spartan3E_PicoBlaze_Led> is correct for synthesis.
+ 
+Analyzing module <kcpsm3> in library <work>.
+Module <kcpsm3> is correct for synthesis.
+ 
+    Set user-defined property "INIT =  1" for instance <t_state_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <t_state_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <toggle_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  1" for instance <reset_flop1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  1" for instance <reset_flop2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <int_capture_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0080" for instance <int_pulse_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <int_pulse_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <int_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <ack_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <shadow_carry_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <shadow_zero_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  EAAA" for instance <int_update_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <int_update_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  04" for instance <int_value_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <int_value_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <int_enable_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  7400" for instance <move_group_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <move_group_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  5A3C" for instance <condition_met_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <condition_met_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  2F" for instance <normal_count_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <normal_count_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  1000" for instance <call_type_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <call_type_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  5400" for instance <push_pop_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <push_pop_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  D" for instance <valid_move_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <valid_move_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  41FC" for instance <flag_type_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <flag_type_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <flag_write_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  8" for instance <flag_enable_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <flag_enable_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0001" for instance <low_zero_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <low_zero_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0001" for instance <high_zero_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <high_zero_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  3F" for instance <sel_shadow_zero_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <sel_shadow_zero_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <zero_flag_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6996" for instance <low_parity_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <low_parity_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6996" for instance <high_parity_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <high_parity_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  F3FF" for instance <sel_parity_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <sel_parity_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  F3" for instance <sel_arith_carry_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <sel_arith_carry_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  C" for instance <sel_shift_carry_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <sel_shift_carry_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  3" for instance <sel_shadow_carry_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <sel_shadow_carry_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <carry_flag_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <vector_select_mux_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <vector_select_mux_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <value_select_mux_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <value_select_mux_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pc_loop_register_bit_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <vector_select_mux_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <vector_select_mux_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <value_select_mux_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <value_select_mux_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pc_loop_register_bit_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <vector_select_mux_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <vector_select_mux_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <value_select_mux_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <value_select_mux_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pc_loop_register_bit_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <vector_select_mux_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <vector_select_mux_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <value_select_mux_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <value_select_mux_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pc_loop_register_bit_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <vector_select_mux_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <vector_select_mux_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <value_select_mux_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <value_select_mux_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pc_loop_register_bit_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <vector_select_mux_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <vector_select_mux_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <value_select_mux_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <value_select_mux_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pc_loop_register_bit_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <vector_select_mux_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <vector_select_mux_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <value_select_mux_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <value_select_mux_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pc_loop_register_bit_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <vector_select_mux_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <vector_select_mux_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <value_select_mux_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <value_select_mux_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pc_loop_register_bit_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <vector_select_mux_8> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <vector_select_mux_8> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <value_select_mux_8> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <value_select_mux_8> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pc_loop_register_bit_8> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <vector_select_mux_9> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <vector_select_mux_9> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <value_select_mux_9> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <value_select_mux_9> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pc_loop_register_bit_9> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0145" for instance <register_type_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <register_type_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <register_write_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  8" for instance <register_enable_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <register_enable_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000" for instance <reg_loop_register_bit_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <reg_loop_register_bit_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <operand_select_mux_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <operand_select_mux_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000" for instance <reg_loop_register_bit_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <reg_loop_register_bit_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <operand_select_mux_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <operand_select_mux_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000" for instance <reg_loop_register_bit_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <reg_loop_register_bit_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <operand_select_mux_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <operand_select_mux_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000" for instance <reg_loop_register_bit_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <reg_loop_register_bit_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <operand_select_mux_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <operand_select_mux_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000" for instance <reg_loop_register_bit_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <reg_loop_register_bit_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <operand_select_mux_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <operand_select_mux_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000" for instance <reg_loop_register_bit_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <reg_loop_register_bit_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <operand_select_mux_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <operand_select_mux_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000" for instance <reg_loop_register_bit_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <reg_loop_register_bit_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <operand_select_mux_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <operand_select_mux_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000" for instance <reg_loop_register_bit_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <reg_loop_register_bit_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <operand_select_mux_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <operand_select_mux_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0400" for instance <memory_type_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <memory_type_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <memory_write_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  8000" for instance <memory_enable_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <memory_enable_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000000000000000" for instance <memory_bit_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <memory_bit_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <store_flop_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000000000000000" for instance <memory_bit_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <memory_bit_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <store_flop_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000000000000000" for instance <memory_bit_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <memory_bit_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <store_flop_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000000000000000" for instance <memory_bit_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <memory_bit_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <store_flop_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000000000000000" for instance <memory_bit_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <memory_bit_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <store_flop_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000000000000000" for instance <memory_bit_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <memory_bit_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <store_flop_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000000000000000" for instance <memory_bit_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <memory_bit_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <store_flop_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0000000000000000" for instance <memory_bit_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <memory_bit_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <store_flop_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  FFE2" for instance <sel_logical_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <sel_logical_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6E8A" for instance <logical_lut_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <logical_lut_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <logical_flop_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6E8A" for instance <logical_lut_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <logical_lut_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <logical_flop_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6E8A" for instance <logical_lut_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <logical_lut_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <logical_flop_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6E8A" for instance <logical_lut_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <logical_lut_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <logical_flop_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6E8A" for instance <logical_lut_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <logical_lut_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <logical_flop_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6E8A" for instance <logical_lut_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <logical_lut_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <logical_flop_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6E8A" for instance <logical_lut_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <logical_lut_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <logical_flop_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6E8A" for instance <logical_lut_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <logical_lut_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <logical_flop_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <high_shift_in_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <high_shift_in_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <low_shift_in_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <low_shift_in_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <shift_carry_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <shift_carry_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <pipeline_bit> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <shift_mux_lut_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <shift_mux_lut_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <shift_flop_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <shift_mux_lut_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <shift_mux_lut_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <shift_flop_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <shift_mux_lut_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <shift_mux_lut_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <shift_flop_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <shift_mux_lut_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <shift_mux_lut_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <shift_flop_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <shift_mux_lut_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <shift_mux_lut_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <shift_flop_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <shift_mux_lut_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <shift_mux_lut_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <shift_flop_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <shift_mux_lut_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <shift_mux_lut_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <shift_flop_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <shift_mux_lut_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <shift_mux_lut_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <shift_flop_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  1F" for instance <sel_arith_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <sel_arith_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6C" for instance <arith_carry_in_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <arith_carry_in_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  96" for instance <arith_lut_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <arith_lut_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <arith_flop_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  96" for instance <arith_lut_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <arith_lut_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <arith_flop_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  96" for instance <arith_lut_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <arith_lut_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <arith_flop_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  96" for instance <arith_lut_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <arith_lut_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <arith_flop_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  96" for instance <arith_lut_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <arith_lut_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <arith_flop_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  96" for instance <arith_lut_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <arith_lut_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <arith_flop_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  96" for instance <arith_lut_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <arith_lut_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <arith_flop_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  2" for instance <arith_carry_out_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <arith_carry_out_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  96" for instance <arith_lut_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <arith_lut_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <arith_flop_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <arith_carry_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0002" for instance <input_fetch_type_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <input_fetch_type_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <sel_group_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  FE" for instance <or_lut_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <or_lut_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <mux_lut_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <mux_lut_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  FE" for instance <or_lut_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <or_lut_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <mux_lut_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <mux_lut_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  FE" for instance <or_lut_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <or_lut_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <mux_lut_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <mux_lut_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  FE" for instance <or_lut_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <or_lut_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <mux_lut_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <mux_lut_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  FE" for instance <or_lut_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <or_lut_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <mux_lut_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <mux_lut_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  FE" for instance <or_lut_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <or_lut_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <mux_lut_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <mux_lut_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  FE" for instance <or_lut_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <or_lut_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <mux_lut_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <mux_lut_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  FE" for instance <or_lut_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <or_lut_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  E4" for instance <mux_lut_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <mux_lut_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0010" for instance <io_decode_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <io_decode_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  4000" for instance <write_active_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <write_active_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <write_strobe_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0100" for instance <read_active_lut> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <read_active_lut> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <read_strobe_flop> in unit <kcpsm3>.
+    Set user-defined property "INIT =  00000000" for instance <stack_bit_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <stack_bit_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_flop_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  00000000" for instance <stack_bit_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <stack_bit_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_flop_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  00000000" for instance <stack_bit_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <stack_bit_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_flop_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  00000000" for instance <stack_bit_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <stack_bit_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_flop_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  00000000" for instance <stack_bit_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <stack_bit_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_flop_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  00000000" for instance <stack_bit_5> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <stack_bit_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_flop_5> in unit <kcpsm3>.
+    Set user-defined property "INIT =  00000000" for instance <stack_bit_6> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <stack_bit_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_flop_6> in unit <kcpsm3>.
+    Set user-defined property "INIT =  00000000" for instance <stack_bit_7> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <stack_bit_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_flop_7> in unit <kcpsm3>.
+    Set user-defined property "INIT =  00000000" for instance <stack_bit_8> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <stack_bit_8> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_flop_8> in unit <kcpsm3>.
+    Set user-defined property "INIT =  00000000" for instance <stack_bit_9> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <stack_bit_9> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_flop_9> in unit <kcpsm3>.
+    Set user-defined property "INIT =  6555" for instance <count_lut_0> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <count_lut_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_count_loop_register_bit_0> in unit <kcpsm3>.
+    Set user-defined property "INIT =  A999" for instance <count_lut_1> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <count_lut_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_count_loop_register_bit_1> in unit <kcpsm3>.
+    Set user-defined property "INIT =  A999" for instance <count_lut_2> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <count_lut_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_count_loop_register_bit_2> in unit <kcpsm3>.
+    Set user-defined property "INIT =  A999" for instance <count_lut_3> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <count_lut_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_count_loop_register_bit_3> in unit <kcpsm3>.
+    Set user-defined property "INIT =  A999" for instance <count_lut_4> in unit <kcpsm3>.
+    Set user-defined property "XC_PROPS =  INIT" for instance <count_lut_4> in unit <kcpsm3>.
+    Set user-defined property "INIT =  0" for instance <stack_count_loop_register_bit_4> in unit <kcpsm3>.
+Analyzing module <picocode> in library <work>.
+Module <picocode> is correct for synthesis.
+ 
+    Set user-defined property "INIT =  00000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INITP_00 =  00EDDD112C47665F402DD128A28E311C199C11D9BD711D9B5C47663D11D983F3" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INITP_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INITP_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INITP_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INITP_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INITP_07 =  C000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_00 =  70F08F0171F08F01004DCF01F1F0CF01F0F0016400144004000540030F3FC000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_01 =  4132C001401F70F08F0171F08F010047CF01F1F0CF01F0F00014401E50134000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_02 =  F0F0403A502F4100C101402C70F08F0171F08F01004DCF01F1F0CF01F0F0542B" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_03 =  0B0ACF01F1F0CF01F0F0C101403B016470F08F0171F08F010050CF01F1F0CF01" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_04 =  A000C7000701A000C700E7020053C700E702401070F08F0171F08F01005B0C00" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_05 =  4200D210120011C010B0A0005454413054568001000081010100A000C7000700" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_06 =  0200A000405D70F08F0171F08F010053CF01F1F0CF01F0F0E100C001406E5462" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_07 =  00000000000000008001A0005470425E54724100547480010000810101008201" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_08 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_09 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_0A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_0B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_0C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_0D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_0E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_0F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_10 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_11 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_12 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_13 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_14 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_15 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_16 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_17 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_18 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_19 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_1A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_1B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_1C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_1D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_1E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_1F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_20 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_21 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_22 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_23 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_24 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_25 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_26 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_27 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_28 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_29 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_2A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_2B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_2C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_2D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_2E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_2F =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_30 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_31 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_32 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_33 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_34 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_35 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_36 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_37 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_38 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_39 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_3A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_3B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_3C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_3F =  407B000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "SRVAL =  00000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <ram_1024_x_18> in unit <picocode>.
+Analyzing module <PicoBlaze_OutReg> in library <work>.
+	LOCAL_PORT_ID = 8'b00000000
+Module <PicoBlaze_OutReg> is correct for synthesis.
+ 
+Analyzing module <vga_sync> in library <work>.
+	HB = 32'sb00000000000000000000000000010000
+	HD = 32'sb00000000000000000000001011010000
+	HF = 32'sb00000000000000000000000000110000
+	HR = 32'sb00000000000000000000000001100000
+	VB = 32'sb00000000000000000000000000100001
+	VD = 32'sb00000000000000000000000111100000
+	VF = 32'sb00000000000000000000000000001010
+	VR = 32'sb00000000000000000000000000000010
+Module <vga_sync> is correct for synthesis.
+ 
+Analyzing module <display> in library <work>.
+Module <display> is correct for synthesis.
+ 
+Analyzing module <ficha> in library <work>.
+	origen_x = 10'b0011001000
+	tamano = 10'b0001000000
+	y_tamano = 10'b0001000000
+INFO:Xst:1433 - Contents of array <registros> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
+Module <ficha> is correct for synthesis.
+ 
+Analyzing module <nivel> in library <work>.
+	origen_y = 10'b0011001000
+	tamano = 10'b0001000000
+	y_tamano = 10'b0001000000
+INFO:Xst:1433 - Contents of array <registros> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
+Module <nivel> is correct for synthesis.
+ 
+Analyzing module <imagen> in library <work>.
+Module <imagen> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <PicoBlaze_OutReg>.
+    Related source file is "picouser/PicoBlaze_OutReg.v".
+    Found 8-bit register for signal <new_out_port>.
+    Summary:
+	inferred   8 D-type flip-flop(s).
+Unit <PicoBlaze_OutReg> synthesized.
+
+
+Synthesizing Unit <vga_sync>.
+    Related source file is "picouser/vga_sync.v".
+    Found 10-bit up counter for signal <h_count_reg>.
+    Found 10-bit comparator greatequal for signal <h_sync_next$cmp_ge0000> created at line 84.
+    Found 10-bit comparator lessequal for signal <h_sync_next$cmp_le0000> created at line 84.
+    Found 1-bit register for signal <h_sync_reg>.
+    Found 1-bit register for signal <mod2_reg>.
+    Found 10-bit up counter for signal <v_count_reg>.
+    Found 10-bit comparator greatequal for signal <v_sync_next$cmp_ge0000> created at line 87.
+    Found 10-bit comparator lessequal for signal <v_sync_next$cmp_le0000> created at line 87.
+    Found 1-bit register for signal <v_sync_reg>.
+    Found 11-bit comparator less for signal <video_on$cmp_lt0000> created at line 91.
+    Found 10-bit comparator less for signal <video_on$cmp_lt0001> created at line 91.
+    Summary:
+	inferred   2 Counter(s).
+	inferred   3 D-type flip-flop(s).
+	inferred   6 Comparator(s).
+Unit <vga_sync> synthesized.
+
+
+Synthesizing Unit <display>.
+    Related source file is "picouser/display.v".
+    Found 10-bit comparator lessequal for signal <rgb_outT_1$cmp_le0000> created at line 24.
+    Found 10-bit comparator lessequal for signal <rgb_outT_2$cmp_le0000> created at line 22.
+    Summary:
+	inferred   2 Comparator(s).
+Unit <display> synthesized.
+
+
+Synthesizing Unit <ficha>.
+    Related source file is "picouser/ficha.v".
+WARNING:Xst:647 - Input <rst> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <salto> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1781 - Signal <registros> is used but never assigned. Tied to default value.
+WARNING:Xst:646 - Signal <lectura<12>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 4096x3-bit ROM for signal <w_rgb$varindex0000> created at line 4154.
+    Found 13-bit adder for signal <lectura>.
+    Found 11-bit subtractor for signal <lectura$sub0000> created at line 4162.
+    Found 12-bit subtractor for signal <lectura$sub0001> created at line 4162.
+    Found 4-bit register for signal <w_rgb>.
+    Found 10-bit comparator greatequal for signal <w_rgb$cmp_ge0000> created at line 4153.
+    Found 10-bit comparator greatequal for signal <w_rgb$cmp_ge0001> created at line 4153.
+    Found 10-bit comparator less for signal <w_rgb$cmp_lt0000> created at line 4153.
+    Found 10-bit comparator less for signal <w_rgb$cmp_lt0001> created at line 4153.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   4 D-type flip-flop(s).
+	inferred   3 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+Unit <ficha> synthesized.
+
+
+Synthesizing Unit <nivel>.
+    Related source file is "picouser/nivel.v".
+WARNING:Xst:647 - Input <rst> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <salto> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1781 - Signal <registros> is used but never assigned. Tied to default value.
+WARNING:Xst:646 - Signal <lectura<12>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 4096x3-bit ROM for signal <w_rgb$varindex0000> created at line 4124.
+    Found 13-bit adder for signal <lectura>.
+    Found 11-bit subtractor for signal <lectura$sub0000> created at line 4132.
+    Found 12-bit subtractor for signal <lectura$sub0001> created at line 4132.
+    Found 4-bit register for signal <w_rgb>.
+    Found 10-bit comparator greatequal for signal <w_rgb$cmp_ge0000> created at line 4123.
+    Found 10-bit comparator greatequal for signal <w_rgb$cmp_ge0001> created at line 4123.
+    Found 10-bit comparator less for signal <w_rgb$cmp_lt0000> created at line 4123.
+    Found 10-bit comparator less for signal <w_rgb$cmp_lt0001> created at line 4123.
+    Summary:
+	inferred   1 ROM(s).
+	inferred   4 D-type flip-flop(s).
+	inferred   3 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+Unit <nivel> synthesized.
+
+
+Synthesizing Unit <imagen>.
+    Related source file is "picouser/imagen.v".
+WARNING:Xst:647 - Input <fondo<3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+Unit <imagen> synthesized.
+
+
+Synthesizing Unit <kcpsm3>.
+    Related source file is "picoblze/kcpsm3.v".
+Unit <kcpsm3> synthesized.
+
+
+Synthesizing Unit <picocode>.
+    Related source file is "picocode/PICOCODE.V".
+Unit <picocode> synthesized.
+
+
+Synthesizing Unit <Spartan3E_PicoBlaze_Led>.
+    Related source file is "Spartan3E_PicoBlaze_Led.v".
+WARNING:Xst:646 - Signal <read_strobe> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <portA<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+Unit <Spartan3E_PicoBlaze_Led> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 2
+ 4096x3-bit ROM                                        : 2
+# Adders/Subtractors                                   : 6
+ 11-bit subtractor                                     : 2
+ 12-bit subtractor                                     : 2
+ 13-bit adder                                          : 2
+# Counters                                             : 2
+ 10-bit up counter                                     : 2
+# Registers                                            : 6
+ 1-bit register                                        : 3
+ 4-bit register                                        : 2
+ 8-bit register                                        : 1
+# Comparators                                          : 16
+ 10-bit comparator greatequal                          : 6
+ 10-bit comparator less                                : 5
+ 10-bit comparator lessequal                           : 4
+ 11-bit comparator less                                : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+WARNING:Xst:1290 - Hierarchical block <display_u> is unconnected in block <Spartan3E_PicoBlaze_Led>.
+   It will be removed from the design.
+WARNING:Xst:2677 - Node <new_out_port_1> of sequential type is unconnected in block <portA_inst>.
+WARNING:Xst:2677 - Node <new_out_port_2> of sequential type is unconnected in block <portA_inst>.
+WARNING:Xst:2677 - Node <new_out_port_3> of sequential type is unconnected in block <portA_inst>.
+WARNING:Xst:2677 - Node <new_out_port_4> of sequential type is unconnected in block <portA_inst>.
+WARNING:Xst:2677 - Node <new_out_port_5> of sequential type is unconnected in block <portA_inst>.
+WARNING:Xst:2677 - Node <new_out_port_6> of sequential type is unconnected in block <portA_inst>.
+WARNING:Xst:2677 - Node <new_out_port_7> of sequential type is unconnected in block <portA_inst>.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# ROMs                                                 : 2
+ 4096x3-bit ROM                                        : 2
+# Adders/Subtractors                                   : 6
+ 12-bit adder                                          : 2
+ 12-bit subtractor                                     : 2
+ 6-bit subtractor                                      : 2
+# Counters                                             : 2
+ 10-bit up counter                                     : 2
+# Registers                                            : 95
+ Flip-Flops                                            : 95
+# Comparators                                          : 16
+ 10-bit comparator greatequal                          : 6
+ 10-bit comparator less                                : 5
+ 10-bit comparator lessequal                           : 4
+ 11-bit comparator less                                : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <Spartan3E_PicoBlaze_Led> ...
+
+Optimizing unit <PicoBlaze_OutReg> ...
+
+Optimizing unit <vga_sync> ...
+
+Optimizing unit <kcpsm3> ...
+WARNING:Xst:2677 - Node <portA_inst/new_out_port_7> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
+WARNING:Xst:2677 - Node <portA_inst/new_out_port_6> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
+WARNING:Xst:2677 - Node <portA_inst/new_out_port_5> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
+WARNING:Xst:2677 - Node <portA_inst/new_out_port_4> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
+WARNING:Xst:2677 - Node <portA_inst/new_out_port_3> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
+WARNING:Xst:2677 - Node <portA_inst/new_out_port_2> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
+WARNING:Xst:2677 - Node <portA_inst/new_out_port_1> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block Spartan3E_PicoBlaze_Led, actual ratio is 61.
+FlipFlop vga/h_count_reg_0 has been replicated 1 time(s)
+FlipFlop vga/h_count_reg_1 has been replicated 1 time(s)
+FlipFlop vga/h_count_reg_2 has been replicated 1 time(s)
+FlipFlop vga/h_count_reg_3 has been replicated 1 time(s)
+FlipFlop vga/h_count_reg_4 has been replicated 1 time(s)
+FlipFlop vga/h_count_reg_5 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 114
+ Flip-Flops                                            : 114
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : Spartan3E_PicoBlaze_Led.ngr
+Top Level Output File Name         : Spartan3E_PicoBlaze_Led
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 7
+
+Cell Usage :
+# BELS                             : 1377
+#      GND                         : 1
+#      INV                         : 7
+#      LUT1                        : 20
+#      LUT2                        : 23
+#      LUT2_D                      : 10
+#      LUT2_L                      : 3
+#      LUT3                        : 230
+#      LUT3_D                      : 9
+#      LUT3_L                      : 5
+#      LUT4                        : 571
+#      LUT4_D                      : 30
+#      LUT4_L                      : 23
+#      MUXCY                       : 67
+#      MUXF5                       : 222
+#      MUXF6                       : 67
+#      MUXF7                       : 16
+#      MUXF8                       : 3
+#      VCC                         : 1
+#      XORCY                       : 69
+# FlipFlops/Latches                : 114
+#      FD                          : 30
+#      FDE                         : 3
+#      FDR                         : 35
+#      FDRE                        : 34
+#      FDRSE                       : 10
+#      FDS                         : 2
+# RAMS                             : 27
+#      RAM16X1D                    : 8
+#      RAM32X1S                    : 10
+#      RAM64X1S                    : 8
+#      RAMB16_S18                  : 1
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 6
+#      OBUF                        : 6
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s100evq100-4 
+
+ Number of Slices:                      539  out of    960    56%  
+ Number of Slice Flip Flops:            114  out of   1920     5%  
+ Number of 4 input LUTs:                999  out of   1920    52%  
+    Number used as logic:               931
+    Number used as RAMs:                 68
+ Number of IOs:                           7
+ Number of bonded IOBs:                   7  out of     66    10%  
+ Number of BRAMs:                         1  out of      4    25%  
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK_50M                            | BUFGP                  | 141   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 11.030ns (Maximum Frequency: 90.658MHz)
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: 8.936ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK_50M'
+  Clock period: 11.030ns (frequency: 90.658MHz)
+  Total number of paths / destination ports: 12983 / 469
+-------------------------------------------------------------------------
+Delay:               11.030ns (Levels of Logic = 9)
+  Source:            vga/h_count_reg_6 (FF)
+  Destination:       ficha/w_rgb_1 (FF)
+  Source Clock:      CLK_50M rising
+  Destination Clock: CLK_50M rising
+
+  Data Path: vga/h_count_reg_6 to ficha/w_rgb_1
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q            12   0.591   0.965  vga/h_count_reg_6 (vga/h_count_reg_6)
+     LUT4:I3->O            1   0.704   0.499  ficha/Msub_lectura_sub0001_xor<6>11 (ficha/lectura_sub0001<6>)
+     LUT2:I1->O            1   0.704   0.000  ficha/Madd_lectura_Madd_lut<6> (ficha/Madd_lectura_Madd_lut<6>)
+     XORCY:LI->O          77   0.527   1.276  ficha/Madd_lectura_Madd_xor<6> (ficha/lectura<6>)
+     MUXF6:S->O            1   0.850   0.455  ficha/Mrom_w_rgb_varindex00001331_17_f6 (ficha/Mrom_w_rgb_varindex00001331_17_f6)
+     LUT3:I2->O            1   0.704   0.455  ficha/lectura<8>1_SW0 (N122)
+     LUT3_L:I2->LO         1   0.704   0.135  ficha/lectura<8>1 (ficha/lectura<8>11)
+     LUT3:I2->O            1   0.704   0.424  ficha/Mrom_w_rgb_varindex00001331_6 (ficha/Mrom_w_rgb_varindex00001331_6)
+     LUT4:I3->O            1   0.704   0.000  ficha/w_rgb_varindex0000<1>_F (N276)
+     MUXF5:I0->O           1   0.321   0.000  ficha/w_rgb_varindex0000<1> (ficha/w_rgb_varindex0000<1>1)
+     FD:D                      0.308          ficha/w_rgb_1
+    ----------------------------------------
+    Total                     11.030ns (6.821ns logic, 4.209ns route)
+                                       (61.8% logic, 38.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK_50M'
+  Total number of paths / destination ports: 59 / 6
+-------------------------------------------------------------------------
+Offset:              8.936ns (Levels of Logic = 4)
+  Source:            vga/h_count_reg_4 (FF)
+  Destination:       r (PAD)
+  Source Clock:      CLK_50M rising
+
+  Data Path: vga/h_count_reg_4 to r
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q           393   0.591   1.380  vga/h_count_reg_4 (vga/h_count_reg_4)
+     LUT4:I3->O            1   0.704   0.455  vga/video_on12 (vga/video_on12)
+     LUT4:I2->O            3   0.704   0.706  vga/video_on56 (w_video_on)
+     LUT4:I0->O            1   0.704   0.420  r (r_OBUF)
+     OBUF:I->O                 3.272          r_OBUF (r)
+    ----------------------------------------
+    Total                      8.936ns (5.975ns logic, 2.961ns route)
+                                       (66.9% logic, 33.1% route)
+
+=========================================================================
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/count_lut_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/count_lut_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/count_lut_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/count_lut_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/count_lut_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/stack_bit_9.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/stack_bit_8.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/stack_bit_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/stack_bit_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/stack_bit_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/stack_bit_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/stack_bit_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/stack_bit_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/stack_bit_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/stack_bit_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/read_active_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/write_active_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/io_decode_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/mux_lut_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/or_lut_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/mux_lut_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/or_lut_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/mux_lut_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/or_lut_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/mux_lut_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/or_lut_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/mux_lut_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/or_lut_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/mux_lut_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/or_lut_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/mux_lut_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/or_lut_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/mux_lut_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/or_lut_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/input_fetch_type_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/arith_lut_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/arith_carry_out_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/arith_lut_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/arith_lut_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/arith_lut_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/arith_lut_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/arith_lut_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/arith_lut_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/arith_lut_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/arith_carry_in_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/sel_arith_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/shift_mux_lut_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/shift_mux_lut_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/shift_mux_lut_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/shift_mux_lut_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/shift_mux_lut_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/shift_mux_lut_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/shift_mux_lut_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/shift_mux_lut_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/shift_carry_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/low_shift_in_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/high_shift_in_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/logical_lut_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/logical_lut_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/logical_lut_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/logical_lut_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/logical_lut_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/logical_lut_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/logical_lut_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/logical_lut_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/sel_logical_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/memory_bit_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/memory_bit_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/memory_bit_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/memory_bit_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/memory_bit_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/memory_bit_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/memory_bit_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/memory_bit_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/memory_enable_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/memory_type_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/operand_select_mux_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/reg_loop_register_bit_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/operand_select_mux_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/reg_loop_register_bit_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/operand_select_mux_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/reg_loop_register_bit_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/operand_select_mux_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/reg_loop_register_bit_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/operand_select_mux_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/reg_loop_register_bit_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/operand_select_mux_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/reg_loop_register_bit_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/operand_select_mux_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/reg_loop_register_bit_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/operand_select_mux_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/reg_loop_register_bit_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/register_enable_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/register_type_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/value_select_mux_9.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/vector_select_mux_9.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/value_select_mux_8.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/vector_select_mux_8.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/value_select_mux_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/vector_select_mux_7.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/value_select_mux_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/vector_select_mux_6.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/value_select_mux_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/vector_select_mux_5.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/value_select_mux_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/vector_select_mux_4.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/value_select_mux_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/vector_select_mux_3.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/value_select_mux_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/vector_select_mux_2.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/value_select_mux_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/vector_select_mux_1.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/value_select_mux_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/vector_select_mux_0.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/sel_shadow_carry_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/sel_shift_carry_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/sel_arith_carry_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/sel_parity_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/high_parity_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/low_parity_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/sel_shadow_zero_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/high_zero_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/low_zero_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/flag_enable_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/flag_type_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/valid_move_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/push_pop_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/call_type_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/normal_count_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/condition_met_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/move_group_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/int_value_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/int_update_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/int_pulse_lut.
+WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/t_state_lut.
+
+
+Total REAL time to Xst completion: 34.00 secs
+Total CPU time to Xst completion: 34.13 secs
+ 
+--> 
+
+
+Total memory usage is 607776 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :  372 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
+

@@ -1,0 +1,16 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Fri Oct 16 17:21:52 2015
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "b" LOCATE = SITE "P18" LEVEL 1;
+COMP "g" LOCATE = SITE "P17" LEVEL 1;
+COMP "LED" LOCATE = SITE "P61" LEVEL 1;
+COMP "r" LOCATE = SITE "P16" LEVEL 1;
+COMP "w_hsync" LOCATE = SITE "P15" LEVEL 1;
+COMP "w_vsync" LOCATE = SITE "P11" LEVEL 1;
+COMP "CLK_50M" LOCATE = SITE "P38" LEVEL 1;
+NET "CLK_50M_BUFGP/IBUFG" BEL "CLK_50M_BUFGP/BUFG.GCLKMUX" USELOCALCONNECT;
+NET "CLK_50M_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+SCHEMATIC END;
+
