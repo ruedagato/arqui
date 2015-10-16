@@ -1,0 +1,183 @@
+;--------------------------------------------------------
+; File Created by SDCC : free open source ANSI-C Compiler
+; Version 3.0.1 #6227 (Oct  2 2015) (Linux)
+; This file was generated Fri Oct 16 11:01:15 2015
+;--------------------------------------------------------
+;--------------------------------------------------------
+; global & static initialisations
+;--------------------------------------------------------
+
+	LOAD	sF, 3f
+	JUMP	__sdcc_program_startup
+;--------------------------------------------------------
+; Home
+;--------------------------------------------------------
+__sdcc_program_startup:
+	CALL	_main
+;	return from main will lock up
+__sdcc_loop:
+	JUMP	__sdcc_loop
+;--------------------------------------------------------
+; code
+;--------------------------------------------------------
+	;	programa.c:20: void main()
+_main:
+	;	programa.c:22: char cont_sato = 20;
+	LOAD	s0, 14
+	;	programa.c:24: char cont_led = 100;
+	LOAD	s1, 64
+	;	programa.c:25: led_on();
+	STORE	s0, (sF)
+	SUB	sF, 01
+	STORE	s1, (sF)
+	SUB	sF, 01
+	CALL	_led_on
+	ADD	sF, 01
+	FETCH	s1, (sF)
+	ADD	sF, 01
+	FETCH	s0, (sF)
+	;	programa.c:26: while(1)
+_L00111:
+	;	programa.c:28: if (cont_sato == 0)
+	COMPARE	s0, 00
+	JUMP	Z, _LC00135
+	JUMP	_L00102
+_LC00135:
+	;	programa.c:30: cont_sato = 20;
+	LOAD	s0, 14
+	;	programa.c:31: saltar();
+	STORE	s0, (sF)
+	SUB	sF, 01
+	STORE	s1, (sF)
+	SUB	sF, 01
+	CALL	_saltar
+	ADD	sF, 01
+	FETCH	s1, (sF)
+	ADD	sF, 01
+	FETCH	s0, (sF)
+	JUMP	_L00103
+_L00102:
+	;	programa.c:34: cont_sato --;
+	SUB	s0, 01
+_L00103:
+	;	programa.c:36: if (cont_led == 50)
+	COMPARE	s1, 32
+	JUMP	NZ, _L00105
+	;	programa.c:37: led_on();
+	STORE	s0, (sF)
+	SUB	sF, 01
+	STORE	s1, (sF)
+	SUB	sF, 01
+	CALL	_led_on
+	ADD	sF, 01
+	FETCH	s1, (sF)
+	ADD	sF, 01
+	FETCH	s0, (sF)
+	JUMP	_L00106
+_L00105:
+	;	programa.c:39: cont_led --;
+	SUB	s1, 01
+_L00106:
+	;	programa.c:40: if (cont_led == 0)
+	COMPARE	s1, 00
+	JUMP	Z, _LC00136
+	JUMP	_L00108
+_LC00136:
+	;	programa.c:42: led_off();
+	STORE	s0, (sF)
+	SUB	sF, 01
+	STORE	s1, (sF)
+	SUB	sF, 01
+	CALL	_led_off
+	ADD	sF, 01
+	FETCH	s1, (sF)
+	ADD	sF, 01
+	FETCH	s0, (sF)
+	;	programa.c:43: cont_led = 100;	
+	LOAD	s1, 64
+	JUMP	_L00109
+_L00108:
+	;	programa.c:46: cont_led --;
+	SUB	s1, 01
+_L00109:
+	;	programa.c:47: delay_ms(10);
+	STORE	s0, (sF)
+	SUB	sF, 01
+	STORE	s1, (sF)
+	SUB	sF, 01
+	LOAD	sB, 0a
+	LOAD	sC, 00
+	CALL	_delay_ms
+	ADD	sF, 01
+	FETCH	s1, (sF)
+	ADD	sF, 01
+	FETCH	s0, (sF)
+	JUMP	_L00111
+	;	programa.c:51: void saltar()
+_saltar:
+	;	programa.c:56: __endasm;
+	 XOR s7, 02
+	 OUTPUT s7, 00
+	;	programa.c:57: delay();
+	CALL	_delay
+	;	programa.c:61: __endasm;
+	 XOR s7, 02
+	 OUTPUT s7, 00
+	RETURN
+	;	programa.c:64: void led_on()
+_led_on:
+	;	programa.c:69: __endasm;
+	LOAD s7, 01
+	OUTPUT s7, 00
+	RETURN
+	;	programa.c:72: void led_off()
+_led_off:
+	;	programa.c:77: __endasm;
+	 LOAD s7, 00
+	 OUTPUT s7, 00
+	RETURN
+	;	programa.c:80: void delay()
+_delay:
+	;	programa.c:94: __endasm;
+	  CONSTANT DELAY_LOOP2 , 30 ; Loop delay
+	     LOAD s1, 00
+	  _rpt2:
+	ADD s1, 01
+	     LOAD s0, 00
+	  _rpt1:
+	ADD s0, 01
+	     JUMP NZ,_rpt1
+	     COMPARE s1, DELAY_LOOP2
+	     JUMP NZ,_rpt2
+	RETURN
+	;	programa.c:97: void delay_ms(int n)
+_delay_ms:
+	LOAD	s0, sB
+	LOAD	s1, sC
+	;	programa.c:100: while(valor!=0)
+_L00127:
+	LOAD	s2, s0
+	OR	s2, s1
+	COMPARE	s2, 00
+	JUMP	NZ, _LC00137
+	JUMP	_L00134
+_LC00137:
+	;	programa.c:102: valor = valor - 1;
+	SUB	s0, 01
+	SUBCY	s1, 00
+	;	programa.c:103: delay();
+	STORE	s0, (sF)
+	SUB	sF, 01
+	STORE	s1, (sF)
+	SUB	sF, 01
+	CALL	_delay
+	ADD	sF, 01
+	FETCH	s1, (sF)
+	ADD	sF, 01
+	FETCH	s0, (sF)
+	JUMP	_L00127
+_L00134:
+	RETURN
+;--------------------------------------------------------
+; interrupt vector 
+;--------------------------------------------------------
