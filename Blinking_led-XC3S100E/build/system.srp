@@ -1,0 +1,391 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "system.prj"
+Input Format                       : MIXED
+
+---- Target Parameters
+Output File Name                   : "system.ngc"
+Target Device                      : xc3S100e-VQ100-4
+
+---- Source Options
+Top Module Name                    : system
+Automatic Register Balancing       : yes
+
+---- General Options
+Optimization Goal                  : AREA
+Optimization Effort                : 2
+RTL Output                         : yes
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "../system.v" in library work
+Compiling verilog file "../rtl/counter/counter.v" in library work
+Module <system> compiled
+Compiling verilog file "../rtl/posy/posy.v" in library work
+Module <counter> compiled
+Compiling verilog file "../rtl/dataregister/dataregister.v" in library work
+Module <posy> compiled
+Module <datadegister> compiled
+No errors in compilation
+Analysis of file <"system.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <system> in library <work> with parameters.
+	clk_freq = "00000010111110101111000010000000"
+	uart_baud_rate = "00000000000000001110000100000000"
+
+Analyzing hierarchy for module <counter> in library <work> with parameters.
+	M = "00000000010011000100101101000000"
+	N = "00000000000000000000000000100000"
+
+Analyzing hierarchy for module <datadegister> in library <work> with parameters.
+	DATAWIDTH = "00000000000000000000000000000001"
+
+Analyzing hierarchy for module <posy> in library <work> with parameters.
+	s0 = "00"
+	s1 = "01"
+	s2 = "10"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <system>.
+	clk_freq = 32'sb00000010111110101111000010000000
+	uart_baud_rate = 32'sb00000000000000001110000100000000
+Module <system> is correct for synthesis.
+ 
+Analyzing module <counter> in library <work>.
+	M = 32'sb00000000010011000100101101000000
+	N = 32'sb00000000000000000000000000100000
+Module <counter> is correct for synthesis.
+ 
+Analyzing module <datadegister> in library <work>.
+	DATAWIDTH = 32'sb00000000000000000000000000000001
+Module <datadegister> is correct for synthesis.
+ 
+Analyzing module <posy> in library <work>.
+	s0 = 2'b00
+	s1 = 2'b01
+	s2 = 2'b10
+Module <posy> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <counter>.
+    Related source file is "../rtl/counter/counter.v".
+    Found 32-bit adder for signal <r_next$addsub0000> created at line 52.
+    Found 32-bit register for signal <r_reg>.
+    Summary:
+	inferred  32 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <counter> synthesized.
+
+
+Synthesizing Unit <datadegister>.
+    Related source file is "../rtl/dataregister/dataregister.v".
+WARNING:Xst:647 - Input <d<0>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 1-bit register for signal <q<0>>.
+    Summary:
+	inferred   1 D-type flip-flop(s).
+Unit <datadegister> synthesized.
+
+
+Synthesizing Unit <posy>.
+    Related source file is "../rtl/posy/posy.v".
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <rState> of Case statement line 52 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <rState> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Using one-hot encoding for signal <rState>.
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <rState> of Case statement line 60 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <rState> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Found 3-bit register for signal <rState>.
+Unit <posy> synthesized.
+
+
+Synthesizing Unit <system>.
+    Related source file is "../system.v".
+Unit <system> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 32-bit adder                                          : 1
+# Registers                                            : 3
+ 1-bit register                                        : 1
+ 3-bit register                                        : 1
+ 32-bit register                                       : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+WARNING:Xst:1290 - Hierarchical block <poss> is unconnected in block <system>.
+   It will be removed from the design.
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Adders/Subtractors                                   : 1
+ 32-bit adder                                          : 1
+# Registers                                            : 36
+ Flip-Flops                                            : 36
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:2677 - Node <poss/rState_2> of sequential type is unconnected in block <system>.
+WARNING:Xst:2677 - Node <poss/rState_0> of sequential type is unconnected in block <system>.
+WARNING:Xst:2677 - Node <poss/rState_1> of sequential type is unconnected in block <system>.
+
+Optimizing unit <system> ...
+
+Optimizing unit <counter> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+
+Pipelining and Register Balancing Report ...
+
+Processing Unit <system> :
+	Register(s) counter_unit0/r_reg_18 has(ve) been backward balanced into : counter_unit0/r_reg_18_BRB1.
+	Register(s) counter_unit0/r_reg_19 has(ve) been backward balanced into : counter_unit0/r_reg_19_BRB1.
+	Register(s) counter_unit0/r_reg_20 has(ve) been backward balanced into : counter_unit0/r_reg_20_BRB1.
+	Register(s) counter_unit0/r_reg_21 has(ve) been backward balanced into : counter_unit0/r_reg_21_BRB1.
+	Register(s) counter_unit0/r_reg_22 has(ve) been backward balanced into : counter_unit0/r_reg_22_BRB1.
+	Register(s) counter_unit0/r_reg_23 has(ve) been backward balanced into : counter_unit0/r_reg_23_BRB1.
+	Register(s) counter_unit0/r_reg_24 has(ve) been backward balanced into : counter_unit0/r_reg_24_BRB1.
+	Register(s) counter_unit0/r_reg_25 has(ve) been backward balanced into : counter_unit0/r_reg_25_BRB1.
+	Register(s) counter_unit0/r_reg_26 has(ve) been backward balanced into : counter_unit0/r_reg_26_BRB1.
+	Register(s) counter_unit0/r_reg_27 has(ve) been backward balanced into : counter_unit0/r_reg_27_BRB1.
+	Register(s) counter_unit0/r_reg_28 has(ve) been backward balanced into : counter_unit0/r_reg_28_BRB1.
+	Register(s) counter_unit0/r_reg_29 has(ve) been backward balanced into : counter_unit0/r_reg_29_BRB1.
+	Register(s) counter_unit0/r_reg_30 has(ve) been backward balanced into : counter_unit0/r_reg_30_BRB1.
+	Register(s) counter_unit0/r_reg_31 has(ve) been backward balanced into : counter_unit0/r_reg_31_BRB0 counter_unit0/r_reg_31_BRB1.
+Unit <system> processed.
+FlipFlop datadegister_unit0/q_0 has been replicated 1 time(s) to handle iob=true attribute.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 35
+ Flip-Flops                                            : 35
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : system.ngr
+Top Level Output File Name         : system.ngc
+Output Format                      : ngc
+Optimization Goal                  : AREA
+Keep Hierarchy                     : no
+
+Design Statistics
+# IOs                              : 4
+
+Cell Usage :
+# BELS                             : 147
+#      GND                         : 1
+#      INV                         : 3
+#      LUT1                        : 31
+#      LUT2                        : 32
+#      LUT4                        : 8
+#      MUXCY                       : 39
+#      VCC                         : 1
+#      XORCY                       : 32
+# FlipFlops/Latches                : 35
+#      FD                          : 14
+#      FDC                         : 18
+#      FDCE                        : 2
+#      FDP                         : 1
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 2
+#      IBUF                        : 1
+#      OBUF                        : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s100evq100-4 
+
+ Number of Slices:                       39  out of    960     4%  
+ Number of Slice Flip Flops:             34  out of   1920     1%  
+ Number of 4 input LUTs:                 74  out of   1920     3%  
+ Number of IOs:                           4
+ Number of bonded IOBs:                   3  out of     66     4%  
+    IOB Flip Flops:                       1
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk                                | BUFGP                  | 35    |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-----------------------------------+----------------------------+-------+
+Control Signal                     | Buffer(FF name)            | Load  |
+-----------------------------------+----------------------------+-------+
+n_rst(n_rst1_INV_0:O)              | NONE(counter_unit0/r_reg_0)| 21    |
+-----------------------------------+----------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 6.751ns (Maximum Frequency: 148.126MHz)
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: 4.283ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 6.751ns (frequency: 148.126MHz)
+  Total number of paths / destination ports: 1601 / 37
+-------------------------------------------------------------------------
+Delay:               6.751ns (Levels of Logic = 8)
+  Source:            counter_unit0/r_reg_31_BRB0 (FF)
+  Destination:       counter_unit0/r_reg_17 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: counter_unit0/r_reg_31_BRB0 to counter_unit0/r_reg_17
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDP:C->Q             14   0.591   1.079  counter_unit0/r_reg_31_BRB0 (counter_unit0/r_reg_31_BRB0)
+     LUT2:I1->O            2   0.704   0.482  counter_unit0/r_next<19>1 (counter_unit0/r_reg_19)
+     LUT4:I2->O            1   0.704   0.000  counter_unit0/r_next_cmp_eq0000_wg_lut<3> (counter_unit0/r_next_cmp_eq0000_wg_lut<3>)
+     MUXCY:S->O            1   0.464   0.000  counter_unit0/r_next_cmp_eq0000_wg_cy<3> (counter_unit0/r_next_cmp_eq0000_wg_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  counter_unit0/r_next_cmp_eq0000_wg_cy<4> (counter_unit0/r_next_cmp_eq0000_wg_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  counter_unit0/r_next_cmp_eq0000_wg_cy<5> (counter_unit0/r_next_cmp_eq0000_wg_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  counter_unit0/r_next_cmp_eq0000_wg_cy<6> (counter_unit0/r_next_cmp_eq0000_wg_cy<6>)
+     MUXCY:CI->O          21   0.331   1.207  counter_unit0/r_next_cmp_eq0000_wg_cy<7> (counter_unit0_ovf)
+     LUT2:I1->O            1   0.704   0.000  counter_unit0/r_next<9>1 (counter_unit0/r_next<9>)
+     FDC:D                     0.308          counter_unit0/r_reg_9
+    ----------------------------------------
+    Total                      6.751ns (3.983ns logic, 2.768ns route)
+                                       (59.0% logic, 41.0% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              4.283ns (Levels of Logic = 1)
+  Source:            datadegister_unit0/q_0_1 (FF)
+  Destination:       led (PAD)
+  Source Clock:      clk rising
+
+  Data Path: datadegister_unit0/q_0_1 to led
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             1   0.591   0.420  datadegister_unit0/q_0_1 (datadegister_unit0/q_0_1)
+     OBUF:I->O                 3.272          led_OBUF (led)
+    ----------------------------------------
+    Total                      4.283ns (3.863ns logic, 0.420ns route)
+                                       (90.2% logic, 9.8% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 4.00 secs
+Total CPU time to Xst completion: 4.02 secs
+ 
+--> 
+
+
+Total memory usage is 505272 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    5 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
+

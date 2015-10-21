@@ -37,410 +37,601 @@ INFO:Timing:3389 - This architecture does not support 'Discrete Jitter' and
 Timing constraint: NET "CLK_50M_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 14738 paths analyzed, 978 endpoints analyzed, 0 failing endpoints
+ 264302 paths analyzed, 1171 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is  13.487ns.
+ Minimum period is  18.331ns.
 --------------------------------------------------------------------------------
 
-Paths for end point ficha/w_rgb_2 (SLICE_X12Y17.F1), 686 paths
+Paths for end point nivel1/w_rgb_1 (SLICE_X18Y14.G3), 16077 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     6.513ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga/h_count_reg_5 (FF)
-  Destination:          ficha/w_rgb_2 (FF)
+Slack (setup path):     1.669ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               control2/rState_3_1 (FF)
+  Destination:          nivel1/w_rgb_1 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.483ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.004ns (0.025 - 0.029)
+  Data Path Delay:      18.331ns (Levels of Logic = 11)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_50M_BUFGP rising at 0.000ns
   Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga/h_count_reg_5 to ficha/w_rgb_2
+  Maximum Data Path: control2/rState_3_1 to nivel1/w_rgb_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y20.XQ      Tcko                  0.592   vga/h_count_reg<5>
-                                                       vga/h_count_reg_5
-    SLICE_X29Y1.F4       net (fanout=187)      2.869   vga/h_count_reg<5>
-    SLICE_X29Y1.X        Tilo                  0.704   ficha/lectura_sub0001<5>
-                                                       ficha/Msub_lectura_sub0001_xor<5>11
-    SLICE_X0Y6.F1        net (fanout=105)      2.725   ficha/lectura_sub0001<5>
-    SLICE_X0Y6.X         Tif5x                 1.152   ficha/Mrom_w_rgb_varindex00001831_17_f52
-                                                       ficha/Mrom_w_rgb_varindex00001831_184
-                                                       ficha/Mrom_w_rgb_varindex00001831_17_f5_1
-    SLICE_X4Y3.F3        net (fanout=1)        0.876   ficha/Mrom_w_rgb_varindex00001831_17_f52
-    SLICE_X4Y3.X         Tilo                  0.759   N159
-                                                       ficha/lectura<7>1501_SW0
-    SLICE_X13Y14.G3      net (fanout=1)        1.109   N159
-    SLICE_X13Y14.F5      Tif5                  0.875   ficha/Mrom_w_rgb_varindex00001831_6_f6
-                                                       ficha/Mrom_w_rgb_varindex00001831_91
-                                                       ficha/Mrom_w_rgb_varindex00001831_7_f5
-    SLICE_X13Y14.FXINA   net (fanout=1)        0.000   ficha/Mrom_w_rgb_varindex00001831_7_f5
-    SLICE_X13Y14.Y       Tif6y                 0.521   ficha/Mrom_w_rgb_varindex00001831_6_f6
-                                                       ficha/Mrom_w_rgb_varindex00001831_6_f6
-    SLICE_X12Y17.F1      net (fanout=1)        0.409   ficha/Mrom_w_rgb_varindex00001831_6_f6
-    SLICE_X12Y17.CLK     Tfck                  0.892   ficha/w_rgb<2>
-                                                       ficha/w_rgb_varindex0000<2>82
-                                                       ficha/w_rgb_2
+    SLICE_X31Y22.YQ      Tcko                  0.587   control2/rState_3_1
+                                                       control2/rState_3_1
+    SLICE_X28Y21.G1      net (fanout=5)        0.515   control2/rState_3_1
+    SLICE_X28Y21.Y       Tilo                  0.759   mover2/next_posx_mux0000
+                                                       mover2/next_posx_mux00002
+    SLICE_X29Y16.BX      net (fanout=1)        0.367   mover2/next_posx_mux0000
+    SLICE_X29Y16.Y       Tbxy                  1.592   mover2/next_posx_addsub0000<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_cy<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_xor<1>
+    SLICE_X23Y11.G4      net (fanout=6)        1.285   mover2/next_posx_addsub0000<1>
+    SLICE_X23Y11.COUT    Topcyg                1.001   nivel1/lectura_sub0001<0>
+                                                       nivel1/Msub_lectura_sub0001_lut<1>
+                                                       nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.X       Tcinx                 0.462   nivel1/lectura_sub0001<2>
+                                                       nivel1/Msub_lectura_sub0001_xor<2>
+    SLICE_X2Y0.G3        net (fanout=175)      3.506   nivel1/lectura_sub0001<2>
+    SLICE_X2Y0.Y         Tilo                  0.759   nivel1/lectura<7>161
+                                                       nivel1/Mrom_w_rgb_varindex000014011
+    SLICE_X28Y7.F2       net (fanout=3)        1.547   nivel1/N7
+    SLICE_X28Y7.F5       Tif5                  1.033   nivel1/Mrom_w_rgb_varindex00001071_16_f7
+                                                       nivel1/Mrom_w_rgb_varindex00001071_201
+                                                       nivel1/Mrom_w_rgb_varindex00001071_19_f5
+    SLICE_X28Y6.FXINB    net (fanout=1)        0.000   nivel1/Mrom_w_rgb_varindex00001071_19_f5
+    SLICE_X28Y6.FX       Tinbfx                0.364   nivel1/Mrom_w_rgb_varindex00001071_18_f5
+                                                       nivel1/Mrom_w_rgb_varindex00001071_17_f6
+    SLICE_X28Y7.FXINA    net (fanout=1)        0.000   nivel1/Mrom_w_rgb_varindex00001071_17_f6
+    SLICE_X28Y7.Y        Tif6y                 0.409   nivel1/Mrom_w_rgb_varindex00001071_16_f7
+                                                       nivel1/Mrom_w_rgb_varindex00001071_16_f7
+    SLICE_X19Y10.G3      net (fanout=1)        1.157   nivel1/Mrom_w_rgb_varindex00001071_16_f7
+    SLICE_X19Y10.Y       Tilo                  0.704   nivel1/lectura<9>21
+                                                       nivel1/lectura<9>11_SW0
+    SLICE_X19Y10.F3      net (fanout=1)        0.023   nivel1/lectura<9>11_SW0/O
+    SLICE_X19Y10.X       Tilo                  0.704   nivel1/lectura<9>21
+                                                       nivel1/lectura<9>11
+    SLICE_X18Y14.G3      net (fanout=1)        0.272   nivel1/lectura<9>21
+    SLICE_X18Y14.CLK     Tgck                  1.285   nivel1/w_rgb<1>
+                                                       nivel1/Mrom_w_rgb_varindex00001071_4
+                                                       nivel1/Mrom_w_rgb_varindex00001071_2_f5
+                                                       nivel1/w_rgb_1
     -------------------------------------------------  ---------------------------
-    Total                                     13.483ns (5.495ns logic, 7.988ns route)
-                                                       (40.8% logic, 59.2% route)
+    Total                                     18.331ns (9.659ns logic, 8.672ns route)
+                                                       (52.7% logic, 47.3% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     6.560ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga/h_count_reg_5 (FF)
-  Destination:          ficha/w_rgb_2 (FF)
+Slack (setup path):     1.747ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               control2/rState_4_1 (FF)
+  Destination:          nivel1/w_rgb_1 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.436ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.004ns (0.025 - 0.029)
+  Data Path Delay:      18.253ns (Levels of Logic = 11)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_50M_BUFGP rising at 0.000ns
   Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga/h_count_reg_5 to ficha/w_rgb_2
+  Maximum Data Path: control2/rState_4_1 to nivel1/w_rgb_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y20.XQ      Tcko                  0.592   vga/h_count_reg<5>
-                                                       vga/h_count_reg_5
-    SLICE_X29Y1.F4       net (fanout=187)      2.869   vga/h_count_reg<5>
-    SLICE_X29Y1.X        Tilo                  0.704   ficha/lectura_sub0001<5>
-                                                       ficha/Msub_lectura_sub0001_xor<5>11
-    SLICE_X0Y6.G4        net (fanout=105)      2.678   ficha/lectura_sub0001<5>
-    SLICE_X0Y6.X         Tif5x                 1.152   ficha/Mrom_w_rgb_varindex00001831_17_f52
-                                                       ficha/Mrom_w_rgb_varindex00001831_192
-                                                       ficha/Mrom_w_rgb_varindex00001831_17_f5_1
-    SLICE_X4Y3.F3        net (fanout=1)        0.876   ficha/Mrom_w_rgb_varindex00001831_17_f52
-    SLICE_X4Y3.X         Tilo                  0.759   N159
-                                                       ficha/lectura<7>1501_SW0
-    SLICE_X13Y14.G3      net (fanout=1)        1.109   N159
-    SLICE_X13Y14.F5      Tif5                  0.875   ficha/Mrom_w_rgb_varindex00001831_6_f6
-                                                       ficha/Mrom_w_rgb_varindex00001831_91
-                                                       ficha/Mrom_w_rgb_varindex00001831_7_f5
-    SLICE_X13Y14.FXINA   net (fanout=1)        0.000   ficha/Mrom_w_rgb_varindex00001831_7_f5
-    SLICE_X13Y14.Y       Tif6y                 0.521   ficha/Mrom_w_rgb_varindex00001831_6_f6
-                                                       ficha/Mrom_w_rgb_varindex00001831_6_f6
-    SLICE_X12Y17.F1      net (fanout=1)        0.409   ficha/Mrom_w_rgb_varindex00001831_6_f6
-    SLICE_X12Y17.CLK     Tfck                  0.892   ficha/w_rgb<2>
-                                                       ficha/w_rgb_varindex0000<2>82
-                                                       ficha/w_rgb_2
+    SLICE_X28Y23.XQ      Tcko                  0.592   control2/rState_4_1
+                                                       control2/rState_4_1
+    SLICE_X28Y21.G4      net (fanout=5)        0.432   control2/rState_4_1
+    SLICE_X28Y21.Y       Tilo                  0.759   mover2/next_posx_mux0000
+                                                       mover2/next_posx_mux00002
+    SLICE_X29Y16.BX      net (fanout=1)        0.367   mover2/next_posx_mux0000
+    SLICE_X29Y16.Y       Tbxy                  1.592   mover2/next_posx_addsub0000<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_cy<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_xor<1>
+    SLICE_X23Y11.G4      net (fanout=6)        1.285   mover2/next_posx_addsub0000<1>
+    SLICE_X23Y11.COUT    Topcyg                1.001   nivel1/lectura_sub0001<0>
+                                                       nivel1/Msub_lectura_sub0001_lut<1>
+                                                       nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.X       Tcinx                 0.462   nivel1/lectura_sub0001<2>
+                                                       nivel1/Msub_lectura_sub0001_xor<2>
+    SLICE_X2Y0.G3        net (fanout=175)      3.506   nivel1/lectura_sub0001<2>
+    SLICE_X2Y0.Y         Tilo                  0.759   nivel1/lectura<7>161
+                                                       nivel1/Mrom_w_rgb_varindex000014011
+    SLICE_X28Y7.F2       net (fanout=3)        1.547   nivel1/N7
+    SLICE_X28Y7.F5       Tif5                  1.033   nivel1/Mrom_w_rgb_varindex00001071_16_f7
+                                                       nivel1/Mrom_w_rgb_varindex00001071_201
+                                                       nivel1/Mrom_w_rgb_varindex00001071_19_f5
+    SLICE_X28Y6.FXINB    net (fanout=1)        0.000   nivel1/Mrom_w_rgb_varindex00001071_19_f5
+    SLICE_X28Y6.FX       Tinbfx                0.364   nivel1/Mrom_w_rgb_varindex00001071_18_f5
+                                                       nivel1/Mrom_w_rgb_varindex00001071_17_f6
+    SLICE_X28Y7.FXINA    net (fanout=1)        0.000   nivel1/Mrom_w_rgb_varindex00001071_17_f6
+    SLICE_X28Y7.Y        Tif6y                 0.409   nivel1/Mrom_w_rgb_varindex00001071_16_f7
+                                                       nivel1/Mrom_w_rgb_varindex00001071_16_f7
+    SLICE_X19Y10.G3      net (fanout=1)        1.157   nivel1/Mrom_w_rgb_varindex00001071_16_f7
+    SLICE_X19Y10.Y       Tilo                  0.704   nivel1/lectura<9>21
+                                                       nivel1/lectura<9>11_SW0
+    SLICE_X19Y10.F3      net (fanout=1)        0.023   nivel1/lectura<9>11_SW0/O
+    SLICE_X19Y10.X       Tilo                  0.704   nivel1/lectura<9>21
+                                                       nivel1/lectura<9>11
+    SLICE_X18Y14.G3      net (fanout=1)        0.272   nivel1/lectura<9>21
+    SLICE_X18Y14.CLK     Tgck                  1.285   nivel1/w_rgb<1>
+                                                       nivel1/Mrom_w_rgb_varindex00001071_4
+                                                       nivel1/Mrom_w_rgb_varindex00001071_2_f5
+                                                       nivel1/w_rgb_1
     -------------------------------------------------  ---------------------------
-    Total                                     13.436ns (5.495ns logic, 7.941ns route)
-                                                       (40.9% logic, 59.1% route)
+    Total                                     18.253ns (9.664ns logic, 8.589ns route)
+                                                       (52.9% logic, 47.1% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     6.676ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga/h_count_reg_3 (FF)
-  Destination:          ficha/w_rgb_2 (FF)
+Slack (setup path):     1.978ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               control2/rState_3_1 (FF)
+  Destination:          nivel1/w_rgb_1 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.320ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.004ns (0.025 - 0.029)
+  Data Path Delay:      18.022ns (Levels of Logic = 11)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_50M_BUFGP rising at 0.000ns
   Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga/h_count_reg_3 to ficha/w_rgb_2
+  Maximum Data Path: control2/rState_3_1 to nivel1/w_rgb_1
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y21.XQ      Tcko                  0.592   vga/h_count_reg<3>
-                                                       vga/h_count_reg_3
-    SLICE_X29Y1.F2       net (fanout=373)      2.706   vga/h_count_reg<3>
-    SLICE_X29Y1.X        Tilo                  0.704   ficha/lectura_sub0001<5>
-                                                       ficha/Msub_lectura_sub0001_xor<5>11
-    SLICE_X0Y6.F1        net (fanout=105)      2.725   ficha/lectura_sub0001<5>
-    SLICE_X0Y6.X         Tif5x                 1.152   ficha/Mrom_w_rgb_varindex00001831_17_f52
-                                                       ficha/Mrom_w_rgb_varindex00001831_184
-                                                       ficha/Mrom_w_rgb_varindex00001831_17_f5_1
-    SLICE_X4Y3.F3        net (fanout=1)        0.876   ficha/Mrom_w_rgb_varindex00001831_17_f52
-    SLICE_X4Y3.X         Tilo                  0.759   N159
-                                                       ficha/lectura<7>1501_SW0
-    SLICE_X13Y14.G3      net (fanout=1)        1.109   N159
-    SLICE_X13Y14.F5      Tif5                  0.875   ficha/Mrom_w_rgb_varindex00001831_6_f6
-                                                       ficha/Mrom_w_rgb_varindex00001831_91
-                                                       ficha/Mrom_w_rgb_varindex00001831_7_f5
-    SLICE_X13Y14.FXINA   net (fanout=1)        0.000   ficha/Mrom_w_rgb_varindex00001831_7_f5
-    SLICE_X13Y14.Y       Tif6y                 0.521   ficha/Mrom_w_rgb_varindex00001831_6_f6
-                                                       ficha/Mrom_w_rgb_varindex00001831_6_f6
-    SLICE_X12Y17.F1      net (fanout=1)        0.409   ficha/Mrom_w_rgb_varindex00001831_6_f6
-    SLICE_X12Y17.CLK     Tfck                  0.892   ficha/w_rgb<2>
-                                                       ficha/w_rgb_varindex0000<2>82
-                                                       ficha/w_rgb_2
+    SLICE_X31Y22.YQ      Tcko                  0.587   control2/rState_3_1
+                                                       control2/rState_3_1
+    SLICE_X28Y21.G1      net (fanout=5)        0.515   control2/rState_3_1
+    SLICE_X28Y21.Y       Tilo                  0.759   mover2/next_posx_mux0000
+                                                       mover2/next_posx_mux00002
+    SLICE_X29Y16.BX      net (fanout=1)        0.367   mover2/next_posx_mux0000
+    SLICE_X29Y16.X       Tbxx                  1.185   mover2/next_posx_addsub0000<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_xor<0>
+    SLICE_X23Y11.F4      net (fanout=5)        1.222   mover2/next_posx_addsub0000<0>
+    SLICE_X23Y11.COUT    Topcyf                1.162   nivel1/lectura_sub0001<0>
+                                                       nivel1/Msub_lectura_sub0001_lut<0>
+                                                       nivel1/Msub_lectura_sub0001_cy<0>
+                                                       nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.X       Tcinx                 0.462   nivel1/lectura_sub0001<2>
+                                                       nivel1/Msub_lectura_sub0001_xor<2>
+    SLICE_X2Y0.G3        net (fanout=175)      3.506   nivel1/lectura_sub0001<2>
+    SLICE_X2Y0.Y         Tilo                  0.759   nivel1/lectura<7>161
+                                                       nivel1/Mrom_w_rgb_varindex000014011
+    SLICE_X28Y7.F2       net (fanout=3)        1.547   nivel1/N7
+    SLICE_X28Y7.F5       Tif5                  1.033   nivel1/Mrom_w_rgb_varindex00001071_16_f7
+                                                       nivel1/Mrom_w_rgb_varindex00001071_201
+                                                       nivel1/Mrom_w_rgb_varindex00001071_19_f5
+    SLICE_X28Y6.FXINB    net (fanout=1)        0.000   nivel1/Mrom_w_rgb_varindex00001071_19_f5
+    SLICE_X28Y6.FX       Tinbfx                0.364   nivel1/Mrom_w_rgb_varindex00001071_18_f5
+                                                       nivel1/Mrom_w_rgb_varindex00001071_17_f6
+    SLICE_X28Y7.FXINA    net (fanout=1)        0.000   nivel1/Mrom_w_rgb_varindex00001071_17_f6
+    SLICE_X28Y7.Y        Tif6y                 0.409   nivel1/Mrom_w_rgb_varindex00001071_16_f7
+                                                       nivel1/Mrom_w_rgb_varindex00001071_16_f7
+    SLICE_X19Y10.G3      net (fanout=1)        1.157   nivel1/Mrom_w_rgb_varindex00001071_16_f7
+    SLICE_X19Y10.Y       Tilo                  0.704   nivel1/lectura<9>21
+                                                       nivel1/lectura<9>11_SW0
+    SLICE_X19Y10.F3      net (fanout=1)        0.023   nivel1/lectura<9>11_SW0/O
+    SLICE_X19Y10.X       Tilo                  0.704   nivel1/lectura<9>21
+                                                       nivel1/lectura<9>11
+    SLICE_X18Y14.G3      net (fanout=1)        0.272   nivel1/lectura<9>21
+    SLICE_X18Y14.CLK     Tgck                  1.285   nivel1/w_rgb<1>
+                                                       nivel1/Mrom_w_rgb_varindex00001071_4
+                                                       nivel1/Mrom_w_rgb_varindex00001071_2_f5
+                                                       nivel1/w_rgb_1
     -------------------------------------------------  ---------------------------
-    Total                                     13.320ns (5.495ns logic, 7.825ns route)
-                                                       (41.3% logic, 58.7% route)
+    Total                                     18.022ns (9.413ns logic, 8.609ns route)
+                                                       (52.2% logic, 47.8% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point ficha/w_rgb_1 (SLICE_X14Y12.F3), 286 paths
+Paths for end point nivel1/w_rgb_2 (SLICE_X14Y9.F2), 14273 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     6.581ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga/h_count_reg_5 (FF)
-  Destination:          ficha/w_rgb_1 (FF)
+Slack (setup path):     1.924ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               control2/rState_3_1 (FF)
+  Destination:          nivel1/w_rgb_2 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.416ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.003ns (0.026 - 0.029)
+  Data Path Delay:      18.076ns (Levels of Logic = 10)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_50M_BUFGP rising at 0.000ns
   Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga/h_count_reg_5 to ficha/w_rgb_1
+  Maximum Data Path: control2/rState_3_1 to nivel1/w_rgb_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y20.XQ      Tcko                  0.592   vga/h_count_reg<5>
-                                                       vga/h_count_reg_5
-    SLICE_X29Y1.F4       net (fanout=187)      2.869   vga/h_count_reg<5>
-    SLICE_X29Y1.X        Tilo                  0.704   ficha/lectura_sub0001<5>
-                                                       ficha/Msub_lectura_sub0001_xor<5>11
-    SLICE_X0Y5.BX        net (fanout=105)      2.963   ficha/lectura_sub0001<5>
-    SLICE_X0Y5.X         Tbxx                  0.806   ficha/Mrom_w_rgb_varindex00001331_19_f51
-                                                       ficha/Mrom_w_rgb_varindex00001331_19_f5_0
-    SLICE_X2Y4.F2        net (fanout=1)        0.398   ficha/Mrom_w_rgb_varindex00001331_19_f51
-    SLICE_X2Y4.X         Tilo                  0.759   ficha/lectura<6>12
-                                                       ficha/lectura<6>741
-    SLICE_X15Y15.G1      net (fanout=1)        1.374   ficha/lectura<6>12
-    SLICE_X15Y15.F5      Tif5                  0.875   ficha/Mrom_w_rgb_varindex00001331_11_f5
-                                                       ficha/Mrom_w_rgb_varindex00001331_13
-                                                       ficha/Mrom_w_rgb_varindex00001331_11_f5
-    SLICE_X15Y14.FXINB   net (fanout=1)        0.000   ficha/Mrom_w_rgb_varindex00001331_11_f5
-    SLICE_X15Y14.Y       Tif6y                 0.521   ficha/Mrom_w_rgb_varindex00001331_9_f6
-                                                       ficha/Mrom_w_rgb_varindex00001331_9_f6
-    SLICE_X14Y12.F3      net (fanout=1)        0.270   ficha/Mrom_w_rgb_varindex00001331_9_f6
-    SLICE_X14Y12.CLK     Tfck                  1.285   ficha/w_rgb<1>
-                                                       ficha/w_rgb_varindex0000<1>_G
-                                                       ficha/w_rgb_varindex0000<1>
-                                                       ficha/w_rgb_1
+    SLICE_X31Y22.YQ      Tcko                  0.587   control2/rState_3_1
+                                                       control2/rState_3_1
+    SLICE_X28Y21.G1      net (fanout=5)        0.515   control2/rState_3_1
+    SLICE_X28Y21.Y       Tilo                  0.759   mover2/next_posx_mux0000
+                                                       mover2/next_posx_mux00002
+    SLICE_X29Y16.BX      net (fanout=1)        0.367   mover2/next_posx_mux0000
+    SLICE_X29Y16.Y       Tbxy                  1.592   mover2/next_posx_addsub0000<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_cy<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_xor<1>
+    SLICE_X23Y11.G4      net (fanout=6)        1.285   mover2/next_posx_addsub0000<1>
+    SLICE_X23Y11.COUT    Topcyg                1.001   nivel1/lectura_sub0001<0>
+                                                       nivel1/Msub_lectura_sub0001_lut<1>
+                                                       nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.COUT    Tbyp                  0.118   nivel1/lectura_sub0001<2>
+                                                       nivel1/Msub_lectura_sub0001_cy<2>
+                                                       nivel1/Msub_lectura_sub0001_cy<3>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<3>
+    SLICE_X23Y13.X       Tcinx                 0.462   nivel1/lectura_sub0001<4>
+                                                       nivel1/Msub_lectura_sub0001_xor<4>
+    SLICE_X13Y2.G2       net (fanout=226)      3.399   nivel1/lectura_sub0001<4>
+    SLICE_X13Y2.Y        Tilo                  0.704   nivel1/lectura_sub0001<5>1
+                                                       nivel1/lectura_sub0001<4>841
+    SLICE_X29Y2.G2       net (fanout=5)        0.998   nivel1/lectura_sub0001<4>_mmx_out2
+    SLICE_X29Y2.X        Tif5x                 1.025   nivel1/Mrom_w_rgb_varindex00001991_15_f52
+                                                       nivel1/Mrom_w_rgb_varindex00001991_15_f5_1_F
+                                                       nivel1/Mrom_w_rgb_varindex00001991_15_f5_1
+    SLICE_X29Y4.G4       net (fanout=1)        0.313   nivel1/Mrom_w_rgb_varindex00001991_15_f52
+    SLICE_X29Y4.X        Tif5x                 1.025   nivel1/Mrom_w_rgb_varindex00001991_10_f5
+                                                       nivel1/Mrom_w_rgb_varindex00001991_10_f5_F
+                                                       nivel1/Mrom_w_rgb_varindex00001991_10_f5
+    SLICE_X12Y6.F3       net (fanout=1)        0.988   nivel1/Mrom_w_rgb_varindex00001991_10_f5
+    SLICE_X12Y6.X        Tilo                  0.759   nivel1/lectura<9>1
+                                                       nivel1/lectura<9>
+    SLICE_X14Y9.F2       net (fanout=1)        0.894   nivel1/lectura<9>1
+    SLICE_X14Y9.CLK      Tfck                  1.285   nivel1/w_rgb<2>
+                                                       nivel1/Mrom_w_rgb_varindex00001991_3
+                                                       nivel1/Mrom_w_rgb_varindex00001991_2_f5
+                                                       nivel1/w_rgb_2
     -------------------------------------------------  ---------------------------
-    Total                                     13.416ns (5.542ns logic, 7.874ns route)
-                                                       (41.3% logic, 58.7% route)
+    Total                                     18.076ns (9.317ns logic, 8.759ns route)
+                                                       (51.5% logic, 48.5% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     6.744ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga/h_count_reg_3 (FF)
-  Destination:          ficha/w_rgb_1 (FF)
+Slack (setup path):     1.994ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               control2/rState_3_1 (FF)
+  Destination:          nivel1/w_rgb_2 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.253ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.003ns (0.026 - 0.029)
+  Data Path Delay:      18.006ns (Levels of Logic = 10)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_50M_BUFGP rising at 0.000ns
   Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga/h_count_reg_3 to ficha/w_rgb_1
+  Maximum Data Path: control2/rState_3_1 to nivel1/w_rgb_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y21.XQ      Tcko                  0.592   vga/h_count_reg<3>
-                                                       vga/h_count_reg_3
-    SLICE_X29Y1.F2       net (fanout=373)      2.706   vga/h_count_reg<3>
-    SLICE_X29Y1.X        Tilo                  0.704   ficha/lectura_sub0001<5>
-                                                       ficha/Msub_lectura_sub0001_xor<5>11
-    SLICE_X0Y5.BX        net (fanout=105)      2.963   ficha/lectura_sub0001<5>
-    SLICE_X0Y5.X         Tbxx                  0.806   ficha/Mrom_w_rgb_varindex00001331_19_f51
-                                                       ficha/Mrom_w_rgb_varindex00001331_19_f5_0
-    SLICE_X2Y4.F2        net (fanout=1)        0.398   ficha/Mrom_w_rgb_varindex00001331_19_f51
-    SLICE_X2Y4.X         Tilo                  0.759   ficha/lectura<6>12
-                                                       ficha/lectura<6>741
-    SLICE_X15Y15.G1      net (fanout=1)        1.374   ficha/lectura<6>12
-    SLICE_X15Y15.F5      Tif5                  0.875   ficha/Mrom_w_rgb_varindex00001331_11_f5
-                                                       ficha/Mrom_w_rgb_varindex00001331_13
-                                                       ficha/Mrom_w_rgb_varindex00001331_11_f5
-    SLICE_X15Y14.FXINB   net (fanout=1)        0.000   ficha/Mrom_w_rgb_varindex00001331_11_f5
-    SLICE_X15Y14.Y       Tif6y                 0.521   ficha/Mrom_w_rgb_varindex00001331_9_f6
-                                                       ficha/Mrom_w_rgb_varindex00001331_9_f6
-    SLICE_X14Y12.F3      net (fanout=1)        0.270   ficha/Mrom_w_rgb_varindex00001331_9_f6
-    SLICE_X14Y12.CLK     Tfck                  1.285   ficha/w_rgb<1>
-                                                       ficha/w_rgb_varindex0000<1>_G
-                                                       ficha/w_rgb_varindex0000<1>
-                                                       ficha/w_rgb_1
+    SLICE_X31Y22.YQ      Tcko                  0.587   control2/rState_3_1
+                                                       control2/rState_3_1
+    SLICE_X28Y21.G1      net (fanout=5)        0.515   control2/rState_3_1
+    SLICE_X28Y21.Y       Tilo                  0.759   mover2/next_posx_mux0000
+                                                       mover2/next_posx_mux00002
+    SLICE_X29Y16.BX      net (fanout=1)        0.367   mover2/next_posx_mux0000
+    SLICE_X29Y16.COUT    Tbxcy                 0.769   mover2/next_posx_addsub0000<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_cy<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_cy<1>
+    SLICE_X29Y17.CIN     net (fanout=1)        0.000   mover2/Maddsub_next_posx_addsub0000_cy<1>
+    SLICE_X29Y17.Y       Tciny                 0.869   mover2/next_posx_addsub0000<2>
+                                                       mover2/Maddsub_next_posx_addsub0000_cy<2>
+                                                       mover2/Maddsub_next_posx_addsub0000_xor<3>
+    SLICE_X23Y12.G3      net (fanout=6)        1.287   mover2/next_posx_addsub0000<3>
+    SLICE_X23Y12.COUT    Topcyg                1.001   nivel1/lectura_sub0001<2>
+                                                       nivel1/Msub_lectura_sub0001_lut<3>
+                                                       nivel1/Msub_lectura_sub0001_cy<3>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<3>
+    SLICE_X23Y13.X       Tcinx                 0.462   nivel1/lectura_sub0001<4>
+                                                       nivel1/Msub_lectura_sub0001_xor<4>
+    SLICE_X13Y2.G2       net (fanout=226)      3.399   nivel1/lectura_sub0001<4>
+    SLICE_X13Y2.Y        Tilo                  0.704   nivel1/lectura_sub0001<5>1
+                                                       nivel1/lectura_sub0001<4>841
+    SLICE_X29Y2.G2       net (fanout=5)        0.998   nivel1/lectura_sub0001<4>_mmx_out2
+    SLICE_X29Y2.X        Tif5x                 1.025   nivel1/Mrom_w_rgb_varindex00001991_15_f52
+                                                       nivel1/Mrom_w_rgb_varindex00001991_15_f5_1_F
+                                                       nivel1/Mrom_w_rgb_varindex00001991_15_f5_1
+    SLICE_X29Y4.G4       net (fanout=1)        0.313   nivel1/Mrom_w_rgb_varindex00001991_15_f52
+    SLICE_X29Y4.X        Tif5x                 1.025   nivel1/Mrom_w_rgb_varindex00001991_10_f5
+                                                       nivel1/Mrom_w_rgb_varindex00001991_10_f5_F
+                                                       nivel1/Mrom_w_rgb_varindex00001991_10_f5
+    SLICE_X12Y6.F3       net (fanout=1)        0.988   nivel1/Mrom_w_rgb_varindex00001991_10_f5
+    SLICE_X12Y6.X        Tilo                  0.759   nivel1/lectura<9>1
+                                                       nivel1/lectura<9>
+    SLICE_X14Y9.F2       net (fanout=1)        0.894   nivel1/lectura<9>1
+    SLICE_X14Y9.CLK      Tfck                  1.285   nivel1/w_rgb<2>
+                                                       nivel1/Mrom_w_rgb_varindex00001991_3
+                                                       nivel1/Mrom_w_rgb_varindex00001991_2_f5
+                                                       nivel1/w_rgb_2
     -------------------------------------------------  ---------------------------
-    Total                                     13.253ns (5.542ns logic, 7.711ns route)
-                                                       (41.8% logic, 58.2% route)
+    Total                                     18.006ns (9.245ns logic, 8.761ns route)
+                                                       (51.3% logic, 48.7% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     6.804ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga/h_count_reg_3 (FF)
-  Destination:          ficha/w_rgb_1 (FF)
+Slack (setup path):     2.002ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               control2/rState_4_1 (FF)
+  Destination:          nivel1/w_rgb_2 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.193ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.003ns (0.026 - 0.029)
+  Data Path Delay:      17.998ns (Levels of Logic = 10)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_50M_BUFGP rising at 0.000ns
   Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga/h_count_reg_3 to ficha/w_rgb_1
+  Maximum Data Path: control2/rState_4_1 to nivel1/w_rgb_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y21.XQ      Tcko                  0.592   vga/h_count_reg<3>
-                                                       vga/h_count_reg_3
-    SLICE_X20Y14.G4      net (fanout=373)      2.333   vga/h_count_reg<3>
-    SLICE_X20Y14.Y       Tilo                  0.759   ficha/lectura_sub0001<4>1
-                                                       ficha/Msub_lectura_sub0001_xor<4>11
-    SLICE_X0Y5.F4        net (fanout=61)       2.875   ficha/lectura_sub0001<4>
-    SLICE_X0Y5.X         Tif5x                 1.152   ficha/Mrom_w_rgb_varindex00001331_19_f51
-                                                       ficha/Mrom_w_rgb_varindex00001331_202
-                                                       ficha/Mrom_w_rgb_varindex00001331_19_f5_0
-    SLICE_X2Y4.F2        net (fanout=1)        0.398   ficha/Mrom_w_rgb_varindex00001331_19_f51
-    SLICE_X2Y4.X         Tilo                  0.759   ficha/lectura<6>12
-                                                       ficha/lectura<6>741
-    SLICE_X15Y15.G1      net (fanout=1)        1.374   ficha/lectura<6>12
-    SLICE_X15Y15.F5      Tif5                  0.875   ficha/Mrom_w_rgb_varindex00001331_11_f5
-                                                       ficha/Mrom_w_rgb_varindex00001331_13
-                                                       ficha/Mrom_w_rgb_varindex00001331_11_f5
-    SLICE_X15Y14.FXINB   net (fanout=1)        0.000   ficha/Mrom_w_rgb_varindex00001331_11_f5
-    SLICE_X15Y14.Y       Tif6y                 0.521   ficha/Mrom_w_rgb_varindex00001331_9_f6
-                                                       ficha/Mrom_w_rgb_varindex00001331_9_f6
-    SLICE_X14Y12.F3      net (fanout=1)        0.270   ficha/Mrom_w_rgb_varindex00001331_9_f6
-    SLICE_X14Y12.CLK     Tfck                  1.285   ficha/w_rgb<1>
-                                                       ficha/w_rgb_varindex0000<1>_G
-                                                       ficha/w_rgb_varindex0000<1>
-                                                       ficha/w_rgb_1
+    SLICE_X28Y23.XQ      Tcko                  0.592   control2/rState_4_1
+                                                       control2/rState_4_1
+    SLICE_X28Y21.G4      net (fanout=5)        0.432   control2/rState_4_1
+    SLICE_X28Y21.Y       Tilo                  0.759   mover2/next_posx_mux0000
+                                                       mover2/next_posx_mux00002
+    SLICE_X29Y16.BX      net (fanout=1)        0.367   mover2/next_posx_mux0000
+    SLICE_X29Y16.Y       Tbxy                  1.592   mover2/next_posx_addsub0000<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_cy<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_xor<1>
+    SLICE_X23Y11.G4      net (fanout=6)        1.285   mover2/next_posx_addsub0000<1>
+    SLICE_X23Y11.COUT    Topcyg                1.001   nivel1/lectura_sub0001<0>
+                                                       nivel1/Msub_lectura_sub0001_lut<1>
+                                                       nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.COUT    Tbyp                  0.118   nivel1/lectura_sub0001<2>
+                                                       nivel1/Msub_lectura_sub0001_cy<2>
+                                                       nivel1/Msub_lectura_sub0001_cy<3>
+    SLICE_X23Y13.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<3>
+    SLICE_X23Y13.X       Tcinx                 0.462   nivel1/lectura_sub0001<4>
+                                                       nivel1/Msub_lectura_sub0001_xor<4>
+    SLICE_X13Y2.G2       net (fanout=226)      3.399   nivel1/lectura_sub0001<4>
+    SLICE_X13Y2.Y        Tilo                  0.704   nivel1/lectura_sub0001<5>1
+                                                       nivel1/lectura_sub0001<4>841
+    SLICE_X29Y2.G2       net (fanout=5)        0.998   nivel1/lectura_sub0001<4>_mmx_out2
+    SLICE_X29Y2.X        Tif5x                 1.025   nivel1/Mrom_w_rgb_varindex00001991_15_f52
+                                                       nivel1/Mrom_w_rgb_varindex00001991_15_f5_1_F
+                                                       nivel1/Mrom_w_rgb_varindex00001991_15_f5_1
+    SLICE_X29Y4.G4       net (fanout=1)        0.313   nivel1/Mrom_w_rgb_varindex00001991_15_f52
+    SLICE_X29Y4.X        Tif5x                 1.025   nivel1/Mrom_w_rgb_varindex00001991_10_f5
+                                                       nivel1/Mrom_w_rgb_varindex00001991_10_f5_F
+                                                       nivel1/Mrom_w_rgb_varindex00001991_10_f5
+    SLICE_X12Y6.F3       net (fanout=1)        0.988   nivel1/Mrom_w_rgb_varindex00001991_10_f5
+    SLICE_X12Y6.X        Tilo                  0.759   nivel1/lectura<9>1
+                                                       nivel1/lectura<9>
+    SLICE_X14Y9.F2       net (fanout=1)        0.894   nivel1/lectura<9>1
+    SLICE_X14Y9.CLK      Tfck                  1.285   nivel1/w_rgb<2>
+                                                       nivel1/Mrom_w_rgb_varindex00001991_3
+                                                       nivel1/Mrom_w_rgb_varindex00001991_2_f5
+                                                       nivel1/w_rgb_2
     -------------------------------------------------  ---------------------------
-    Total                                     13.193ns (5.943ns logic, 7.250ns route)
-                                                       (45.0% logic, 55.0% route)
+    Total                                     17.998ns (9.322ns logic, 8.676ns route)
+                                                       (51.8% logic, 48.2% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point ficha/w_rgb_1 (SLICE_X14Y12.G3), 398 paths
+Paths for end point nivel1/w_rgb_2 (SLICE_X14Y9.F1), 15395 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     6.843ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga/h_count_reg_4 (FF)
-  Destination:          ficha/w_rgb_1 (FF)
+Slack (setup path):     2.259ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               control2/rState_3_1 (FF)
+  Destination:          nivel1/w_rgb_2 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      13.154ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.003ns (0.026 - 0.029)
+  Data Path Delay:      17.741ns (Levels of Logic = 9)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_50M_BUFGP rising at 0.000ns
   Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga/h_count_reg_4 to ficha/w_rgb_1
+  Maximum Data Path: control2/rState_3_1 to nivel1/w_rgb_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y20.YQ      Tcko                  0.652   vga/h_count_reg<5>
-                                                       vga/h_count_reg_4
-    SLICE_X12Y22.G2      net (fanout=393)      1.799   vga/h_count_reg<4>
-    SLICE_X12Y22.Y       Tilo                  0.759   ficha/lectura_sub0001<9>
-                                                       ficha/Msub_lectura_sub0001_cy<6>11
-    SLICE_X13Y21.G3      net (fanout=4)        0.408   ficha/Msub_lectura_sub0001_cy<6>
-    SLICE_X13Y21.Y       Topgy                 1.231   ficha/lectura<6>
-                                                       ficha/Madd_lectura_Madd_lut<7>
-                                                       ficha/Madd_lectura_Madd_xor<7>
-    SLICE_X27Y0.BY       net (fanout=40)       3.333   ficha/lectura<7>
-    SLICE_X27Y0.Y        Tbyy                  0.850   ficha/Mrom_w_rgb_varindex00001331_12_f6
-                                                       ficha/Mrom_w_rgb_varindex00001331_12_f6
-    SLICE_X26Y9.G1       net (fanout=1)        0.627   ficha/Mrom_w_rgb_varindex00001331_12_f6
-    SLICE_X26Y9.Y        Tilo                  0.759   ficha/Mrom_w_rgb_varindex00001331_6
-                                                       ficha/lectura<8>1
-    SLICE_X26Y9.F3       net (fanout=1)        0.023   ficha/lectura<8>1/O
-    SLICE_X26Y9.X        Tilo                  0.759   ficha/Mrom_w_rgb_varindex00001331_6
-                                                       ficha/Mrom_w_rgb_varindex00001331_6
-    SLICE_X14Y12.G3      net (fanout=1)        0.669   ficha/Mrom_w_rgb_varindex00001331_6
-    SLICE_X14Y12.CLK     Tgck                  1.285   ficha/w_rgb<1>
-                                                       ficha/w_rgb_varindex0000<1>_F
-                                                       ficha/w_rgb_varindex0000<1>
-                                                       ficha/w_rgb_1
+    SLICE_X31Y22.YQ      Tcko                  0.587   control2/rState_3_1
+                                                       control2/rState_3_1
+    SLICE_X28Y21.G1      net (fanout=5)        0.515   control2/rState_3_1
+    SLICE_X28Y21.Y       Tilo                  0.759   mover2/next_posx_mux0000
+                                                       mover2/next_posx_mux00002
+    SLICE_X29Y16.BX      net (fanout=1)        0.367   mover2/next_posx_mux0000
+    SLICE_X29Y16.Y       Tbxy                  1.592   mover2/next_posx_addsub0000<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_cy<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_xor<1>
+    SLICE_X23Y11.G4      net (fanout=6)        1.285   mover2/next_posx_addsub0000<1>
+    SLICE_X23Y11.COUT    Topcyg                1.001   nivel1/lectura_sub0001<0>
+                                                       nivel1/Msub_lectura_sub0001_lut<1>
+                                                       nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.X       Tcinx                 0.462   nivel1/lectura_sub0001<2>
+                                                       nivel1/Msub_lectura_sub0001_xor<2>
+    SLICE_X6Y2.F1        net (fanout=175)      3.290   nivel1/lectura_sub0001<2>
+    SLICE_X6Y2.X         Tif5x                 1.152   N201
+                                                       nivel1/Mrom_w_rgb_varindex00001991_175_SW1_G
+                                                       nivel1/Mrom_w_rgb_varindex00001991_175_SW1
+    SLICE_X9Y2.F2        net (fanout=1)        0.427   N201
+    SLICE_X9Y2.X         Tilo                  0.704   N450
+                                                       nivel1/Mrom_w_rgb_varindex00001991_16_f5_0_G
+    SLICE_X12Y5.F1       net (fanout=1)        0.943   N450
+    SLICE_X12Y5.X        Tif5x                 1.152   nivel1/lectura<7>2
+                                                       nivel1/lectura<7>1511_G
+                                                       nivel1/lectura<7>1511
+    SLICE_X12Y7.G4       net (fanout=1)        0.333   nivel1/lectura<7>2
+    SLICE_X12Y7.X        Tif5x                 1.152   nivel1/Mrom_w_rgb_varindex00001991_7_f5
+                                                       nivel1/Mrom_w_rgb_varindex00001991_9
+                                                       nivel1/Mrom_w_rgb_varindex00001991_7_f5
+    SLICE_X14Y9.F1       net (fanout=1)        0.735   nivel1/Mrom_w_rgb_varindex00001991_7_f5
+    SLICE_X14Y9.CLK      Tfck                  1.285   nivel1/w_rgb<2>
+                                                       nivel1/Mrom_w_rgb_varindex00001991_3
+                                                       nivel1/Mrom_w_rgb_varindex00001991_2_f5
+                                                       nivel1/w_rgb_2
     -------------------------------------------------  ---------------------------
-    Total                                     13.154ns (6.295ns logic, 6.859ns route)
-                                                       (47.9% logic, 52.1% route)
+    Total                                     17.741ns (9.846ns logic, 7.895ns route)
+                                                       (55.5% logic, 44.5% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     7.166ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga/h_count_reg_3_1 (FF)
-  Destination:          ficha/w_rgb_1 (FF)
+Slack (setup path):     2.337ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               control2/rState_4_1 (FF)
+  Destination:          nivel1/w_rgb_2 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.831ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.003ns (0.026 - 0.029)
+  Data Path Delay:      17.663ns (Levels of Logic = 9)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_50M_BUFGP rising at 0.000ns
   Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga/h_count_reg_3_1 to ficha/w_rgb_1
+  Maximum Data Path: control2/rState_4_1 to nivel1/w_rgb_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y20.YQ      Tcko                  0.587   vga/h_count_reg_2_1
-                                                       vga/h_count_reg_3_1
-    SLICE_X12Y21.F2      net (fanout=2)        1.063   vga/h_count_reg_3_1
-    SLICE_X12Y21.X       Tilo                  0.759   ficha/lectura_sub0001<6>
-                                                       ficha/Msub_lectura_sub0001_xor<6>11
-    SLICE_X13Y21.F1      net (fanout=1)        0.476   ficha/lectura_sub0001<6>
-    SLICE_X13Y21.Y       Topy                  1.641   ficha/lectura<6>
-                                                       ficha/Madd_lectura_Madd_lut<6>
-                                                       ficha/Madd_lectura_Madd_cy<6>
-                                                       ficha/Madd_lectura_Madd_xor<7>
-    SLICE_X27Y0.BY       net (fanout=40)       3.333   ficha/lectura<7>
-    SLICE_X27Y0.Y        Tbyy                  0.850   ficha/Mrom_w_rgb_varindex00001331_12_f6
-                                                       ficha/Mrom_w_rgb_varindex00001331_12_f6
-    SLICE_X26Y9.G1       net (fanout=1)        0.627   ficha/Mrom_w_rgb_varindex00001331_12_f6
-    SLICE_X26Y9.Y        Tilo                  0.759   ficha/Mrom_w_rgb_varindex00001331_6
-                                                       ficha/lectura<8>1
-    SLICE_X26Y9.F3       net (fanout=1)        0.023   ficha/lectura<8>1/O
-    SLICE_X26Y9.X        Tilo                  0.759   ficha/Mrom_w_rgb_varindex00001331_6
-                                                       ficha/Mrom_w_rgb_varindex00001331_6
-    SLICE_X14Y12.G3      net (fanout=1)        0.669   ficha/Mrom_w_rgb_varindex00001331_6
-    SLICE_X14Y12.CLK     Tgck                  1.285   ficha/w_rgb<1>
-                                                       ficha/w_rgb_varindex0000<1>_F
-                                                       ficha/w_rgb_varindex0000<1>
-                                                       ficha/w_rgb_1
+    SLICE_X28Y23.XQ      Tcko                  0.592   control2/rState_4_1
+                                                       control2/rState_4_1
+    SLICE_X28Y21.G4      net (fanout=5)        0.432   control2/rState_4_1
+    SLICE_X28Y21.Y       Tilo                  0.759   mover2/next_posx_mux0000
+                                                       mover2/next_posx_mux00002
+    SLICE_X29Y16.BX      net (fanout=1)        0.367   mover2/next_posx_mux0000
+    SLICE_X29Y16.Y       Tbxy                  1.592   mover2/next_posx_addsub0000<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_cy<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_xor<1>
+    SLICE_X23Y11.G4      net (fanout=6)        1.285   mover2/next_posx_addsub0000<1>
+    SLICE_X23Y11.COUT    Topcyg                1.001   nivel1/lectura_sub0001<0>
+                                                       nivel1/Msub_lectura_sub0001_lut<1>
+                                                       nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.X       Tcinx                 0.462   nivel1/lectura_sub0001<2>
+                                                       nivel1/Msub_lectura_sub0001_xor<2>
+    SLICE_X6Y2.F1        net (fanout=175)      3.290   nivel1/lectura_sub0001<2>
+    SLICE_X6Y2.X         Tif5x                 1.152   N201
+                                                       nivel1/Mrom_w_rgb_varindex00001991_175_SW1_G
+                                                       nivel1/Mrom_w_rgb_varindex00001991_175_SW1
+    SLICE_X9Y2.F2        net (fanout=1)        0.427   N201
+    SLICE_X9Y2.X         Tilo                  0.704   N450
+                                                       nivel1/Mrom_w_rgb_varindex00001991_16_f5_0_G
+    SLICE_X12Y5.F1       net (fanout=1)        0.943   N450
+    SLICE_X12Y5.X        Tif5x                 1.152   nivel1/lectura<7>2
+                                                       nivel1/lectura<7>1511_G
+                                                       nivel1/lectura<7>1511
+    SLICE_X12Y7.G4       net (fanout=1)        0.333   nivel1/lectura<7>2
+    SLICE_X12Y7.X        Tif5x                 1.152   nivel1/Mrom_w_rgb_varindex00001991_7_f5
+                                                       nivel1/Mrom_w_rgb_varindex00001991_9
+                                                       nivel1/Mrom_w_rgb_varindex00001991_7_f5
+    SLICE_X14Y9.F1       net (fanout=1)        0.735   nivel1/Mrom_w_rgb_varindex00001991_7_f5
+    SLICE_X14Y9.CLK      Tfck                  1.285   nivel1/w_rgb<2>
+                                                       nivel1/Mrom_w_rgb_varindex00001991_3
+                                                       nivel1/Mrom_w_rgb_varindex00001991_2_f5
+                                                       nivel1/w_rgb_2
     -------------------------------------------------  ---------------------------
-    Total                                     12.831ns (6.640ns logic, 6.191ns route)
-                                                       (51.7% logic, 48.3% route)
+    Total                                     17.663ns (9.851ns logic, 7.812ns route)
+                                                       (55.8% logic, 44.2% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     7.554ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               vga/h_count_reg_3 (FF)
-  Destination:          ficha/w_rgb_1 (FF)
+Slack (setup path):     2.386ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               control2/rState_3_1 (FF)
+  Destination:          nivel1/w_rgb_2 (FF)
   Requirement:          20.000ns
-  Data Path Delay:      12.443ns (Levels of Logic = 6)
-  Clock Path Skew:      -0.003ns (0.026 - 0.029)
+  Data Path Delay:      17.614ns (Levels of Logic = 9)
+  Clock Path Skew:      0.000ns
   Source Clock:         CLK_50M_BUFGP rising at 0.000ns
   Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.000ns
 
-  Maximum Data Path: vga/h_count_reg_3 to ficha/w_rgb_1
+  Maximum Data Path: control2/rState_3_1 to nivel1/w_rgb_2
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X14Y21.XQ      Tcko                  0.592   vga/h_count_reg<3>
-                                                       vga/h_count_reg_3
-    SLICE_X12Y22.G1      net (fanout=373)      1.148   vga/h_count_reg<3>
-    SLICE_X12Y22.Y       Tilo                  0.759   ficha/lectura_sub0001<9>
-                                                       ficha/Msub_lectura_sub0001_cy<6>11
-    SLICE_X13Y21.G3      net (fanout=4)        0.408   ficha/Msub_lectura_sub0001_cy<6>
-    SLICE_X13Y21.Y       Topgy                 1.231   ficha/lectura<6>
-                                                       ficha/Madd_lectura_Madd_lut<7>
-                                                       ficha/Madd_lectura_Madd_xor<7>
-    SLICE_X27Y0.BY       net (fanout=40)       3.333   ficha/lectura<7>
-    SLICE_X27Y0.Y        Tbyy                  0.850   ficha/Mrom_w_rgb_varindex00001331_12_f6
-                                                       ficha/Mrom_w_rgb_varindex00001331_12_f6
-    SLICE_X26Y9.G1       net (fanout=1)        0.627   ficha/Mrom_w_rgb_varindex00001331_12_f6
-    SLICE_X26Y9.Y        Tilo                  0.759   ficha/Mrom_w_rgb_varindex00001331_6
-                                                       ficha/lectura<8>1
-    SLICE_X26Y9.F3       net (fanout=1)        0.023   ficha/lectura<8>1/O
-    SLICE_X26Y9.X        Tilo                  0.759   ficha/Mrom_w_rgb_varindex00001331_6
-                                                       ficha/Mrom_w_rgb_varindex00001331_6
-    SLICE_X14Y12.G3      net (fanout=1)        0.669   ficha/Mrom_w_rgb_varindex00001331_6
-    SLICE_X14Y12.CLK     Tgck                  1.285   ficha/w_rgb<1>
-                                                       ficha/w_rgb_varindex0000<1>_F
-                                                       ficha/w_rgb_varindex0000<1>
-                                                       ficha/w_rgb_1
+    SLICE_X31Y22.YQ      Tcko                  0.587   control2/rState_3_1
+                                                       control2/rState_3_1
+    SLICE_X28Y21.G1      net (fanout=5)        0.515   control2/rState_3_1
+    SLICE_X28Y21.Y       Tilo                  0.759   mover2/next_posx_mux0000
+                                                       mover2/next_posx_mux00002
+    SLICE_X29Y16.BX      net (fanout=1)        0.367   mover2/next_posx_mux0000
+    SLICE_X29Y16.Y       Tbxy                  1.592   mover2/next_posx_addsub0000<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_cy<0>
+                                                       mover2/Maddsub_next_posx_addsub0000_xor<1>
+    SLICE_X23Y11.G4      net (fanout=6)        1.285   mover2/next_posx_addsub0000<1>
+    SLICE_X23Y11.COUT    Topcyg                1.001   nivel1/lectura_sub0001<0>
+                                                       nivel1/Msub_lectura_sub0001_lut<1>
+                                                       nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.CIN     net (fanout=1)        0.000   nivel1/Msub_lectura_sub0001_cy<1>
+    SLICE_X23Y12.Y       Tciny                 0.869   nivel1/lectura_sub0001<2>
+                                                       nivel1/Msub_lectura_sub0001_cy<2>
+                                                       nivel1/Msub_lectura_sub0001_xor<3>
+    SLICE_X6Y2.G1        net (fanout=196)      2.756   nivel1/lectura_sub0001<3>
+    SLICE_X6Y2.X         Tif5x                 1.152   N201
+                                                       nivel1/Mrom_w_rgb_varindex00001991_175_SW1_F
+                                                       nivel1/Mrom_w_rgb_varindex00001991_175_SW1
+    SLICE_X9Y2.F2        net (fanout=1)        0.427   N201
+    SLICE_X9Y2.X         Tilo                  0.704   N450
+                                                       nivel1/Mrom_w_rgb_varindex00001991_16_f5_0_G
+    SLICE_X12Y5.F1       net (fanout=1)        0.943   N450
+    SLICE_X12Y5.X        Tif5x                 1.152   nivel1/lectura<7>2
+                                                       nivel1/lectura<7>1511_G
+                                                       nivel1/lectura<7>1511
+    SLICE_X12Y7.G4       net (fanout=1)        0.333   nivel1/lectura<7>2
+    SLICE_X12Y7.X        Tif5x                 1.152   nivel1/Mrom_w_rgb_varindex00001991_7_f5
+                                                       nivel1/Mrom_w_rgb_varindex00001991_9
+                                                       nivel1/Mrom_w_rgb_varindex00001991_7_f5
+    SLICE_X14Y9.F1       net (fanout=1)        0.735   nivel1/Mrom_w_rgb_varindex00001991_7_f5
+    SLICE_X14Y9.CLK      Tfck                  1.285   nivel1/w_rgb<2>
+                                                       nivel1/Mrom_w_rgb_varindex00001991_3
+                                                       nivel1/Mrom_w_rgb_varindex00001991_2_f5
+                                                       nivel1/w_rgb_2
     -------------------------------------------------  ---------------------------
-    Total                                     12.443ns (6.235ns logic, 6.208ns route)
-                                                       (50.1% logic, 49.9% route)
+    Total                                     17.614ns (10.253ns logic, 7.361ns route)
+                                                       (58.2% logic, 41.8% route)
 
 --------------------------------------------------------------------------------
 
 Hold Paths: NET "CLK_50M_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
 --------------------------------------------------------------------------------
 
-Paths for end point kcpsm3_inst/stack_bit_0/G (SLICE_X2Y19.BY), 1 path
+Paths for end point kcpsm3_inst/stack_bit_6/G (SLICE_X0Y6.BY), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.806ns (requirement - (clock path skew + uncertainty - data path))
+Slack (hold path):      0.792ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               kcpsm3_inst/pc_loop_register_bit_6 (FF)
+  Destination:          kcpsm3_inst/stack_bit_6/G (RAM)
+  Requirement:          0.000ns
+  Data Path Delay:      0.795ns (Levels of Logic = 1)
+  Clock Path Skew:      0.003ns (0.020 - 0.017)
+  Source Clock:         CLK_50M_BUFGP rising at 20.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: kcpsm3_inst/pc_loop_register_bit_6 to kcpsm3_inst/stack_bit_6/G
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X3Y7.XQ        Tcko                  0.473   address<6>
+                                                       kcpsm3_inst/pc_loop_register_bit_6
+    SLICE_X0Y6.BY        net (fanout=3)        0.449   address<6>
+    SLICE_X0Y6.CLK       Tdh         (-Th)     0.127   kcpsm3_inst/stack_pop_data<6>
+                                                       kcpsm3_inst/stack_bit_6/G
+    -------------------------------------------------  ---------------------------
+    Total                                      0.795ns (0.346ns logic, 0.449ns route)
+                                                       (43.5% logic, 56.5% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point kcpsm3_inst/stack_bit_6/F (SLICE_X0Y6.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.807ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               kcpsm3_inst/pc_loop_register_bit_6 (FF)
+  Destination:          kcpsm3_inst/stack_bit_6/F (RAM)
+  Requirement:          0.000ns
+  Data Path Delay:      0.810ns (Levels of Logic = 1)
+  Clock Path Skew:      0.003ns (0.020 - 0.017)
+  Source Clock:         CLK_50M_BUFGP rising at 20.000ns
+  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path: kcpsm3_inst/pc_loop_register_bit_6 to kcpsm3_inst/stack_bit_6/F
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X3Y7.XQ        Tcko                  0.473   address<6>
+                                                       kcpsm3_inst/pc_loop_register_bit_6
+    SLICE_X0Y6.BY        net (fanout=3)        0.449   address<6>
+    SLICE_X0Y6.CLK       Tdh         (-Th)     0.112   kcpsm3_inst/stack_pop_data<6>
+                                                       kcpsm3_inst/stack_bit_6/F
+    -------------------------------------------------  ---------------------------
+    Total                                      0.810ns (0.361ns logic, 0.449ns route)
+                                                       (44.6% logic, 55.4% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point kcpsm3_inst/stack_bit_0/G (SLICE_X2Y5.BY), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.819ns (requirement - (clock path skew + uncertainty - data path))
   Source:               kcpsm3_inst/pc_loop_register_bit_0 (FF)
   Destination:          kcpsm3_inst/stack_bit_0/G (RAM)
   Requirement:          0.000ns
-  Data Path Delay:      0.806ns (Levels of Logic = 1)
+  Data Path Delay:      0.819ns (Levels of Logic = 1)
   Clock Path Skew:      0.000ns
   Source Clock:         CLK_50M_BUFGP rising at 20.000ns
   Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
@@ -450,67 +641,13 @@ Slack (hold path):      0.806ns (requirement - (clock path skew + uncertainty - 
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X3Y19.XQ       Tcko                  0.473   address<0>
+    SLICE_X3Y4.XQ        Tcko                  0.473   address<0>
                                                        kcpsm3_inst/pc_loop_register_bit_0
-    SLICE_X2Y19.BY       net (fanout=3)        0.460   address<0>
-    SLICE_X2Y19.CLK      Tdh         (-Th)     0.127   kcpsm3_inst/stack_pop_data<0>
+    SLICE_X2Y5.BY        net (fanout=3)        0.473   address<0>
+    SLICE_X2Y5.CLK       Tdh         (-Th)     0.127   kcpsm3_inst/stack_pop_data<0>
                                                        kcpsm3_inst/stack_bit_0/G
     -------------------------------------------------  ---------------------------
-    Total                                      0.806ns (0.346ns logic, 0.460ns route)
-                                                       (42.9% logic, 57.1% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point kcpsm3_inst/stack_bit_9/G (SLICE_X0Y23.BY), 1 path
---------------------------------------------------------------------------------
-Slack (hold path):      0.810ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               kcpsm3_inst/pc_loop_register_bit_9 (FF)
-  Destination:          kcpsm3_inst/stack_bit_9/G (RAM)
-  Requirement:          0.000ns
-  Data Path Delay:      0.812ns (Levels of Logic = 1)
-  Clock Path Skew:      0.002ns (0.012 - 0.010)
-  Source Clock:         CLK_50M_BUFGP rising at 20.000ns
-  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
-  Clock Uncertainty:    0.000ns
-
-  Minimum Data Path: kcpsm3_inst/pc_loop_register_bit_9 to kcpsm3_inst/stack_bit_9/G
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X3Y23.YQ       Tcko                  0.470   address<8>
-                                                       kcpsm3_inst/pc_loop_register_bit_9
-    SLICE_X0Y23.BY       net (fanout=3)        0.469   address<9>
-    SLICE_X0Y23.CLK      Tdh         (-Th)     0.127   kcpsm3_inst/stack_pop_data<9>
-                                                       kcpsm3_inst/stack_bit_9/G
-    -------------------------------------------------  ---------------------------
-    Total                                      0.812ns (0.343ns logic, 0.469ns route)
-                                                       (42.2% logic, 57.8% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point kcpsm3_inst/stack_bit_5/G (SLICE_X2Y21.BY), 1 path
---------------------------------------------------------------------------------
-Slack (hold path):      0.812ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               kcpsm3_inst/pc_loop_register_bit_5 (FF)
-  Destination:          kcpsm3_inst/stack_bit_5/G (RAM)
-  Requirement:          0.000ns
-  Data Path Delay:      0.812ns (Levels of Logic = 1)
-  Clock Path Skew:      0.000ns
-  Source Clock:         CLK_50M_BUFGP rising at 20.000ns
-  Destination Clock:    CLK_50M_BUFGP rising at 20.000ns
-  Clock Uncertainty:    0.000ns
-
-  Minimum Data Path: kcpsm3_inst/pc_loop_register_bit_5 to kcpsm3_inst/stack_bit_5/G
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X3Y21.YQ       Tcko                  0.470   address<4>
-                                                       kcpsm3_inst/pc_loop_register_bit_5
-    SLICE_X2Y21.BY       net (fanout=3)        0.469   address<5>
-    SLICE_X2Y21.CLK      Tdh         (-Th)     0.127   kcpsm3_inst/stack_pop_data<5>
-                                                       kcpsm3_inst/stack_bit_5/G
-    -------------------------------------------------  ---------------------------
-    Total                                      0.812ns (0.343ns logic, 0.469ns route)
+    Total                                      0.819ns (0.346ns logic, 0.473ns route)
                                                        (42.2% logic, 57.8% route)
 
 --------------------------------------------------------------------------------
@@ -523,7 +660,7 @@ Slack: 16.824ns (period - (min low pulse limit / (low pulse / period)))
   Low pulse limit: 1.588ns (Tbpwl)
   Physical resource: picocode_inst/ram_1024_x_18/CLKA
   Logical resource: picocode_inst/ram_1024_x_18.A/CLKA
-  Location pin: RAMB16_X0Y3.CLKA
+  Location pin: RAMB16_X0Y1.CLKA
   Clock network: CLK_50M_BUFGP
 --------------------------------------------------------------------------------
 Slack: 16.824ns (period - (min high pulse limit / (high pulse / period)))
@@ -532,7 +669,7 @@ Slack: 16.824ns (period - (min high pulse limit / (high pulse / period)))
   High pulse limit: 1.588ns (Tbpwh)
   Physical resource: picocode_inst/ram_1024_x_18/CLKA
   Logical resource: picocode_inst/ram_1024_x_18.A/CLKA
-  Location pin: RAMB16_X0Y3.CLKA
+  Location pin: RAMB16_X0Y1.CLKA
   Clock network: CLK_50M_BUFGP
 --------------------------------------------------------------------------------
 Slack: 16.824ns (period - min period limit)
@@ -540,7 +677,7 @@ Slack: 16.824ns (period - min period limit)
   Min period limit: 3.176ns (314.861MHz) (Tbp)
   Physical resource: picocode_inst/ram_1024_x_18/CLKA
   Logical resource: picocode_inst/ram_1024_x_18.A/CLKA
-  Location pin: RAMB16_X0Y3.CLKA
+  Location pin: RAMB16_X0Y1.CLKA
   Clock network: CLK_50M_BUFGP
 --------------------------------------------------------------------------------
 
@@ -557,7 +694,7 @@ Clock to Setup on destination clock CLK_50M
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK_50M        |   13.487|         |         |         |
+CLK_50M        |   18.331|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
@@ -566,23 +703,23 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 14738 paths, 0 nets, and 4365 connections
+Constraints cover 264302 paths, 0 nets, and 5476 connections
 
 Design statistics:
-   Minimum period:  13.487ns{1}   (Maximum frequency:  74.145MHz)
+   Minimum period:  18.331ns{1}   (Maximum frequency:  54.552MHz)
 
 
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Fri Oct 16 17:22:04 2015 
+Analysis completed Tue Oct 20 21:44:46 2015 
 --------------------------------------------------------------------------------
 
 Trace Settings:
 -------------------------
 Trace Settings 
 
-Peak Memory Usage: 350 MB
+Peak Memory Usage: 354 MB
 
 
 

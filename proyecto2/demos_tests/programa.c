@@ -13,38 +13,38 @@ void led_off();
 void delay();
 // espera n ms
 void delay_ms(int n);
-
 // cambia posicion ficha en un pixel
 void saltar();
 
+void cam();
+
 void main()
 {
-	char cont_sato = 20;
-	char cont_nivel = 40;
-	char cont_led = 100;
-	led_on();
+	char cont_led = 2;
+	unsigned char nivel = 2;
+	unsigned char cont_nivel = 0;
+	led_off();
+	delay_ms(2000);
+	__asm
+	LOAD s7, 	00
+	__endasm;
 	while(1)
 	{
-		if (cont_sato == 0)
-		{
-			cont_sato = 20;
-			saltar();
-		}
-		else
-			cont_sato --;
-
-		if (cont_led == 50)
+		if (cont_led == 1)
 			led_on();
-		else
-			cont_led --;
 		if (cont_led == 0)
 		{
 			led_off();
-			cont_led = 100;	
+			cont_led = 2;	
 		}
-		else
-			cont_led --;
-		delay_ms(10);
+		if (cont_nivel == nivel)
+		{
+			saltar();
+			cont_nivel = 0;
+		}
+		cont_nivel ++;
+		cont_led --;
+		delay();
 	}
 }
 
@@ -61,10 +61,23 @@ void saltar()
 	__endasm;
 }
 
+void cam()
+{
+	__asm
+	XOR 	s7, 	04
+	OUTPUT 	s7, 	00
+	__endasm;
+	delay();
+	__asm
+	XOR 	s7, 	04
+	OUTPUT 	s7, 	00
+	__endasm;
+}
+
 void led_on()
 {
 __asm
-LOAD 	s7, 	01
+XOR 	s7, 	01
 OUTPUT 	s7, 	00
 __endasm;
 }
@@ -72,10 +85,11 @@ __endasm;
 void led_off()
 {
 __asm
-	LOAD 	s7, 	00
+	XOR 	s7, 	01
 	OUTPUT 	s7, 	00
 __endasm;
 }
+
 
 void delay()
 {

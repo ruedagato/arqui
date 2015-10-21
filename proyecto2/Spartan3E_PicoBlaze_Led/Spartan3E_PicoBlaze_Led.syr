@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.04 secs
+Total CPU time to Xst completion: 0.05 secs
  
 --> 
 Reading design: Spartan3E_PicoBlaze_Led.prj
@@ -107,19 +107,37 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
+Compiling verilog file "picouser/volver.v" in library work
 Compiling verilog file "picouser/vga_sync.v" in library work
-Compiling verilog file "picouser/PicoBlaze_OutReg.v" in library work
+Module <volver> compiled
+Compiling verilog file "picouser/tobcd.v" in library work
 Module <vga_sync> compiled
-Compiling verilog file "picouser/nivel.v" in library work
+Compiling verilog file "picouser/posy.v" in library work
+Module <tobcd> compiled
+Compiling verilog file "picouser/PicoBlaze_OutReg.v" in library work
+Module <posy> compiled
+Compiling verilog file "picouser/perdio.v" in library work
 Module <PicoBlaze_OutReg> compiled
-Compiling verilog file "picouser/imagen.v" in library work
+Compiling verilog file "picouser/nivel.v" in library work
+Module <perdio> compiled
+Compiling verilog file "picouser/movx.v" in library work
 Module <nivel> compiled
+Compiling verilog file "picouser/imagen.v" in library work
+Module <movx> compiled
 Compiling verilog file "picouser/ficha.v" in library work
 Module <imagen> compiled
-Compiling verilog file "picouser/display.v" in library work
+Compiling verilog file "picouser/display2.v" in library work
 Module <ficha> compiled
-Compiling verilog file "picocode/PICOCODE.V" in library work
+Compiling verilog file "picouser/contador.v" in library work
 Module <display> compiled
+Compiling verilog file "picouser/cmove.v" in library work
+Module <contador> compiled
+Compiling verilog file "picouser/bit.v" in library work
+Module <cmove> compiled
+Compiling verilog file "picouser/bcd7.v" in library work
+Module <bit> compiled
+Compiling verilog file "picocode/PICOCODE.V" in library work
+Module <bcd7> compiled
 Compiling verilog file "picoblze/kcpsm3.v" in library work
 Module <picocode> compiled
 Compiling verilog file "Spartan3E_PicoBlaze_Led.v" in library work
@@ -144,7 +162,7 @@ Analyzing hierarchy for module <PicoBlaze_OutReg> in library <work> with paramet
 
 Analyzing hierarchy for module <vga_sync> in library <work> with parameters.
 	HB = "00000000000000000000000000010000"
-	HD = "00000000000000000000001011010000"
+	HD = "00000000000000000000001010000000"
 	HF = "00000000000000000000000000110000"
 	HR = "00000000000000000000000001100000"
 	VB = "00000000000000000000000000100001"
@@ -160,11 +178,88 @@ Analyzing hierarchy for module <ficha> in library <work> with parameters.
 	y_tamano = "0001000000"
 
 Analyzing hierarchy for module <nivel> in library <work> with parameters.
-	origen_y = "0011001000"
 	tamano = "0001000000"
 	y_tamano = "0001000000"
 
 Analyzing hierarchy for module <imagen> in library <work>.
+
+Analyzing hierarchy for module <cmove> in library <work>.
+
+Analyzing hierarchy for module <movx> in library <work> with parameters.
+	s0 = "000"
+	s1 = "001"
+	s2 = "010"
+	s3 = "011"
+	s4 = "100"
+	s5 = "101"
+	s6 = "110"
+	s7 = "111"
+
+Analyzing hierarchy for module <bit> in library <work> with parameters.
+	s0 = "00"
+	s1 = "01"
+	s2 = "10"
+
+Analyzing hierarchy for module <volver> in library <work>.
+
+Analyzing hierarchy for module <perdio> in library <work> with parameters.
+	dis = "00000000000000000000000000001010"
+
+Analyzing hierarchy for module <posy> in library <work> with parameters.
+	s0 = "00000"
+	s1 = "00001"
+	s10 = "01010"
+	s11 = "01011"
+	s12 = "01100"
+	s13 = "01101"
+	s14 = "01110"
+	s15 = "01111"
+	s16 = "10000"
+	s17 = "10001"
+	s18 = "10010"
+	s19 = "10011"
+	s2 = "00010"
+	s20 = "10100"
+	s21 = "10101"
+	s22 = "10110"
+	s23 = "10111"
+	s24 = "11000"
+	s25 = "11001"
+	s26 = "11010"
+	s27 = "11011"
+	s28 = "11100"
+	s29 = "11101"
+	s3 = "00011"
+	s30 = "11110"
+	s31 = "11111"
+	s4 = "00100"
+	s5 = "00101"
+	s6 = "00110"
+	s7 = "00111"
+	s8 = "01000"
+	s9 = "01001"
+
+Analyzing hierarchy for module <tobcd> in library <work>.
+
+Analyzing hierarchy for module <bcd7> in library <work> with parameters.
+	s0 = "0000"
+	s1 = "0001"
+	s10 = "1010"
+	s11 = "1011"
+	s12 = "1100"
+	s13 = "1101"
+	s14 = "1110"
+	s15 = "1111"
+	s2 = "0010"
+	s3 = "0011"
+	s4 = "0100"
+	s5 = "0101"
+	s6 = "0110"
+	s7 = "0111"
+	s8 = "1000"
+	s9 = "1001"
+
+Analyzing hierarchy for module <contador> in library <work>.
 
 WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 402: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
 WARNING:Xst:2591 - "picoblze/kcpsm3.v" line 2268: attribute on instance <INIT> overrides generic/parameter on entity. It is possible that simulator will not take this attribute into account.
@@ -379,10 +474,11 @@ WARNING:Xst:2591 - "picocode/PICOCODE.V" line 30: attribute on instance <INIT_3F
 =========================================================================
 Analyzing top module <Spartan3E_PicoBlaze_Led>.
 	PORTA_ID = 8'b00000000
-WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 126: Unconnected input port 'rst' of instance 'ficha' is tied to GND.
-WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 126: Unconnected input port 'salto' of instance 'ficha' is tied to GND.
-WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 135: Unconnected input port 'rst' of instance 'nivel1' is tied to GND.
-WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 135: Unconnected input port 'salto' of instance 'nivel1' is tied to GND.
+WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 132: Unconnected input port 'rst' of instance 'ficha' is tied to GND.
+WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 132: Unconnected input port 'salto' of instance 'ficha' is tied to GND.
+WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 141: Unconnected input port 'rst' of instance 'nivel1' is tied to GND.
+WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 141: Unconnected input port 'salto' of instance 'nivel1' is tied to GND.
+WARNING:Xst:852 - "Spartan3E_PicoBlaze_Led.v" line 223: Unconnected input port 'cont' of instance 'mover2' is tied to GND.
 Module <Spartan3E_PicoBlaze_Led> is correct for synthesis.
  
 Analyzing module <kcpsm3> in library <work>.
@@ -738,23 +834,23 @@ Analyzing module <picocode> in library <work>.
 Module <picocode> is correct for synthesis.
  
     Set user-defined property "INIT =  00000" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INITP_00 =  00EDDD112C47665F402DD128A28E311C199C11D9BD711D9B5C47663D11D983F3" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INITP_00 =  444AC47665F402DD128A28E28E311D99411D9B44766F44766D04706611D983F3" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INITP_01 =  0000000000000000000000000000000000000000000000000000000000003B77" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INITP_02 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INITP_03 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INITP_04 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INITP_05 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INITP_06 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INITP_07 =  C000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INIT_00 =  70F08F0171F08F01004DCF01F1F0CF01F0F0016400144004000540030F3FC000" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INIT_01 =  4132C001401F70F08F0171F08F010047CF01F1F0CF01F0F00014401E50134000" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INIT_02 =  F0F0403A502F4100C101402C70F08F0171F08F01004DCF01F1F0CF01F0F0542B" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INIT_03 =  0B0ACF01F1F0CF01F0F0C101403B016470F08F0171F08F010050CF01F1F0CF01" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INIT_04 =  A000C7000701A000C700E7020053C700E702401070F08F0171F08F01005B0C00" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INIT_05 =  4200D210120011C010B0A0005454413054568001000081010100A000C7000700" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INIT_06 =  0200A000405D70F08F0171F08F010053CF01F1F0CF01F0F0E100C001406E5462" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INIT_07 =  00000000000000008001A0005470425E54724100547480010000810101008201" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INIT_08 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_00 =  70F08F0171F08F01005ACF01F1F0CF01F0F0010000024004000540030F3FC000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_01 =  CF01F0F054274001070070F08F0171F08F0100650C070BD0CF01F1F0CF01F0F0" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_02 =  8F01005ACF01F1F0CF01F0F04033502A400070F08F0171F08F010057CF01F1F0" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_03 =  8101010070F08F0171F08F01004BCF01F1F0CF01F0F0543F410200028F0171F0" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_04 =  C700E702005DC700E702401C70F08F0171F08F01005DCF01F1F0CF01F0F0C001" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_05 =  000081010100A000C700E701A000C700E701A000C700E704005DC700E704A000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_06 =  CF01F0F0E100C0014078546C4200D210120011C010B0A000545E413054608001" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_07 =  800100008101010082010200A000A000406770F08F0171F08F01005DCF01F1F0" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_08 =  0000000000000000000000000000000000008001A000547B425E547D4100547F" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INIT_09 =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INIT_0A =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INIT_0B =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
@@ -809,7 +905,7 @@ Module <picocode> is correct for synthesis.
     Set user-defined property "INIT_3C =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INIT_3D =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "INIT_3E =  0000000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
-    Set user-defined property "INIT_3F =  407B000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
+    Set user-defined property "INIT_3F =  4086000000000000000000000000000000000000000000000000000000000000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "SRVAL =  00000" for instance <ram_1024_x_18> in unit <picocode>.
     Set user-defined property "WRITE_MODE =  WRITE_FIRST" for instance <ram_1024_x_18> in unit <picocode>.
 Analyzing module <PicoBlaze_OutReg> in library <work>.
@@ -818,7 +914,7 @@ Module <PicoBlaze_OutReg> is correct for synthesis.
  
 Analyzing module <vga_sync> in library <work>.
 	HB = 32'sb00000000000000000000000000010000
-	HD = 32'sb00000000000000000000001011010000
+	HD = 32'sb00000000000000000000001010000000
 	HF = 32'sb00000000000000000000000000110000
 	HR = 32'sb00000000000000000000000001100000
 	VB = 32'sb00000000000000000000000000100001
@@ -838,7 +934,6 @@ INFO:Xst:1433 - Contents of array <registros> may be accessed with an index that
 Module <ficha> is correct for synthesis.
  
 Analyzing module <nivel> in library <work>.
-	origen_y = 10'b0011001000
 	tamano = 10'b0001000000
 	y_tamano = 10'b0001000000
 INFO:Xst:1433 - Contents of array <registros> may be accessed with an index that exceeds the array size. This could cause simulation mismatch.
@@ -846,6 +941,109 @@ Module <nivel> is correct for synthesis.
  
 Analyzing module <imagen> in library <work>.
 Module <imagen> is correct for synthesis.
+ 
+Analyzing module <cmove> in library <work>.
+Module <cmove> is correct for synthesis.
+ 
+Analyzing module <movx> in library <work>.
+	s0 = 3'b000
+	s1 = 3'b001
+	s2 = 3'b010
+	s3 = 3'b011
+	s4 = 3'b100
+	s5 = 3'b101
+	s6 = 3'b110
+	s7 = 3'b111
+WARNING:Xst:2725 - "picouser/movx.v" line 32: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 33: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 34: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 35: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 36: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 37: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 38: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 39: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 46: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 47: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 48: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 49: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 50: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 51: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 52: Size mismatch between case item and case selector.
+WARNING:Xst:2725 - "picouser/movx.v" line 53: Size mismatch between case item and case selector.
+Module <movx> is correct for synthesis.
+ 
+Analyzing module <bit> in library <work>.
+	s0 = 2'b00
+	s1 = 2'b01
+	s2 = 2'b10
+Module <bit> is correct for synthesis.
+ 
+Analyzing module <volver> in library <work>.
+Module <volver> is correct for synthesis.
+ 
+Analyzing module <perdio> in library <work>.
+	dis = 32'sb00000000000000000000000000001010
+Module <perdio> is correct for synthesis.
+ 
+Analyzing module <posy> in library <work>.
+	s0 = 5'b00000
+	s1 = 5'b00001
+	s10 = 5'b01010
+	s11 = 5'b01011
+	s12 = 5'b01100
+	s13 = 5'b01101
+	s14 = 5'b01110
+	s15 = 5'b01111
+	s16 = 5'b10000
+	s17 = 5'b10001
+	s18 = 5'b10010
+	s19 = 5'b10011
+	s2 = 5'b00010
+	s20 = 5'b10100
+	s21 = 5'b10101
+	s22 = 5'b10110
+	s23 = 5'b10111
+	s24 = 5'b11000
+	s25 = 5'b11001
+	s26 = 5'b11010
+	s27 = 5'b11011
+	s28 = 5'b11100
+	s29 = 5'b11101
+	s3 = 5'b00011
+	s30 = 5'b11110
+	s31 = 5'b11111
+	s4 = 5'b00100
+	s5 = 5'b00101
+	s6 = 5'b00110
+	s7 = 5'b00111
+	s8 = 5'b01000
+	s9 = 5'b01001
+Module <posy> is correct for synthesis.
+ 
+Analyzing module <tobcd> in library <work>.
+Module <tobcd> is correct for synthesis.
+ 
+Analyzing module <bcd7> in library <work>.
+	s0 = 4'b0000
+	s1 = 4'b0001
+	s10 = 4'b1010
+	s11 = 4'b1011
+	s12 = 4'b1100
+	s13 = 4'b1101
+	s14 = 4'b1110
+	s15 = 4'b1111
+	s2 = 4'b0010
+	s3 = 4'b0011
+	s4 = 4'b0100
+	s5 = 4'b0101
+	s6 = 4'b0110
+	s7 = 4'b0111
+	s8 = 4'b1000
+	s9 = 4'b1001
+Module <bcd7> is correct for synthesis.
+ 
+Analyzing module <contador> in library <work>.
+Module <contador> is correct for synthesis.
  
 
 =========================================================================
@@ -864,30 +1062,34 @@ Unit <PicoBlaze_OutReg> synthesized.
 
 Synthesizing Unit <vga_sync>.
     Related source file is "picouser/vga_sync.v".
-    Found 10-bit up counter for signal <h_count_reg>.
+    Found 10-bit adder for signal <h_count_next$addsub0000> created at line 68.
+    Found 10-bit register for signal <h_count_reg>.
     Found 10-bit comparator greatequal for signal <h_sync_next$cmp_ge0000> created at line 84.
     Found 10-bit comparator lessequal for signal <h_sync_next$cmp_le0000> created at line 84.
     Found 1-bit register for signal <h_sync_reg>.
     Found 1-bit register for signal <mod2_reg>.
-    Found 10-bit up counter for signal <v_count_reg>.
+    Found 10-bit adder for signal <v_count_next$addsub0000> created at line 78.
+    Found 10-bit register for signal <v_count_reg>.
     Found 10-bit comparator greatequal for signal <v_sync_next$cmp_ge0000> created at line 87.
     Found 10-bit comparator lessequal for signal <v_sync_next$cmp_le0000> created at line 87.
     Found 1-bit register for signal <v_sync_reg>.
     Found 11-bit comparator less for signal <video_on$cmp_lt0000> created at line 91.
     Found 10-bit comparator less for signal <video_on$cmp_lt0001> created at line 91.
     Summary:
-	inferred   2 Counter(s).
-	inferred   3 D-type flip-flop(s).
+	inferred  23 D-type flip-flop(s).
+	inferred   2 Adder/Subtractor(s).
 	inferred   6 Comparator(s).
 Unit <vga_sync> synthesized.
 
 
 Synthesizing Unit <display>.
-    Related source file is "picouser/display.v".
-    Found 10-bit comparator lessequal for signal <rgb_outT_1$cmp_le0000> created at line 24.
-    Found 10-bit comparator lessequal for signal <rgb_outT_2$cmp_le0000> created at line 22.
+    Related source file is "picouser/display2.v".
+    Found 10-bit comparator greatequal for signal <rgb_outT_2$cmp_ge0000> created at line 20.
+    Found 10-bit comparator greatequal for signal <rgb_outT_2$cmp_ge0001> created at line 35.
+    Found 10-bit comparator lessequal for signal <rgb_outT_2$cmp_le0000> created at line 13.
+    Found 10-bit comparator lessequal for signal <rgb_outT_2$cmp_le0001> created at line 29.
     Summary:
-	inferred   2 Comparator(s).
+	inferred   4 Comparator(s).
 Unit <display> synthesized.
 
 
@@ -902,6 +1104,7 @@ WARNING:Xst:646 - Signal <lectura<12>> is assigned but never used. This unconnec
     Found 11-bit subtractor for signal <lectura$sub0000> created at line 4162.
     Found 12-bit subtractor for signal <lectura$sub0001> created at line 4162.
     Found 4-bit register for signal <w_rgb>.
+    Found 10-bit adder for signal <w_rgb$addsub0000> created at line 4153.
     Found 10-bit comparator greatequal for signal <w_rgb$cmp_ge0000> created at line 4153.
     Found 10-bit comparator greatequal for signal <w_rgb$cmp_ge0001> created at line 4153.
     Found 10-bit comparator less for signal <w_rgb$cmp_lt0000> created at line 4153.
@@ -909,7 +1112,7 @@ WARNING:Xst:646 - Signal <lectura<12>> is assigned but never used. This unconnec
     Summary:
 	inferred   1 ROM(s).
 	inferred   4 D-type flip-flop(s).
-	inferred   3 Adder/Subtractor(s).
+	inferred   4 Adder/Subtractor(s).
 	inferred   4 Comparator(s).
 Unit <ficha> synthesized.
 
@@ -920,27 +1123,168 @@ WARNING:Xst:647 - Input <rst> is never used. This port will be preserved and lef
 WARNING:Xst:647 - Input <salto> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:1781 - Signal <registros> is used but never assigned. Tied to default value.
 WARNING:Xst:646 - Signal <lectura<12>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-    Found 4096x3-bit ROM for signal <w_rgb$varindex0000> created at line 4124.
+    Found 4096x3-bit ROM for signal <w_rgb$varindex0000> created at line 4127.
     Found 13-bit adder for signal <lectura>.
-    Found 11-bit subtractor for signal <lectura$sub0000> created at line 4132.
-    Found 12-bit subtractor for signal <lectura$sub0001> created at line 4132.
+    Found 11-bit subtractor for signal <lectura$sub0000> created at line 4135.
+    Found 12-bit subtractor for signal <lectura$sub0001> created at line 4135.
     Found 4-bit register for signal <w_rgb>.
-    Found 10-bit comparator greatequal for signal <w_rgb$cmp_ge0000> created at line 4123.
-    Found 10-bit comparator greatequal for signal <w_rgb$cmp_ge0001> created at line 4123.
-    Found 10-bit comparator less for signal <w_rgb$cmp_lt0000> created at line 4123.
-    Found 10-bit comparator less for signal <w_rgb$cmp_lt0001> created at line 4123.
+    Found 10-bit adder for signal <w_rgb$addsub0000> created at line 4126.
+    Found 10-bit adder for signal <w_rgb$addsub0001> created at line 4126.
+    Found 10-bit comparator greatequal for signal <w_rgb$cmp_ge0000> created at line 4126.
+    Found 10-bit comparator greatequal for signal <w_rgb$cmp_ge0001> created at line 4126.
+    Found 10-bit comparator greater for signal <w_rgb$cmp_gt0000> created at line 4124.
+    Found 10-bit comparator less for signal <w_rgb$cmp_lt0000> created at line 4124.
+    Found 10-bit comparator less for signal <w_rgb$cmp_lt0001> created at line 4126.
+    Found 10-bit comparator less for signal <w_rgb$cmp_lt0002> created at line 4126.
     Summary:
 	inferred   1 ROM(s).
 	inferred   4 D-type flip-flop(s).
-	inferred   3 Adder/Subtractor(s).
-	inferred   4 Comparator(s).
+	inferred   5 Adder/Subtractor(s).
+	inferred   6 Comparator(s).
 Unit <nivel> synthesized.
 
 
 Synthesizing Unit <imagen>.
     Related source file is "picouser/imagen.v".
-WARNING:Xst:647 - Input <fondo<3>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 Unit <imagen> synthesized.
+
+
+Synthesizing Unit <cmove>.
+    Related source file is "picouser/cmove.v".
+    Found 10-bit addsub for signal <next_posx$addsub0000>.
+    Found 10-bit register for signal <posx>.
+    Found 10-bit comparator greatequal for signal <r_xmax$cmp_ge0000> created at line 20.
+    Found 10-bit comparator lessequal for signal <r_xmin$cmp_le0000> created at line 16.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+Unit <cmove> synthesized.
+
+
+Synthesizing Unit <movx>.
+    Related source file is "picouser/movx.v".
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <rState> of Case statement line 31 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <rState> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Using one-hot encoding for signal <rState>.
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <rState> of Case statement line 45 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <rState> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Found 8-bit register for signal <rState>.
+Unit <movx> synthesized.
+
+
+Synthesizing Unit <bit>.
+    Related source file is "picouser/bit.v".
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <rState> of Case statement line 22 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <rState> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Using one-hot encoding for signal <rState>.
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <rState> of Case statement line 30 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <rState> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Found 3-bit register for signal <rState>.
+Unit <bit> synthesized.
+
+
+Synthesizing Unit <volver>.
+    Related source file is "picouser/volver.v".
+WARNING:Xst:647 - Input <cont> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+    Found 10-bit addsub for signal <next_posx$addsub0000>.
+    Found 10-bit register for signal <posx>.
+    Found 1-bit register for signal <r_xmax>.
+    Found 10-bit comparator less for signal <r_xmax$or0000>.
+    Found 1-bit register for signal <r_xmin>.
+    Found 10-bit comparator lessequal for signal <r_xmin$cmp_le0000> created at line 16.
+    Summary:
+	inferred   2 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Comparator(s).
+Unit <volver> synthesized.
+
+
+Synthesizing Unit <perdio>.
+    Related source file is "picouser/perdio.v".
+    Found 10-bit adder carry out for signal <add0000$addsub0000> created at line 15.
+    Found 10-bit adder carry out for signal <add0001$addsub0000> created at line 15.
+    Found 10-bit adder carry out for signal <add0002$addsub0000> created at line 15.
+    Found 11-bit comparator greater for signal <r_out$cmp_gt0000> created at line 15.
+    Found 11-bit comparator greater for signal <r_out$cmp_gt0001> created at line 15.
+    Found 11-bit comparator less for signal <r_out$cmp_lt0000> created at line 15.
+    Found 11-bit comparator less for signal <r_out$cmp_lt0001> created at line 15.
+    Summary:
+	inferred   3 Adder/Subtractor(s).
+	inferred   4 Comparator(s).
+Unit <perdio> synthesized.
+
+
+Synthesizing Unit <posy>.
+    Related source file is "picouser/posy.v".
+INFO:Xst:2117 - HDL ADVISOR - Mux Selector <rState> of Case statement line 117 was re-encoded using one-hot encoding. The case statement will be optimized (default statement optimization), but this optimization may lead to design initialization problems. To ensure the design works safely, you can:
+   	- add an 'INIT' attribute on signal <rState> (optimization is then done without any risk)
+   	- use the attribute 'signal_encoding user' to avoid onehot optimization
+   	- use the attribute 'safe_implementation yes' to force XST to perform a safe (but less efficient) optimization
+    Found finite state machine <FSM_0> for signal <rState>.
+    -----------------------------------------------------------------------
+    | States             | 32                                             |
+    | Transitions        | 63                                             |
+    | Inputs             | 1                                              |
+    | Outputs            | 10                                             |
+    | Clock              | clk                       (rising_edge)        |
+    | Reset              | rst                       (positive)           |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | 00000                                          |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Summary:
+	inferred   1 Finite State Machine(s).
+Unit <posy> synthesized.
+
+
+Synthesizing Unit <tobcd>.
+    Related source file is "picouser/tobcd.v".
+WARNING:Xst:1780 - Signal <seg> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+    Found 4-bit adder for signal <$add0000> created at line 30.
+    Found 4-bit adder for signal <$add0001> created at line 30.
+    Found 4-bit adder for signal <$add0002> created at line 30.
+    Found 4-bit adder for signal <$add0003> created at line 28.
+    Found 4-bit adder for signal <$add0004> created at line 30.
+    Found 4-bit adder for signal <$add0005> created at line 28.
+    Found 4-bit adder for signal <$add0006> created at line 30.
+    Found 4-bit comparator greatequal for signal <cen_0$cmp_ge0000> created at line 27.
+    Found 4-bit comparator greatequal for signal <cen_0$cmp_ge0001> created at line 27.
+    Found 4-bit comparator greatequal for signal <dec_0$cmp_ge0000> created at line 29.
+    Found 4-bit comparator greatequal for signal <dec_0$cmp_ge0001> created at line 29.
+    Found 4-bit comparator greatequal for signal <dec_0$cmp_ge0002> created at line 29.
+    Found 4-bit comparator greatequal for signal <dec_0$cmp_ge0003> created at line 29.
+    Found 4-bit comparator greatequal for signal <dec_0$cmp_ge0004> created at line 29.
+    Summary:
+	inferred   7 Adder/Subtractor(s).
+	inferred   7 Comparator(s).
+Unit <tobcd> synthesized.
+
+
+Synthesizing Unit <bcd7>.
+    Related source file is "picouser/bcd7.v".
+    Found 16x7-bit ROM for signal <seg>.
+    Summary:
+	inferred   1 ROM(s).
+Unit <bcd7> synthesized.
+
+
+Synthesizing Unit <contador>.
+    Related source file is "picouser/contador.v".
+    Found 8-bit register for signal <salida>.
+    Found 8-bit adder for signal <wsalida$addsub0000> created at line 17.
+    Summary:
+	inferred   8 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+Unit <contador> synthesized.
 
 
 Synthesizing Unit <kcpsm3>.
@@ -955,32 +1299,48 @@ Unit <picocode> synthesized.
 
 Synthesizing Unit <Spartan3E_PicoBlaze_Led>.
     Related source file is "Spartan3E_PicoBlaze_Led.v".
+WARNING:Xst:1780 - Signal <w_cont> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <w_bit_3> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <temmm> is used but never assigned. This sourceless signal will be automatically connected to value 0.
+WARNING:Xst:646 - Signal <seg1<6>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <seg1<3>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <rst> is used but never assigned. This sourceless signal will be automatically connected to value 0.
 WARNING:Xst:646 - Signal <read_strobe> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <portA<7:1>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <portA<7:2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 Unit <Spartan3E_PicoBlaze_Led> synthesized.
 
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
 
 =========================================================================
 HDL Synthesis Report
 
 Macro Statistics
-# ROMs                                                 : 2
+# ROMs                                                 : 4
+ 16x7-bit ROM                                          : 2
  4096x3-bit ROM                                        : 2
-# Adders/Subtractors                                   : 6
+# Adders/Subtractors                                   : 24
+ 10-bit adder                                          : 5
+ 10-bit adder carry out                                : 3
+ 10-bit addsub                                         : 2
  11-bit subtractor                                     : 2
  12-bit subtractor                                     : 2
  13-bit adder                                          : 2
-# Counters                                             : 2
- 10-bit up counter                                     : 2
-# Registers                                            : 6
- 1-bit register                                        : 3
+ 4-bit adder                                           : 7
+ 8-bit adder                                           : 1
+# Registers                                            : 17
+ 1-bit register                                        : 5
+ 10-bit register                                       : 4
+ 3-bit register                                        : 2
  4-bit register                                        : 2
- 8-bit register                                        : 1
-# Comparators                                          : 16
- 10-bit comparator greatequal                          : 6
- 10-bit comparator less                                : 5
- 10-bit comparator lessequal                           : 4
- 11-bit comparator less                                : 1
+ 8-bit register                                        : 4
+# Comparators                                          : 39
+ 10-bit comparator greatequal                          : 11
+ 10-bit comparator greater                             : 1
+ 10-bit comparator less                                : 7
+ 10-bit comparator lessequal                           : 8
+ 11-bit comparator greater                             : 2
+ 11-bit comparator less                                : 3
+ 4-bit comparator greatequal                           : 7
 
 =========================================================================
 
@@ -988,9 +1348,46 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <poss/rState/FSM> on signal <rState[1:5]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 00000 | 00000
+ 00001 | 00001
+ 00010 | 00010
+ 00011 | 00011
+ 00100 | 00100
+ 00101 | 00101
+ 00110 | 00110
+ 00111 | 00111
+ 01000 | 01000
+ 01001 | 01001
+ 01010 | 01010
+ 01011 | 01011
+ 01100 | 01100
+ 01101 | 01101
+ 01110 | 01110
+ 01111 | 01111
+ 10000 | 10000
+ 10001 | 10001
+ 10010 | 10010
+ 10011 | 10011
+ 10100 | 10100
+ 10101 | 10101
+ 10110 | 10110
+ 10111 | 10111
+ 11000 | 11000
+ 11001 | 11001
+ 11010 | 11010
+ 11011 | 11011
+ 11100 | 11100
+ 11101 | 11101
+ 11110 | 11110
+ 11111 | 11111
+-------------------
 WARNING:Xst:1290 - Hierarchical block <display_u> is unconnected in block <Spartan3E_PicoBlaze_Led>.
    It will be removed from the design.
-WARNING:Xst:2677 - Node <new_out_port_1> of sequential type is unconnected in block <portA_inst>.
 WARNING:Xst:2677 - Node <new_out_port_2> of sequential type is unconnected in block <portA_inst>.
 WARNING:Xst:2677 - Node <new_out_port_3> of sequential type is unconnected in block <portA_inst>.
 WARNING:Xst:2677 - Node <new_out_port_4> of sequential type is unconnected in block <portA_inst>.
@@ -1002,21 +1399,29 @@ WARNING:Xst:2677 - Node <new_out_port_7> of sequential type is unconnected in bl
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# ROMs                                                 : 2
+# FSMs                                                 : 1
+# ROMs                                                 : 4
+ 16x7-bit ROM                                          : 2
  4096x3-bit ROM                                        : 2
-# Adders/Subtractors                                   : 6
+# Adders/Subtractors                                   : 24
+ 10-bit adder                                          : 5
+ 10-bit adder carry out                                : 3
+ 10-bit addsub                                         : 2
  12-bit adder                                          : 2
  12-bit subtractor                                     : 2
+ 4-bit adder                                           : 7
  6-bit subtractor                                      : 2
-# Counters                                             : 2
- 10-bit up counter                                     : 2
-# Registers                                            : 95
- Flip-Flops                                            : 95
-# Comparators                                          : 16
- 10-bit comparator greatequal                          : 6
- 10-bit comparator less                                : 5
- 10-bit comparator lessequal                           : 4
- 11-bit comparator less                                : 1
+ 8-bit adder                                           : 1
+# Registers                                            : 167
+ Flip-Flops                                            : 167
+# Comparators                                          : 39
+ 10-bit comparator greatequal                          : 11
+ 10-bit comparator greater                             : 1
+ 10-bit comparator less                                : 7
+ 10-bit comparator lessequal                           : 8
+ 11-bit comparator greater                             : 2
+ 11-bit comparator less                                : 3
+ 4-bit comparator greatequal                           : 7
 
 =========================================================================
 
@@ -1030,24 +1435,37 @@ Optimizing unit <PicoBlaze_OutReg> ...
 
 Optimizing unit <vga_sync> ...
 
+Optimizing unit <ficha> ...
+
+Optimizing unit <nivel> ...
+
+Optimizing unit <perdio> ...
+
+Optimizing unit <tobcd> ...
+
+Optimizing unit <contador> ...
+
 Optimizing unit <kcpsm3> ...
+
+Optimizing unit <cmove> ...
+
+Optimizing unit <movx> ...
+
+Optimizing unit <volver> ...
 WARNING:Xst:2677 - Node <portA_inst/new_out_port_7> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
 WARNING:Xst:2677 - Node <portA_inst/new_out_port_6> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
 WARNING:Xst:2677 - Node <portA_inst/new_out_port_5> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
 WARNING:Xst:2677 - Node <portA_inst/new_out_port_4> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
 WARNING:Xst:2677 - Node <portA_inst/new_out_port_3> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
 WARNING:Xst:2677 - Node <portA_inst/new_out_port_2> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
-WARNING:Xst:2677 - Node <portA_inst/new_out_port_1> of sequential type is unconnected in block <Spartan3E_PicoBlaze_Led>.
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block Spartan3E_PicoBlaze_Led, actual ratio is 61.
-FlipFlop vga/h_count_reg_0 has been replicated 1 time(s)
-FlipFlop vga/h_count_reg_1 has been replicated 1 time(s)
-FlipFlop vga/h_count_reg_2 has been replicated 1 time(s)
-FlipFlop vga/h_count_reg_3 has been replicated 1 time(s)
-FlipFlop vga/h_count_reg_4 has been replicated 1 time(s)
-FlipFlop vga/h_count_reg_5 has been replicated 1 time(s)
+Found area constraint ratio of 100 (+ 5) on block Spartan3E_PicoBlaze_Led, actual ratio is 84.
+FlipFlop control1/rState_3 has been replicated 1 time(s)
+FlipFlop control1/rState_4 has been replicated 1 time(s)
+FlipFlop control2/rState_3 has been replicated 2 time(s)
+FlipFlop control2/rState_4 has been replicated 2 time(s)
 
 Final Macro Processing ...
 
@@ -1055,8 +1473,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 114
- Flip-Flops                                            : 114
+# Registers                                            : 172
+ Flip-Flops                                            : 172
 
 =========================================================================
 
@@ -1082,34 +1500,38 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 7
+# IOs                              : 23
 
 Cell Usage :
-# BELS                             : 1377
+# BELS                             : 1973
 #      GND                         : 1
-#      INV                         : 7
-#      LUT1                        : 20
-#      LUT2                        : 23
-#      LUT2_D                      : 10
-#      LUT2_L                      : 3
-#      LUT3                        : 230
-#      LUT3_D                      : 9
-#      LUT3_L                      : 5
-#      LUT4                        : 571
-#      LUT4_D                      : 30
-#      LUT4_L                      : 23
-#      MUXCY                       : 67
-#      MUXF5                       : 222
-#      MUXF6                       : 67
+#      INV                         : 9
+#      LUT1                        : 21
+#      LUT2                        : 76
+#      LUT2_D                      : 17
+#      LUT2_L                      : 4
+#      LUT3                        : 326
+#      LUT3_D                      : 14
+#      LUT3_L                      : 8
+#      LUT4                        : 780
+#      LUT4_D                      : 28
+#      LUT4_L                      : 21
+#      MUXCY                       : 210
+#      MUXF5                       : 239
+#      MUXF6                       : 68
 #      MUXF7                       : 16
 #      MUXF8                       : 3
 #      VCC                         : 1
-#      XORCY                       : 69
-# FlipFlops/Latches                : 114
-#      FD                          : 30
-#      FDE                         : 3
-#      FDR                         : 35
-#      FDRE                        : 34
+#      XORCY                       : 131
+# FlipFlops/Latches                : 172
+#      FD                          : 28
+#      FDC                         : 65
+#      FDCE                        : 9
+#      FDE                         : 2
+#      FDP                         : 9
+#      FDPE                        : 3
+#      FDR                         : 36
+#      FDRE                        : 8
 #      FDRSE                       : 10
 #      FDS                         : 2
 # RAMS                             : 27
@@ -1119,8 +1541,9 @@ Cell Usage :
 #      RAMB16_S18                  : 1
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 6
-#      OBUF                        : 6
+# IO Buffers                       : 22
+#      IBUF                        : 2
+#      OBUF                        : 20
 =========================================================================
 
 Device utilization summary:
@@ -1128,13 +1551,13 @@ Device utilization summary:
 
 Selected Device : 3s100evq100-4 
 
- Number of Slices:                      539  out of    960    56%  
- Number of Slice Flip Flops:            114  out of   1920     5%  
- Number of 4 input LUTs:                999  out of   1920    52%  
-    Number used as logic:               931
+ Number of Slices:                      738  out of    960    76%  
+ Number of Slice Flip Flops:            172  out of   1920     8%  
+ Number of 4 input LUTs:               1372  out of   1920    71%  
+    Number used as logic:              1304
     Number used as RAMs:                 68
- Number of IOs:                           7
- Number of bonded IOBs:                   7  out of     66    10%  
+ Number of IOs:                          23
+ Number of bonded IOBs:                  23  out of     66    34%  
  Number of BRAMs:                         1  out of      4    25%  
  Number of GCLKs:                         1  out of     24     4%  
 
@@ -1159,20 +1582,25 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-CLK_50M                            | BUFGP                  | 141   |
+CLK_50M                            | BUFGP                  | 199   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
 ----------------------------------------
-No asynchronous control signals found in this design
+-----------------------------------+---------------------------+-------+
+Control Signal                     | Buffer(FF name)           | Load  |
+-----------------------------------+---------------------------+-------+
+reset(reset1_INV_0:O)              | NONE(bit/rState_0)        | 81    |
+LED2_OBUF(XST_GND:G)               | NONE(poss/rState_FSM_FFd1)| 5     |
+-----------------------------------+---------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 11.030ns (Maximum Frequency: 90.658MHz)
-   Minimum input arrival time before clock: No path found
-   Maximum output required time after clock: 8.936ns
+   Minimum period: 15.235ns (Maximum Frequency: 65.638MHz)
+   Minimum input arrival time before clock: 4.819ns
+   Maximum output required time after clock: 14.277ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -1181,55 +1609,87 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK_50M'
-  Clock period: 11.030ns (frequency: 90.658MHz)
-  Total number of paths / destination ports: 12983 / 469
+  Clock period: 15.235ns (frequency: 65.638MHz)
+  Total number of paths / destination ports: 262546 / 487
 -------------------------------------------------------------------------
-Delay:               11.030ns (Levels of Logic = 9)
-  Source:            vga/h_count_reg_6 (FF)
-  Destination:       ficha/w_rgb_1 (FF)
+Delay:               15.235ns (Levels of Logic = 16)
+  Source:            control2/rState_3_1 (FF)
+  Destination:       nivel1/w_rgb_2 (FF)
   Source Clock:      CLK_50M rising
   Destination Clock: CLK_50M rising
 
-  Data Path: vga/h_count_reg_6 to ficha/w_rgb_1
+  Data Path: control2/rState_3_1 to nivel1/w_rgb_2
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q            12   0.591   0.965  vga/h_count_reg_6 (vga/h_count_reg_6)
-     LUT4:I3->O            1   0.704   0.499  ficha/Msub_lectura_sub0001_xor<6>11 (ficha/lectura_sub0001<6>)
-     LUT2:I1->O            1   0.704   0.000  ficha/Madd_lectura_Madd_lut<6> (ficha/Madd_lectura_Madd_lut<6>)
-     XORCY:LI->O          77   0.527   1.276  ficha/Madd_lectura_Madd_xor<6> (ficha/lectura<6>)
-     MUXF6:S->O            1   0.850   0.455  ficha/Mrom_w_rgb_varindex00001331_17_f6 (ficha/Mrom_w_rgb_varindex00001331_17_f6)
-     LUT3:I2->O            1   0.704   0.455  ficha/lectura<8>1_SW0 (N122)
-     LUT3_L:I2->LO         1   0.704   0.135  ficha/lectura<8>1 (ficha/lectura<8>11)
-     LUT3:I2->O            1   0.704   0.424  ficha/Mrom_w_rgb_varindex00001331_6 (ficha/Mrom_w_rgb_varindex00001331_6)
-     LUT4:I3->O            1   0.704   0.000  ficha/w_rgb_varindex0000<1>_F (N276)
-     MUXF5:I0->O           1   0.321   0.000  ficha/w_rgb_varindex0000<1> (ficha/w_rgb_varindex0000<1>1)
-     FD:D                      0.308          ficha/w_rgb_1
+     FDC:C->Q              5   0.591   0.808  control2/rState_3_1 (control2/rState_3_1)
+     LUT2:I0->O            1   0.704   0.420  mover2/next_posx_mux00002 (mover2/next_posx_mux0000)
+     MUXCY:CI->O           1   0.059   0.000  mover2/Maddsub_next_posx_addsub0000_cy<0> (mover2/Maddsub_next_posx_addsub0000_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  mover2/Maddsub_next_posx_addsub0000_cy<1> (mover2/Maddsub_next_posx_addsub0000_cy<1>)
+     XORCY:CI->O           6   0.804   0.673  mover2/Maddsub_next_posx_addsub0000_xor<2> (mover2/next_posx_addsub0000<2>)
+     LUT4:I3->O            1   0.704   0.000  nivel1/Msub_lectura_sub0001_lut<2> (nivel1/Msub_lectura_sub0001_lut<2>)
+     MUXCY:S->O            1   0.464   0.000  nivel1/Msub_lectura_sub0001_cy<2> (nivel1/Msub_lectura_sub0001_cy<2>)
+     XORCY:CI->O         196   0.804   1.318  nivel1/Msub_lectura_sub0001_xor<3> (nivel1/lectura_sub0001<3>)
+     LUT4_D:I3->O          1   0.704   0.499  nivel1/Mrom_w_rgb_varindex00001521 (nivel1/Mrom_w_rgb_varindex0000152)
+     LUT3:I1->O            1   0.704   0.424  nivel1/lectura_sub0001<4>881 (nivel1/lectura_sub0001<4>_mmx_out6)
+     LUT4:I3->O            1   0.704   0.000  nivel1/Mrom_w_rgb_varindex00001991_15_f5_0_G (N452)
+     MUXF5:I1->O           1   0.321   0.455  nivel1/Mrom_w_rgb_varindex00001991_15_f5_0 (nivel1/Mrom_w_rgb_varindex00001991_15_f51)
+     LUT3:I2->O            1   0.704   0.000  nivel1/Mrom_w_rgb_varindex00001991_10_f5_G (N442)
+     MUXF5:I1->O           1   0.321   0.499  nivel1/Mrom_w_rgb_varindex00001991_10_f5 (nivel1/Mrom_w_rgb_varindex00001991_10_f5)
+     LUT3:I1->O            1   0.704   0.455  nivel1/lectura<9> (nivel1/lectura<9>1)
+     LUT3:I2->O            1   0.704   0.000  nivel1/Mrom_w_rgb_varindex00001991_3 (nivel1/Mrom_w_rgb_varindex00001991_3)
+     MUXF5:I1->O           1   0.321   0.000  nivel1/Mrom_w_rgb_varindex00001991_2_f5 (nivel1/N4)
+     FDR:D                     0.308          nivel1/w_rgb_2
     ----------------------------------------
-    Total                     11.030ns (6.821ns logic, 4.209ns route)
-                                       (61.8% logic, 38.2% route)
+    Total                     15.235ns (9.684ns logic, 5.551ns route)
+                                       (63.6% logic, 36.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK_50M'
+  Total number of paths / destination ports: 12 / 11
+-------------------------------------------------------------------------
+Offset:              4.819ns (Levels of Logic = 2)
+  Source:            rst_n (PAD)
+  Destination:       kcpsm3_inst/reset_flop2 (FF)
+  Destination Clock: CLK_50M rising
+
+  Data Path: rst_n to kcpsm3_inst/reset_flop2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             7   1.218   0.708  rst_n_IBUF (rst_n_IBUF)
+     INV:I->O             83   0.704   1.278  reset1_INV_0 (reset)
+     FDS:S                     0.911          kcpsm3_inst/reset_flop1
+    ----------------------------------------
+    Total                      4.819ns (2.833ns logic, 1.986ns route)
+                                       (58.8% logic, 41.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK_50M'
-  Total number of paths / destination ports: 59 / 6
+  Total number of paths / destination ports: 3234 / 18
 -------------------------------------------------------------------------
-Offset:              8.936ns (Levels of Logic = 4)
-  Source:            vga/h_count_reg_4 (FF)
-  Destination:       r (PAD)
+Offset:              14.277ns (Levels of Logic = 9)
+  Source:            vga/h_count_reg_1 (FF)
+  Destination:       b (PAD)
   Source Clock:      CLK_50M rising
 
-  Data Path: vga/h_count_reg_4 to r
+  Data Path: vga/h_count_reg_1 to b
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDRE:C->Q           393   0.591   1.380  vga/h_count_reg_4 (vga/h_count_reg_4)
-     LUT4:I3->O            1   0.704   0.455  vga/video_on12 (vga/video_on12)
-     LUT4:I2->O            3   0.704   0.706  vga/video_on56 (w_video_on)
-     LUT4:I0->O            1   0.704   0.420  r (r_OBUF)
+     FDC:C->Q            133   0.591   1.469  vga/h_count_reg_1 (vga/h_count_reg_1)
+     LUT2_D:I0->O          2   0.704   0.526  b5189 (b5189)
+     LUT4:I1->O            1   0.704   0.595  b51108 (b51108)
+     LUT3:I0->O            1   0.704   0.424  b51202_SW0 (N517)
+     LUT4:I3->O            2   0.704   0.622  b51202 (b51202)
+     LUT4:I0->O            1   0.704   0.000  b51215_F (N597)
+     MUXF5:I0->O           3   0.321   0.610  b51215 (N42)
+     LUT4:I1->O            1   0.704   0.499  r6 (r6)
+     LUT3:I1->O            1   0.704   0.420  r31 (r_OBUF)
      OBUF:I->O                 3.272          r_OBUF (r)
     ----------------------------------------
-    Total                      8.936ns (5.975ns logic, 2.961ns route)
-                                       (66.9% logic, 33.1% route)
+    Total                     14.277ns (9.112ns logic, 5.165ns route)
+                                       (63.8% logic, 36.2% route)
 
 =========================================================================
 WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/count_lut_4.
@@ -1369,15 +1829,15 @@ WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_ins
 WARNING:Xst:616 - Invalid property "XC_PROPS INIT": Did not attach to kcpsm3_inst/t_state_lut.
 
 
-Total REAL time to Xst completion: 34.00 secs
-Total CPU time to Xst completion: 34.13 secs
+Total REAL time to Xst completion: 39.00 secs
+Total CPU time to Xst completion: 38.69 secs
  
 --> 
 
 
-Total memory usage is 607776 kilobytes
+Total memory usage is 615692 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  372 (   0 filtered)
-Number of infos    :    2 (   0 filtered)
+Number of warnings :  394 (   0 filtered)
+Number of infos    :    8 (   0 filtered)
 

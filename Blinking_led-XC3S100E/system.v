@@ -27,7 +27,7 @@ module system
 	parameter	uart_baud_rate	= 57600
 ) (
 	input		clk,
-	input		rst,
+	input		rst,minimo_2,
 	// UART
 	//input             uart_rxd, 
 	//output            uart_txd,
@@ -57,6 +57,14 @@ datadegister	#(.DATAWIDTH(1)
 		.d(counter_unit0_ovf),
 		.q(led_out) 
 	);
+
+posy poss
+   (
+    .clk(clk), 
+    .rst(rst),
+    .change(minimo_2),
+    .o_signal()
+   );
 //----------------------------------------------------------------------------
 // Wires Assigments
 //----------------------------------------------------------------------------

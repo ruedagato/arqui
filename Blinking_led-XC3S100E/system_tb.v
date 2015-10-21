@@ -41,7 +41,7 @@ wire       led_tb;
 //----------------------------------------------------------------------------
 wire         uart_rxd_tb;
 wire         uart_txd_tb;
-
+reg reg1;
 //----------------------------------------------------------------------------
 // Device Under Test 
 //----------------------------------------------------------------------------
@@ -52,6 +52,7 @@ system #(
 	.clk(	clk_tb	),
 	// Debug
 	.rst(	rst_tb	),
+	.minimo_2(reg1),
 	.led(	led_tb	)
 	// Uart
 );
@@ -69,8 +70,17 @@ initial begin
 	//export all signals in the simulation viewer
 	$dumpvars(-1, dut);
 	//$dumpvars(-1,clk_tb,rst_tb);
-	#0  rst_tb <= 0;
-	#80 rst_tb <= 1;
-	#(tck*10000000) $finish;
+	#0  rst_tb <= 1;
+	#0  reg1 <= 0;
+	#80 rst_tb <= 0;
+	#22  reg1 <= 0;
+	#40  reg1 <= 1;
+	#22  reg1 <= 0;
+	#40  reg1 <= 1;
+	#22  reg1 <= 0;
+	#40  reg1 <= 1;
+	#22  reg1 <= 0;
+	#40  reg1 <= 1;
+	#(tck*10000) $finish;
 end
 endmodule

@@ -8,7 +8,7 @@ module vga_sync
 
    // constant declaration
    // VGA 640-by-480 sync parameters
-   localparam HD = 720; // horizontal display area
+   localparam HD = 640; // horizontal display area
    localparam HF = 48 ; // h. front (left) border
    localparam HB = 16 ; // h. back (right) border
    localparam HR = 96 ; // h. retrace

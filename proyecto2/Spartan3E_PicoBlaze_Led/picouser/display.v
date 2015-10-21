@@ -8,7 +8,7 @@ Modulo controlador VGA FPGA
 Autor:Jose Francisco Molano Pulido (jf.molano1587@uniandes.edu.co)
 */
              
-module display
+module display2
    (
     input wire [9:0] hcount, vcount,
     output wire [2:0] rgb_out

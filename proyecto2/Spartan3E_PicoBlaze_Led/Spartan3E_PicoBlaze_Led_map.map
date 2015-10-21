@@ -10,34 +10,34 @@ Target Device  : xc3s100e
 Target Package : vq100
 Target Speed   : -4
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Fri Oct 16 17:21:50 2015
+Mapped Date    : Tue Oct 20 21:44:30 2015
 
 Mapping design into LUTs...
 Running directed packing...
-WARNING:Pack:266 - The function generator ficha/Mrom_w_rgb_varindex0000581_1410
-   failed to merge with F5 multiplexer
-   ficha/Mrom_w_rgb_varindex00001331_15_f5_2.  There is a conflict for the
-   FXMUX.  The design will exhibit suboptimal timing.
-WARNING:Pack:266 - The function generator ficha/Mrom_w_rgb_varindex0000581_20
-   failed to merge with F5 multiplexer
-   ficha/Mrom_w_rgb_varindex00001331_16_f5_2.  There is a conflict for the
-   GYMUX.  The design will exhibit suboptimal timing.
 WARNING:Pack:266 - The function generator ficha/Mrom_w_rgb_varindex00001331_186
    failed to merge with F5 multiplexer
    ficha/Mrom_w_rgb_varindex00001331_16_f5_3.  There is a conflict for the
    GYMUX.  The design will exhibit suboptimal timing.
-WARNING:Pack:266 - The function generator ficha/Mrom_w_rgb_varindex0000581_111
-   failed to merge with F5 multiplexer
-   ficha/Mrom_w_rgb_varindex00001331_16_f5_4.  There is a conflict for the
-   FXMUX.  The design will exhibit suboptimal timing.
-WARNING:Pack:266 - The function generator ficha/lectura_sub0001<5>_mmx_out21
+WARNING:Pack:266 - The function generator ficha/lectura_sub0001<5>_mmx_out1
    failed to merge with F5 multiplexer ficha/Mrom_w_rgb_varindex00001331_10_f5. 
    There is a conflict for the GYMUX.  The design will exhibit suboptimal
    timing.
-WARNING:Pack:266 - The function generator
-   ficha/Mrom_w_rgb_varindex00001331_1712_SW0 failed to merge with F5
-   multiplexer ficha/Mrom_w_rgb_varindex0000581_11_f5.  There is a conflict for
-   the GYMUX.  The design will exhibit suboptimal timing.
+WARNING:Pack:266 - The function generator ficha/Mrom_w_rgb_varindex00001331_1711
+   failed to merge with F5 multiplexer ficha/Mrom_w_rgb_varindex0000581_10_f5. 
+   There is a conflict for the FXMUX.  The design will exhibit suboptimal
+   timing.
+WARNING:Pack:266 - The function generator ficha/Mrom_w_rgb_varindex0000581_13
+   failed to merge with F5 multiplexer ficha/Mrom_w_rgb_varindex0000581_11_f5. 
+   There is a conflict for the GYMUX.  The design will exhibit suboptimal
+   timing.
+WARNING:Pack:266 - The function generator ficha/Mrom_w_rgb_varindex00001331_203
+   failed to merge with F5 multiplexer ficha/Mrom_w_rgb_varindex0000581_13_f5_0.
+    There is a conflict for the FXMUX.  The design will exhibit suboptimal
+   timing.
+WARNING:Pack:266 - The function generator ficha/Mrom_w_rgb_varindex00001331_167
+   failed to merge with F5 multiplexer ficha/Mrom_w_rgb_varindex0000581_13_f5_4.
+    There is a conflict for the FXMUX.  The design will exhibit suboptimal
+   timing.
 Running delay-based LUT packing...
 Running related packing...
 Updating timing models...
@@ -49,16 +49,16 @@ Design Summary:
 Number of errors:      0
 Number of warnings:    6
 Logic Utilization:
-  Number of Slice Flip Flops:           107 out of   1,920    5%
-  Number of 4 input LUTs:               979 out of   1,920   50%
+  Number of Slice Flip Flops:           165 out of   1,920    8%
+  Number of 4 input LUTs:             1,351 out of   1,920   70%
 Logic Distribution:
-  Number of occupied Slices:            591 out of     960   61%
-    Number of Slices containing only related logic:     591 out of     591 100%
-    Number of Slices containing unrelated logic:          0 out of     591   0%
+  Number of occupied Slices:            793 out of     960   82%
+    Number of Slices containing only related logic:     793 out of     793 100%
+    Number of Slices containing unrelated logic:          0 out of     793   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:       1,005 out of   1,920   52%
-    Number used as logic:               911
-    Number used as a route-thru:         26
+  Total Number of 4 input LUTs:       1,378 out of   1,920   71%
+    Number used as logic:             1,283
+    Number used as a route-thru:         27
     Number used for Dual Port RAMs:      16
       (Two LUTs used per Dual Port RAM)
     Number used for 32x1 RAMs:           52
@@ -67,13 +67,13 @@ Logic Distribution:
   The Slice Logic Distribution report is not meaningful if the design is
   over-mapped for a non-slice resource or if Placement fails.
 
-  Number of bonded IOBs:                  7 out of      66   10%
+  Number of bonded IOBs:                 23 out of      66   34%
   Number of RAMB16s:                      1 out of       4   25%
   Number of BUFGMUXs:                     1 out of      24    4%
 
-Average Fanout of Non-Clock Nets:                4.57
+Average Fanout of Non-Clock Nets:                4.40
 
-Peak Memory Usage:  610 MB
+Peak Memory Usage:  613 MB
 Total REAL time to MAP completion:  2 secs 
 Total CPU time to MAP completion:   2 secs 
 

@@ -3,6 +3,7 @@ module nivel
 	input wire clk,rst,salto,
 	input wire [9:0] hcount, vcount,
 	input wire [9:0] origen_x,
+	input wire [9:0] origen_y,
     output wire [3:0] rgb_out
 );
 
@@ -11,7 +12,7 @@ parameter tamano = 10'd64;
 parameter y_tamano = 10'd64;
 //parameter origen_x = 10'd200;
 //reg[9:0] origen_x;
-parameter origen_y = 10'd200;
+//parameter origen_y = 10'd200;
 
 wire [12:0] lectura;
 reg [3:0] w_rgb;
@@ -4120,7 +4121,9 @@ registros[4095]= 3'b111;
 end
 
 always @(posedge clk) begin
-	if (hcount>=origen_x && hcount<(origen_x+tamano) && vcount<(y_tamano + origen_y) && vcount>= origen_y) begin
+	if(hcount>10'd550 || hcount<10'd190)
+		w_rgb = 4'b1000;
+	else if (hcount>=origen_x && hcount<(origen_x+tamano) && vcount<(y_tamano + origen_y) && vcount>= origen_y) begin
 		w_rgb = {1'b0,registros[lectura]};
 	end
 	else begin

@@ -31,7 +31,7 @@ DISABLE INTERRUPT 	; If using interrupts, be sure to enable the INTERRUPT input
 ;;============================================================================
 
 
-		LOAD	sF, 3f
+	LOAD	sF, 3f
 	JUMP	__sdcc_program_startup
 ;--------------------------------------------------------
 ; Home
@@ -44,70 +44,13 @@ __sdcc_loop:
 ;--------------------------------------------------------
 ; code
 ;--------------------------------------------------------
-	;	programa.c:20: void main()
+	;	programa.c:21: void main()
 _main:
-	;	programa.c:22: char cont_sato = 20;
-	LOAD	s0, 14
-	;	programa.c:24: char cont_led = 100;
-	LOAD	s1, 64
-	;	programa.c:25: led_on();
-	STORE	s0, (sF)
-	SUB	sF, 01
-	STORE	s1, (sF)
-	SUB	sF, 01
-	CALL	_led_on
-	ADD	sF, 01
-	FETCH	s1, (sF)
-	ADD	sF, 01
-	FETCH	s0, (sF)
-	;	programa.c:26: while(1)
-_L00111:
-	;	programa.c:28: if (cont_sato == 0)
-	COMPARE	s0, 00
-	JUMP	Z, _LC00135
-	JUMP	_L00102
-_LC00135:
-	;	programa.c:30: cont_sato = 20;
-	LOAD	s0, 14
-	;	programa.c:31: saltar();
-	STORE	s0, (sF)
-	SUB	sF, 01
-	STORE	s1, (sF)
-	SUB	sF, 01
-	CALL	_saltar
-	ADD	sF, 01
-	FETCH	s1, (sF)
-	ADD	sF, 01
-	FETCH	s0, (sF)
-	JUMP	_L00103
-_L00102:
-	;	programa.c:34: cont_sato --;
-	SUB	s0, 01
-_L00103:
-	;	programa.c:36: if (cont_led == 50)
-	COMPARE	s1, 32
-	JUMP	NZ, _L00105
-	;	programa.c:37: led_on();
-	STORE	s0, (sF)
-	SUB	sF, 01
-	STORE	s1, (sF)
-	SUB	sF, 01
-	CALL	_led_on
-	ADD	sF, 01
-	FETCH	s1, (sF)
-	ADD	sF, 01
-	FETCH	s0, (sF)
-	JUMP	_L00106
-_L00105:
-	;	programa.c:39: cont_led --;
-	SUB	s1, 01
-_L00106:
-	;	programa.c:40: if (cont_led == 0)
-	COMPARE	s1, 00
-	JUMP	Z, _LC00136
-	JUMP	_L00108
-_LC00136:
-	;	programa.c:42: led_off();
+	;	programa.c:23: char cont_led = 2;
+	LOAD	s0, 02
+	;	programa.c:25: unsigned char cont_nivel = 0;
+	LOAD	s1, 00
+	;	programa.c:26: led_off();
 	STORE	s0, (sF)
 	SUB	sF, 01
 	STORE	s1, (sF)
@@ -117,26 +60,84 @@ _LC00136:
 	FETCH	s1, (sF)
 	ADD	sF, 01
 	FETCH	s0, (sF)
-	;	programa.c:43: cont_led = 100;	
-	LOAD	s1, 64
-	JUMP	_L00109
-_L00108:
-	;	programa.c:46: cont_led --;
-	SUB	s1, 01
-_L00109:
-	;	programa.c:47: delay_ms(10);
+	;	programa.c:27: delay_ms(2000);
 	STORE	s0, (sF)
 	SUB	sF, 01
 	STORE	s1, (sF)
 	SUB	sF, 01
-	LOAD	sB, 0a
-	LOAD	sC, 00
+	LOAD	sB, d0
+	LOAD	sC, 07
 	CALL	_delay_ms
 	ADD	sF, 01
 	FETCH	s1, (sF)
 	ADD	sF, 01
 	FETCH	s0, (sF)
-	JUMP	_L00111
+	;	programa.c:30: __endasm;
+	 LOAD s7, 00
+	;	programa.c:31: while(1)
+_L00108:
+	;	programa.c:33: if (cont_led == 1)
+	COMPARE	s0, 01
+	JUMP	NZ, _L00102
+	;	programa.c:34: led_on();
+	STORE	s0, (sF)
+	SUB	sF, 01
+	STORE	s1, (sF)
+	SUB	sF, 01
+	CALL	_led_on
+	ADD	sF, 01
+	FETCH	s1, (sF)
+	ADD	sF, 01
+	FETCH	s0, (sF)
+_L00102:
+	;	programa.c:35: if (cont_led == 0)
+	COMPARE	s0, 00
+	JUMP	Z, _LC00134
+	JUMP	_L00104
+_LC00134:
+	;	programa.c:37: led_off();
+	STORE	s0, (sF)
+	SUB	sF, 01
+	STORE	s1, (sF)
+	SUB	sF, 01
+	CALL	_led_off
+	ADD	sF, 01
+	FETCH	s1, (sF)
+	ADD	sF, 01
+;	programa.c:38: cont_led = 2;	
+	LOAD	s0, 02
+_L00104:
+	;	programa.c:40: if (cont_nivel == nivel)
+	COMPARE	s1, 01
+	JUMP	NZ, _L00106
+	;	programa.c:42: saltar();
+	STORE	s0, (sF)
+	SUB	sF, 01
+	STORE	s1, (sF)
+	SUB	sF, 01
+	CALL	_saltar
+	ADD	sF, 01
+	FETCH	s1, (sF)
+	ADD	sF, 01
+	FETCH	s0, (sF)
+	;	programa.c:43: cont_nivel = 0;
+	LOAD	s1, 00
+_L00106:
+	;	programa.c:45: cont_nivel ++;
+	ADD	s1, 01
+	;	programa.c:46: cont_led --;
+	SUB	s0, 01
+	;	programa.c:47: delay();
+	STORE	s0, (sF)
+	SUB	sF, 01
+	STORE	s1, (sF)
+	SUB	sF, 01
+	CALL	_delay
+	ADD	sF, 01
+	FETCH	s1, (sF)
+	ADD	sF, 01
+	FETCH	s0, (sF)
+	JUMP	_L00108
 	;	programa.c:51: void saltar()
 _saltar:
 	;	programa.c:56: __endasm;
@@ -148,48 +149,59 @@ _saltar:
 	 XOR s7, 02
 	 OUTPUT s7, 00
 	RETURN
-	;	programa.c:64: void led_on()
-_led_on:
+	;	programa.c:64: void cam()
+_cam:
 	;	programa.c:69: __endasm;
-	LOAD s7, 01
-	OUTPUT s7, 00
-	RETURN
-	;	programa.c:72: void led_off()
-_led_off:
-	;	programa.c:77: __endasm;
-	 LOAD s7, 00
+	 XOR s7, 04
+	 OUTPUT s7, 00
+	;	programa.c:70: delay();
+	CALL	_delay
+	;	programa.c:74: __endasm;
+	 XOR s7, 04
 	 OUTPUT s7, 00
 	RETURN
-	;	programa.c:80: void delay()
+	;	programa.c:77: void led_on()
+_led_on:
+	;	programa.c:82: __endasm;
+	XOR s7, 01
+	OUTPUT s7, 00
+	RETURN
+	;	programa.c:85: void led_off()
+_led_off:
+	;	programa.c:90: __endasm;
+	 XOR s7, 01
+	 OUTPUT s7, 00
+	RETURN
+	;	programa.c:94: void delay()
 _delay:
-	;	programa.c:94: __endasm;
+	;	programa.c:108: __endasm;
 	  CONSTANT DELAY_LOOP2 , 30 ; Loop delay
 	     LOAD s1, 00
-	  rpt2:
+	  _rpt2:
 	ADD s1, 01
 	     LOAD s0, 00
-	  rpt1:
+	  _rpt1:
 	ADD s0, 01
-	     JUMP NZ,rpt1
+	     JUMP NZ,_rpt1
 	     COMPARE s1, DELAY_LOOP2
-	     JUMP NZ,rpt2
+	     JUMP NZ,_rpt2
 	RETURN
-	;	programa.c:97: void delay_ms(int n)
+	;	programa.c:111: void delay_ms(int n)
 _delay_ms:
 	LOAD	s0, sB
 	LOAD	s1, sC
-	;	programa.c:100: while(valor!=0)
-_L00127:
+	;	programa.c:114: while(valor!=0)
+_L00126:
 	LOAD	s2, s0
 	OR	s2, s1
 	COMPARE	s2, 00
-	JUMP	NZ, _LC00137
-	JUMP	_L00134
-_LC00137:
-	;	programa.c:102: valor = valor - 1;
+	JUMP	NZ, _LC00135
+	JUMP	_L00133
+_LC00135:
+	;	programa.c:116: valor = valor - 1;
 	SUB	s0, 01
 	SUBCY	s1, 00
-	;	programa.c:103: delay();
+	;	programa.c:117: delay();
 	STORE	s0, (sF)
 	SUB	sF, 01
 	STORE	s1, (sF)
@@ -199,15 +211,9 @@ _LC00137:
 	FETCH	s1, (sF)
 	ADD	sF, 01
 	FETCH	s0, (sF)
-	JUMP	_L00127
-_L00134:
+	JUMP	_L00126
+_L00133:
 	RETURN
-
-
-
-
-
-
 
 
 

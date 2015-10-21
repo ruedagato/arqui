@@ -1,28 +1,23 @@
 module cmove
-#(
-    parameter N=4, // X mínimo
-              M=15,// X máximo
-              X=10  // Posición inicial 
-   )
    (
     input wire clk, reset,
+    input wire [9:0] N,M,X,
     input [1:0] oper,
     output wire x_min, x_max,
     output wire [9:0] salida
    );
 
-
-   reg [9:0] pos_x;
+   reg [9:0] posx;
    wire [9:0] next_posx;
    reg r_xmin, r_xmax;
 
 
 always @(*) begin
-		if(posx>=N) begin
+		if(posx<=N) begin
 			r_xmin = 1;
 			r_xmax = 0;
     end
-		else if(posx<=M)
+		else if(posx>=M)
     begin
 			r_xmin = 0;
 			r_xmax = 1;
